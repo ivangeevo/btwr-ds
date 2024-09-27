@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "tag": "c:strings"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "SFS",
+    "SSS",
+    "SFS"
+  ],
+  "result": {
+    "count": 2,
+    "id": "minecraft:ladder"
+  }
+}
