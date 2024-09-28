@@ -97,8 +97,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // Adding door recipes
-        String[] doorTypes = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"};
-        for (String woodType : doorTypes) {
+        String[] doorTypes = { "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry" };
+        for (String woodType : doorTypes)
+        {
             Identifier resultId = Identifier.ofVanilla(woodType + "_door");
             ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.ITEM.get(resultId))
                     .input('P', grabRaw(woodType + "_planks"))
@@ -111,14 +112,15 @@ public class DS_RecipeProvider extends FabricRecipeProvider {
 
         // Adding pressure plate recipes
         String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
-        for (String plateType : woodenPressurePlates) {
+        for (String plateType : woodenPressurePlates)
+        {
             Identifier resultId = Identifier.ofVanilla(plateType + "_pressure_plate");
             ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.ITEM.get(resultId))
                     .input('S', grabRaw(plateType + "_slab"))
                     .input('R', Items.REDSTONE)
                     .pattern("S")
                     .pattern("R")
-                    .criterion("has_slab", conditionsFromTag(ItemTags.WOODEN_SLABS)) /**Identifier.ofVanilla(plateType + "_slab"))) **/
+                    .criterion("has_slab", conditionsFromTag(ItemTags.WOODEN_SLABS))
                     .offerTo(exporter, resultId);
         }
 
