@@ -13,9 +13,7 @@ public class BTWRDS implements ModInitializer
 	@Override
 	public void onInitialize()
 	{
-		//ModLootTableModification.modifyLootPools();
+		LOGGER.info("Initializing BTWR: Datapack Suite!");
 		ModLootTableReplacement.initialize();
-
-		LOGGER.info("Hello Fabric world!");
 	}
 }
