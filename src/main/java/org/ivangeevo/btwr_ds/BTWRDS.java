@@ -10,10 +10,13 @@ public class BTWRDS implements ModInitializer
 	public static final String MOD_ID = "btwr-ds";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+
+
 	@Override
 	public void onInitialize()
 	{
 		LOGGER.info("Initializing BTWR: Datapack Suite!");
 		ModLootTableReplacement.initialize();
+
 	}
 }

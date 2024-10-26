@@ -3,9 +3,9 @@
 	"id": "btwr-ds",
 	"version": "${version}",
 	"name": "BTWR-DS",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Hardcore stuff, duh!?",
 	"authors": [
-		"Me!"
+		"ivangeevo"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -41,4 +41,5 @@
 	"suggests": {
 		"another-mod": "*"
 	}
+
 }

@@ -34,6 +34,8 @@ fabricApi {
 	configureDataGeneration()
 }
 
+
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -42,8 +44,11 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	//modImplementation files('libs/tough_environment-0.4-1.21.1.jar')
 	
 }
+
 
 processResources {
 	inputs.property "version", project.version
