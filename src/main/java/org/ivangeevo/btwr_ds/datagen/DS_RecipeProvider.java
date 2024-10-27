@@ -96,13 +96,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     private void generateForVanilla(RecipeExporter exporter)
     {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHEST)
-                .input('S', ItemTags.WOODEN_SLABS)
-                .pattern("SSS")
-                .pattern("S S")
-                .pattern("SSS")
-                .criterion("has_slab", conditionsFromTag(ItemTags.WOODEN_SLABS))
-                .offerTo(exporter, Identifier.ofVanilla("chest"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BONE_BLOCK)
                 .input('S', Items.BONE)
@@ -121,16 +114,15 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_stick", conditionsFromItem(Items.STICK))
                 .offerTo(exporter, Identifier.ofVanilla( "ladder"));
 
-
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.HOPPER)
-                .input('S', ItemTags.WOODEN_SLABS)
+                .input('S', BWTTags.Items.WOODEN_SIDING_BLOCKS)
                 .input('G', BTWRConventionalTags.Items.GEARS)
                 .input('P', ItemTags.WOODEN_PRESSURE_PLATES)
-                .input('W', ItemTags.PLANKS)
+                .input('W', BWTTags.Items.WOODEN_CORNER_BLOCKS)
                 .pattern("S S")
                 .pattern("GPG")
                 .pattern(" W ")
-                .criterion("has_slab", conditionsFromTag(ItemTags.WOODEN_SLABS))
+                .criterion("has_moulding", conditionsFromTag(BWTTags.Items.WOODEN_MOULDING_BLOCKS))
                 .offerTo(exporter);
 
         // Adding door recipes
@@ -148,16 +140,16 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         }
 
         // Adding pressure plate recipes
-        String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
+        String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped", "blood_wood"};
         for (String plateType : woodenPressurePlates)
         {
             Identifier resultId = Identifier.ofVanilla(plateType + "_pressure_plate");
             ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
-                    .input('S', grabRaw(plateType + "_slab"))
+                    .input('S', grabRaw("bwt",plateType + "_planks_siding"))
                     .input('R', Items.REDSTONE)
                     .pattern("S")
                     .pattern("R")
-                    .criterion("has_slab", conditionsFromTag(ItemTags.WOODEN_SLABS))
+                    .criterion("has_siding", conditionsFromTag(BWTTags.Items.WOODEN_SIDING_BLOCKS))
                     .offerTo(exporter, resultId);
         }
 

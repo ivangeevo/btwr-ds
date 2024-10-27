@@ -37,6 +37,6 @@ public interface RecipeProviderUtils
     }
 
     default Item grabRaw(String namespace, String itemID) {
-        return Registries.ITEM.get(namespace == null ? Identifier.ofVanilla(itemID) : Identifier.of(namespace, itemID) );
+        return Registries.ITEM.get(Identifier.of(namespace, itemID));
     }
 }
