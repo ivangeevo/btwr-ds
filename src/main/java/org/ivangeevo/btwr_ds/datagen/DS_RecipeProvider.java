@@ -97,7 +97,23 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
                 .offerTo(exporter, ID.ofDS("iron_hoe_right"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_AXE)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern(" M")
+                .pattern("IM")
+                .pattern("I ")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, ID.ofDS("diamond_axe_right"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern("IM")
+                .pattern("I ")
+                .pattern("I ")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
 
     }
 
