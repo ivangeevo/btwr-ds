@@ -18,6 +18,13 @@ repositories {
 	// for more information about repositories.
 }
 
+fabricApi {
+	configureDataGeneration()
+			{
+				modId = "btwr-ds"
+			}
+}
+
 loom {
 	splitEnvironmentSourceSets()
 
@@ -30,12 +37,6 @@ loom {
 
 }
 
-fabricApi {
-	configureDataGeneration()
-}
-
-
-
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -45,10 +46,14 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	//modImplementation files('libs/tough_environment-0.4-1.21.1.jar')
-	
-}
+	//modCompileOnly files('libs/tough_environment-0.4-1.21.1.jar')
+	modImplementation files('libs/better_with_time-1.7.jar')
+	modImplementation files('libs/btwr-core-0.26.1-1.21.1.jar')
 
+
+
+
+}
 
 processResources {
 	inputs.property "version", project.version
@@ -76,7 +81,9 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
+
 }
+
 
 // configure the maven publication
 publishing {

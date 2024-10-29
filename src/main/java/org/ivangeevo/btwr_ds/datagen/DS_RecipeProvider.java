@@ -1,9 +1,14 @@
 package org.ivangeevo.btwr_ds.datagen;
 
+import btwr.core.item.BTWR_Items;
+import com.bwt.blocks.BwtBlocks;
+import com.bwt.blocks.SidingBlock;
+import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.block.Block;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -57,8 +62,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // Recipes that get removed
         this.generateRecipesToRemove(exporter);
-    }
 
+
+    }
 
     private void generateForMod(RecipeExporter exporter)
     {
@@ -71,26 +77,26 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern(" R#")
                 .pattern(" R ")
                 .criterion("has_cobblestone", RecipeProvider.conditionsFromTag(ItemTags.STONE_TOOL_MATERIALS))
-                .offerTo(exporter, Identifier.of("btwr-ds","stone_pickaxe_right"));
+                .offerTo(exporter, ID.ofDS("stone_pickaxe_right"));
 
-        // Cooking recipes
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_AXE)
+                .input('M', Items.IRON_INGOT)
+                .input('I', Items.STICK)
+                .pattern(" M")
+                .pattern("IM")
+                .pattern("I ")
+                .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, ID.ofDS("iron_axe_right"));
 
-        // TODO: Remove the smelting recipes for ores when we add the Brick oven from Self Sustainable
-        //offerSmelting(exporter, IRON_ORES, RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 200, "iron_nugget");
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_HOE)
+                .input('M', Items.IRON_INGOT)
+                .input('I', Items.STICK)
+                .pattern("IM")
+                .pattern("I ")
+                .pattern("I ")
+                .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, ID.ofDS("iron_hoe"));
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 1200)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.of("btwr-ds","iron_nugget_from_smelting_raw_iron"));
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 1200)
-        .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.of("btwr-ds", "iron_nugget_from_smelting_iron_ore"));
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 1200)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.of("btwr-ds", "iron_nugget_from_smelting_deepslate_iron_ore"));
-
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 600)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.of("btwr-ds","iron_nugget_from_blasting_raw_iron"));
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 600)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.of("btwr-ds", "iron_nugget_from_blasting_iron_ore"));
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.65F, 600)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.of("btwr-ds", "iron_nugget_from_blasting_deepslate_iron_ore"));
 
     }
 
@@ -122,7 +128,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("S S")
                 .pattern("GPG")
                 .pattern(" W ")
-                .criterion("has_moulding", conditionsFromTag(BWTTags.Items.WOODEN_MOULDING_BLOCKS))
+                .criterion("has_moulding", conditionsFromTag(BWTTags.Items.WOODEN_SIDING_BLOCKS))
                 .offerTo(exporter);
 
         // Adding door recipes
@@ -139,19 +145,41 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                     .offerTo(exporter, resultId);
         }
 
-        // Adding pressure plate recipes
-        String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped", "blood_wood"};
-        for (String plateType : woodenPressurePlates)
-        {
+        // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
+        String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
+        for (String plateType : woodenPressurePlates) {
             Identifier resultId = Identifier.ofVanilla(plateType + "_pressure_plate");
-            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
-                    .input('S', grabRaw("bwt",plateType + "_planks_siding"))
-                    .input('R', Items.REDSTONE)
+
+            // Loop through each siding block in the list
+            for (SidingBlock sidingBlock : BwtBlocks.sidingBlocks) {
+                if (sidingBlock == null || sidingBlock.asItem() == Items.AIR) {
+                    System.out.println("Invalid siding block: " + (sidingBlock == null ? "null" : sidingBlock.getTranslationKey()));
+                    continue; // Skip this siding block if it's invalid
+                }
+
+                ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+                        .input('S', sidingBlock)  // Use the current SidingBlock as the 'S' input
+                        .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                        .pattern("S")
+                        .pattern("R")
+                        .criterion("has_siding", conditionsFromTag(BWTTags.Items.WOODEN_SIDING_BLOCKS))
+                        .offerTo(exporter, resultId.withPath(resultId.getPath() + "_" + sidingBlock.getTranslationKey().replace(".", "_")));
+            }
+        }
+
+
+            // Create the recipe for the blood wood pressure plate
+            Identifier bloodWoodResultId = ID.ofBWT("blood_wood_pressure_plate");
+            Block bloodWoodSiding = Registries.BLOCK.get(bloodWoodResultId);
+
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.BLOCK.get(bloodWoodResultId))
+                    .input('S', bloodWoodSiding.asItem())  // Use the blood wood SidingBlock as the 'S' input
+                    .input('R', Items.REDSTONE) // Redstone for the 'R' input
                     .pattern("S")
                     .pattern("R")
-                    .criterion("has_siding", conditionsFromTag(BWTTags.Items.WOODEN_SIDING_BLOCKS))
-                    .offerTo(exporter, resultId);
-        }
+                    .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .offerTo(exporter, bloodWoodResultId);
+
 
         // Items
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.ARROW, 2)
@@ -194,6 +222,78 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_cobblestone", RecipeProvider.conditionsFromTag(ItemTags.STONE_TOOL_MATERIALS))
                 .offerTo(exporter, Identifier.ofVanilla("stone_pickaxe"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_AXE)
+                .input('M', Items.IRON_INGOT)
+                .input('I', Items.STICK)
+                .pattern("M ")
+                .pattern("MI")
+                .pattern(" I")
+                .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("iron_axe"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_HOE)
+                .input('M', Items.IRON_INGOT)
+                .input('I', Items.STICK)
+                .pattern("MI")
+                .pattern(" I")
+                .pattern(" I")
+                .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("iron_hoe"));
+
+        // Cooking recipes
+
+        // TODO: Remove the smelting recipes for ores when we add the Brick oven from Self Sustainable
+        //offerSmelting(exporter, IRON_ORES, RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 200, "iron_nugget");
+
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 1200)
+                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.ofVanilla("iron_nugget_from_smelting_raw_iron"));
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 1200)
+                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.ofVanilla( "iron_nugget_from_smelting_iron_ore"));
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 1200)
+                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.ofVanilla( "iron_nugget_from_smelting_deepslate_iron_ore"));
+
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 600)
+                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.ofVanilla("iron_nugget_from_blasting_raw_iron"));
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 600)
+                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.ofVanilla( "iron_nugget_from_blasting_iron_ore"));
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.65F, 600)
+                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES)).offerTo(exporter, Identifier.ofVanilla( "iron_nugget_from_blasting_deepslate_iron_ore"));
+
+
+        // Armor
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
+                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .input('P', BTWR_Items.DIAMOND_PLATE)
+                .pattern("III")
+                .pattern("IPI")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_helmet"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_CHESTPLATE)
+                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .input('P', BTWR_Items.DIAMOND_PLATE)
+                .pattern("P P")
+                .pattern("III")
+                .pattern("III")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_chestplate"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_LEGGINGS)
+                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .input('P', BTWR_Items.DIAMOND_PLATE)
+                .pattern("III")
+                .pattern("P P")
+                .pattern("P P")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_leggings"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_BOOTS)
+                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .pattern("I I")
+                .pattern("I I")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_boots"));
+
     }
 
     private void generateForBWT(RecipeExporter exporter)
@@ -207,27 +307,44 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BWTTags.Items.WOODEN_MOULDING_BLOCKS))
                 .offerTo(exporter, Identifier.of("bwt", "he_ladder"));
 
+
     }
 
     private void generateRecipesToRemove(RecipeExporter exporter)
     {
-        removeRecipe(exporter, Identifier.ofVanilla("iron_ingot_from_smelting_raw_iron"));
-        removeRecipe(exporter, Identifier.ofVanilla("iron_ingot_from_smelting_iron_ore"));
-        removeRecipe(exporter, Identifier.ofVanilla("iron_ingot_from_smelting_deepslate_iron_ore"));
 
-        removeRecipe(exporter, Identifier.ofVanilla("iron_ingot_from_blasting_raw_iron"));
-        removeRecipe(exporter, Identifier.ofVanilla("iron_ingot_from_blasting_iron_ore"));
-        removeRecipe(exporter, Identifier.ofVanilla("iron_ingot_from_blasting_deepslate_iron_ore"));
-
-        // Remove wooden tools
+        // Remove tools
         removeRecipe(exporter, Identifier.ofVanilla("wooden_sword"));
         removeRecipe(exporter, Identifier.ofVanilla("wooden_pickaxe"));
         removeRecipe(exporter, Identifier.ofVanilla("wooden_axe"));
         removeRecipe(exporter, Identifier.ofVanilla("wooden_shovel"));
         removeRecipe(exporter, Identifier.ofVanilla("wooden_hoe"));
 
+        removeRecipe(exporter, Identifier.ofVanilla("stone_sword"));
+        removeRecipe(exporter, Identifier.ofVanilla("stone_hoe"));
+
+
         // Remove the ability to repair items by combining them
         removeRecipe(exporter, Identifier.ofVanilla("repair_item"));
 
     }
+
+    private static class ID
+    {
+        /** DS - Datapack Suite **/
+        static Identifier ofDS(String item) { return Identifier.of("btwr-ds", item); }
+        /** BTWR: Core **/
+        static Identifier ofBTWR(String item) { return Identifier.of("btwr", item); }
+        /** BWT - Better With Time **/
+        static Identifier ofBWT(String item)
+        {
+            return Identifier.of("bwt", item);
+        }
+        static Identifier ofTE(String item) { return Identifier.of("tough_environment", item); }
+        static Identifier ofST(String item) { return Identifier.of("sturdy_trees", item); }
+        static Identifier ofSS(String item) { return Identifier.of("self_sustainable", item); }
+
+    }
+
+
 }

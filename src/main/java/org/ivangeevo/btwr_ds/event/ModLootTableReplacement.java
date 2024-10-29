@@ -27,7 +27,7 @@ public class ModLootTableReplacement
     public static void initialize()
     {
         replaceListWithCondition(createStrippedLogsList(), StatePredicate.Builder.create().exactMatch(VARIATION, 0), Items.STICK);
-        replace(Identifier.ofVanilla("oak_leaves"), Items.AIR);
+        //replace(Identifier.ofVanilla("oak_leaves"), Items.AIR);
         //replace(Identifier.ofVanilla("campfire"), Items.AIR);
 
     }
