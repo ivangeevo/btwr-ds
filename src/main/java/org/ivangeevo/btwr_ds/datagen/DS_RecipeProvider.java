@@ -1,8 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen;
 
 import btwr.core.item.BTWR_Items;
-import com.bwt.blocks.BwtBlocks;
-import com.bwt.blocks.SidingBlock;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -163,12 +161,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         }
 
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
-        String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
-        for (String plateType : woodenPressurePlates)
+        String[] vanillaWoodTypes = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
+        for (String woodType : vanillaWoodTypes)
         {
-            Identifier resultId = Identifier.ofVanilla(plateType + "_pressure_plate");
+            Identifier resultId = Identifier.ofVanilla(woodType + "_pressure_plate");
+            Block sidingBlock = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_siding"));
 
-            Block sidingBlock = Registries.BLOCK.get(resultId);
             ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
                     .input('S', sidingBlock)  // Use the current SidingBlock as the 'S' input
                     .input('R', Items.REDSTONE) // Redstone for the 'R' input
@@ -178,7 +176,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                     .offerTo(exporter, resultId);
         }
 
-            // Create the recipe for the blood wood pressure plate
+
+        // Create the recipe for the blood wood pressure plate
             Identifier bloodWoodResultId = ID.ofBWT("blood_wood_pressure_plate");
             Block bloodWoodSiding = Registries.BLOCK.get(bloodWoodResultId);
 

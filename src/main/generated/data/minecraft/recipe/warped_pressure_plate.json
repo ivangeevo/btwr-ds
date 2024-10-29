@@ -6,7 +6,7 @@
       "item": "minecraft:redstone"
     },
     "S": {
-      "item": "minecraft:warped_pressure_plate"
+      "item": "bwt:warped_planks_siding"
     }
   },
   "pattern": [

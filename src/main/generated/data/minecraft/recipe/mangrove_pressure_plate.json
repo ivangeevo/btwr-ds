@@ -6,7 +6,7 @@
       "item": "minecraft:redstone"
     },
     "S": {
-      "item": "minecraft:mangrove_pressure_plate"
+      "item": "bwt:mangrove_planks_siding"
     }
   },
   "pattern": [

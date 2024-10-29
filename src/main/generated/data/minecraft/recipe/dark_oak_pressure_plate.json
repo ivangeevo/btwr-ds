@@ -6,7 +6,7 @@
       "item": "minecraft:redstone"
     },
     "S": {
-      "item": "minecraft:dark_oak_pressure_plate"
+      "item": "bwt:dark_oak_planks_siding"
     }
   },
   "pattern": [

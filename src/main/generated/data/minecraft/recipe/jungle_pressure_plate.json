@@ -6,7 +6,7 @@
       "item": "minecraft:redstone"
     },
     "S": {
-      "item": "minecraft:jungle_pressure_plate"
+      "item": "bwt:jungle_planks_siding"
     }
   },
   "pattern": [

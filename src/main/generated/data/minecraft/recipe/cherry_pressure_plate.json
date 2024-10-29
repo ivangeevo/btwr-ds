@@ -6,7 +6,7 @@
       "item": "minecraft:redstone"
     },
     "S": {
-      "item": "minecraft:cherry_pressure_plate"
+      "item": "bwt:cherry_planks_siding"
     }
   },
   "pattern": [
