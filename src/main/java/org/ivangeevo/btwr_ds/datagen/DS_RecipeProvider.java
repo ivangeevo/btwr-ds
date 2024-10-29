@@ -95,7 +95,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("I ")
                 .pattern("I ")
                 .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, ID.ofDS("iron_hoe"));
+                .offerTo(exporter, ID.ofDS("iron_hoe_right"));
+
 
 
     }
@@ -147,26 +148,19 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
         String[] woodenPressurePlates = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
-        for (String plateType : woodenPressurePlates) {
+        for (String plateType : woodenPressurePlates)
+        {
             Identifier resultId = Identifier.ofVanilla(plateType + "_pressure_plate");
 
-            // Loop through each siding block in the list
-            for (SidingBlock sidingBlock : BwtBlocks.sidingBlocks) {
-                if (sidingBlock == null || sidingBlock.asItem() == Items.AIR) {
-                    System.out.println("Invalid siding block: " + (sidingBlock == null ? "null" : sidingBlock.getTranslationKey()));
-                    continue; // Skip this siding block if it's invalid
-                }
-
-                ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
-                        .input('S', sidingBlock)  // Use the current SidingBlock as the 'S' input
-                        .input('R', Items.REDSTONE) // Redstone for the 'R' input
-                        .pattern("S")
-                        .pattern("R")
-                        .criterion("has_siding", conditionsFromTag(BWTTags.Items.WOODEN_SIDING_BLOCKS))
-                        .offerTo(exporter, resultId.withPath(resultId.getPath() + "_" + sidingBlock.getTranslationKey().replace(".", "_")));
-            }
+            Block sidingBlock = Registries.BLOCK.get(resultId);
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+                    .input('S', sidingBlock)  // Use the current SidingBlock as the 'S' input
+                    .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                    .pattern("S")
+                    .pattern("R")
+                    .criterion("has_siding", conditionsFromTag(BWTTags.Items.WOODEN_SIDING_BLOCKS))
+                    .offerTo(exporter, resultId);
         }
-
 
             // Create the recipe for the blood wood pressure plate
             Identifier bloodWoodResultId = ID.ofBWT("blood_wood_pressure_plate");
@@ -239,6 +233,25 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern(" I")
                 .criterion("has_iron_ingot", RecipeProvider.conditionsFromItem(Items.IRON_INGOT))
                 .offerTo(exporter, Identifier.ofVanilla("iron_hoe"));
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_AXE)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern("M ")
+                .pattern("MI")
+                .pattern(" I")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_axe"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern("MI")
+                .pattern(" I")
+                .pattern(" I")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_hoe"));
 
         // Cooking recipes
 
