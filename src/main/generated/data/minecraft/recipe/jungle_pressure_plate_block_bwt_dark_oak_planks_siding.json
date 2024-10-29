@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "bwt:dark_oak_planks_siding"
+    }
+  },
+  "pattern": [
+    "S",
+    "R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:jungle_pressure_plate"
+  }
+}
