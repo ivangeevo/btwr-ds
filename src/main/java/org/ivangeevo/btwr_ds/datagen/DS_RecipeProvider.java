@@ -112,9 +112,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
 
-        CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD,  BwtItems.friedEggItem, 0.10f, 1600)
+        CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD,  BwtItems.friedEggItem, 0.10f, 5200)
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
-                .offerTo(exporter, ID.ofBWT("fried_egg"));
+                .offerTo(exporter, ID.ofBWT("fried_egg_from_campfire_cooking"));
 
     }
 
@@ -299,8 +299,18 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofMC("diamond_sword"));
 
 
-        // Cooking recipes
+        // 1 torch for infini-torches
+        // 2 when the rework in Self Sustainable for torches happens.
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH)
+                .input('C', ItemTags.COALS)
+                .input('S', Items.STICK)
+                .pattern("C")
+                .pattern("S")
+                .criterion("has_coal", conditionsFromTag(ItemTags.COALS))
+                .offerTo(exporter, ID.ofMC("torch"));
 
+
+        // Cooking recipes
         // TODO: Remove the smelting recipes for ores when we add the Brick oven from Self Sustainable
         //offerSmelting(exporter, IRON_ORES, RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 200, "iron_nugget");
 
@@ -399,6 +409,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         /** Tough Environment recipes to remove **/
 
         removeRecipe(exporter, ID.ofTE("furnace"));
+
+        /** BWT recipes to remove **/
+
+        removeRecipe(exporter, ID.ofBWT("grate"));
+
 
 
     }
