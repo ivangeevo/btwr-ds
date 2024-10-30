@@ -259,6 +259,15 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, Identifier.ofVanilla("diamond_axe"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_PICKAXE)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern("MMM")
+                .pattern(" I ")
+                .pattern(" I ")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_pickaxe"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
                 .input('I', Items.STICK)
@@ -267,6 +276,25 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern(" I")
                 .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, Identifier.ofVanilla("diamond_hoe"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_SHOVEL)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern(" M ")
+                .pattern(" I ")
+                .pattern(" I ")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_shovel"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_SWORD)
+                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('I', Items.STICK)
+                .pattern(" M ")
+                .pattern(" M ")
+                .pattern(" I ")
+                .criterion("has_diamond_ingot", RecipeProvider.conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, Identifier.ofVanilla("diamond_sword"));
+
 
         // Cooking recipes
 
