@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen;
 
 import btwr.core.item.BTWR_Items;
+import com.bwt.items.BwtItems;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -110,6 +111,10 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
+
+        CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD,  BwtItems.friedEggItem, 0.10f, 1600)
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBWT("fried_egg"));
 
     }
 
@@ -299,23 +304,23 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         // TODO: Remove the smelting recipes for ores when we add the Brick oven from Self Sustainable
         //offerSmelting(exporter, IRON_ORES, RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 200, "iron_nugget");
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 1200)
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 12000)
                 .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
                 .offerTo(exporter, ID.ofMC("iron_ingot_from_smelting_raw_iron"));
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 1200)
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 12000)
                 .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
                 .offerTo(exporter, ID.ofMC( "iron_ingot_from_smelting_iron_ore"));
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 1200)
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 12000)
                 .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
                 .offerTo(exporter, ID.ofMC( "iron_ingot_from_smelting_deepslate_iron_ore"));
 
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 600)
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 6000)
                 .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
                 .offerTo(exporter, ID.ofMC("iron_ingot_from_blasting_raw_iron"));
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 600)
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 6000)
                 .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
                 .offerTo(exporter, ID.ofMC( "iron_ingot_from_blasting_iron_ore"));
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.65F, 600)
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.65F, 6000)
                 .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
                 .offerTo(exporter, ID.ofMC( "iron_ingot_from_blasting_deepslate_iron_ore"));
 
@@ -372,6 +377,10 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     private void generateRecipesToRemove(RecipeExporter exporter)
     {
+        /** Vanilla recipes to remove **/
+        // Remove blocks
+
+        removeRecipe(exporter, ID.ofMC("chest"));
 
         // Remove tools
         removeRecipe(exporter, ID.ofMC("wooden_sword"));
@@ -386,6 +395,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // Remove the ability to repair items by combining them
         removeRecipe(exporter, ID.ofMC("repair_item"));
+
+        /** Tough Environment recipes to remove **/
+
+        removeRecipe(exporter, ID.ofTE("furnace"));
+
 
     }
 
