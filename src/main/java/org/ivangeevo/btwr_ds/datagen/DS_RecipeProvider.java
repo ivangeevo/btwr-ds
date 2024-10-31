@@ -1,7 +1,9 @@
 package org.ivangeevo.btwr_ds.datagen;
 
 import btwr.core.item.BTWR_Items;
+import btwr.core.tag.BTWRConventionalTags;
 import com.bwt.items.BwtItems;
+import com.bwt.recipes.cooking_pots.CauldronRecipe;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -17,9 +19,10 @@ import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.RecipeProviderUtils;
-import org.ivangeevo.btwr_ds.tag.BTWRConventionalTags;
 
 import java.util.concurrent.CompletableFuture;
+
+import static net.minecraft.item.Items.BOWL;
 
 public class DS_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
 {
@@ -60,6 +63,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // Better With Time
         this.generateForBWT(exporter);
+
+        // BTWR: Core
+        this.generateForBTWR(exporter);
 
     }
 
@@ -380,7 +386,88 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("PPP")
                 .pattern("PSP")
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
-                .offerTo(exporter, Identifier.of("bwt", "he_ladder"));
+                .offerTo(exporter, ID.ofBWT("he_ladder"));
+
+        // Overwritten foods
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
+                .ingredient(BwtItems.flourItem)
+                .ingredient(Items.SUGAR)
+                .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
+                .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.kibbleItem,2)
+                .ingredient(Items.BONE_MEAL,4)
+                .ingredient(Items.ROTTEN_FLESH,4)
+                .ingredient(Items.SUGAR)
+                .criterion("has_bone_meal", conditionsFromItem(Items.BONE_MEAL))
+                .offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
+
+
+    }
+
+    private void generateForBTWR(RecipeExporter exporter)
+    {
+        // BTWR overwritten recipes for food
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
+                .input(BwtItems.cookedWolfChopItem)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(Items.CARROT)
+                .criterion("has_carrot", RecipeProvider.conditionsFromItem(Items.CARROT))
+                .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.EGG_SCRAMBLED_RAW, 2)
+                .input(BwtItems.rawEggItem)
+                .input(Items.MILK_BUCKET)
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBTWR("egg_scrambled_raw"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.MUSHROOM_OMELETTE_RAW)
+                .input('E', BwtItems.rawEggItem)
+                .input('M', Items.BROWN_MUSHROOM)
+                .pattern("EM")
+                .pattern("MM")
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBTWR("mushroom_omelette_raw"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
+                .ingredient(Items.POTATO)
+                .criterion("has_potato", conditionsFromItem(Items.POTATO))
+                .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
+                .ingredient(Items.BAKED_POTATO)
+                .criterion("has_baked_potato", conditionsFromItem(Items.BAKED_POTATO))
+                .offerTo(exporter, ID.ofBTWR("boiled_potato_from_baked_potato_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.CHOWDER,2)
+                .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)
+                .ingredient(Items.MILK_BUCKET)
+                .ingredient(Items.BOWL, 2)
+                .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
+                .offerTo(exporter, ID.ofBTWR("chowder"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_KEBAB)
+                .ingredient(BTWR_Items.RAW_KEBAB)
+                .criterion("has_raw_kebab", conditionsFromItem(BTWR_Items.RAW_KEBAB))
+                .offerTo(exporter, ID.ofBTWR("cooked_kebab_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW)
+                .ingredient(Items.COOKED_CHICKEN)
+                .ingredient(BTWR_Items.COOKED_CARROT)
+                .ingredient(BTWR_Items.BOILED_POTATO)
+                .ingredient(BOWL, 3)
+                .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
+                .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW)
+                .ingredient(BTWRConventionalTags.Items.COOKED_MEATS)
+                .ingredient(BTWR_Items.COOKED_CARROT)
+                .ingredient(BTWR_Items.BOILED_POTATO)
+                .ingredient(BOWL, 5)
+                .ingredient(Items.BROWN_MUSHROOM, 3)
+                .ingredient(BwtItems.flourItem)
+                .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
+                .offerTo(exporter, ID.ofBTWR("hearty_stew_from_cauldron"));
 
 
     }
@@ -415,6 +502,14 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         removeRecipe(exporter, ID.ofBWT("grate"));
 
 
+        /** BTWR recipes to remove **/
+        removeRecipe(exporter, ID.ofBTWR("egg_scrambled_cooked_from_campfire_cooking"));
+
+
+        removeRecipe(exporter, ID.ofBTWR("mushroom_omelette_cooked_from_campfire_cooking"));
+
+        removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
+        removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
 
     }
 
