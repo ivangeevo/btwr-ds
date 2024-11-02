@@ -118,10 +118,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
 
-        CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD,  BwtItems.friedEggItem, 0.10f, 5200)
-                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
-                .offerTo(exporter, ID.ofBWT("fried_egg_from_campfire_cooking"));
-
     }
 
     private void generateForVanilla(RecipeExporter exporter)
@@ -408,13 +404,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private void generateForBTWR(RecipeExporter exporter)
     {
         // BTWR overwritten recipes for food
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
-                .input(BwtItems.cookedWolfChopItem)
-                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
-                .input(Items.CARROT)
-                .criterion("has_carrot", RecipeProvider.conditionsFromItem(Items.CARROT))
-                .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.EGG_SCRAMBLED_RAW, 2)
                 .input(BwtItems.rawEggItem)
                 .input(Items.MILK_BUCKET)
@@ -430,14 +419,15 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofBTWR("mushroom_omelette_raw"));
 
         CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
-                .ingredient(Items.POTATO)
+                .ingredient(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .criterion("has_potato", conditionsFromItem(Items.POTATO))
                 .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
-                .ingredient(Items.BAKED_POTATO)
-                .criterion("has_baked_potato", conditionsFromItem(Items.BAKED_POTATO))
-                .offerTo(exporter, ID.ofBTWR("boiled_potato_from_baked_potato_from_cauldron"));
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_CARROT)
+                .ingredient(Items.CARROT)
+                .criterion("has_carrot", conditionsFromItem(Items.CARROT))
+                .offerTo(exporter, ID.ofBTWR("cooked_carrot_from_cauldron"));
+
 
         CauldronRecipe.JsonBuilder.create().result(BTWR_Items.CHOWDER,2)
                 .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)
@@ -446,12 +436,19 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
                 .offerTo(exporter, ID.ofBTWR("chowder"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
+                .input(BwtItems.cookedWolfChopItem)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(BTWR_Items.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
+
         CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_KEBAB)
                 .ingredient(BTWR_Items.RAW_KEBAB)
                 .criterion("has_raw_kebab", conditionsFromItem(BTWR_Items.RAW_KEBAB))
                 .offerTo(exporter, ID.ofBTWR("cooked_kebab_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW)
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHICKEN_SOUP, 3)
                 .ingredient(Items.COOKED_CHICKEN)
                 .ingredient(BTWR_Items.COOKED_CARROT)
                 .ingredient(BTWR_Items.BOILED_POTATO)
@@ -459,7 +456,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
                 .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW)
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW, 5)
                 .ingredient(BTWRConventionalTags.Items.COOKED_MEATS)
                 .ingredient(BTWR_Items.COOKED_CARROT)
                 .ingredient(BTWR_Items.BOILED_POTATO)
@@ -500,6 +497,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         /** BWT recipes to remove **/
 
         removeRecipe(exporter, ID.ofBWT("grate"));
+        removeRecipe(exporter, ID.ofBWT("fried_egg_from_campfire_cooking"));
 
 
         /** BTWR recipes to remove **/
@@ -507,6 +505,10 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
 
         removeRecipe(exporter, ID.ofBTWR("mushroom_omelette_cooked_from_campfire_cooking"));
+
+        removeRecipe(exporter, ID.ofBTWR("steak_dinner"));
+        removeRecipe(exporter, ID.ofBTWR("pork_dinner"));
+
 
         removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
         removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
