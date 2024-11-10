@@ -46,7 +46,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	//modCompileOnly files('libs/tough_environment-0.4-1.21.1.jar')
+	modCompileOnly files('libs/tough_environment-0.4.1-1.21.1.jar')
 	modImplementation files('libs/better_with_time-1.7.jar')
 	modImplementation files('libs/btwr-core-0.27-1.21.1.jar')
 

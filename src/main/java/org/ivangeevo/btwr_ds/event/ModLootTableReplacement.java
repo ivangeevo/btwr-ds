@@ -2,6 +2,7 @@ package org.ivangeevo.btwr_ds.event;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
@@ -26,6 +27,7 @@ public class ModLootTableReplacement
     // Register loot table replacements
     public static void initialize()
     {
+
         replaceListWithCondition(createStrippedLogsList(), StatePredicate.Builder.create().exactMatch(VARIATION, 0), Items.STICK);
         //replace(Identifier.ofVanilla("oak_leaves"), Items.AIR);
         //replace(Identifier.ofVanilla("campfire"), Items.AIR);

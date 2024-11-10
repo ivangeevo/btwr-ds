@@ -1,4 +1,4 @@
-// 1.21.1	2024-11-02T02:14:56.4563048	BTWR-DS/Recipes
+// 1.21.1	2024-11-10T23:37:35.9616731	BTWR-DS/Recipes
 67571f0575da501696573532c8a109443b9be618 data\btwr\recipe\chicken_soup_from_cauldron.json
 9e011195124334856a1b69056c894bc3764b0879 data\minecraft\advancement\recipes\misc\wooden_axe.json
 0866613df1487584c7c3c57d3fa54410f3f6c6ea data\minecraft\recipe\iron_ingot_from_blasting_raw_iron.json
@@ -53,6 +53,7 @@ c6c0b294101eaf6da815528eafd5f7c25e579f0d data\minecraft\advancement\recipes\reds
 edec5ad054cac452d8552849cb2ef5088cbb3e6e data\minecraft\advancement\recipes\redstone\jungle_door.json
 db30b1e05714a6a7221d3238a8d0bdb7f7210bc5 data\minecraft\recipe\crimson_pressure_plate.json
 75fc97ecb39c21bfa5e7d290385066f7136f6b45 data\minecraft\advancement\recipes\redstone\mangrove_door.json
+50dca78c37c33978a39741d6162c1f6e0a8e9c5b data\bwt\advancement\recipes\misc\fried_egg_from_campfire_cooking.json
 5038053569774dcf1bdae2c81d3b07dfdf45ff36 data\minecraft\advancement\recipes\misc\ladder.json
 8c3a915bfc7cbb41f91a036d3df613ecc2f115a9 data\minecraft\advancement\recipes\misc\repair_item.json
 20eeb3560a50d888dd773bc92821bb4087a0b161 data\minecraft\recipe\oak_door.json
@@ -61,7 +62,7 @@ db30b1e05714a6a7221d3238a8d0bdb7f7210bc5 data\minecraft\recipe\crimson_pressure_
 fbe7c6927e32f82dfc2ba0893c519d77e9316c36 data\minecraft\advancement\recipes\misc\iron_ingot_from_smelting_iron_ore.json
 6d0615622892d615db60f767e969b55aa1badf79 data\minecraft\advancement\recipes\misc\iron_ingot_from_smelting_deepslate_iron_ore.json
 29a8f73bade96b55c71b8e5353066a0187eb108e data\btwr-ds\advancement\recipes\tools\iron_axe_right.json
-e30598bd8071e0b45d26e20835a952dfdf3fe725 data\bwt\recipe\fried_egg_from_campfire_cooking.json
+83df6ea1954c1564a21cc0e84548a78c56b918a5 data\bwt\recipe\fried_egg_from_campfire_cooking.json
 83df6ea1954c1564a21cc0e84548a78c56b918a5 data\btwr\recipe\chicken_soup.json
 ae87f06ccb48458fa1b834b5677abd5b8b9f73d5 data\bwt\advancement\recipes\misc\grate.json
 83df6ea1954c1564a21cc0e84548a78c56b918a5 data\minecraft\recipe\stone_hoe.json
@@ -86,7 +87,6 @@ e70368d2b05e67641b20213ed55dec44f6fc86b9 data\minecraft\recipe\diamond_axe.json
 4ea5bab9e3f5510ddcb726e3b6aef092bfdd35fd data\minecraft\recipe\cherry_door.json
 000cdabbc46b6e8710dda55b89a5462be99f4da7 data\minecraft\advancement\recipes\redstone\birch_door.json
 bc23c20142303728122e59a0e2cf889a4584023f data\btwr-ds\advancement\recipes\tools\stone_pickaxe_right.json
-884e03b3b1a7aa2f9ba4860a309a99139c8eee3e data\bwt\advancement\recipes\food\fried_egg_from_campfire_cooking.json
 d65ba5b4bb9551cf73afbb0e8b360a8ff52590e5 data\minecraft\advancement\recipes\tools\stone_axe.json
 7b98f8071ceb12b6eb65db1f85f7bea8834c9ae6 data\bwt\recipe\he_ladder.json
 b9f770eeacb624b7d5e43e931b269939613f8f17 data\btwr\recipe\egg_scrambled_raw.json

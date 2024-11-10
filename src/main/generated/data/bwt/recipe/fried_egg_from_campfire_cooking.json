@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:campfire_cooking",
-  "category": "food",
-  "cookingtime": 5200,
-  "experience": 0.1,
-  "ingredient": {
-    "item": "bwt:raw_egg"
-  },
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bedrock"
+    }
+  ],
   "result": {
-    "id": "bwt:fried_egg"
+    "count": 1,
+    "id": "minecraft:bedrock"
   }
 }
