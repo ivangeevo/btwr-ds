@@ -2,15 +2,19 @@ package org.ivangeevo.btwr_ds.datagen;
 
 import btwr.core.item.BTWR_Items;
 import btwr.core.tag.BTWRConventionalTags;
+import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.ImmutableList;
+import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.data.server.recipe.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -19,6 +23,7 @@ import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.RecipeProviderUtils;
+import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -42,6 +47,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     private static final ImmutableList<ItemConvertible> DIAMOND_ORES = ImmutableList.of(Items.DIAMOND_ORE, Items.DEEPSLATE_DIAMOND_ORE);
 
+
+    private static final String[] vanillaWoodTypes = new String[]
+            {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
 
 
     @Override
@@ -71,6 +79,20 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     private void generateForMod(RecipeExporter exporter)
     {
+        // Items
+
+
+        // Blocks
+        /**
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.planksBlock)
+                .input(BwtBlocks.bloodWoodBlocks.logBlock)
+                .input(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)
+                .additionalDrop(BTWRDS_Items.BLOOD_WOOD_BARK.getDefaultStack())
+                .additionalDrop(SturdyTreesItems.DUST_SAW.getDefaultStack())
+                .criterion("has_blood_wood_log", conditionsFromItem(BwtBlocks.bloodWoodBlocks.logBlock))
+                .offerTo(exporter, ID.ofBWT("blood_wood_planks"));
+         **/
+
         // Tools
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_PICKAXE)
                 .input('R', Items.STICK)
@@ -123,6 +145,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private void generateForVanilla(RecipeExporter exporter)
     {
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
+                .input('P', ItemTags.PLANKS)
+                .pattern("P")
+                .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
+                .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BONE_BLOCK)
                 .input('S', Items.BONE)
                 .pattern("SSS")
@@ -152,8 +181,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter);
 
         // Adding door recipes
-        String[] doorTypes = { "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry" };
-        for (String woodType : doorTypes)
+        for (String woodType : vanillaWoodTypes)
         {
             Identifier resultId = ID.ofMC(woodType + "_door");
             ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
@@ -166,13 +194,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         }
 
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
-        String[] vanillaWoodTypes = {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
         for (String woodType : vanillaWoodTypes)
         {
             Identifier resultId = ID.ofMC(woodType + "_pressure_plate");
             Block sidingBlock = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_siding"));
 
-            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.BLOCK.get(resultId))
                     .input('S', sidingBlock)  // Use the current SidingBlock as the 'S' input
                     .input('R', Items.REDSTONE) // Redstone for the 'R' input
                     .pattern("S")
@@ -183,16 +210,42 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
 
         // Create the recipe for the blood wood pressure plate
-        Identifier bloodWoodResultId = ID.ofBWT("blood_wood_pressure_plate");
-        Block bloodWoodSiding = Registries.BLOCK.get(bloodWoodResultId);
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.BLOCK.get(bloodWoodResultId))
-                .input('S', bloodWoodSiding.asItem())  // Use the blood wood SidingBlock as the 'S' input
+        Block bloodWoodSiding = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_siding"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.pressurePlateBlock)
+                .input('S', bloodWoodSiding)  // Use the blood wood SidingBlock as the 'S' input
                 .input('R', Items.REDSTONE) // Redstone for the 'R' input
                 .pattern("S")
                 .pattern("R")
                 .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-                .offerTo(exporter, bloodWoodResultId);
+                .offerTo(exporter, ID.ofBWT("blood_wood_pressure_plate"));
+
+
+        // Adding button recipes for each CornerBlock in BwtBlocks.cornerBlock
+        for (String woodType : vanillaWoodTypes)
+        {
+            Identifier resultId = ID.ofMC(woodType + "_button");
+            Block block = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_corner"));
+
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+                    .input('S', block)
+                    .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                    .pattern("S")
+                    .pattern("R")
+                    .criterion("has_wooden_corner", conditionsFromItem(block))
+                    .offerTo(exporter, resultId);
+        }
+
+
+        // Create the recipe for the blood wood button
+        Block bloodWoodCorner = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_corner"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.buttonBlock)
+                .input('S', bloodWoodCorner)  // Use the blood wood SidingBlock as the 'S' input
+                .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                .pattern("S")
+                .pattern("R")
+                .criterion("has_blood_wood_corner", conditionsFromItem(bloodWoodCorner))
+                .offerTo(exporter, ID.ofBWT("blood_wood_button"));
+
 
 
         // Items
@@ -373,7 +426,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     }
 
+
+
+
+
     private void generateForBWT(RecipeExporter exporter)
+
     {
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER)
                 .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
@@ -398,6 +456,37 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_bone_meal", conditionsFromItem(Items.BONE_MEAL))
                 .offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
 
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.blockDispenserBlock)
+                .input('m', Items.MOSSY_COBBLESTONE)
+                .input('r', Items.REDSTONE)
+                .input('b', BTWR_Items.STONE_BRICK)
+                .input('t', Items.REDSTONE_TORCH)
+                .input('u', BwtItems.soulUrnItem)
+                .pattern("mmmm")
+                .pattern("muum")
+                .pattern("bttb")
+                .pattern("brrb")
+                .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
+                .offerTo(exporter, ID.ofBWT("block_dispenser"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
+                .input('b', BTWR_Items.STONE_BRICK)
+                .input('g', BwtItems.gearItem)
+                .pattern("bbb")
+                .pattern("bbb")
+                .pattern("bgb")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("mill_stone"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.handCrankBlock)
+                .input('b', BTWR_Items.STONE_BRICK)
+                .input('g', BwtItems.gearItem)
+                .input('s', Items.STICK)
+                .pattern("  s")
+                .pattern(" s ")
+                .pattern("bgb")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("hand_crank"));
 
     }
 
@@ -472,17 +561,18 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private void generateRecipesToRemove(RecipeExporter exporter)
     {
         /** Vanilla recipes to remove **/
-        // Remove blocks
+        // Remove blocks recipes
 
+        removeRecipe(exporter, ID.ofMC("crafting_table"));
         removeRecipe(exporter, ID.ofMC("chest"));
 
-        // Remove tools
+
+        // Remove tool recipes
         removeRecipe(exporter, ID.ofMC("wooden_sword"));
         removeRecipe(exporter, ID.ofMC("wooden_pickaxe"));
         removeRecipe(exporter, ID.ofMC("wooden_axe"));
         removeRecipe(exporter, ID.ofMC("wooden_shovel"));
         removeRecipe(exporter, ID.ofMC("wooden_hoe"));
-
         removeRecipe(exporter, ID.ofMC("stone_sword"));
         removeRecipe(exporter, ID.ofMC("stone_hoe"));
 
@@ -495,21 +585,30 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         removeRecipe(exporter, ID.ofTE("furnace"));
 
         /** BWT recipes to remove **/
-
         removeRecipe(exporter, ID.ofBWT("grate"));
         removeRecipe(exporter, ID.ofBWT("fried_egg_from_campfire_cooking"));
+
+        // Removing High efficiency button recipes
+        for (String woodType : vanillaWoodTypes)
+        {
+            removeRecipe(exporter, ID.ofBWT("he_" + woodType + "_button"));
+        }
+        removeRecipe(exporter, ID.ofBWT("he_blood_wood_button"));
+
+        // Removing High efficiency pressure plate recipes
+        for (String woodType : vanillaWoodTypes)
+        {
+            removeRecipe(exporter, ID.ofBWT("he_" + woodType + "_pressure_plate"));
+        }
+        removeRecipe(exporter, ID.ofBWT("he_blood_wood_pressure_plate"));
+
 
 
         /** BTWR recipes to remove **/
         removeRecipe(exporter, ID.ofBTWR("egg_scrambled_cooked_from_campfire_cooking"));
-
-
         removeRecipe(exporter, ID.ofBTWR("mushroom_omelette_cooked_from_campfire_cooking"));
-
         removeRecipe(exporter, ID.ofBTWR("steak_dinner"));
         removeRecipe(exporter, ID.ofBTWR("pork_dinner"));
-
-
         removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
         removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
 

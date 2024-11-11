@@ -1,7 +1,9 @@
 package org.ivangeevo.btwr_ds;
 
 import net.fabricmc.api.ModInitializer;
-import org.ivangeevo.btwr_ds.event.ModLootTableReplacement;
+import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
+import org.ivangeevo.btwr_ds.item.BTWRDSItemGroupRegistry;
+import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,13 +12,13 @@ public class BTWRDS implements ModInitializer
 	public static final String MOD_ID = "btwr-ds";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-
-
 	@Override
 	public void onInitialize()
 	{
 		LOGGER.info("Initializing BTWR: Datapack Suite!");
-		ModLootTableReplacement.initialize();
+		ModLootTableEvents.initialize();
 
+		BTWRDS_Items.registerModItems();
+		BTWRDSItemGroupRegistry.registerItemGroups();
 	}
 }
