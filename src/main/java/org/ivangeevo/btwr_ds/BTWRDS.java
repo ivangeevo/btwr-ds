@@ -2,7 +2,6 @@ package org.ivangeevo.btwr_ds;
 
 import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
-import org.ivangeevo.btwr_ds.item.BTWRDSItemGroupRegistry;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ public class BTWRDS implements ModInitializer
 		LOGGER.info("Initializing BTWR: Datapack Suite!");
 		ModLootTableEvents.initialize();
 
-		BTWRDS_Items.registerModItems();
-		BTWRDSItemGroupRegistry.registerItemGroups();
+		BTWRDS_Items.registerAndAddToGroups();
 	}
 }

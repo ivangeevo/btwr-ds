@@ -18,11 +18,7 @@ public class BTWRDSItemGroupRegistry
          **/
 
 
-         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
-         {
-         entries.add(BTWRDS_Items.BLOOD_WOOD_BARK);
 
-         });
 
 
     }

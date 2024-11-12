@@ -1,18 +1,23 @@
 package org.ivangeevo.btwr_ds.datagen;
 
+import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
 import btwr.core.tag.BTWRConventionalTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import com.bwt.recipes.mill_stone.MillStoneRecipe;
 import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
+import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.ImmutableList;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
@@ -27,7 +32,6 @@ import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
-import static net.minecraft.item.Items.BOWL;
 
 public class DS_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
 {
@@ -35,18 +39,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     public DS_RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
-
-
-    private static final ImmutableList<ItemConvertible> COAL_ORES = ImmutableList.of(Items.COAL_ORE, Items.DEEPSLATE_COAL_ORE);
-
-    private static final ImmutableList<ItemConvertible> IRON_ORES = ImmutableList.of(Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON);
-
-    private static final ImmutableList<ItemConvertible> COPPER_ORES = ImmutableList.of(Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER);
-
-    private static final ImmutableList<ItemConvertible> GOLD_ORES = ImmutableList.of(Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE, Items.NETHER_GOLD_ORE, Items.RAW_GOLD);
-
-    private static final ImmutableList<ItemConvertible> DIAMOND_ORES = ImmutableList.of(Items.DIAMOND_ORE, Items.DEEPSLATE_DIAMOND_ORE);
-
 
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
@@ -63,27 +55,41 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         // Recipes that get removed
         this.generateRecipesToRemove(exporter);
 
+        this.generalRecipeOverride(exporter);
+
         // Minecraft
-        this.generateForVanilla(exporter);
+        this.overrideForVanilla(exporter);
 
         // BTWR-DS
         this.generateForMod(exporter);
 
         // Better With Time
-        this.generateForBWT(exporter);
+        this.overrideForBWT(exporter);
 
         // BTWR: Core
-        this.generateForBTWR(exporter);
+        this.overrideForBTWR(exporter);
 
+    }
+
+    // recipes combined for easier management.
+    private void generalRecipeOverride(RecipeExporter exporter)
+    {
     }
 
     private void generateForMod(RecipeExporter exporter)
     {
         // Items
+        this.createDungRecipes(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
+                .input('P', ItemTags.PLANKS)
+                .pattern("P")
+                .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
+                .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
 
         // Blocks
         // TODO: figure out why .additionalDrop() builder is not working on datagen
+        /**
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.planksBlock)
                 .input(BwtBlocks.bloodWoodBlocks.logBlock)
                 .input(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)
@@ -91,6 +97,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .additionalDrop(SturdyTreesItems.DUST_SAW.getDefaultStack())
                 .criterion("has_blood_wood_log", conditionsFromItem(BwtBlocks.bloodWoodBlocks.logBlock))
                 .offerTo(exporter, ID.ofBWT("blood_wood_planks"));
+         **/
 
 
         // Tools
@@ -140,18 +147,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
 
+
     }
 
-    private void generateForVanilla(RecipeExporter exporter)
+    private void overrideForVanilla(RecipeExporter exporter)
     {
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
-                .input('P', ItemTags.PLANKS)
-                .pattern("P")
-                .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
-                .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
-
-
+        // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BONE_BLOCK)
                 .input('S', Items.BONE)
                 .pattern("SSS")
@@ -159,6 +161,16 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("SSS")
                 .criterion("has_bone", conditionsFromItem(Items.BONE))
                 .offerTo(exporter, ID.ofMC("bone_block"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Blocks.BLAST_FURNACE)
+                .input('N', Items.IRON_NUGGET)
+                .input('F', Items.FURNACE)
+                .input('S', ItemTags.STONE_CRAFTING_MATERIALS)
+                .pattern("SNS")
+                .pattern("NFN")
+                .pattern("SSS")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("blast_furnace"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER, 2)
                 .input('S', Items.STICK)
@@ -234,6 +246,53 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                     .criterion("has_wooden_corner", conditionsFromItem(block))
                     .offerTo(exporter, resultId);
         }
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.LEVER)
+                .input('S', Items.STICK)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('R', Items.REDSTONE)
+                .pattern("S")
+                .pattern("B")
+                .pattern("R")
+                .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofMC("lever"));
+
+        // TODO: Add dispenser recipe when Redstone Latch item is added as item to BTWR: Core
+        /**
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DISPENSER)
+                .input('S', Items.BOW)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('L', BTWR_Items.REDSTONE_LATCH)
+                .pattern("BBB")
+                .pattern("BSB")
+                .pattern("BLB")
+                .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofMC("dispenser"));
+         **/
+
+        // TODO: Add piston recipe when Redstone Latch item is added as item to BTWR: Core
+        /**
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
+                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('I', Items.IRON_INGOT)
+                .input('U', Items.REDSTONE)
+                .input('L', BTWR_Items.REDSTONE_LATCH)
+                .pattern("SIS")
+                .pattern("BUB")
+                .pattern("BLB")
+                .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofMC("piston"));
+         **/
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.REPEATER)
+                .input('C', Items.CLOCK)
+                .input('R', Items.REDSTONE_TORCH)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .pattern("RCR")
+                .pattern("BBB")
+                .criterion("has_redstone_torch", conditionsFromItem(Items.REDSTONE_TORCH))
+                .offerTo(exporter, ID.ofMC("repeater"));
 
 
         // Create the recipe for the blood wood button
@@ -438,9 +497,10 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
 
 
-    private void generateForBWT(RecipeExporter exporter)
-
+    private void overrideForBWT(RecipeExporter exporter)
     {
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER)
                 .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
                 .input('S', ConventionalItemTags.STRINGS)
@@ -450,7 +510,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
                 .offerTo(exporter, ID.ofBWT("he_ladder"));
 
-        // Overwritten foods
+        // Overwritten cauldron recipes
         CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
                 .ingredient(BwtItems.flourItem)
                 .ingredient(Items.SUGAR)
@@ -464,18 +524,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_bone_meal", conditionsFromItem(Items.BONE_MEAL))
                 .offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
 
-        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.blockDispenserBlock)
-                .input('m', Items.MOSSY_COBBLESTONE)
-                .input('r', Items.REDSTONE)
-                .input('b', BTWR_Items.STONE_BRICK)
-                .input('t', Items.REDSTONE_TORCH)
-                .input('u', BwtItems.soulUrnItem)
-                .pattern("mmmm")
-                .pattern("muum")
-                .pattern("bttb")
-                .pattern("brrb")
-                .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
-                .offerTo(exporter, ID.ofBWT("block_dispenser"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
                 .input('b', BTWR_Items.STONE_BRICK)
@@ -496,11 +544,120 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("hand_crank"));
 
+        // Tools
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.compositeBowItem)
+                .input('m', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .input('g', BwtItems.glueItem)
+                .input('b', Items.BONE)
+                .input('s', Items.STRING)
+                .pattern("gmb")
+                .pattern("mbs")
+                .pattern("gmb")
+                .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
+                .offerTo(exporter, ID.ofBWT("composite_bow"));
+
+
+        // Millstone recipes replacement
+
+        MillStoneRecipe.JsonBuilder.create()
+                .ingredient(BTWR_Items.HEMP_LEAVES)
+                .result(BwtItems.hempFiberItem, 4)
+                .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
+                .offerTo(exporter, ID.ofBWT("hemp_fiber_from_milling_hemp"));
+
+
+        // TODO: Add piston recipe when Element item is added to BTWR: Core
+        /**
+         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
+         .input('H', BwtItems.concentratedHellfireItem)
+         .input('E', BTWR_Items.ELEMENT)
+         .input('B', BTWR_Items.STONE_BRICK)
+         .input('R', Items.REDSTONE)
+         .pattern("HHH")
+         .pattern("BEB")
+         .pattern("BRB")
+         .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
+         .offerTo(exporter, ID.ofBWT("hibachi"));
+         **/
+
+
+         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
+                 .input('I', Items.IRON_NUGGET)
+                 .input('B', BTWR_Items.STONE_BRICK)
+                 .pattern(" I ")
+                 .pattern("BBB")
+                 .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
+                 .offerTo(exporter, ID.ofBWT("anchor"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.turntableBlock)
+                .input('C', Items.CLOCK)
+                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .pattern("SSS")
+                .pattern("BCB")
+                .pattern("BGB")
+                .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .offerTo(exporter, ID.ofBWT("turntable"));
+
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.detectorBlock)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('E', BwtItems.redstoneEyeItem)
+                .input('T', Items.REDSTONE_TORCH)
+                .input('R', Items.REDSTONE)
+                .pattern("BBBB")
+                .pattern("ETTE")
+                .pattern("BRRB")
+                .pattern("BRRB")
+                .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofBWT("detector_block"));
+
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.blockDispenserBlock)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('M', Blocks.MOSSY_COBBLESTONE)
+                .input('U', BwtItems.soulUrnItem)
+                .input('T', Items.REDSTONE_TORCH)
+                .input('R', Items.REDSTONE)
+                .pattern("MMMM")
+                .pattern("MUUM")
+                .pattern("BTTB")
+                .pattern("BRRB")
+                .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
+                .offerTo(exporter, ID.ofBWT("block_dispenser"));
+
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.buddyBlock)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('E', BwtItems.redstoneEyeItem)
+                .input('T', Items.REDSTONE_TORCH)
+                .pattern("BBEB")
+                .pattern("ETTB")
+                .pattern("BTTE")
+                .pattern("BEBB")
+                .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
+                .offerTo(exporter, ID.ofBWT("buddy_block"));
+
+        // TODO: Add pulley recipe when Redstone Latch is added as item to BTWR: Core
+        /**
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.pulleyBlock)
+                .input('W', BTWR_Items.STONE_BRICK)
+                .input('I', Items.IRON_INGOT)
+                .input('G', BwtItems.gearItem)
+                .input('L', BTWR_Items.REDSTONE_LATCH)
+                .pattern("WIW")
+                .pattern("GLG")
+                .pattern("WIW")
+                .criterion("has_redstone_latch", conditionsFromItem(BTWR_Items.REDSTONE_LATCH))
+                .offerTo(exporter, ID.ofBWT("pulley"));
+         **/
+
+
+
+
 
 
     }
 
-    private void generateForBTWR(RecipeExporter exporter)
+    private void overrideForBTWR(RecipeExporter exporter)
     {
         // BTWR overwritten recipes for food
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.EGG_SCRAMBLED_RAW, 2)
@@ -551,7 +708,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(Items.COOKED_CHICKEN)
                 .ingredient(BTWR_Items.COOKED_CARROT)
                 .ingredient(BTWR_Items.BOILED_POTATO)
-                .ingredient(BOWL, 3)
+                .ingredient(Items.BOWL, 3)
                 .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
                 .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
 
@@ -559,11 +716,23 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(BTWRConventionalTags.Items.COOKED_MEATS)
                 .ingredient(BTWR_Items.COOKED_CARROT)
                 .ingredient(BTWR_Items.BOILED_POTATO)
-                .ingredient(BOWL, 5)
+                .ingredient(Items.BOWL, 5)
                 .ingredient(Items.BROWN_MUSHROOM, 3)
                 .ingredient(BwtItems.flourItem)
                 .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
                 .offerTo(exporter, ID.ofBTWR("hearty_stew_from_cauldron"));
+
+        // Blocks
+        // TODO: Add soulforged recipe for the chopping block when it's added to BTWR: Core
+        /**
+         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BTWR_Blocks.CHOPPING_BLOCK)
+         .input('B', BTWR_Items.STONE_BRICK)
+         .pattern("B  B")
+         .pattern("B  B")
+         .pattern("BBBB")
+         .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
+         .offerTo(exporter, ID.ofBTWR("chopping_block"));
+         **/
 
 
     }
@@ -572,10 +741,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     {
         /** Vanilla recipes to remove **/
 
+        // Remove item recipes
+        removeRecipe(exporter, ID.ofMC("bone_meal"));
+
+
         // Remove blocks recipes
         removeRecipe(exporter, ID.ofMC("crafting_table"));
         removeRecipe(exporter, ID.ofMC("chest"));
-
 
         // Remove tool recipes
         removeRecipe(exporter, ID.ofMC("wooden_sword"));
@@ -599,6 +771,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         /** BWT recipes to remove **/
         removeRecipe(exporter, ID.ofBWT("grate"));
         removeRecipe(exporter, ID.ofBWT("fried_egg_from_campfire_cooking"));
+        removeRecipe(exporter, ID.ofBWT("tanned_leather_from_cauldron"));
 
         // Removing High efficiency button recipes
         for (String woodType : vanillaWoodTypes)
@@ -624,6 +797,44 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
         removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
 
+    }
+
+    private void createDungRecipes(RecipeExporter exporter)
+    {
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_JUNGLE, 2);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_DARK_OAK, 2);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_SPRUCE, 3);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_MANGROVE, 3);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_CHERRY, 3);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_OAK, 5);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_ACACIA, 5);
+        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_BIRCH, 8);
+        this.dungRecipeBuilder(exporter, BTWRDS_Items.BARK_BLOOD_WOOD, 8);
+
+    }
+    /** Creates a dung recipe by only passing the bark item and the amount **/
+    private void dungRecipeBuilder(RecipeExporter exporter, Item barkItem, int count)
+    {
+        CauldronRecipe.JsonBuilder.create().result(BwtItems.tannedLeatherItem)
+                .ingredient(BwtItems.scouredLeatherItem)
+                .ingredient(BwtItems.dungItem)
+                .ingredient(barkItem, count)
+                .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
+                .offerTo(exporter, ID.ofDS("tanned_leather_with_" + extractBarkType(barkItem) + "_in_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(BwtItems.tannedLeatherItem)
+                .ingredient(BTWR_Items.LEATHER_SCOURED_CUT,2)
+                .ingredient(BwtItems.dungItem)
+                .ingredient(barkItem, count)
+                .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
+                .offerTo(exporter, ID.ofDS("tanned_leather_from_cut_scoured_leather_with_" + extractBarkType(barkItem) + "_in_cauldron"));
+    }
+
+    /** Helper method to extract bark type from an item's translation key **/
+    private String extractBarkType(Item barkItem) {
+        // Extracts the actual bark type (e.g., "oak_bark") from the translation key.
+        String[] parts = barkItem.getTranslationKey().split("\\.");
+        return parts[parts.length - 1];
     }
 
     private static class ID
