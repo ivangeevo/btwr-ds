@@ -83,7 +83,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
 
         // Blocks
-        /**
+        // TODO: figure out why .additionalDrop() builder is not working on datagen
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.planksBlock)
                 .input(BwtBlocks.bloodWoodBlocks.logBlock)
                 .input(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)
@@ -91,7 +91,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .additionalDrop(SturdyTreesItems.DUST_SAW.getDefaultStack())
                 .criterion("has_blood_wood_log", conditionsFromItem(BwtBlocks.bloodWoodBlocks.logBlock))
                 .offerTo(exporter, ID.ofBWT("blood_wood_planks"));
-         **/
+
 
         // Tools
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_PICKAXE)
@@ -353,6 +353,14 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofMC("diamond_sword"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.FISHING_ROD)
+                .input(Items.STICK)
+                .input(Items.STRING)
+                .input(Items.STRING)
+                .input(Items.IRON_NUGGET)
+                .criterion("has_fishing_hook_material", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("fishing_rod"));
+
 
         // 1 torch for infini-torches
         // 2 when the rework in Self Sustainable for torches happens.
@@ -488,6 +496,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("hand_crank"));
 
+
+
     }
 
     private void generateForBTWR(RecipeExporter exporter)
@@ -561,8 +571,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private void generateRecipesToRemove(RecipeExporter exporter)
     {
         /** Vanilla recipes to remove **/
-        // Remove blocks recipes
 
+        // Remove blocks recipes
         removeRecipe(exporter, ID.ofMC("crafting_table"));
         removeRecipe(exporter, ID.ofMC("chest"));
 
@@ -576,6 +586,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         removeRecipe(exporter, ID.ofMC("stone_sword"));
         removeRecipe(exporter, ID.ofMC("stone_hoe"));
 
+        // Remove cooking recipes
+        removeRecipe(exporter, ID.ofMC("charcoal"));
 
         // Remove the ability to repair items by combining them
         removeRecipe(exporter, ID.ofMC("repair_item"));
