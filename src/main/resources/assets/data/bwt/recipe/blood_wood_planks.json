@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "planks",
+  "group": "building_blocks",
   "ingredients": [
     {
       "tag": "bwt:blood_wood_logs"

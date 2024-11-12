@@ -27,6 +27,9 @@ public class BTWRConventionalTags
         // existing conventional tags from fabric
         public static final TagKey<Block> ORES = createTag("ores");
 
+        public static final TagKey<Block> FARMLAND_BLOCKS = createTag("farmland_blocks");
+
+
 
 
         private static TagKey<Block> createTag(String name) {
