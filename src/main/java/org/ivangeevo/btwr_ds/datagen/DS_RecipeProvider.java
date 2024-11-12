@@ -500,13 +500,29 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private void overrideForBWT(RecipeExporter exporter)
     {
         // Items
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.sailItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', ItemTags.PLANKS)
+                .pattern("FFF")
+                .pattern("WWW")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("sail"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtItems.sailItem)
                 .input('F', BwtItems.fabricItem)
                 .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
                 .pattern("FFF")
                 .pattern("WWW")
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
-                .offerTo(exporter, ID.ofBWT("sail"));
+                .offerTo(exporter, ID.ofBWT("he_sail"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.paddingItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .pattern("FFF")
+                .pattern("WWW")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("padding"));
 
 
         // Blocks
