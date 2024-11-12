@@ -499,8 +499,17 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     private void overrideForBWT(RecipeExporter exporter)
     {
+        // Items
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtItems.sailItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .pattern("FFF")
+                .pattern("WWW")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("sail"));
 
 
+        // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER)
                 .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
                 .input('S', ConventionalItemTags.STRINGS)
@@ -509,21 +518,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("PSP")
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
                 .offerTo(exporter, ID.ofBWT("he_ladder"));
-
-        // Overwritten cauldron recipes
-        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
-                .ingredient(BwtItems.flourItem)
-                .ingredient(Items.SUGAR)
-                .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
-                .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
-
-        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.kibbleItem,2)
-                .ingredient(Items.BONE_MEAL,4)
-                .ingredient(Items.ROTTEN_FLESH,4)
-                .ingredient(Items.SUGAR)
-                .criterion("has_bone_meal", conditionsFromItem(Items.BONE_MEAL))
-                .offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
-
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
                 .input('b', BTWR_Items.STONE_BRICK)
@@ -544,28 +538,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("hand_crank"));
 
-        // Tools
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.compositeBowItem)
-                .input('m', BwtItemTags.WOODEN_MOULDING_BLOCKS)
-                .input('g', BwtItems.glueItem)
-                .input('b', Items.BONE)
-                .input('s', Items.STRING)
-                .pattern("gmb")
-                .pattern("mbs")
-                .pattern("gmb")
-                .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
-                .offerTo(exporter, ID.ofBWT("composite_bow"));
-
-
-        // Millstone recipes replacement
-
-        MillStoneRecipe.JsonBuilder.create()
-                .ingredient(BTWR_Items.HEMP_LEAVES)
-                .result(BwtItems.hempFiberItem, 4)
-                .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
-                .offerTo(exporter, ID.ofBWT("hemp_fiber_from_milling_hemp"));
-
-
         // TODO: Add piston recipe when Element item is added to BTWR: Core
         /**
          ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
@@ -581,13 +553,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
          **/
 
 
-         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
-                 .input('I', Items.IRON_NUGGET)
-                 .input('B', BTWR_Items.STONE_BRICK)
-                 .pattern(" I ")
-                 .pattern("BBB")
-                 .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
-                 .offerTo(exporter, ID.ofBWT("anchor"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
+                .input('I', Items.IRON_NUGGET)
+                .input('B', BTWR_Items.STONE_BRICK)
+                .pattern(" I ")
+                .pattern("BBB")
+                .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
+                .offerTo(exporter, ID.ofBWT("anchor"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.turntableBlock)
                 .input('C', Items.CLOCK)
@@ -638,22 +610,54 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // TODO: Add pulley recipe when Redstone Latch is added as item to BTWR: Core
         /**
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.pulleyBlock)
-                .input('W', BTWR_Items.STONE_BRICK)
-                .input('I', Items.IRON_INGOT)
-                .input('G', BwtItems.gearItem)
-                .input('L', BTWR_Items.REDSTONE_LATCH)
-                .pattern("WIW")
-                .pattern("GLG")
-                .pattern("WIW")
-                .criterion("has_redstone_latch", conditionsFromItem(BTWR_Items.REDSTONE_LATCH))
-                .offerTo(exporter, ID.ofBWT("pulley"));
+         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.pulleyBlock)
+         .input('W', BTWR_Items.STONE_BRICK)
+         .input('I', Items.IRON_INGOT)
+         .input('G', BwtItems.gearItem)
+         .input('L', BTWR_Items.REDSTONE_LATCH)
+         .pattern("WIW")
+         .pattern("GLG")
+         .pattern("WIW")
+         .criterion("has_redstone_latch", conditionsFromItem(BTWR_Items.REDSTONE_LATCH))
+         .offerTo(exporter, ID.ofBWT("pulley"));
          **/
 
 
+        // Overwritten cauldron recipes
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
+                .ingredient(BwtItems.flourItem)
+                .ingredient(Items.SUGAR)
+                .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
+                .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.kibbleItem,2)
+                .ingredient(Items.BONE_MEAL,4)
+                .ingredient(Items.ROTTEN_FLESH,4)
+                .ingredient(Items.SUGAR)
+                .criterion("has_bone_meal", conditionsFromItem(Items.BONE_MEAL))
+                .offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
 
 
 
+        // Tools
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.compositeBowItem)
+                .input('m', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .input('g', BwtItems.glueItem)
+                .input('b', Items.BONE)
+                .input('s', Items.STRING)
+                .pattern("gmb")
+                .pattern("mbs")
+                .pattern("gmb")
+                .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
+                .offerTo(exporter, ID.ofBWT("composite_bow"));
+
+
+        // Millstone recipes replacement
+        MillStoneRecipe.JsonBuilder.create()
+                .ingredient(BTWR_Items.HEMP_LEAVES)
+                .result(BwtItems.hempFiberItem, 4)
+                .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
+                .offerTo(exporter, ID.ofBWT("hemp_fiber_from_milling_hemp"));
 
     }
 
