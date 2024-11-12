@@ -518,9 +518,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.paddingItem)
                 .input('F', BwtItems.fabricItem)
-                .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
-                .pattern("FFF")
-                .pattern("WWW")
+                .input('W', ItemTags.WOOL)
+                .input('C', Items.FEATHER)
+                .pattern(" F ")
+                .pattern("CWC")
+                .pattern(" F ")
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
                 .offerTo(exporter, ID.ofBWT("padding"));
 
