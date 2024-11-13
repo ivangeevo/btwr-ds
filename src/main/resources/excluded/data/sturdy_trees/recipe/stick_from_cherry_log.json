@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sticks",
+  "ingredients": [
+    {
+      "item": "minecraft:cherry_log"
+    },
+    {
+      "tag": "c:primitive_axes"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "minecraft:stick"
+  },
+  "additionalDrops": [
+    {
+      "id": "sturdy_trees:bark_cherry",
+      "count": 1
+    },
+    {
+      "id": "bwt:saw_dust",
+      "count": 1
+    }
+  ]
+}

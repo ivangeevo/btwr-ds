@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_log"
+    },
+    {
+      "tag": "c:axes_make_planks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:jungle_planks"
+  },
+  "additionalDrops": [
+    {
+      "id": "sturdy_trees:bark_jungle",
+      "count": 1
+    },
+    {
+      "id": "bwt:saw_dust",
+      "count": 1
+    }
+  ]
+}

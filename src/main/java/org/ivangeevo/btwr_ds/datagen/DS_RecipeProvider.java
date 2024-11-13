@@ -1,18 +1,15 @@
 package org.ivangeevo.btwr_ds.datagen;
 
-import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
 import btwr.core.tag.BTWRConventionalTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
+import com.bwt.recipes.saw.SawRecipe;
 import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
-import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
-import com.google.common.collect.ImmutableList;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
-import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -20,7 +17,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -55,8 +51,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         // Recipes that get removed
         this.generateRecipesToRemove(exporter);
 
-        this.generalRecipeOverride(exporter);
-
         // Minecraft
         this.overrideForVanilla(exporter);
 
@@ -71,21 +65,41 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     }
 
-    // recipes combined for easier management.
-    private void generalRecipeOverride(RecipeExporter exporter)
-    {
-    }
-
     private void generateForMod(RecipeExporter exporter)
     {
         // Items
-        this.createDungRecipes(exporter);
+        this.createTannedLeatherRecipes(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
                 .input('P', ItemTags.PLANKS)
                 .pattern("P")
                 .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
                 .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.hempFiberItem,9)
+                .input(BwtItems.fabricItem)
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofDS("hemp_fiber_from_fabric"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_SCOURED_CUT,2)
+                .input(BwtItems.scouredLeatherItem)
+                .input(ConventionalItemTags.SHEAR_TOOLS)
+                .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
+                .offerTo(exporter, ID.ofDS("leather_scoured_cut"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_TANNED_CUT,2)
+                .input(BwtItems.tannedLeatherItem)
+                .input(ConventionalItemTags.SHEAR_TOOLS)
+                .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
+                .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
+
+        // Millstone recipes
+        MillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
+                .ingredient(BTWR_Items.LEATHER_CUT)
+                .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
+                .offerTo(exporter, ID.ofDS("leather_scoured_cut_from_mill_stone"));
+
+
 
         // Blocks
         // TODO: figure out why .additionalDrop() builder is not working on datagen
@@ -154,6 +168,33 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     {
 
         // Blocks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHAIN,4)
+                .input('N', Items.IRON_NUGGET)
+                .input('I', Items.IRON_INGOT)
+                .pattern(" N ")
+                .pattern(" I ")
+                .pattern(" N ")
+                .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(exporter, ID.ofMC("chain"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LANTERN)
+                .input('N', Items.IRON_NUGGET)
+                .input('T', Items.TORCH)
+                .pattern(" N ")
+                .pattern("NTN")
+                .pattern(" N ")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("lantern"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LANTERN)
+                .input('N', Items.IRON_NUGGET)
+                .input('T', Items.SOUL_TORCH)
+                .pattern(" N ")
+                .pattern("NTN")
+                .pattern(" N ")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("soul_lantern"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BONE_BLOCK)
                 .input('S', Items.BONE)
                 .pattern("SSS")
@@ -166,9 +207,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .input('N', Items.IRON_NUGGET)
                 .input('F', Items.FURNACE)
                 .input('S', ItemTags.STONE_CRAFTING_MATERIALS)
-                .pattern("SNS")
-                .pattern("NFN")
                 .pattern("SSS")
+                .pattern("NFN")
+                .pattern("SNS")
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, ID.ofMC("blast_furnace"));
 
@@ -526,9 +567,36 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
                 .offerTo(exporter, ID.ofBWT("padding"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.strapItem,4)
+                .input(ConventionalItemTags.SHEAR_TOOLS)
+                .input(BTWR_Items.LEATHER_TANNED_CUT)
+                .criterion("has_leather_tanned_cut", conditionsFromItem(BTWR_Items.LEATHER_TANNED_CUT))
+                .offerTo(exporter, ID.ofBWT("strap"));
+
+
 
         // Blocks
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
+                .input('W', ItemTags.PLANKS)
+                .input('A', BwtBlocks.axleBlock)
+                .input('G', BwtItems.gearItem)
+                .pattern("WGW")
+                .pattern("GAG")
+                .pattern("WGW")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("gear_box"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
+                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('A', BwtBlocks.axleBlock)
+                .input('G', BwtItems.gearItem)
+                .pattern("WGW")
+                .pattern("GAG")
+                .pattern("WGW")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("he_gear_box"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER,2)
                 .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
                 .input('S', ConventionalItemTags.STRINGS)
                 .pattern("PSP")
@@ -574,6 +642,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
                 .input('I', Items.IRON_NUGGET)
                 .input('B', BTWR_Items.STONE_BRICK)
+                .pattern("   ")
                 .pattern(" I ")
                 .pattern("BBB")
                 .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
@@ -677,10 +746,16 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofBWT("hemp_fiber_from_milling_hemp"));
 
+        // Saw recipes replacement
+        this.createSawLogRecipes(exporter);
+
+
     }
 
     private void overrideForBTWR(RecipeExporter exporter)
     {
+
+
         // BTWR overwritten recipes for food
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.EGG_SCRAMBLED_RAW, 2)
                 .input(BwtItems.rawEggItem)
@@ -819,43 +894,78 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
         removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
 
+        removeRecipe(exporter, ID.ofBTWR("gear"));
+        removeRecipe(exporter, ID.ofBTWR("strap"));
+        removeRecipe(exporter, ID.ofBTWR("leather_scoured"));
+        removeRecipe(exporter, ID.ofBTWR("leather_tanned"));
+        removeRecipe(exporter, ID.ofBTWR("leather_scoured_cut"));
+        removeRecipe(exporter, ID.ofBTWR("leather_tanned_cut"));
+
+
     }
 
-    private void createDungRecipes(RecipeExporter exporter)
+    private void createTannedLeatherRecipes(RecipeExporter exporter)
     {
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_JUNGLE, 2);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_DARK_OAK, 2);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_SPRUCE, 3);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_MANGROVE, 3);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_CHERRY, 3);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_OAK, 5);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_ACACIA, 5);
-        this.dungRecipeBuilder(exporter, SturdyTreesItems.BARK_BIRCH, 8);
-        this.dungRecipeBuilder(exporter, BTWRDS_Items.BARK_BLOOD_WOOD, 8);
-
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_JUNGLE, 2);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_DARK_OAK, 2);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_SPRUCE, 3);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_MANGROVE, 3);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_CHERRY, 3);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_OAK, 5);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_ACACIA, 5);
+        this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_BIRCH, 8);
+        this.leatherRecipeBuilder(exporter, BTWRDS_Items.BARK_BLOOD_WOOD, 8);
     }
-    /** Creates a dung recipe by only passing the bark item and the amount **/
-    private void dungRecipeBuilder(RecipeExporter exporter, Item barkItem, int count)
+
+    private void createSawLogRecipes(RecipeExporter exporter)
+    {
+        this.sawLogBuilder(exporter, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS, SturdyTreesItems.BARK_JUNGLE);
+        this.sawLogBuilder(exporter, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS, SturdyTreesItems.BARK_DARK_OAK);
+        this.sawLogBuilder(exporter, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS, SturdyTreesItems.BARK_SPRUCE);
+        this.sawLogBuilder(exporter, Blocks.MANGROVE_LOG, Blocks.MANGROVE_PLANKS, SturdyTreesItems.BARK_MANGROVE);
+        this.sawLogBuilder(exporter, Blocks.CHERRY_LOG, Blocks.CHERRY_PLANKS, SturdyTreesItems.BARK_CHERRY);
+        this.sawLogBuilder(exporter, Blocks.OAK_LOG, Blocks.OAK_PLANKS, SturdyTreesItems.BARK_OAK);
+        this.sawLogBuilder(exporter, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS, SturdyTreesItems.BARK_ACACIA);
+        this.sawLogBuilder(exporter, BwtBlocks.bloodWoodBlocks.logBlock, BwtBlocks.bloodWoodBlocks.planksBlock, BTWRDS_Items.BARK_BLOOD_WOOD);
+    }
+    /** Creates a tanned leather recipe by only passing the bark item and the amount **/
+    private void leatherRecipeBuilder(RecipeExporter exporter, Item barkItem, int count)
     {
         CauldronRecipe.JsonBuilder.create().result(BwtItems.tannedLeatherItem)
                 .ingredient(BwtItems.scouredLeatherItem)
                 .ingredient(BwtItems.dungItem)
                 .ingredient(barkItem, count)
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
-                .offerTo(exporter, ID.ofDS("tanned_leather_with_" + extractBarkType(barkItem) + "_in_cauldron"));
+                .offerTo(exporter, ID.ofDS("tanned_leather_with_" + extractName(barkItem) + "_in_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(BwtItems.tannedLeatherItem)
                 .ingredient(BTWR_Items.LEATHER_SCOURED_CUT,2)
                 .ingredient(BwtItems.dungItem)
                 .ingredient(barkItem, count)
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
-                .offerTo(exporter, ID.ofDS("tanned_leather_from_cut_scoured_leather_with_" + extractBarkType(barkItem) + "_in_cauldron"));
+                .offerTo(exporter, ID.ofDS("tanned_leather_from_cut_scoured_leather_with_" + extractName(barkItem) + "_in_cauldron"));
     }
 
-    /** Helper method to extract bark type from an item's translation key **/
-    private String extractBarkType(Item barkItem) {
+    private void sawLogBuilder(RecipeExporter exporter, Block logBlock, Block planksBlock, Item barkItem)
+    {
+        SawRecipe.JsonBuilder.create(logBlock)
+                .result(planksBlock,4)
+                .result(barkItem)
+                .result(BwtItems.sawDustItem, 2)
+                .criterion("has_log", conditionsFromTag(ItemTags.LOGS))
+                .offerTo(exporter, ID.ofBWT("saw_" + extractName(logBlock)));
+    }
+
+    /** Helper method to extract wood type from an item's translation key **/
+    private String extractName(Item barkItem) {
         // Extracts the actual bark type (e.g., "oak_bark") from the translation key.
         String[] parts = barkItem.getTranslationKey().split("\\.");
+        return parts[parts.length - 1];
+    }
+
+    private String extractName(Block logBlock) {
+        // Extracts the actual name of the item/block (e.g., "oak_bark") from the translation key.
+        String[] parts = logBlock.getTranslationKey().split("\\.");
         return parts[parts.length - 1];
     }
 

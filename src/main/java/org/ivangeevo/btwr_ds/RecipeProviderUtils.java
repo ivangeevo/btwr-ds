@@ -3,6 +3,7 @@ package org.ivangeevo.btwr_ds;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -15,7 +16,9 @@ public interface RecipeProviderUtils
     /** Call this to remove a recipe. The id must contain both the namespace and the item name "path" **/
     default void removeRecipe(RecipeExporter exporter, Identifier id)
     {
-        recipeRemover().offerTo(exporter, id);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Blocks.BEDROCK)
+                .input(Blocks.BEDROCK)
+                .criterion("has_bedrock", RecipeProvider.conditionsFromItem(Blocks.BEDROCK)).offerTo(exporter, id);
     }
 
     /** A recipe that cannot be obtained by normal means. Doesn't really remove it, but makes it unobtainable **/
