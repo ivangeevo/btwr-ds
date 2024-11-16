@@ -114,6 +114,16 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
          **/
 
 
+         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
+                 .input('L', BTWR_Items.LEATHER_TANNED_CUT)
+                 .input('B', BwtItems.beltItem)
+                 .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                 .input('G', BwtItems.gearItem)
+                 .criterion("has_belt", conditionsFromItem(BwtItems.beltItem))
+                 .offerTo(exporter, ID.ofDS("bellows_from_leather_tanned_cut"));
+
+
+
         // Tools
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_PICKAXE)
                 .input('R', Items.STICK)
@@ -533,9 +543,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofMC("diamond_boots"));
 
     }
-
-
-
 
 
     private void overrideForBWT(RecipeExporter exporter)

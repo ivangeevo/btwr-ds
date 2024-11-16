@@ -1,9 +1,11 @@
 package org.ivangeevo.btwr_ds.datagen;
 
+import com.bwt.blocks.BwtBlocks;
 import com.bwt.tags.BwtBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import org.ivangeevo.btwr_ds.tag.BTWRConventionalTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,5 +24,7 @@ public class DS_BlockTagProvider extends FabricTagProvider.BlockTagProvider
     {
         getOrCreateTagBuilder(BwtBlockTags.CROPS_CAN_PLANT_ON)
                 .forceAddTag(BTWRConventionalTags.Blocks.FARMLAND_BLOCKS);
+
+
     }
 }

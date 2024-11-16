@@ -1,10 +1,14 @@
 package org.ivangeevo.btwr_ds.datagen;
 
+import btwr.core.tag.BTWRConventionalTags;
+import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -20,5 +24,10 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
     {
         getOrCreateTagBuilder(ConventionalItemTags.STRINGS)
                 .add(BwtItems.hempFiberItem);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.COOKED_EGG_FOODS)
+                .add(BwtItems.friedEggItem)
+                .add(BwtItems.poachedEggItem);
+
     }
 }
