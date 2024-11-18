@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "bwt:fabric"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "WWW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:sail"
+  }
+}

@@ -100,7 +100,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("leather_scoured_cut_from_mill_stone"));
 
 
-
         // Blocks
         // TODO: figure out why .additionalDrop() builder is not working on datagen
         /**
@@ -113,15 +112,16 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofBWT("blood_wood_planks"));
          **/
 
-
          ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
                  .input('L', BTWR_Items.LEATHER_TANNED_CUT)
                  .input('B', BwtItems.beltItem)
                  .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
                  .input('G', BwtItems.gearItem)
+                 .pattern("SSS")
+                 .pattern("LLL")
+                 .pattern("GBG")
                  .criterion("has_belt", conditionsFromItem(BwtItems.beltItem))
                  .offerTo(exporter, ID.ofDS("bellows_from_leather_tanned_cut"));
-
 
 
         // Tools

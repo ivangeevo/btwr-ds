@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen;
 
 import btwr.core.tag.BTWRConventionalTags;
+import btwr.core.tag.BTWRTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -28,6 +29,9 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRConventionalTags.Items.COOKED_EGG_FOODS)
                 .add(BwtItems.friedEggItem)
                 .add(BwtItems.poachedEggItem);
+
+        getOrCreateTagBuilder(BTWRTags.Items.TANNED_LEATHERS)
+                .add(BwtItems.tannedLeatherItem);
 
     }
 }

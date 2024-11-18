@@ -1,0 +1,21 @@
+{
+  "type": "bwt:saw",
+  "category": "misc",
+  "drops": [
+    {
+      "count": 4,
+      "id": "minecraft:dark_oak_planks"
+    },
+    {
+      "count": 1,
+      "id": "sturdy_trees:bark_dark_oak"
+    },
+    {
+      "count": 2,
+      "id": "bwt:saw_dust"
+    }
+  ],
+  "ingredient": {
+    "block": "minecraft:dark_oak_log"
+  }
+}

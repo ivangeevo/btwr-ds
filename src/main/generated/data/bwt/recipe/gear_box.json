@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "bwt:axle"
+    },
+    "G": {
+      "item": "bwt:gear"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "WGW",
+    "GAG",
+    "WGW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:gear_box"
+  }
+}

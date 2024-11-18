@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "btwr:stone_brick"
+    },
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "G": {
+      "item": "bwt:gear"
+    },
+    "S": {
+      "tag": "bwt:wooden_siding_blocks"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "BCB",
+    "BGB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:turntable"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "bwt:cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:carrot"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "btwr:cooked_carrot"
+    }
+  ]
+}

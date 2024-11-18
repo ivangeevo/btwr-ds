@@ -1,0 +1,18 @@
+{
+  "type": "bwt:cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "btwr:raw_kebab"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "btwr:cooked_kebab"
+    }
+  ]
+}
