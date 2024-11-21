@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "btwr:pork_dinner"
+        "recipe": "vegehenna:flour"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "btwr:pork_dinner"
+      "vegehenna:flour"
     ]
   }
 }

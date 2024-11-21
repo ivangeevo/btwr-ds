@@ -25,6 +25,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.RecipeProviderUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -62,6 +63,10 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // BTWR: Core
         this.overrideForBTWR(exporter);
+
+        // Vegehenna
+        //this.overrideForVegehenna(exporter);
+
 
     }
 
@@ -796,6 +801,20 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
                 .offerTo(exporter, ID.ofBTWR("chowder"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.STEAK_DINNER,3)
+                .input(Items.COOKED_BEEF)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(BTWR_Items.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .offerTo(exporter, ID.ofBTWR("steak_dinner"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.PORK_DINNER,3)
+                .input(Items.PORKCHOP)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(BTWR_Items.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .offerTo(exporter, ID.ofBTWR("pork_dinner"));
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
                 .input(BwtItems.cookedWolfChopItem)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
@@ -841,6 +860,50 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     }
 
+    private void overrideForVegehenna(RecipeExporter exporter)
+    {
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_CAKE)
+                .input('E', BwtItems.rawEggItem)
+                .input('M', Items.MILK_BUCKET)
+                .input('F', BwtItems.flourItem)
+                .input('S', Items.SUGAR)
+                .pattern("SSS")
+                .pattern("MEM")
+                .pattern("FFF")
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofVG("pastry_uncooked_cake"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_PUMPKIN_PIE)
+                .input( BwtItems.rawEggItem)
+                .input(Items.SUGAR)
+                .input(Items.PUMPKIN)
+                .input(BwtItems.flourItem)
+                .input(BwtItems.flourItem)
+                .input(BwtItems.flourItem)
+                .criterion("flour", conditionsFromItem(BwtItems.flourItem))
+                .offerTo(exporter, ID.ofVG("pastry_uncooked_pumpkin_pie"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BREAD_DOUGH)
+                .input('F', BwtItems.flourItem)
+                .pattern("F ")
+                .pattern("FF")
+                .criterion("flour", conditionsFromItem(BwtItems.flourItem))
+                .offerTo(exporter, ID.ofVG("bread_dough"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_CAKE)
+                .input(BwtItems.flourItem)
+                .input(BwtItems.flourItem)
+                .input(BwtItems.flourItem)
+                .input(BwtItems.flourItem)
+                .input(ModItems.CHOCOLATE)
+                .criterion("has_chocolate", conditionsFromItem(ModItems.CHOCOLATE))
+                .offerTo(exporter, ID.ofVG("pastry_uncooked_cookies"));
+
+
+
+    }
+
     private void generateRecipesToRemove(RecipeExporter exporter)
     {
         /** Vanilla recipes to remove **/
@@ -848,6 +911,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         // Remove item recipes
         removeRecipe(exporter, ID.ofMC("bone_meal"));
 
+        // Food item recipes
+        removeRecipe(exporter, ID.ofMC("bread"));
+        removeRecipe(exporter, ID.ofMC("cookie"));
 
         // Remove blocks recipes
         removeRecipe(exporter, ID.ofMC("crafting_table"));
@@ -896,8 +962,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         /** BTWR recipes to remove **/
         removeRecipe(exporter, ID.ofBTWR("egg_scrambled_cooked_from_campfire_cooking"));
         removeRecipe(exporter, ID.ofBTWR("mushroom_omelette_cooked_from_campfire_cooking"));
-        removeRecipe(exporter, ID.ofBTWR("steak_dinner"));
-        removeRecipe(exporter, ID.ofBTWR("pork_dinner"));
         removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
         removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
 
@@ -908,6 +972,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         removeRecipe(exporter, ID.ofBTWR("leather_scoured_cut"));
         removeRecipe(exporter, ID.ofBTWR("leather_tanned_cut"));
 
+        /** Vegehenna recipes to remove **/
+        removeRecipe(exporter, ID.ofVG("flour"));
 
     }
 
@@ -991,6 +1057,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         static Identifier ofTE(String item) { return Identifier.of("tough_environment", item); }
         static Identifier ofST(String item) { return Identifier.of("sturdy_trees", item); }
         static Identifier ofSS(String item) { return Identifier.of("self_sustainable", item); }
+        static Identifier ofVG(String item) { return Identifier.of("vegehenna", item); }
 
     }
 

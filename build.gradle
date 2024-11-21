@@ -1,3 +1,4 @@
+
 plugins {
 	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
@@ -50,6 +51,7 @@ dependencies {
 	modImplementation files('libs/better_with_time-1.7.jar')
 	modImplementation files('libs/sturdy_trees-1.4.4-1.21.1.jar')
 	modCompileOnly files('libs/tough_environment-0.4.1-1.21.1.jar')
+	modCompileOnly files('libs/vegehenna-1.0-1.21.1.jar')
 
 
 
@@ -103,3 +105,4 @@ publishing {
 		// retrieving dependencies.
 	}
 }
+

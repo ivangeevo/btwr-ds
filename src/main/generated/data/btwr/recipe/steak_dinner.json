@@ -3,11 +3,17 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:bedrock"
+      "item": "minecraft:cooked_beef"
+    },
+    {
+      "tag": "c:foods/cooked_potato"
+    },
+    {
+      "item": "btwr:cooked_carrot"
     }
   ],
   "result": {
-    "count": 1,
-    "id": "minecraft:bedrock"
+    "count": 3,
+    "id": "btwr:steak_dinner"
   }
 }
