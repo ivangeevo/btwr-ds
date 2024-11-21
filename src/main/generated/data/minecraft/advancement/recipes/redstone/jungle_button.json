@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:jungle_button"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wooden_corner": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bwt:jungle_planks_corner"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wooden_corner"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:jungle_button"
+    ]
+  }
+}

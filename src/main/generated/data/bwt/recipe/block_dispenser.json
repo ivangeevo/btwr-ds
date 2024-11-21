@@ -1,0 +1,31 @@
+{
+  "type": "bwt:soul_forge_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "btwr:stone_brick"
+    },
+    "M": {
+      "item": "minecraft:mossy_cobblestone"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    },
+    "U": {
+      "item": "bwt:soul_urn"
+    }
+  },
+  "pattern": [
+    "MMMM",
+    "MUUM",
+    "BTTB",
+    "BRRB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:block_dispenser"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "btwr:stone_brick"
+    },
+    "g": {
+      "item": "bwt:gear"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "bbb",
+    "bgb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:mill_stone"
+  }
+}

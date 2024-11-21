@@ -1,0 +1,23 @@
+{
+  "type": "bwt:cauldron",
+  "category": "food",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "bwt:flour"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:sugar"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "bwt:donut"
+    }
+  ]
+}

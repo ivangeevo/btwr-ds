@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 12000,
+  "experience": 0.55,
+  "ingredient": {
+    "item": "minecraft:deepslate_iron_ore"
+  },
+  "result": {
+    "id": "minecraft:iron_nugget"
+  }
+}

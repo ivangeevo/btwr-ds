@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "bwt:belt"
+    },
+    "G": {
+      "item": "bwt:gear"
+    },
+    "L": {
+      "item": "btwr:leather_tanned_cut"
+    },
+    "S": {
+      "tag": "bwt:wooden_siding_blocks"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "LLL",
+    "GBG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:bellows"
+  }
+}

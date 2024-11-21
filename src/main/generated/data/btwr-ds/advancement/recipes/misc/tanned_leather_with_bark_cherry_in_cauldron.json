@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bark_cherry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "sturdy_trees:bark_cherry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dung": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bwt:dung"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_scoured_leather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bwt:scoured_leather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "btwr-ds:tanned_leather_with_bark_cherry_in_cauldron"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_scoured_leather",
+      "has_dung",
+      "has_bark_cherry"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "btwr-ds:tanned_leather_with_bark_cherry_in_cauldron"
+    ]
+  }
+}
