@@ -65,7 +65,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         this.overrideForBTWR(exporter);
 
         // Vegehenna
-        //this.overrideForVegehenna(exporter);
+        this.overrideForVegehenna(exporter);
 
 
     }
@@ -863,6 +863,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private void overrideForVegehenna(RecipeExporter exporter)
     {
 
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_CAKE)
                 .input('E', BwtItems.rawEggItem)
                 .input('M', Items.MILK_BUCKET)
@@ -875,7 +876,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofVG("pastry_uncooked_cake"));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_PUMPKIN_PIE)
-                .input( BwtItems.rawEggItem)
+                .input(BwtItems.rawEggItem)
                 .input(Items.SUGAR)
                 .input(Items.PUMPKIN)
                 .input(BwtItems.flourItem)
@@ -884,6 +885,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("flour", conditionsFromItem(BwtItems.flourItem))
                 .offerTo(exporter, ID.ofVG("pastry_uncooked_pumpkin_pie"));
 
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BREAD_DOUGH)
                 .input('F', BwtItems.flourItem)
                 .pattern("F ")
@@ -891,7 +893,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("flour", conditionsFromItem(BwtItems.flourItem))
                 .offerTo(exporter, ID.ofVG("bread_dough"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_CAKE)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_COOKIES)
                 .input(BwtItems.flourItem)
                 .input(BwtItems.flourItem)
                 .input(BwtItems.flourItem)
@@ -899,7 +901,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .input(ModItems.CHOCOLATE)
                 .criterion("has_chocolate", conditionsFromItem(ModItems.CHOCOLATE))
                 .offerTo(exporter, ID.ofVG("pastry_uncooked_cookies"));
-
 
 
     }
