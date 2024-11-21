@@ -33,5 +33,9 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRTags.Items.TANNED_LEATHERS)
                 .add(BwtItems.tannedLeatherItem);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS)
+                .add(BwtItems.netheriteMattockItem)
+                .add(BwtItems.netheriteBattleAxeItem);
+
     }
 }

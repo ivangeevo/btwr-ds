@@ -50,27 +50,8 @@ public abstract class ModLootTableEvents
         // replace the loot table for stripped log in sturdy trees to drop stick instead of planks
         replaceListWithCondition(createStrippedLogsList(), StatePredicate.Builder.create().exactMatch(VARIATION, 0), Items.STICK);
 
-        /**
-        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-
-            // Check if the key is for the grass block's loot table
-            if (Blocks.GRASS_BLOCK.getLootTableKey() != key) return;
-
-            tableBuilder.modifyPools(builder -> {
-                List<LootPoolEntry> l = new ArrayList<>(((LootPoolBuilderAccessor) builder).getEntries().build());
-                l.replaceAll(entry -> {
-                    if (!(entry instanceof ItemEntry itemEntry))
-                        return entry;
-                    if (((ItemEntryAccessor) itemEntry).getItem().value() != Items.WHEAT_SEEDS)
-                        return entry;
-                    ((ItemEntryAccessor) entry).setItem(Registries.ITEM.getEntry(BTWR_Items.HEMP_SEEDS));
-                    return entry;
-                });
-
-                ((LootPoolBuilderAccessor) builder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(l));
-            });
-        });
-         **/
+        // replace the wheat seeds dropped by left click breaking grass block with hoe (tough environment change)
+        // to drop hemp seeds instead.
         replaceSpecificItem(Blocks.GRASS_BLOCK.getLootTableKey(), Items.WHEAT_SEEDS, BTWR_Items.HEMP_SEEDS);
 
 
