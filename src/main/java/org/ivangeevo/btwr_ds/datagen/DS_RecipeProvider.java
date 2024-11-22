@@ -246,14 +246,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofMC( "ladder"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.HOPPER)
-                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
-                .input('G', BTWRConventionalTags.Items.GEARS)
-                .input('P', ItemTags.WOODEN_PRESSURE_PLATES)
-                .input('W', BwtItemTags.WOODEN_CORNER_BLOCKS)
-                .pattern("S S")
-                .pattern("GPG")
-                .pattern(" W ")
-                .criterion("has_moulding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .input('B', Items.IRON_INGOT)
+                .input('N', Items.IRON_NUGGET)
+                .input('C', Items.CHEST)
+                .pattern("B B")
+                .pattern("NCN")
+                .pattern(" N ")
+                .criterion("has_chest", conditionsFromItem(Items.CHEST))
                 .offerTo(exporter);
 
         // Adding door recipes
