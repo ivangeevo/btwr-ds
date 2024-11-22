@@ -26,6 +26,7 @@ import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.RecipeProviderUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.vegehenna.item.ModItems;
+import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -103,6 +104,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(BTWR_Items.LEATHER_CUT)
                 .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
                 .offerTo(exporter, ID.ofDS("leather_scoured_cut_from_mill_stone"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FURNACE)
+                .input('B', ModBlocks.SLAB_BRICKS_LOOSE)
+                .pattern("BB")
+                .pattern("BB")
+                .criterion("has_slab_bricks_loose", conditionsFromItem(ModBlocks.SLAB_BRICKS_LOOSE))
+                .offerTo(exporter, ID.ofDS("furnace_from_slab_bricks"));
 
 
         // Blocks
@@ -586,7 +594,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofBWT("strap"));
 
 
-
         // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
                 .input('W', ItemTags.PLANKS)
@@ -618,21 +625,21 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofBWT("he_ladder"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
-                .input('b', BTWR_Items.STONE_BRICK)
-                .input('g', BwtItems.gearItem)
-                .pattern("bbb")
-                .pattern("bbb")
-                .pattern("bgb")
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .pattern("BBB")
+                .pattern("BBB")
+                .pattern("BGB")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("mill_stone"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.handCrankBlock)
-                .input('b', BTWR_Items.STONE_BRICK)
-                .input('g', BwtItems.gearItem)
-                .input('s', Items.STICK)
-                .pattern("  s")
-                .pattern(" s ")
-                .pattern("bgb")
+                .input('B', BTWR_Items.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .input('S', Items.STICK)
+                .pattern("  S")
+                .pattern(" S ")
+                .pattern("BGB")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("hand_crank"));
 
@@ -646,7 +653,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
          .pattern("HHH")
          .pattern("BEB")
          .pattern("BRB")
-         .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
+         .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
          .offerTo(exporter, ID.ofBWT("hibachi"));
          **/
 
@@ -919,6 +926,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         // Remove blocks recipes
         removeRecipe(exporter, ID.ofMC("crafting_table"));
         removeRecipe(exporter, ID.ofMC("chest"));
+        removeRecipe(exporter, ID.ofMC("furnace"));
+
 
         // Remove tool recipes
         removeRecipe(exporter, ID.ofMC("wooden_sword"));
@@ -949,6 +958,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         {
             removeRecipe(exporter, ID.ofBWT("he_" + woodType + "_button"));
         }
+
         removeRecipe(exporter, ID.ofBWT("he_blood_wood_button"));
 
         // Removing High efficiency pressure plate recipes
