@@ -13,6 +13,8 @@ public class BTWRDS_Items
 
     public static final Item BARK_BLOOD_WOOD = registerItem("bark_blood_wood", new Item(new Item.Settings()));
 
+    public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
+
     private static Item registerItem(String name, Item item)
     {
         return Registry.register(Registries.ITEM, Identifier.of(BTWRDS.MOD_ID, name), item);
@@ -27,6 +29,7 @@ public class BTWRDS_Items
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
         {
             entries.add(BTWRDS_Items.BARK_BLOOD_WOOD);
+            entries.add(BTWRDS_Items.COPPER_NUGGET);
 
         });
     }

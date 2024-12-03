@@ -3,6 +3,7 @@ package org.ivangeevo.btwr_ds;
 import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,5 +19,7 @@ public class BTWRDS implements ModInitializer
 		ModLootTableEvents.initialize();
 
 		BTWRDS_Items.registerAndAddToGroups();
+
+		BTWRDSRecipes.init();
 	}
 }

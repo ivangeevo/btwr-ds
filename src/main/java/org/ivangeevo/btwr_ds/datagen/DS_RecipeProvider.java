@@ -1,7 +1,8 @@
 package org.ivangeevo.btwr_ds.datagen;
 
+import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
-import btwr.core.tag.BTWRConventionalTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
@@ -15,6 +16,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -22,8 +24,8 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.RecipeProviderUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.vegehenna.item.ModItems;
 import org.tough_environment.block.ModBlocks;
@@ -41,12 +43,21 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
 
+    private static final String MC = "minecraft";
+    private static final String TE = "tough_environment";
+    private static final String BTWR = "btwr";
+    private static final String BWT = "bwt";
+    private static final String VG = "vegehenna";
+    private static final String DS = "btwr-ds";
+
 
     @Override
     protected Identifier getRecipeIdentifier(Identifier identifier) {
         return identifier;
     }
 
+    // recipes to remove are only for ones that we don't overwrite with another ingredients/output.
+    // the ones we overwrite are in the override methods, and this mod is in the generateForMod() method
     @Override
     public void generate(RecipeExporter exporter)
     {
@@ -75,6 +86,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     {
         // Items
         this.createTannedLeatherRecipes(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWRDS_Items.COPPER_NUGGET, 9)
+                .input(Items.COPPER_INGOT)
+                .criterion("has_copper_ingot", conditionsFromItem(Items.COPPER_INGOT))
+                .offerTo(exporter, ID.ofDS("copper_nugget_from_copper_ingot"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
                 .input('P', ItemTags.PLANKS)
@@ -105,6 +121,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
                 .offerTo(exporter, ID.ofDS("leather_scoured_cut_from_mill_stone"));
 
+        MillStoneRecipe.JsonBuilder.create().result(Items.BLAZE_POWDER,2)
+                .ingredient(Items.BLAZE_ROD)
+                .criterion("has_blaze_rod", conditionsFromItem(Items.BLAZE_ROD))
+                .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FURNACE)
                 .input('B', ModBlocks.SLAB_BRICKS_LOOSE)
                 .pattern("BB")
@@ -119,11 +140,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.planksBlock)
                 .input(BwtBlocks.bloodWoodBlocks.logBlock)
                 .input(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)
-                .additionalDrop(BTWRDS_Items.BLOOD_WOOD_BARK.getDefaultStack())
+                .additionalDrop(BTWRDS_Items.BARK_BLOOD_WOOD.getDefaultStack())
                 .additionalDrop(SturdyTreesItems.DUST_SAW.getDefaultStack())
                 .criterion("has_blood_wood_log", conditionsFromItem(BwtBlocks.bloodWoodBlocks.logBlock))
                 .offerTo(exporter, ID.ofBWT("blood_wood_planks"));
          **/
+
 
          ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
                  .input('L', BTWR_Items.LEATHER_TANNED_CUT)
@@ -184,7 +206,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
 
-
+        // Cauldron recipes
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.ELEMENT)
+                .ingredient(Items.BLAZE_POWDER)
+                .ingredient(Items.REDSTONE)
+                .ingredient(ConventionalItemTags.STRINGS)
+                .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
+                .offerTo(exporter, ID.ofDS("element_from_cauldron"));
     }
 
     private void overrideForVanilla(RecipeExporter exporter)
@@ -384,8 +412,16 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_bone_block", conditionsFromItem(Items.BONE_BLOCK))
                 .offerTo(exporter, ID.ofMC("bone"));
 
-        // Tools
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LEAD, 2)
+                .input('F', BwtItems.hempFiberItem)
+                .input('R', BwtItems.ropeItem)
+                .pattern(" FF")
+                .pattern(" FF")
+                .pattern("R  ")
+                .criterion("has_rope", conditionsFromItem(BwtItems.ropeItem))
+                .offerTo(exporter, ID.ofMC("lead"));
 
+        // Tools
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_SHOVEL)
                 .input(Items.STICK)
                 .input(ItemTags.STONE_TOOL_MATERIALS)
@@ -496,29 +532,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
 
         // Cooking recipes
-        // TODO: Remove the smelting recipes for ores when we add the Brick oven from Self Sustainable
-        //offerSmelting(exporter, IRON_ORES, RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 200, "iron_nugget");
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.35F, 12000)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
-                .offerTo(exporter, ID.ofMC("iron_ingot_from_smelting_raw_iron"));
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 12000)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
-                .offerTo(exporter, ID.ofMC( "iron_ingot_from_smelting_iron_ore"));
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 12000)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
-                .offerTo(exporter, ID.ofMC( "iron_ingot_from_smelting_deepslate_iron_ore"));
-
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.RAW_IRON), RecipeCategory.MISC, Items.IRON_NUGGET, 0.45F, 6000)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
-                .offerTo(exporter, ID.ofMC("iron_ingot_from_blasting_raw_iron"));
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.55F, 6000)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
-                .offerTo(exporter, ID.ofMC( "iron_ingot_from_blasting_iron_ore"));
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.DEEPSLATE_IRON_ORE), RecipeCategory.MISC, Items.IRON_NUGGET, 0.65F, 6000)
-                .criterion("has_iron_ore", RecipeProvider.conditionsFromTag(ItemTags.IRON_ORES))
-                .offerTo(exporter, ID.ofMC( "iron_ingot_from_blasting_deepslate_iron_ore"));
-
+        // TODO: Remove the nugget recipes when we add the Brick oven from Self Sustainable
+        this.createNuggetRecipes(exporter);
 
         // Armor
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
@@ -642,8 +658,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("hand_crank"));
 
-        // TODO: Add piston recipe when Element item is added to BTWR: Core
-        /**
          ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
          .input('H', BwtItems.concentratedHellfireItem)
          .input('E', BTWR_Items.ELEMENT)
@@ -654,7 +668,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
          .pattern("BRB")
          .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
          .offerTo(exporter, ID.ofBWT("hibachi"));
-         **/
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
@@ -727,8 +740,15 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
          .offerTo(exporter, ID.ofBWT("pulley"));
          **/
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soulForgeBlock)
+                .input(Items.ANVIL)
+                .input(Items.NETHER_STAR)
+                .criterion("has_anvil", conditionsFromItem(Items.ANVIL))
+                .offerTo(exporter, ID.ofBWT("soul_forge"));
 
-        // Overwritten cauldron recipes
+
+
+    // Overwritten cauldron recipes
         CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
                 .ingredient(BwtItems.flourItem)
                 .ingredient(Items.SUGAR)
@@ -916,74 +936,93 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         /** Vanilla recipes to remove **/
 
         // Remove item recipes
-        removeRecipe(exporter, ID.ofMC("bone_meal"));
+        disableVanilla(exporter, "bone_meal");
 
         // Food item recipes
-        removeRecipe(exporter, ID.ofMC("bread"));
-        removeRecipe(exporter, ID.ofMC("cookie"));
+        disableVanilla(exporter, "bread");
+        disableVanilla(exporter, "cookie");
+        disableVanilla(exporter, "sugar_from_sugar_cane");
+
+        disableVanilla(exporter, "blaze_powder");
 
         // Remove blocks recipes
-        removeRecipe(exporter, ID.ofMC("crafting_table"));
-        removeRecipe(exporter, ID.ofMC("chest"));
-        removeRecipe(exporter, ID.ofMC("furnace"));
+        disableVanilla(exporter, "crafting_table");
+        disableVanilla(exporter, "chest");
+        disableVanilla(exporter, "furnace");
 
 
         // Remove tool recipes
-        removeRecipe(exporter, ID.ofMC("wooden_sword"));
-        removeRecipe(exporter, ID.ofMC("wooden_pickaxe"));
-        removeRecipe(exporter, ID.ofMC("wooden_axe"));
-        removeRecipe(exporter, ID.ofMC("wooden_shovel"));
-        removeRecipe(exporter, ID.ofMC("wooden_hoe"));
-        removeRecipe(exporter, ID.ofMC("stone_sword"));
-        removeRecipe(exporter, ID.ofMC("stone_hoe"));
+        disableVanilla(exporter, "wooden_sword");
+        disableVanilla(exporter, "wooden_pickaxe");
+        disableVanilla(exporter, "wooden_axe");
+        disableVanilla(exporter, "wooden_shovel");
+        disableVanilla(exporter, "wooden_hoe");
+        disableVanilla(exporter, "stone_sword");
+        disableVanilla(exporter, "stone_hoe");
 
         // Remove cooking recipes
-        removeRecipe(exporter, ID.ofMC("charcoal"));
+        disableVanilla(exporter, "charcoal");
 
         // Remove the ability to repair items by combining them
-        removeRecipe(exporter, ID.ofMC("repair_item"));
+        disableVanilla(exporter, "repair_item");
 
         /** Tough Environment recipes to remove **/
 
-        removeRecipe(exporter, ID.ofTE("furnace"));
+        disableTE(exporter, "furnace");
 
         /** BWT recipes to remove **/
-        removeRecipe(exporter, ID.ofBWT("grate"));
-        removeRecipe(exporter, ID.ofBWT("fried_egg_from_campfire_cooking"));
-        removeRecipe(exporter, ID.ofBWT("tanned_leather_from_cauldron"));
+        disableBWT(exporter, "grate");
+        disableBWT(exporter, "fried_egg_from_campfire_cooking");
+        disableBWT(exporter, "tanned_leather_from_cauldron");
 
         // Removing High efficiency button recipes
         for (String woodType : vanillaWoodTypes)
         {
-            removeRecipe(exporter, ID.ofBWT("he_" + woodType + "_button"));
+            disableBWT(exporter, "he_" + woodType + "_button");
         }
 
-        removeRecipe(exporter, ID.ofBWT("he_blood_wood_button"));
+        disableBWT(exporter, "he_blood_wood_button");
 
         // Removing High efficiency pressure plate recipes
         for (String woodType : vanillaWoodTypes)
         {
-            removeRecipe(exporter, ID.ofBWT("he_" + woodType + "_pressure_plate"));
+            disableBWT(exporter, "he_" + woodType + "_pressure_plate");
         }
-        removeRecipe(exporter, ID.ofBWT("he_blood_wood_pressure_plate"));
+        disableBWT(exporter, "he_blood_wood_pressure_plate");
 
 
 
         /** BTWR recipes to remove **/
-        removeRecipe(exporter, ID.ofBTWR("egg_scrambled_cooked_from_campfire_cooking"));
-        removeRecipe(exporter, ID.ofBTWR("mushroom_omelette_cooked_from_campfire_cooking"));
-        removeRecipe(exporter, ID.ofBTWR("chicken_soup"));
-        removeRecipe(exporter, ID.ofBTWR("hearty_stew"));
+        disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
+        disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
+        disableBTWR(exporter, "chicken_soup");
+        disableBTWR(exporter, "hearty_stew");
 
-        removeRecipe(exporter, ID.ofBTWR("gear"));
-        removeRecipe(exporter, ID.ofBTWR("strap"));
-        removeRecipe(exporter, ID.ofBTWR("leather_scoured"));
-        removeRecipe(exporter, ID.ofBTWR("leather_tanned"));
-        removeRecipe(exporter, ID.ofBTWR("leather_scoured_cut"));
-        removeRecipe(exporter, ID.ofBTWR("leather_tanned_cut"));
+        disableBTWR(exporter, "gear");
+        disableBTWR(exporter, "strap");
+        disableBTWR(exporter, "leather_scoured");
+        disableBTWR(exporter, "leather_tanned");
+        disableBTWR(exporter, "leather_scoured_cut");
+        disableBTWR(exporter, "leather_tanned_cut");
+
+        disableBTWR(exporter, "element");
 
         /** Vegehenna recipes to remove **/
-        removeRecipe(exporter, ID.ofVG("flour"));
+        disableVG(exporter, "flour");
+
+    }
+
+    private void createNuggetRecipes(RecipeExporter exporter) {
+        // prefix should be the name of the recipe you want to replace; in vanilla's case it's the ingot ones
+
+        offerOreCookingRecipe("copper_ingot", Items.RAW_COPPER, Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE,
+                BTWRDS_Items.COPPER_NUGGET, 10000, 5000, ItemTags.COPPER_ORES, MC, exporter);
+
+        offerOreCookingRecipe("gold_ingot", Items.RAW_GOLD, Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE,
+                Items.GOLD_NUGGET, 10000, 5000, ItemTags.GOLD_ORES, MC,exporter);
+
+        offerOreCookingRecipe("iron_ingot", Items.RAW_IRON, Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE,
+                Items.IRON_NUGGET, 12000, 6000, ItemTags.IRON_ORES, MC, exporter);
 
     }
 
@@ -1039,37 +1078,46 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofBWT("saw_" + extractName(logBlock)));
     }
 
-    /** Helper method to extract wood type from an item's translation key **/
-    private String extractName(Item barkItem) {
-        // Extracts the actual bark type (e.g., "oak_bark") from the translation key.
-        String[] parts = barkItem.getTranslationKey().split("\\.");
-        return parts[parts.length - 1];
+    /**
+     * Creates smelting and blasting recipes for three ore item variants: raw ore, normal ore, and deepslate ore.
+     *
+     * @param prefix          The recipe identifier prefix. This represents the base recipe string of the recipe
+     *                        being modified. For example, if the original recipe is for an iron ingot, but it is
+     *                        being replaced with iron nuggets, the prefix would still be for the iron ingot.
+     * @param conditionTag    A condition tag used to check if the recipe should be included based on certain criteria.
+     * @param namespace       The namespace for the generated recipe JSON files (e.g., "minecraft" or "modid").
+     */
+    private void offerOreCookingRecipe(String prefix, Item rawItem, Item oreItem, Item deepslateOreItem, Item smeltedItem,
+                                        int smeltTime, int blastTime, TagKey<Item> conditionTag, String namespace, RecipeExporter exporter) {
+        // Smelting recipes
+        oreCookingRecipeBuilder(
+                (ingredient, category, experience, time) ->
+                        CookingRecipeJsonBuilder.createSmelting(ingredient, category, smeltedItem, experience, time),
+                prefix, "smelting", rawItem, oreItem, deepslateOreItem, new float[] {0.35F, 0.45F, 0.55F},
+                smeltTime, conditionTag, namespace, exporter);
+
+        // Blasting recipes
+        oreCookingRecipeBuilder(
+                (ingredient, category, experience, time) ->
+                        CookingRecipeJsonBuilder.createBlasting(ingredient, category, smeltedItem, experience, time),
+                prefix, "blasting", rawItem, oreItem, deepslateOreItem, new float[] {0.45F, 0.55F, 0.65F},
+                blastTime, conditionTag, namespace,  exporter);
     }
 
-    private String extractName(Block logBlock) {
-        // Extracts the actual name of the item/block (e.g., "oak_bark") from the translation key.
-        String[] parts = logBlock.getTranslationKey().split("\\.");
-        return parts[parts.length - 1];
-    }
-
-    private static class ID
+    private void oreCookingRecipeBuilder(
+            BlockStateVariantMap.QuadFunction<Ingredient, RecipeCategory, Float, Integer, CookingRecipeJsonBuilder> builderFunction,
+            String prefix, String type, Item rawItem, Item oreItem, Item deepslateOreItem, float[] experiences,
+            int cookTime, TagKey<Item> conditionTag, String namespace,  RecipeExporter exporter)
     {
-        static Identifier ofMC(String item) { return Identifier.ofVanilla(item); }
-        /** DS - Datapack Suite **/
-        static Identifier ofDS(String item) { return Identifier.of("btwr-ds", item); }
-        /** BTWR: Core **/
-        static Identifier ofBTWR(String item) { return Identifier.of("btwr", item); }
-        /** BWT - Better With Time **/
-        static Identifier ofBWT(String item)
-        {
-            return Identifier.of("bwt", item);
+        Item[] items = {rawItem, oreItem, deepslateOreItem};
+        for (int i = 0; i < items.length; i++) {
+            builderFunction.apply(Ingredient.ofItems(items[i]), RecipeCategory.MISC, experiences[i], cookTime)
+                    .criterion("has_" + extractName(conditionTag), RecipeProvider.conditionsFromTag(conditionTag))
+                    .offerTo(exporter, Identifier.of(namespace,prefix + "_from_" + type + "_" + extractName(items[i])));
         }
-        static Identifier ofTE(String item) { return Identifier.of("tough_environment", item); }
-        static Identifier ofST(String item) { return Identifier.of("sturdy_trees", item); }
-        static Identifier ofSS(String item) { return Identifier.of("self_sustainable", item); }
-        static Identifier ofVG(String item) { return Identifier.of("vegehenna", item); }
-
     }
+
+
 
 
 }

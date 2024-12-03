@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen;
 
-import btwr.core.tag.BTWRConventionalTags;
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.loot.condition.LootCondition;

@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen;
 
-import btwr.core.tag.BTWRConventionalTags;
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import btwr.core.tag.BTWRTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
