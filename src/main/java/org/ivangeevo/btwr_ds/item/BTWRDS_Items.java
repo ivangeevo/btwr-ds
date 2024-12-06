@@ -15,6 +15,13 @@ public class BTWRDS_Items
 
     public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
 
+    public static final Item ENDER_SLAG = registerItem("ender_slag", new Item(new Item.Settings()));
+
+    public static final Item SOUL_FLUX = registerItem("soul_flux", new Item(new Item.Settings()));
+
+    public static final Item BRIMSTONE = registerItem("brimstone", new Item(new Item.Settings()));
+
+
     private static Item registerItem(String name, Item item)
     {
         return Registry.register(Registries.ITEM, Identifier.of(BTWRDS.MOD_ID, name), item);
@@ -30,6 +37,9 @@ public class BTWRDS_Items
         {
             entries.add(BTWRDS_Items.BARK_BLOOD_WOOD);
             entries.add(BTWRDS_Items.COPPER_NUGGET);
+            entries.add(BTWRDS_Items.ENDER_SLAG);
+            entries.add(BTWRDS_Items.SOUL_FLUX);
+            entries.add(BTWRDS_Items.BRIMSTONE);
 
         });
     }
