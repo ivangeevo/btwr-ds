@@ -1,0 +1,173 @@
+package org.ivangeevo.btwr_ds.datagen;
+
+import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.core.item.BTWR_Items;
+import com.bwt.items.BwtItems;
+import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.data.server.recipe.*;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
+
+import java.util.concurrent.CompletableFuture;
+
+
+public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+{
+
+    public BTWR_RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
+    }
+
+    private static final String MC = "minecraft";
+    private static final String TE = "tough_environment";
+    private static final String BTWR = "btwr";
+    private static final String BWT = "bwt";
+    private static final String VG = "vegehenna";
+    private static final String DS = "btwr-ds";
+
+
+    @Override
+    protected Identifier getRecipeIdentifier(Identifier identifier) {
+        return identifier;
+    }
+
+    // recipes to remove are only for ones that we don't overwrite with another ingredients/output.
+    // the ones we overwrite are in the override methods, and this mod is in the generateForMod() method
+    @Override
+    public void generate(RecipeExporter exporter) {
+        // Recipes that get removed
+        this.generateRecipesToRemove(exporter);
+
+        // BTWR: Core
+        this.overrideForBTWR(exporter);
+    }
+
+
+
+    private void overrideForBTWR(RecipeExporter exporter) {
+
+        // BTWR overwritten recipes for food
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.EGG_SCRAMBLED_RAW, 2)
+                .input(BwtItems.rawEggItem)
+                .input(Items.MILK_BUCKET)
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBTWR("egg_scrambled_raw"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.MUSHROOM_OMELETTE_RAW)
+                .input('E', BwtItems.rawEggItem)
+                .input('M', Items.BROWN_MUSHROOM)
+                .pattern("EM")
+                .pattern("MM")
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBTWR("mushroom_omelette_raw"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
+                .ingredient(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .criterion("has_potato", conditionsFromItem(Items.POTATO))
+                .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_CARROT)
+                .ingredient(Items.CARROT)
+                .criterion("has_carrot", conditionsFromItem(Items.CARROT))
+                .offerTo(exporter, ID.ofBTWR("cooked_carrot_from_cauldron"));
+
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.CHOWDER,2)
+                .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)
+                .ingredient(Items.MILK_BUCKET)
+                .ingredient(Items.BOWL, 2)
+                .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
+                .offerTo(exporter, ID.ofBTWR("chowder"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.STEAK_DINNER,3)
+                .input(Items.COOKED_BEEF)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(BTWR_Items.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .offerTo(exporter, ID.ofBTWR("steak_dinner"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.PORK_DINNER,3)
+                .input(Items.PORKCHOP)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(BTWR_Items.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .offerTo(exporter, ID.ofBTWR("pork_dinner"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
+                .input(BwtItems.cookedWolfChopItem)
+                .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .input(BTWR_Items.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
+
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_KEBAB)
+                .ingredient(BTWR_Items.RAW_KEBAB)
+                .criterion("has_raw_kebab", conditionsFromItem(BTWR_Items.RAW_KEBAB))
+                .offerTo(exporter, ID.ofBTWR("cooked_kebab_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHICKEN_SOUP, 3)
+                .ingredient(Items.COOKED_CHICKEN)
+                .ingredient(BTWR_Items.COOKED_CARROT)
+                .ingredient(BTWR_Items.BOILED_POTATO)
+                .ingredient(Items.BOWL, 3)
+                .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
+                .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW, 5)
+                .ingredient(BTWRConventionalTags.Items.COOKED_MEATS)
+                .ingredient(BTWR_Items.COOKED_CARROT)
+                .ingredient(BTWR_Items.BOILED_POTATO)
+                .ingredient(Items.BOWL, 5)
+                .ingredient(Items.BROWN_MUSHROOM, 3)
+                .ingredient(BwtItems.flourItem)
+                .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
+                .offerTo(exporter, ID.ofBTWR("hearty_stew_from_cauldron"));
+
+        // Blocks
+        // TODO: Add soulforged recipe for the chopping block when it's added to BTWR: Core
+        /**
+         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BTWR_Blocks.CHOPPING_BLOCK)
+         .input('B', BTWR_Items.STONE_BRICK)
+         .pattern("B  B")
+         .pattern("B  B")
+         .pattern("BBBB")
+         .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
+         .offerTo(exporter, ID.ofBTWR("chopping_block"));
+         **/
+
+        // Items
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.DIAMOND_PLATE)
+                .input('S', BwtItems.strapItem)
+                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .input('P', BwtItems.paddingItem)
+                .pattern("SIS")
+                .pattern(" P ")
+                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, ID.ofBTWR("diamond_plate"));
+
+    }
+
+    private void generateRecipesToRemove(RecipeExporter exporter) {
+        /** BTWR recipes to remove **/
+        disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
+        disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
+        disableBTWR(exporter, "chicken_soup");
+        disableBTWR(exporter, "hearty_stew");
+
+        disableBTWR(exporter, "gear");
+        disableBTWR(exporter, "strap");
+        disableBTWR(exporter, "leather_scoured");
+        disableBTWR(exporter, "leather_tanned");
+        disableBTWR(exporter, "leather_scoured_cut");
+        disableBTWR(exporter, "leather_tanned_cut");
+
+        disableBTWR(exporter, "element");
+    }
+
+}
