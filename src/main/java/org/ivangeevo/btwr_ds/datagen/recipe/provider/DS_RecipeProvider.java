@@ -174,13 +174,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
 
         // Cauldron recipes
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.ELEMENT)
+        CauldronRecipe.JsonBuilder.create().result(BTWRDS_Items.ELEMENT)
                 .ingredient(Items.BLAZE_POWDER)
                 .ingredient(Items.REDSTONE)
                 .ingredient(ConventionalItemTags.STRINGS)
                 .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
                 .offerTo(exporter, ID.ofDS("element_from_cauldron"));
-
 
     }
 

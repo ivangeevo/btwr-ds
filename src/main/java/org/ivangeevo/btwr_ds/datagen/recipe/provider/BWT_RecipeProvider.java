@@ -44,8 +44,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 
-public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
-{
+public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
 
     public BWT_RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -57,8 +56,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         this.overrideForBWT(exporter);
     }
 
-    private void overrideForBWT(RecipeExporter exporter)
-    {
+    private void overrideForBWT(RecipeExporter exporter) {
 
         // Create the recipe for the blood wood button
         Block bloodWoodCorner = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_corner"));
@@ -155,7 +153,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
                 .input('H', BwtItems.concentratedHellfireItem)
-                .input('E', BTWR_Items.ELEMENT)
+                .input('E', BTWRDS_Items.ELEMENT)
                 .input('B', BTWR_Items.STONE_BRICK)
                 .input('R', Items.REDSTONE)
                 .pattern("HHH")

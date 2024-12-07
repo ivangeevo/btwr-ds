@@ -20,6 +20,9 @@ public class BTWRDS_Items {
 
     public static final Item BRIMSTONE = registerItem("brimstone", new Item(new Item.Settings()));
 
+    public static final Item ELEMENT = registerItem("element", new Item(new Item.Settings()));
+
+
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(BTWRDS.MOD_ID, name), item);

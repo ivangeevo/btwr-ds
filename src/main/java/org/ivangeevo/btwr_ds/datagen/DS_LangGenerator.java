@@ -20,6 +20,8 @@ public class DS_LangGenerator extends FabricLanguageProvider {
         translationBuilder.add(BTWRDS_Items.ENDER_SLAG, "Ender Slag");
         translationBuilder.add(BTWRDS_Items.SOUL_FLUX, "Soul Flux");
         translationBuilder.add(BTWRDS_Items.BARK_BLOOD_WOOD, "Blood Wood Bark");
+        translationBuilder.add(BTWRDS_Items.ELEMENT, "Element");
+
     }
 
 }
