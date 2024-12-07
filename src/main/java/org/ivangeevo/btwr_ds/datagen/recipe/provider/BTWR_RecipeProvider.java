@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen;
+package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
 import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwrsl.tag.BTWRConventionalTags;
@@ -24,26 +24,9 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
         super(output, registriesFuture);
     }
 
-    private static final String MC = "minecraft";
-    private static final String TE = "tough_environment";
-    private static final String BTWR = "btwr";
-    private static final String BWT = "bwt";
-    private static final String VG = "vegehenna";
-    private static final String DS = "btwr-ds";
 
-
-    @Override
-    protected Identifier getRecipeIdentifier(Identifier identifier) {
-        return identifier;
-    }
-
-    // recipes to remove are only for ones that we don't overwrite with another ingredients/output.
-    // the ones we overwrite are in the override methods, and this mod is in the generateForMod() method
     @Override
     public void generate(RecipeExporter exporter) {
-        // Recipes that get removed
-        this.generateRecipesToRemove(exporter);
-
         // BTWR: Core
         this.overrideForBTWR(exporter);
     }
@@ -153,21 +136,9 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
 
     }
 
-    private void generateRecipesToRemove(RecipeExporter exporter) {
-        /** BTWR recipes to remove **/
-        disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
-        disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
-        disableBTWR(exporter, "chicken_soup");
-        disableBTWR(exporter, "hearty_stew");
-
-        disableBTWR(exporter, "gear");
-        disableBTWR(exporter, "strap");
-        disableBTWR(exporter, "leather_scoured");
-        disableBTWR(exporter, "leather_tanned");
-        disableBTWR(exporter, "leather_scoured_cut");
-        disableBTWR(exporter, "leather_tanned_cut");
-
-        disableBTWR(exporter, "element");
+    @Override
+    protected Identifier getRecipeIdentifier(Identifier identifier) {
+        return identifier;
     }
 
 }

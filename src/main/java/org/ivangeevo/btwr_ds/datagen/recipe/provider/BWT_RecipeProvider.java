@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen;
+package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
 import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
@@ -30,6 +30,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -50,36 +51,25 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         super(output, registriesFuture);
     }
 
-    private static final String MC = "minecraft";
-    private static final String TE = "tough_environment";
-    private static final String BTWR = "btwr";
-    private static final String BWT = "bwt";
-    private static final String VG = "vegehenna";
-    private static final String DS = "btwr-ds";
-
-    private static final String[] vanillaWoodTypes = new String[]
-            {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
-
-
-
-    @Override
-    protected Identifier getRecipeIdentifier(Identifier identifier) {
-        return identifier;
-    }
-
-    // recipes to remove are only for ones that we don't overwrite with another ingredients/output.
-    // the ones we overwrite are in the override methods, and this mod is in the generateForMod() method
     @Override
     public void generate(RecipeExporter exporter) {
-        // Recipes that get removed
-        this.generateRecipesToRemove(exporter);
-
         // Better With Time
         this.overrideForBWT(exporter);
     }
 
     private void overrideForBWT(RecipeExporter exporter)
     {
+
+        // Create the recipe for the blood wood button
+        Block bloodWoodCorner = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_corner"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.buttonBlock)
+                .input('S', bloodWoodCorner)  // Use the blood wood SidingBlock as the 'S' input
+                .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                .pattern("S")
+                .pattern("R")
+                .criterion("has_blood_wood_corner", conditionsFromItem(bloodWoodCorner))
+                .offerTo(exporter, ID.ofBWT("blood_wood_button"));
+
         // Items
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.sailItem)
                 .input('F', BwtItems.fabricItem)
@@ -260,14 +250,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
                 .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.kibbleItem,2)
-                .ingredient(Items.BONE_MEAL,4)
-                .ingredient(Items.ROTTEN_FLESH,4)
-                .ingredient(Items.SUGAR)
-                .criterion("has_bone_meal", conditionsFromItem(Items.BONE_MEAL))
-                .offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
-
-
 
         // Tools
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.compositeBowItem)
@@ -280,7 +262,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .pattern("gmb")
                 .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
                 .offerTo(exporter, ID.ofBWT("composite_bow"));
-
 
         // Millstone recipes replacement
         MillStoneRecipe.JsonBuilder.create()
@@ -308,36 +289,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         // Stoked
         this.generateStokedRecipes(exporter);
 
-    }
-
-    private void generateRecipesToRemove(RecipeExporter exporter) {
-        /** BWT recipes to remove **/
-        disableBWT(exporter, "grate");
-        disableBWT(exporter, "fried_egg_from_campfire_cooking");
-        disableBWT(exporter, "tanned_leather_from_cauldron");
-
-        // Removing High efficiency button recipes
-        for (String woodType : vanillaWoodTypes)
-        {
-            disableBWT(exporter, "he_" + woodType + "_button");
-        }
-
-        disableBWT(exporter, "he_blood_wood_button");
-
-        // Removing High efficiency pressure plate recipes
-        for (String woodType : vanillaWoodTypes)
-        {
-            disableBWT(exporter, "he_" + woodType + "_pressure_plate");
-        }
-        disableBWT(exporter, "he_blood_wood_pressure_plate");
-
-        disableBWT(exporter, "smelt_flint_and_steel_in_crucible");
-
-        disableBWT(exporter, "kiln_cook_coal_ores");
-        disableBWT(exporter, "kiln_cook_diamond_ores");
-        disableBWT(exporter, "kiln_cook_emerald_ores");
-        disableBWT(exporter, "kiln_cook_lapis_ores");
-        disableBWT(exporter, "kiln_cook_redstone_ores");
     }
 
     private void generateResmeltingRecipes(RecipeExporter exporter) {
@@ -500,7 +451,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW, 8).result(Items.FLINT, 2).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, "bwt:cauldron_rendering_arrows");
         StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.rottedArrowItem, 8).result(Items.FLINT, 2).offerTo(exporter, "bwt:cauldron_rendering_rotted_arrows");
         StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.potashItem).ingredient(BwtItems.tallowItem).result(BwtItems.soapItem).group("soap").offerTo(exporter);
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ROTTEN_FLESH, 4).ingredient(Items.BONE_MEAL, 4).ingredient(Items.SUGAR).result(BwtItems.kibbleItem).offerTo(exporter);
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ROTTEN_FLESH, 4).ingredient(Items.BONE_MEAL, 4).ingredient(Items.SUGAR).result(BwtItems.kibbleItem).offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
 
         StokedCauldronRecipe.JsonBuilder.create().ingredient(BTWRDS_Items.ENDER_SLAG).result(BTWRDS_Items.SOUL_FLUX).result(BTWRDS_Items.BRIMSTONE).offerTo(exporter);
 
@@ -526,5 +477,9 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .offerTo(exporter, ID.ofBWT("saw_" + extractName(logBlock)));
     }
 
+    @Override
+    protected Identifier getRecipeIdentifier(Identifier identifier) {
+        return identifier;
+    }
 
 }

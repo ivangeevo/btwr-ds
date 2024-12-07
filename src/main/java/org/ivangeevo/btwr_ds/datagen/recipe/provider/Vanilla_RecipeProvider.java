@@ -1,46 +1,29 @@
-package org.ivangeevo.btwr_ds.datagen;
+package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
 import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
-import com.bwt.recipes.cooking_pots.CauldronRecipe;
-import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
-import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
-import com.bwt.recipes.kiln.KilnRecipe;
-import com.bwt.recipes.mill_stone.MillStoneRecipe;
-import com.bwt.recipes.saw.SawRecipe;
-import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
-import com.bwt.recipes.turntable.TurntableRecipe;
 import com.bwt.tags.BwtItemTags;
-import com.google.common.collect.Maps;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
-import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
 
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -52,29 +35,13 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     private static final String MC = "minecraft";
-    private static final String TE = "tough_environment";
-    private static final String BTWR = "btwr";
-    private static final String BWT = "bwt";
-    private static final String VG = "vegehenna";
-    private static final String DS = "btwr-ds";
 
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
 
 
-
-    @Override
-    protected Identifier getRecipeIdentifier(Identifier identifier) {
-        return identifier;
-    }
-
-    // recipes to remove are only for ones that we don't overwrite with another ingredients/output.
-    // the ones we overwrite are in the override methods, and this mod is in the generateForMod() method
     @Override
     public void generate(RecipeExporter exporter) {
-        // Recipes that get removed
-        this.generateRecipesToRemove(exporter);
-
         // Minecraft
         this.overrideForVanilla(exporter);
     }
@@ -249,15 +216,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .offerTo(exporter, ID.ofMC("repeater"));
 
 
-        // Create the recipe for the blood wood button
-        Block bloodWoodCorner = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_corner"));
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.buttonBlock)
-                .input('S', bloodWoodCorner)  // Use the blood wood SidingBlock as the 'S' input
-                .input('R', Items.REDSTONE) // Redstone for the 'R' input
-                .pattern("S")
-                .pattern("R")
-                .criterion("has_blood_wood_corner", conditionsFromItem(bloodWoodCorner))
-                .offerTo(exporter, ID.ofBWT("blood_wood_button"));
 
 
 
@@ -400,6 +358,9 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModBlocks.CLAY_BLOCK), RecipeCategory.BUILDING_BLOCKS,
                 Blocks.TERRACOTTA, 0.10F, 200).criterion("has_clay_block", conditionsFromItem(ModBlocks.CLAY_BLOCK)).offerTo(exporter, ID.ofMC("terracotta"));
 
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModBlocks.CLAY_BLOCK), RecipeCategory.BUILDING_BLOCKS,
+                Items.BRICK, 0.10F, 200).criterion("has_clay_block", conditionsFromItem(ModBlocks.CLAY_BLOCK)).offerTo(exporter, ID.ofMC("brick"));
+
         // Armor
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
                 .input('I', BTWR_Items.DIAMOND_INGOT)
@@ -436,44 +397,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
 
     }
 
-
-
-
-    private void generateRecipesToRemove(RecipeExporter exporter) {
-        /** Vanilla recipes to remove **/
-
-        // Remove item recipes
-        disableVanilla(exporter, "bone_meal");
-
-        // Food item recipes
-        disableVanilla(exporter, "bread");
-        disableVanilla(exporter, "cookie");
-        disableVanilla(exporter, "sugar_from_sugar_cane");
-
-        disableVanilla(exporter, "blaze_powder");
-
-        // Remove blocks recipes
-        disableVanilla(exporter, "crafting_table");
-        disableVanilla(exporter, "chest");
-        disableVanilla(exporter, "furnace");
-
-
-        // Remove tool recipes
-        disableVanilla(exporter, "wooden_sword");
-        disableVanilla(exporter, "wooden_pickaxe");
-        disableVanilla(exporter, "wooden_axe");
-        disableVanilla(exporter, "wooden_shovel");
-        disableVanilla(exporter, "wooden_hoe");
-        disableVanilla(exporter, "stone_sword");
-        disableVanilla(exporter, "stone_hoe");
-
-        // Remove cooking recipes
-        disableVanilla(exporter, "charcoal");
-
-        // Remove the ability to repair items by combining them
-        disableVanilla(exporter, "repair_item");
-    }
-
     private void createNuggetRecipes(RecipeExporter exporter) {
         // prefix should be the name of the recipe you want to replace; in vanilla's case it's the ingot ones
 
@@ -500,15 +423,13 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
     private void offerOreCookingRecipe(String prefix, Item rawItem, Item oreItem, Item deepslateOreItem, Item smeltedItem,
                                        int smeltTime, int blastTime, TagKey<Item> conditionTag, String namespace, RecipeExporter exporter) {
         // Smelting recipes
-        oreCookingRecipeBuilder(
-                (ingredient, category, experience, time) ->
+        oreCookingRecipeBuilder((ingredient, category, experience, time) ->
                         CookingRecipeJsonBuilder.createSmelting(ingredient, category, smeltedItem, experience, time),
                 prefix, "smelting", rawItem, oreItem, deepslateOreItem, new float[] {0.35F, 0.45F, 0.55F},
                 smeltTime, conditionTag, namespace, exporter);
 
         // Blasting recipes
-        oreCookingRecipeBuilder(
-                (ingredient, category, experience, time) ->
+        oreCookingRecipeBuilder((ingredient, category, experience, time) ->
                         CookingRecipeJsonBuilder.createBlasting(ingredient, category, smeltedItem, experience, time),
                 prefix, "blasting", rawItem, oreItem, deepslateOreItem, new float[] {0.45F, 0.55F, 0.65F},
                 blastTime, conditionTag, namespace,  exporter);
@@ -528,5 +449,9 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         }
     }
 
+    @Override
+    protected Identifier getRecipeIdentifier(Identifier identifier) {
+        return identifier;
+    }
 
 }

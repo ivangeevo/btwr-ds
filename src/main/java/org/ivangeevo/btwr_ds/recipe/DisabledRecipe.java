@@ -14,9 +14,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public record DisabledRecipe(String group) implements Recipe<RecipeInput> {
-    public DisabledRecipe() {
-        this("");
-    }
 
     @Override
     public ItemStack createIcon() {
@@ -69,11 +66,13 @@ public record DisabledRecipe(String group) implements Recipe<RecipeInput> {
     }
 
     public static class Serializer implements RecipeSerializer<DisabledRecipe> {
+
         public static final MapCodec<DisabledRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 instance -> instance
                         .group(Codec.STRING.optionalFieldOf("group", "").forGetter(recipe -> recipe.group))
                         .apply(instance, DisabledRecipe::new)
         );
+
         public static final PacketCodec<RegistryByteBuf, DisabledRecipe> PACKET_CODEC = PacketCodec.ofStatic(
                 Serializer::write, Serializer::read
         );
@@ -101,7 +100,4 @@ public record DisabledRecipe(String group) implements Recipe<RecipeInput> {
         }
     }
 
-    public interface RecipeFactory<T extends DisabledRecipe> {
-        T create(String group);
-    }
 }
