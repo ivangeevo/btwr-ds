@@ -42,6 +42,12 @@ public class BTWRDS_Items {
             entries.add(BTWRDS_Items.BRIMSTONE);
 
         });
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->
+        {
+            entries.add(BTWRDS_Items.ELEMENT);
+            //
+        });
     }
 
 }
