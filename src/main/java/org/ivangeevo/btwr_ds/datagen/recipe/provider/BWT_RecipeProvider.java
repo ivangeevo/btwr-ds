@@ -453,6 +453,22 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
         StokedCauldronRecipe.JsonBuilder.create().ingredient(BTWRDS_Items.ENDER_SLAG).result(BTWRDS_Items.SOUL_FLUX).result(BTWRDS_Items.BRIMSTONE).offerTo(exporter);
 
+
+        StokedCrucibleRecipe.JsonBuilder.create()
+                .ingredient(Items.IRON_INGOT)
+                .ingredient(Items.GOLD_INGOT)
+                .ingredient(BwtItems.coalDustItem)
+                .ingredient(BwtItems.soulUrnItem)
+                .ingredient(BTWRDS_Items.SOUL_FLUX)
+                .result(Items.NETHERITE_INGOT)
+                .markDefault()
+                .offerTo(exporter, ID.ofBWT("netherite_ingot_smelting"));
+
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.NETHERITE_SCRAP, 4)
+                .ingredient(Items.GOLD_INGOT, 4)
+                .ingredient(BTWRDS_Items.SOUL_FLUX)
+                .result(Items.NETHERITE_INGOT)
+                .offerTo(exporter, ID.ofBWT("netherite_ingot_from_scrap"));
     }
 
     private void createSawLogRecipes(RecipeExporter exporter) {

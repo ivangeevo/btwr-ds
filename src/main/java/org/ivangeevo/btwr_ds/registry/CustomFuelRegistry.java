@@ -20,6 +20,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Util;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.tough_environment.item.ModItems;
 
 import java.util.Map;
 
@@ -46,12 +47,23 @@ public class CustomFuelRegistry {
     }
 
     private static void addHighEnergyFuels(Map<Item, Integer> map) {
-        addFuel(map, Items.COAL_BLOCK, 14400);
-        addFuel(map, Items.BLAZE_ROD, 12800);
         addWoodCategory(map, "LOGS",
                 new Item[] {Items.BIRCH_LOG, Items.ACACIA_LOG, Items.OAK_LOG, Items.DARK_OAK_LOG, Items.JUNGLE_LOG},
                 new int[] {16000, 12800, 9600, 8400, 6400}
         );
+
+        // disabled the coal block because it defeats the purpose of making coal and coal dust fuels as it
+        // would need to be too high fuel value to match the coal items
+
+        // could make coal and coal dust have much less fuelTime and then balance the coal block around that
+        //addFuel(map, Items.COAL_BLOCK, 14400);
+        addFuel(map, Items.BLAZE_ROD, 12800);
+
+        addFuel(map, BwtItems.nethercoalItem, 14200);
+        addFuel(map, Items.COAL, 12800);
+        addFuel(map, ModItems.DUST_COAL, 6400);
+
+
     }
 
     private static void addWoodVariants(Map<Item, Integer> map) {

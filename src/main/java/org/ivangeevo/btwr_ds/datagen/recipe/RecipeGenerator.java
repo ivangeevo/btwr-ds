@@ -17,6 +17,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
     protected BWT_RecipeProvider bwtRecipeProvider;
     protected BTWR_RecipeProvider btwrRecipeProvider;
     protected Vegehenna_RecipeProvider vegehennaRecipeProvider;
+    protected ST_RecipeProvider sturdyTreesRecipeProvider;
     protected DisabledRecipeProvider disabledRecipeProvider;
 
     public RecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -26,6 +27,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
         this.bwtRecipeProvider = new BWT_RecipeProvider(output, registriesFuture);
         this.btwrRecipeProvider = new BTWR_RecipeProvider(output, registriesFuture);
         this.vegehennaRecipeProvider = new Vegehenna_RecipeProvider(output, registriesFuture);
+        this.sturdyTreesRecipeProvider = new ST_RecipeProvider(output, registriesFuture);
         this.disabledRecipeProvider = new DisabledRecipeProvider(output, registriesFuture);
     }
 
@@ -36,6 +38,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
         bwtRecipeProvider.generate(exporter);
         btwrRecipeProvider.generate(exporter);
         vegehennaRecipeProvider.generate(exporter);
+        sturdyTreesRecipeProvider.generate(exporter);
         disabledRecipeProvider.generate(exporter);
     }
 

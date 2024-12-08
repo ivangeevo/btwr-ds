@@ -1,11 +1,16 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
 import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
+import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
+import com.bwt.recipes.hopper_filter.HopperFilterRecipe;
+import com.bwt.recipes.kiln.KilnRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
+import com.bwt.recipes.soul_bottling.SoulBottlingRecipe;
 import com.bwt.tags.BwtItemTags;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -18,10 +23,12 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import org.ivangeevo.animageddon.item.ModItems;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
+
 
 
 public class DS_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
@@ -180,6 +187,35 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(ConventionalItemTags.STRINGS)
                 .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
                 .offerTo(exporter, ID.ofDS("element_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(Items.GUNPOWDER, 2)
+                .ingredient(ModItems.NITRE)
+                .ingredient(BTWRDS_Items.BRIMSTONE)
+                .ingredient(BwtItems.coalDustItem)
+                .criterion("has_brimstone", conditionsFromItem(BTWRDS_Items.BRIMSTONE))
+                .offerTo(exporter, ID.ofDS("gunpowder_from_cauldron"));
+
+        // Stoked Cauldron recipes
+
+        // Crucible recipes
+
+        // Stoked Crucible recipes
+        StokedCrucibleRecipe.JsonBuilder.create().result(ModBlocks.WHITE_STONE.asItem())
+                .ingredient(ModBlocks.WHITE_COBBLESTONE.asItem())
+                .criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE.asItem()))
+                .offerTo(exporter, ID.ofDS("white_stone_from_crucible"));
+
+
+        // Kiln recipes
+        KilnRecipe.JsonBuilder.create(BTWR_Blocks.BRICK_UNFIRED).result(Items.BRICK)
+                .criterion("has_brick_unfired", conditionsFromItem(BTWR_Blocks.BRICK_UNFIRED))
+                .offerTo(exporter, ID.ofDS("kiln_cook_brick"));
+
+        // Hopper filtering recipes
+        HopperFilterRecipe.JsonBuilder.create().filter(Items.SOUL_SAND).ingredient(Items.GLOWSTONE_DUST)
+                .byproduct(BTWRDS_Items.BRIMSTONE).soulCount(1).offerTo(exporter);
+
+        // Soul bottling recipes
 
     }
 

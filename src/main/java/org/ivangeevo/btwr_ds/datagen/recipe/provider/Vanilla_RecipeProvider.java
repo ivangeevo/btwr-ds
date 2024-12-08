@@ -355,11 +355,8 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         // TODO: Remove the nugget recipes when we add the Brick oven from Self Sustainable
         this.createNuggetRecipes(exporter);
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModBlocks.CLAY_BLOCK), RecipeCategory.BUILDING_BLOCKS,
-                Blocks.TERRACOTTA, 0.10F, 200).criterion("has_clay_block", conditionsFromItem(ModBlocks.CLAY_BLOCK)).offerTo(exporter, ID.ofMC("terracotta"));
-
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModBlocks.CLAY_BLOCK), RecipeCategory.BUILDING_BLOCKS,
-                Items.BRICK, 0.10F, 200).criterion("has_clay_block", conditionsFromItem(ModBlocks.CLAY_BLOCK)).offerTo(exporter, ID.ofMC("brick"));
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(BTWR_Items.BRICK_UNFIRED), RecipeCategory.BUILDING_BLOCKS,
+                Items.BRICK, 0.10F, 10000).criterion("has_brick_unfired", conditionsFromItem(BTWR_Items.BRICK_UNFIRED)).offerTo(exporter, ID.ofMC("brick"));
 
         // Armor
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
