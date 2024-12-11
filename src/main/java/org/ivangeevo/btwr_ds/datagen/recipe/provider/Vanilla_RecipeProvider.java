@@ -23,6 +23,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -67,7 +68,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, ID.ofMC("lantern"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LANTERN)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SOUL_LANTERN)
                 .input('N', Items.IRON_NUGGET)
                 .input('T', Items.SOUL_TORCH)
                 .pattern(" N ")
@@ -216,9 +217,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .offerTo(exporter, ID.ofMC("repeater"));
 
 
-
-
-
         // Items
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.ARROW, 2)
                 .input(Items.STICK)
@@ -340,7 +338,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_fishing_hook_material", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, ID.ofMC("fishing_rod"));
 
-
         // 1 torch for infini-torches
         // 2 when the rework in Self Sustainable for torches happens.
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH)
@@ -398,7 +395,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         // prefix should be the name of the recipe you want to replace; in vanilla's case it's the ingot ones
 
         offerOreCookingRecipe("copper_ingot", Items.RAW_COPPER, Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE,
-                BTWRDS_Items.COPPER_NUGGET, 10000, 5000, ItemTags.COPPER_ORES, MC, exporter);
+                ModItems.COPPER_NUGGET, 10000, 5000, ItemTags.COPPER_ORES, MC, exporter);
 
         offerOreCookingRecipe("gold_ingot", Items.RAW_GOLD, Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE,
                 Items.GOLD_NUGGET, 10000, 5000, ItemTags.GOLD_ORES, MC,exporter);

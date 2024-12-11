@@ -12,8 +12,6 @@ public class BTWRDS_Items {
 
     public static final Item BARK_BLOOD_WOOD = registerItem("bark_blood_wood", new Item(new Item.Settings()));
 
-    public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
-
     public static final Item ENDER_SLAG = registerItem("ender_slag", new Item(new Item.Settings()));
 
     public static final Item SOUL_FLUX = registerItem("soul_flux", new Item(new Item.Settings()));
@@ -36,7 +34,6 @@ public class BTWRDS_Items {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
         {
             entries.add(BTWRDS_Items.BARK_BLOOD_WOOD);
-            entries.add(BTWRDS_Items.COPPER_NUGGET);
             entries.add(BTWRDS_Items.ENDER_SLAG);
             entries.add(BTWRDS_Items.SOUL_FLUX);
             entries.add(BTWRDS_Items.BRIMSTONE);

@@ -39,7 +39,6 @@ public class DS_ModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(BTWRDS_Items.BARK_BLOOD_WOOD, Models.GENERATED);
-        itemModelGenerator.register(BTWRDS_Items.COPPER_NUGGET, Models.GENERATED);
         itemModelGenerator.register(BTWRDS_Items.ENDER_SLAG, Models.GENERATED);
         itemModelGenerator.register(BTWRDS_Items.SOUL_FLUX, Models.GENERATED);
         itemModelGenerator.register(BTWRDS_Items.BRIMSTONE, Models.GENERATED);

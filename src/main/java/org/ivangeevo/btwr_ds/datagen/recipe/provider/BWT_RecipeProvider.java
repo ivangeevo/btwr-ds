@@ -39,6 +39,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.item.ModItems;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -360,7 +361,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         // Ore blocks
         KilnRecipe.JsonBuilder.create(BlockTags.IRON_ORES).drops(Items.IRON_NUGGET).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BlockTags.GOLD_ORES).drops(Items.GOLD_NUGGET).offerTo(exporter);
-        KilnRecipe.JsonBuilder.create(BlockTags.COPPER_ORES).drops(BTWRDS_Items.COPPER_NUGGET).offerTo(exporter);
+        KilnRecipe.JsonBuilder.create(BlockTags.COPPER_ORES).drops(ModItems.COPPER_NUGGET).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.ANCIENT_DEBRIS).drops(Items.NETHERITE_SCRAP).offerTo(exporter);
 
         // Ore blocks

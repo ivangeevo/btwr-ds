@@ -69,6 +69,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         // Remove cooking recipes
         disableVanilla(exporter, "charcoal");
 
+        // Foods
+        disableVanilla(exporter, "pumpkin_pie");
+
         // Remove the ability to repair items by combining them
         disableVanilla(exporter, "repair_item");
 

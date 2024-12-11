@@ -51,11 +51,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
     }
 
     private void generateShapeless(RecipeExporter exporter) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWRDS_Items.COPPER_NUGGET, 9)
-                .input(Items.COPPER_INGOT)
-                .criterion("has_copper_ingot", conditionsFromItem(Items.COPPER_INGOT))
-                .offerTo(exporter, ID.ofDS("copper_nugget_from_copper_ingot"));
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.hempFiberItem,9)
                 .input(BwtItems.fabricItem)
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
