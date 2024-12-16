@@ -171,7 +171,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.LEVER)
                 .input('S', Items.STICK)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('R', Items.REDSTONE)
                 .pattern("S")
                 .pattern("B")
@@ -210,7 +210,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.REPEATER)
                 .input('C', Items.CLOCK)
                 .input('R', Items.REDSTONE_TORCH)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .pattern("RCR")
                 .pattern("BBB")
                 .criterion("has_redstone_torch", conditionsFromItem(Items.REDSTONE_TORCH))

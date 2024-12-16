@@ -26,8 +26,8 @@ import java.util.Map;
 
 /**
  * A provider class for a fully custom set fuel map;
- * most likely incompatible with other mods that add to fuel with FuelRegistry
- * to the {@link AbstractFurnaceBlockEntity#createFuelTimeMap()}.
+ * most likely incompatible with other mods that specify fuel items with FuelRegistry
+ * which modify the {@link AbstractFurnaceBlockEntity#createFuelTimeMap()}.
  */
 public class CustomFuelRegistry {
 

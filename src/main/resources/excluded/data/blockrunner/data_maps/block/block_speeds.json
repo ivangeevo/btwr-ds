@@ -1,0 +1,47 @@
+{
+  "values": {
+    "#minecraft:logs": { "speed": 1.20 },
+    "#c:stump_blocks": { "speed": 1.20 },
+    "#minecraft:wooden_slabs": { "speed": 1.20 },
+    "#minecraft:planks": { "speed": 1.20 },
+    "#minecraft:stairs": { "speed":  1.20 },
+
+    "minecraft:stone": { "speed": 1.20 },
+    "minecraft:andesite": { "speed": 1.20 },
+    "minecraft:diorite": { "speed": 1.20 },
+    "minecraft:granite": { "speed": 1.20 },
+    "minecraft:deepslate": { "speed": 1.20 },
+
+    "#minecraft:stone_ores": { "speed": 1.20 },
+    "#minecraft:deepslate_ores": { "speed": 1.20 },
+
+    "tough_environment:stone_converting": { "speed": 1.20 },
+    "tough_environment:andesite_converting": { "speed": 1.20 },
+    "tough_environment:diorite_converting": { "speed": 1.20 },
+    "tough_environment:granite_converting": { "speed": 1.20 },
+    "tough_environment:deepslate_converting": { "speed": 1.20 },
+
+    "minecraft:cobblestone": { "speed":  1.20 },
+    "minecraft:cobbled_deepslate": { "speed":  1.20 },
+
+    "tough_environment:slab_gravel": { "speed": 1.20 },
+    "tough_environment:slab_cobblestone_loose": { "speed": 1.20 },
+    "tough_environment:slab_cobbled_deepslate_loose": { "speed": 1.20 },
+
+    "minecraft:gravel": { "speed": 1.20 },
+
+    "tough_environment:cobblestone_loose": { "speed": 1.20 },
+    "tough_environment:cobbled_deepslate_loose": { "speed": 1.20 },
+    "tough_environment:andesite_loose": { "speed": 1.20 },
+    "tough_environment:diorite_loose": { "speed": 1.20 },
+    "tough_environment:granite_loose": { "speed": 1.20 },
+
+    "minecraft:dirt_path": { "speed": 1.00 },
+
+
+    "minecraft:sand": { "speed": 0.8 },
+    "tough_environment:slab_sand": { "speed": 0.8 },
+
+    "#minecraft:leaves": { "speed": 0.5 }
+  }
+}

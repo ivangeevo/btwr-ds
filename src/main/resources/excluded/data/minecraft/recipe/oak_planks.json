@@ -10,7 +10,7 @@
     }
   ],
   "result": {
-    "count": 4,
+    "count": 2,
     "id": "minecraft:oak_planks"
   },
   "additionalDrops": [
@@ -20,7 +20,7 @@
     },
     {
       "id": "bwt:saw_dust",
-      "count": 1
+      "count": 2
     }
   ]
 }

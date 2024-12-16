@@ -12,6 +12,7 @@ import com.bwt.recipes.mill_stone.MillStoneRecipe;
 import com.bwt.recipes.saw.SawRecipe;
 import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
 import com.bwt.recipes.turntable.TurntableRecipe;
+import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.Maps;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
@@ -45,11 +46,16 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 
+
 public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
 
     public BWT_RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
+
+    private static final String[] vanillaWoodTypes = new String[]
+            {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
+
 
     @Override
     public void generate(RecipeExporter exporter) {
@@ -133,8 +139,24 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
                 .offerTo(exporter, ID.ofBWT("he_ladder"));
 
+        /**
+        // Adding trapdoor recipes
+        for (String woodType : vanillaWoodTypes) {
+            Identifier resultId = ID.ofBWT("he_" + woodType + "_trapdoor");
+            ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(resultId))
+                    .input('P', grabRaw("bwt",woodType + "_planks_siding"))
+                    .input('S', Items.STICK)
+                    .pattern("SPP")
+                    .pattern("SPP")
+                    .criterion("has_planks_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .offerTo(exporter, resultId);asd
+
+        }
+         **/
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('G', BwtItems.gearItem)
                 .pattern("BBB")
                 .pattern("BBB")
@@ -143,7 +165,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .offerTo(exporter, ID.ofBWT("mill_stone"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.handCrankBlock)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('G', BwtItems.gearItem)
                 .input('S', Items.STICK)
                 .pattern("  S")
@@ -155,7 +177,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
                 .input('H', BwtItems.concentratedHellfireItem)
                 .input('E', BTWRDS_Items.ELEMENT)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('R', Items.REDSTONE)
                 .pattern("HHH")
                 .pattern("BEB")
@@ -166,17 +188,17 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
                 .input('I', Items.IRON_NUGGET)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .pattern("   ")
                 .pattern(" I ")
                 .pattern("BBB")
-                .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
+                .criterion("has_stone_brick", conditionsFromItem(ModItems.STONE_BRICK))
                 .offerTo(exporter, ID.ofBWT("anchor"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.turntableBlock)
                 .input('C', Items.CLOCK)
                 .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('G', BwtItems.gearItem)
                 .pattern("SSS")
                 .pattern("BCB")
@@ -185,7 +207,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .offerTo(exporter, ID.ofBWT("turntable"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.detectorBlock)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('E', BwtItems.redstoneEyeItem)
                 .input('T', Items.REDSTONE_TORCH)
                 .input('R', Items.REDSTONE)
@@ -197,7 +219,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .offerTo(exporter, ID.ofBWT("detector_block"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.blockDispenserBlock)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('M', Blocks.MOSSY_COBBLESTONE)
                 .input('U', BwtItems.soulUrnItem)
                 .input('T', Items.REDSTONE_TORCH)
@@ -210,7 +232,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .offerTo(exporter, ID.ofBWT("block_dispenser"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.buddyBlock)
-                .input('B', BTWR_Items.STONE_BRICK)
+                .input('B', ModItems.STONE_BRICK)
                 .input('E', BwtItems.redstoneEyeItem)
                 .input('T', Items.REDSTONE_TORCH)
                 .pattern("BBEB")
@@ -428,31 +450,17 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.WRITABLE_BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.WRITABLE_BOOK));
 
 
-        // Tallow
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.PORKCHOP).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.PORKCHOP));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.COOKED_PORKCHOP).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.COOKED_PORKCHOP));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.wolfChopItem, 8).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.wolfChopItem));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.cookedWolfChopItem, 8).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.cookedWolfChopItem));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.BEEF, 4).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.BEEF));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.COOKED_BEEF, 4).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.COOKED_BEEF));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.MUTTON, 4).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.MUTTON));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.COOKED_MUTTON, 4).result(BwtItems.tallowItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.tallowItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.COOKED_MUTTON));
+        // Tallow - unmodified
+
         // Potash
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(ItemTags.LOGS).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_logs");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(ItemTags.PLANKS, 6).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_planks");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItemTags.WOODEN_SIDING_BLOCKS, 12).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_siding");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItemTags.WOODEN_MOULDING_BLOCKS, 24).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_moulding");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItemTags.WOODEN_CORNER_BLOCKS, 48).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_corners");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.sawDustItem, 16).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_saw_dust");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.soulDustItem, 16).result(BwtItems.potashItem).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_soul_dust");
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64).result(BwtItems.potashItem).offerTo(exporter, getItemPath(BwtItems.potashItem) + "_from_cauldron_rendering_bark");
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_bark");
 
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW, 8).result(Items.FLINT, 2).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, "bwt:cauldron_rendering_arrows");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.rottedArrowItem, 8).result(Items.FLINT, 2).offerTo(exporter, "bwt:cauldron_rendering_rotted_arrows");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.potashItem).ingredient(BwtItems.tallowItem).result(BwtItems.soapItem).group("soap").offerTo(exporter);
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ROTTEN_FLESH, 4).ingredient(Items.BONE_MEAL, 4).ingredient(Items.SUGAR).result(BwtItems.kibbleItem).offerTo(exporter, ID.ofBWT("kibble_from_stoked_cauldron"));
+        // Arrows
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW).result(Items.FLINT).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, ID.ofBWT("cauldron_rendering_arrows"));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.rottedArrowItem).result(Items.FLINT).offerTo(exporter, ID.ofBWT("cauldron_rendering_rotted_arrows"));
 
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BTWRDS_Items.ENDER_SLAG).result(BTWRDS_Items.SOUL_FLUX).result(BTWRDS_Items.BRIMSTONE).offerTo(exporter);
+        // Misc
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BTWRDS_Items.ENDER_SLAG).result(BTWRDS_Items.SOUL_FLUX).result(BTWRDS_Items.BRIMSTONE).offerTo(exporter, ID.ofBWT("cauldron_rendering_ender_slag"));
 
 
         StokedCrucibleRecipe.JsonBuilder.create()
