@@ -25,6 +25,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.animageddon.item.ModItems;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.ivangeevo.bwt_hct.recipes.mill_stone.ModernMillStoneRecipe;
 import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -162,9 +163,39 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
      *  <p> They are new ones and it's more convenient to have them separate to avoid confusion
      *   **/
     private void generateModExclusiveRecipes(RecipeExporter exporter) {
+
+        // Modern (HC) Millstone
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock)
+                .input('B', org.tough_environment.item.ModItems.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .pattern("BBB")
+                .pattern("BBB")
+                .pattern("BGB")
+                .criterion("has_gear", conditionsFromItem(org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock))
+                .offerTo(exporter, Identifier.of("bwt_hct","modern_mill_stone"));
+
+
         this.createTannedLeatherRecipes(exporter);
 
         // Millstone recipes
+        /***
+        ModernMillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
+                .ingredient(BTWR_Items.LEATHER_CUT)
+                .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
+                .offerTo(exporter, ID.ofDS("leather_scoured_cut_from_mill_stone"));
+
+        ModernMillStoneRecipe.JsonBuilder.create().result(Items.BLAZE_POWDER,2)
+                .ingredient(Items.BLAZE_ROD)
+                .criterion("has_blaze_rod", conditionsFromItem(Items.BLAZE_ROD))
+                .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
+
+        ModernMillStoneRecipe.JsonBuilder.create()
+                .ingredient(BTWR_Items.HEMP_LEAVES)
+                .result(BwtItems.hempFiberItem)
+                .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
+                .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
+         **/
+
         MillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
                 .ingredient(BTWR_Items.LEATHER_CUT)
                 .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
@@ -174,6 +205,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(Items.BLAZE_ROD)
                 .criterion("has_blaze_rod", conditionsFromItem(Items.BLAZE_ROD))
                 .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
+
+        MillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem)
+                .ingredient(BTWR_Items.HEMP_LEAVES)
+                .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
+                .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
+
 
         // Cauldron recipes
         CauldronRecipe.JsonBuilder.create().result(BTWRDS_Items.ELEMENT)
@@ -236,12 +273,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
                 .offerTo(exporter, ID.ofDS("tanned_leather_with_" + extractName(barkItem) + "_in_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(BwtItems.tannedLeatherItem)
+        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_TANNED_CUT,2)
                 .ingredient(BTWR_Items.LEATHER_SCOURED_CUT,2)
                 .ingredient(BwtItems.dungItem)
                 .ingredient(barkItem, count)
-                .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
-                .offerTo(exporter, ID.ofDS("tanned_leather_from_cut_scoured_leather_with_" + extractName(barkItem) + "_in_cauldron"));
+                .criterion("has_scoured_leather", conditionsFromItem(BTWR_Items.LEATHER_SCOURED_CUT))
+                .offerTo(exporter, ID.ofDS("tanned_leather_cut_from_leather_scoured_cut_with_" + extractName(barkItem) + "_in_cauldron"));
     }
 
 }

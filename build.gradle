@@ -60,6 +60,9 @@ dependencies {
 	modImplementation files('libs/tough_environment-0.5-1.21.1.jar')
 	modImplementation files('libs/vegehenna-1.0-1.21.1.jar')
 	modImplementation files('libs/animageddon-0.1-1.21.1.jar')
+	modImplementation files('libs/bwt-hc-tweaks-1.0.jar')
+
+
 
 }
 

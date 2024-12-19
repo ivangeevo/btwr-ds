@@ -39,6 +39,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.ivangeevo.bwt_hct.recipes.mill_stone.ModernMillStoneRecipe;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 
@@ -155,14 +156,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
          **/
 
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
-                .input('B', ModItems.STONE_BRICK)
-                .input('G', BwtItems.gearItem)
-                .pattern("BBB")
-                .pattern("BBB")
-                .pattern("BGB")
-                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
-                .offerTo(exporter, ID.ofBWT("mill_stone"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.handCrankBlock)
                 .input('B', ModItems.STONE_BRICK)
@@ -283,13 +276,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .pattern("gmb")
                 .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
                 .offerTo(exporter, ID.ofBWT("composite_bow"));
-
-        // Millstone recipes replacement
-        MillStoneRecipe.JsonBuilder.create()
-                .ingredient(BTWR_Items.HEMP_LEAVES)
-                .result(BwtItems.hempFiberItem, 4)
-                .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
-                .offerTo(exporter, ID.ofBWT("hemp_fiber_from_milling_hemp"));
 
         TurntableRecipe.JsonBuilder.create(ModBlocks.CLAY_BLOCK, BwtBlocks.unfiredCrucibleBlock)
                 .drops(Items.CLAY_BALL).offerTo(exporter, ID.ofBWT("turntable_clay"));
