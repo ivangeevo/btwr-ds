@@ -83,6 +83,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     protected void removeForBWT(RecipeExporter exporter) {
+        // Food
+        disableBWT(exporter, "baked_potato_from_cauldron");
+
         disableBWT(exporter, "grate");
         disableBWT(exporter, "fried_egg_from_campfire_cooking");
         disableBWT(exporter, "tanned_leather_from_cauldron");
@@ -112,14 +115,11 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     protected void removeForBTWR(RecipeExporter exporter) {
+        disableBTWR(exporter, "boiled_potato_from_smoking");
         disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
         disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
         disableBTWR(exporter, "chicken_soup");
         disableBTWR(exporter, "hearty_stew");
-
-        disableBTWR(exporter, "gear");
-        disableBTWR(exporter, "strap");
-
 
         // Remove leather recipes
         String[] leathersToRemove = new String[]{"scoured", "tanned", "scoured_cut", "tanned_cut"};
@@ -127,7 +127,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
             disableBTWR(exporter, "leather_" + leatherType);
         }
 
-        disableBTWR(exporter, "element");
     }
 
     @Override

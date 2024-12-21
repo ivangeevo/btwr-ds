@@ -51,7 +51,7 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
                 .offerTo(exporter, ID.ofBTWR("mushroom_omelette_raw"));
 
         CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
-                .ingredient(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
+                .ingredient(Items.POTATO)
                 .criterion("has_potato", conditionsFromItem(Items.POTATO))
                 .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
 
@@ -103,7 +103,7 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
                 .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW, 5)
-                .ingredient(BTWRConventionalTags.Items.COOKED_MEATS)
+                .ingredient(ConventionalItemTags.COOKED_MEAT_FOODS)
                 .ingredient(BTWR_Items.COOKED_CARROT)
                 .ingredient(BTWR_Items.BOILED_POTATO)
                 .ingredient(Items.BOWL, 5)

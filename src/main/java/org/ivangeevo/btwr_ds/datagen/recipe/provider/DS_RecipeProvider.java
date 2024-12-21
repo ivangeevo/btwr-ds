@@ -189,9 +189,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_blaze_rod", conditionsFromItem(Items.BLAZE_ROD))
                 .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
 
-        ModernMillStoneRecipe.JsonBuilder.create()
-                .ingredient(BTWR_Items.HEMP_LEAVES)
-                .result(BwtItems.hempFiberItem)
+        ModernMillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem, 4)
+
+         .ingredient(BTWR_Items.HEMP_LEAVES)
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
          **/
@@ -206,7 +206,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_blaze_rod", conditionsFromItem(Items.BLAZE_ROD))
                 .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
 
-        MillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem)
+        MillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem,4)
                 .ingredient(BTWR_Items.HEMP_LEAVES)
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
