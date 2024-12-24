@@ -16,6 +16,7 @@ import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.block.Block;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -83,11 +84,22 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
 
     private void generateShaped(RecipeExporter exporter) {
+        // Items
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
                 .input('P', ItemTags.PLANKS)
                 .pattern("P")
                 .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
                 .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH,2)
+                .input('C', BwtItems.nethercoalItem)
+                .input('S', Items.STICK)
+                .pattern("C")
+                .pattern("S")
+                .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
+                .offerTo(exporter, ID.ofDS("torch"));
+
+
 
         // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FURNACE)
@@ -242,6 +254,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         KilnRecipe.JsonBuilder.create(BTWR_Blocks.BRICK_UNFIRED).result(Items.BRICK)
                 .criterion("has_brick_unfired", conditionsFromItem(BTWR_Blocks.BRICK_UNFIRED))
                 .offerTo(exporter, ID.ofDS("kiln_cook_brick"));
+
+        Block breadDoughBlock = org.ivangeevo.vegehenna.block.ModBlocks.BREAD_DOUGH;
+        KilnRecipe.JsonBuilder.create(breadDoughBlock).result(Items.BREAD)
+                .criterion("has_bread_dough", conditionsFromItem(breadDoughBlock))
+                .offerTo(exporter, ID.ofDS("kiln_cook_bread"));
+
 
         // Hopper filtering recipes
         HopperFilterRecipe.JsonBuilder.create().filter(Items.SOUL_SAND).ingredient(Items.GLOWSTONE_DUST)

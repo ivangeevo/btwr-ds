@@ -76,7 +76,7 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
                 .offerTo(exporter, ID.ofBTWR("steak_dinner"));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.PORK_DINNER,3)
-                .input(Items.PORKCHOP)
+                .input(Items.COOKED_PORKCHOP)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .input(BTWR_Items.COOKED_CARROT)
                 .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))

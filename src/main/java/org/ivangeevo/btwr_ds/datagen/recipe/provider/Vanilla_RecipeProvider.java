@@ -127,9 +127,21 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                     .offerTo(exporter, resultId);
         }
 
-        // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
+        // Adding trapdoor recipes
         for (String woodType : vanillaWoodTypes)
         {
+            Identifier resultId = ID.ofMC(woodType + "_trapdoor");
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+                    .input('P', grabRaw(woodType + "_planks"))
+                    .input('S', Items.STICK)
+                    .pattern("SPP")
+                    .pattern("SPP")
+                    .criterion("has_planks", conditionsFromItem(Registries.ITEM.get(ID.ofMC(woodType + "_planks"))))
+                    .offerTo(exporter, resultId);
+        }
+
+        // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
+        for (String woodType : vanillaWoodTypes) {
             Identifier resultId = ID.ofMC(woodType + "_pressure_plate");
             Block sidingBlock = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_siding"));
 

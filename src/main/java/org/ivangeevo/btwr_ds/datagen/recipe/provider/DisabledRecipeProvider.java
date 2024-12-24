@@ -84,11 +84,16 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
     protected void removeForBWT(RecipeExporter exporter) {
         // Food
+        disableBWT(exporter, "bread");
         disableBWT(exporter, "baked_potato_from_cauldron");
 
         disableBWT(exporter, "grate");
         disableBWT(exporter, "fried_egg_from_campfire_cooking");
         disableBWT(exporter, "tanned_leather_from_cauldron");
+
+        // Crucible
+        disableBWT(exporter, "redstone_synthesis_from_gold_ingots");
+        disableBWT(exporter, "redstone_synthesis_from_gold_nuggets");
 
         // Removing High efficiency button recipes
         for (String woodType : vanillaWoodTypes) {

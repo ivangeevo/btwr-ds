@@ -60,8 +60,53 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
     @Override
     public void generate(RecipeExporter exporter) {
+        // TODO : reorganise class better
         // Better With Time
         this.overrideForBWT(exporter);
+        this.overrideHighEfficiency(exporter);
+    }
+
+    private void overrideHighEfficiency(RecipeExporter exporter) {
+        for (String woodType : vanillaWoodTypes)
+        {
+            Identifier doorID = ID.ofMC(woodType + "_door");
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(doorID))
+                    .input('P', grabRaw("bwt", woodType + "_planks_siding"))
+                    .pattern("PP")
+                    .pattern("PP")
+                    .pattern("PP")
+                    .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .offerTo(exporter, ID.ofBWT("he_" + woodType + "_door"));
+        }
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtItems.sailItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .pattern("FFF")
+                .pattern("WWW")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("he_sail"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
+                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('A', BwtBlocks.axleBlock)
+                .input('G', BwtItems.gearItem)
+                .pattern("WGW")
+                .pattern("GAG")
+                .pattern("WGW")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("he_gear_box"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER,2)
+                .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .input('S', ConventionalItemTags.STRINGS)
+                .pattern("PSP")
+                .pattern("PPP")
+                .pattern("PSP")
+                .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
+                .offerTo(exporter, ID.ofBWT("he_ladder"));
+
+
     }
 
     private void overrideForBWT(RecipeExporter exporter) {
@@ -85,13 +130,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
                 .offerTo(exporter, ID.ofBWT("sail"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtItems.sailItem)
-                .input('F', BwtItems.fabricItem)
-                .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
-                .pattern("FFF")
-                .pattern("WWW")
-                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
-                .offerTo(exporter, ID.ofBWT("he_sail"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.paddingItem)
                 .input('F', BwtItems.fabricItem)
@@ -120,25 +158,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .pattern("WGW")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("gear_box"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
-                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
-                .input('A', BwtBlocks.axleBlock)
-                .input('G', BwtItems.gearItem)
-                .pattern("WGW")
-                .pattern("GAG")
-                .pattern("WGW")
-                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
-                .offerTo(exporter, ID.ofBWT("he_gear_box"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER,2)
-                .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
-                .input('S', ConventionalItemTags.STRINGS)
-                .pattern("PSP")
-                .pattern("PPP")
-                .pattern("PSP")
-                .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
-                .offerTo(exporter, ID.ofBWT("he_ladder"));
 
         /**
         // Adding trapdoor recipes
@@ -263,6 +282,12 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .ingredient(Items.SUGAR)
                 .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
                 .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.nethercoalItem)
+                .ingredient(BwtItems.coalDustItem)
+                .ingredient(BwtItems.hellfireDustItem)
+                .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
+                .offerTo(exporter, ID.ofBWT("nethercoal_from_cauldron"));
 
 
         // Tools
