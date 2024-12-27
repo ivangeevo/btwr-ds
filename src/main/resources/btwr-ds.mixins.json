@@ -3,6 +3,7 @@
   "package": "org.ivangeevo.btwr_ds.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AbstractBlock$AbstractBlockStateMixin",
     "AbstractFurnaceBlockEntityMixin",
     "ItemEntryAccessor",
     "ItemMixin",

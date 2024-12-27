@@ -48,7 +48,6 @@ public class ModLootTableEvents {
         // Change the wheat seeds dropped by left click breaking grass block with hoe (tough environment change)
         // to drop hemp seeds instead.
         modifySpecificItem(Blocks.GRASS_BLOCK.getLootTableKey(), Items.WHEAT_SEEDS, BTWR_Items.HEMP_SEEDS);
-
     }
 
     private static void replaceSawDustItemDrops() {

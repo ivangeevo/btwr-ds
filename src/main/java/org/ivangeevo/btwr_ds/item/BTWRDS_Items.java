@@ -43,7 +43,6 @@ public class BTWRDS_Items {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->
         {
             entries.add(BTWRDS_Items.ELEMENT);
-            //
         });
     }
 

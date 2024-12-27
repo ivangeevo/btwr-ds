@@ -63,7 +63,6 @@ public class CustomFuelRegistry {
         addFuel(map, Items.COAL, 12800);
         addFuel(map, ModItems.DUST_COAL, 6400);
 
-
     }
 
     private static void addWoodVariants(Map<Item, Integer> map) {

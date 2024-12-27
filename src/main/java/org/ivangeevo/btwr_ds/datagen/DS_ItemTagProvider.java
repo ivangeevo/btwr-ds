@@ -28,10 +28,6 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(BwtItems.friedEggItem)
                 .add(BwtItems.poachedEggItem);
 
-        // TODO: remove this when it's added to BWT
-        getOrCreateTagBuilder(ConventionalItemTags.COOKED_MEAT_FOODS)
-                .add(BwtItems.wolfChopItem);
-
         getOrCreateTagBuilder(BTWRConventionalTags.Items.DO_KNOCKBACK_ITEMS)
                 .add(BwtItems.netheriteMattockItem)
                 .add(BwtItems.netheriteBattleAxeItem);
