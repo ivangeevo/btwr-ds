@@ -26,7 +26,7 @@ repositories {
 fabricApi {
 	configureDataGeneration()
 			{
-				modId = "btwr-ds"
+				modId = "btwr_ds"
 			}
 }
 
@@ -34,7 +34,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"btwr-ds" {
+		"btwr_ds" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

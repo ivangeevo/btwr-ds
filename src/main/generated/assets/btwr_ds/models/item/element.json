@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "btwr-ds:item/brimstone"
+    "layer0": "btwr_ds:item/element"
   }
 }

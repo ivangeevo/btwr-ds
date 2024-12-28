@@ -6,7 +6,7 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.BTWRDS;
+import org.ivangeevo.btwr_ds.BTWRDSMod;
 
 public class BTWRDS_Items {
 
@@ -22,12 +22,12 @@ public class BTWRDS_Items {
 
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(BTWRDS.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, Identifier.of(BTWRDSMod.MOD_ID, name), item);
     }
 
     public static void registerAndAddToGroups() {
         // log message into console
-        BTWRDS.LOGGER.info("Registering Mod Items for " + BTWRDS.MOD_ID);
+        BTWRDSMod.LOGGER.info("Registering Mod Items for " + BTWRDSMod.MOD_ID);
 
         // and add items to item groups
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->

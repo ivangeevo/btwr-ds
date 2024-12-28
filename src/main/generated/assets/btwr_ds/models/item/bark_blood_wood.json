@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "btwr-ds:item/soul_flux"
+    "layer0": "btwr_ds:item/bark_blood_wood"
   }
 }

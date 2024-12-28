@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "btwr-ds",
+	"id": "btwr_ds",
 	"version": "${version}",
 	"name": "BTWR-DS",
 	"description": "Hardcore stuff, duh!?",
@@ -12,11 +12,11 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/btwr-ds/icon.png",
+	"icon": "assets/btwr_ds/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"org.ivangeevo.btwr_ds.BTWRDS"
+			"org.ivangeevo.btwr_ds.BTWRDSMod"
 		],
 		"client": [
 			"org.ivangeevo.btwr_ds.BTWRDSClient"
@@ -26,9 +26,9 @@
 		]
 	},
 	"mixins": [
-		"btwr-ds.mixins.json",
+		"btwr_ds.mixins.json",
 		{
-			"config": "btwr-ds.client.mixins.json",
+			"config": "btwr_ds.client.mixins.json",
 			"environment": "client"
 		}
 	],

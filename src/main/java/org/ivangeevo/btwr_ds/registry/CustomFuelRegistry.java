@@ -62,6 +62,7 @@ public class CustomFuelRegistry {
         addFuel(map, BwtItems.nethercoalItem, 14200);
         addFuel(map, Items.COAL, 12800);
         addFuel(map, ModItems.DUST_COAL, 6400);
+        addFuel(map, BwtItems.coalDustItem, 6400);
 
     }
 

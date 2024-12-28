@@ -31,6 +31,8 @@ import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.tough_environment.item.ModItems.CHISEL_DIAMOND;
+import static org.tough_environment.item.ModItems.CHISEL_IRON;
 
 
 public class DS_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
@@ -248,6 +250,18 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(ModBlocks.WHITE_COBBLESTONE.asItem())
                 .criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE.asItem()))
                 .offerTo(exporter, ID.ofDS("white_stone_from_crucible"));
+
+        StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT)
+                .ingredient(CHISEL_DIAMOND)
+                .criterion("has_chisel_diamond", conditionsFromItem(CHISEL_DIAMOND))
+                .offerTo(exporter, ID.ofDS("smelt_chisel_diamond_in_crucible"));
+
+        StokedCrucibleRecipe.JsonBuilder.create().result(Items.IRON_NUGGET)
+                .ingredient(CHISEL_IRON)
+                .criterion("has_chisel_iron", conditionsFromItem(CHISEL_IRON))
+                .offerTo(exporter, ID.ofDS("smelt_chisel_iron_in_crucible"));
+
+
 
 
         // Kiln recipes
