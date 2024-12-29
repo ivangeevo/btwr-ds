@@ -24,6 +24,7 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ConventionalItemTags.STRINGS)
                 .add(BwtItems.hempFiberItem);
 
+        // BTWR Conventional tags
         getOrCreateTagBuilder(BTWRConventionalTags.Items.COOKED_EGG_FOODS)
                 .add(BwtItems.friedEggItem)
                 .add(BwtItems.poachedEggItem);
@@ -34,6 +35,9 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)
                 .add(BwtItems.netheriteBattleAxeItem);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND)
+                .add(BwtItems.strapItem);
 
         // BTWR-SL tags
         getOrCreateTagBuilder(BTWRTags.Items.TANNED_LEATHERS)
