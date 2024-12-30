@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.tag.BTWRTags;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

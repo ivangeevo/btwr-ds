@@ -1,19 +1,9 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
-import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
-import btwr.btwrsl.tag.BTWRConventionalTags;
-import btwr.core.item.BTWR_Items;
-import com.bwt.items.BwtItems;
-import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.RecipeProvider;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 

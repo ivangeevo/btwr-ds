@@ -1,7 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
-import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;

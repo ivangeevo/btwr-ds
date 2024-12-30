@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.event;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.google.common.collect.ImmutableList;

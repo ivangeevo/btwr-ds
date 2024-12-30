@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
-import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;

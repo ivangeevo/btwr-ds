@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
-import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;

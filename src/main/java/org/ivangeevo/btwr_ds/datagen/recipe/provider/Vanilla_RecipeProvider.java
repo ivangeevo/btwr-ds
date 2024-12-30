@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
-import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
@@ -21,8 +21,6 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
