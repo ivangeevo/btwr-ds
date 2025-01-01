@@ -10,7 +10,7 @@ import org.ivangeevo.btwr_ds.datagen.recipe.provider.*;
 
 import java.util.concurrent.CompletableFuture;
 
-public class RecipeGenerator extends FabricRecipeProvider {
+public class CombinedRecipeProvider extends FabricRecipeProvider {
 
     protected Vanilla_RecipeProvider vanillaRecipeProvider;
     protected DS_RecipeProvider modRecipeProvider;
@@ -21,7 +21,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
     protected TE_RecipeProvider toughEnvironmentRecipeProvider;
     protected DisabledRecipeProvider disabledRecipeProvider;
 
-    public RecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public CombinedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
         this.vanillaRecipeProvider = new Vanilla_RecipeProvider(output, registriesFuture);
         this.modRecipeProvider = new DS_RecipeProvider(output, registriesFuture);

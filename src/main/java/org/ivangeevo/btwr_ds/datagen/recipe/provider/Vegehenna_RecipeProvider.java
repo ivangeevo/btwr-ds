@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
@@ -27,8 +28,12 @@ public class Vegehenna_RecipeProvider extends FabricRecipeProvider implements Re
 
     @Override
     public void generate(RecipeExporter exporter) {
-        // Vegehenna
+        this.disableForVegehenna(exporter);
         this.overrideForVegehenna(exporter);
+    }
+
+    private void disableForVegehenna(RecipeExporter exporter) {
+        disableVG(exporter,"cake_from_smoking");
     }
 
     private void overrideForVegehenna(RecipeExporter exporter) {
@@ -68,6 +73,15 @@ public class Vegehenna_RecipeProvider extends FabricRecipeProvider implements Re
                 .input(ModItems.CHOCOLATE)
                 .criterion("has_chocolate", conditionsFromItem(ModItems.CHOCOLATE))
                 .offerTo(exporter, ID.ofVG("pastry_uncooked_cookies"));
+
+        CookingRecipeJsonBuilder.createSmoking(
+                Ingredient.ofItems(ModItems.BREAD_DOUGH),
+                RecipeCategory.FOOD,
+                Items.BREAD,
+                0.35f,
+                6000
+        );
+
     }
 
 }

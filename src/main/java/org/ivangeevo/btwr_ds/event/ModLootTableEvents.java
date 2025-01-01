@@ -141,7 +141,7 @@ public class ModLootTableEvents {
          * DS - Datapack Suite
          **/
         static Identifier ofDS(String item) {
-            return Identifier.of("btwr-ds", item);
+            return Identifier.of("btwr_ds", item);
         }
 
         /**

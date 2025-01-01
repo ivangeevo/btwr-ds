@@ -33,9 +33,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableRecipe(exporter, "animageddon", "gunpowder");
 
         /** Sturdy Trees recipes to remove **/
-        //disableST(exporter, "stump_remover");
-        disableRecipe(exporter, "sturdy_trees", "stump_remover");
-        
+
     }
 
     protected void removeForVanilla(RecipeExporter exporter) {

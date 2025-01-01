@@ -3,7 +3,7 @@ package org.ivangeevo.btwr_ds;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.ivangeevo.btwr_ds.datagen.*;
-import org.ivangeevo.btwr_ds.datagen.recipe.RecipeGenerator;
+import org.ivangeevo.btwr_ds.datagen.recipe.CombinedRecipeProvider;
 
 public class BTWRDSDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -11,7 +11,7 @@ public class BTWRDSDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		// Combined generator class for all mods that get recipe modifications
-		pack.addProvider(RecipeGenerator::new);
+		pack.addProvider(CombinedRecipeProvider::new);
 
 		pack.addProvider(DS_BlockLootTableProvider::new);
 		pack.addProvider(DS_BlockTagProvider::new);

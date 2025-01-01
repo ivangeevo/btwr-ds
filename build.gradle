@@ -4,7 +4,7 @@ plugins {
 	id 'maven-publish'
 }
 
-version = project.mod_version
+version = project.mod_version + "-" + project.minecraft_version
 group = project.maven_group
 
 base {
@@ -24,10 +24,7 @@ repositories {
 }
 
 fabricApi {
-	configureDataGeneration()
-			{
-				modId = "btwr_ds"
-			}
+	configureDataGeneration() {modId = "btwr_ds"}
 }
 
 loom {
@@ -41,6 +38,8 @@ loom {
 	}
 
 }
+
+
 
 dependencies {
 	// To change the versions see the gradle.properties file

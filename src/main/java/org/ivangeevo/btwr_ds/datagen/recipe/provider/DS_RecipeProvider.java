@@ -178,6 +178,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
      *   **/
     private void generateModExclusiveRecipes(RecipeExporter exporter) {
 
+        /**
         // Modern (HC) Millstone
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock)
                 .input('B', org.tough_environment.item.ModItems.STONE_BRICK)
@@ -187,6 +188,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("BGB")
                 .criterion("has_gear", conditionsFromItem(org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock))
                 .offerTo(exporter, Identifier.of("bwt_hct","modern_mill_stone"));
+        **/
 
 
         this.createTannedLeatherRecipes(exporter);

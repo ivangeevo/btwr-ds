@@ -33,7 +33,7 @@ public class ST_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .input(Items.RED_MUSHROOM)
                 .input(BTWR_Items.CREEPER_OYSTERS)
                 .criterion("has_creeper_oysters", conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
-                .offerTo(exporter, ID.ofDS("stump_remover"));
+                .offerTo(exporter, ID.ofST("stump_remover"));
     }
 
 
