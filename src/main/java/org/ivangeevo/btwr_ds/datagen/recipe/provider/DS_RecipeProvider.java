@@ -103,6 +103,14 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
                 .offerTo(exporter, ID.ofDS("torch"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWRDS_Items.REDSTONE_LATCH)
+                .input('G', Items.GOLD_NUGGET)
+                .input('R', Items.REDSTONE)
+                .pattern("GGG")
+                .pattern(" R ")
+                .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofDS("redstone_latch"));
+
 
 
         // Blocks

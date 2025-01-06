@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
+import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -41,53 +42,57 @@ public class TE_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofTE("chisel_diamond"));
 
-        // Items Packing Recipes
+        /** Normal items packing **/
         offerPacking(Blocks.RAW_GOLD_BLOCK, Items.RAW_GOLD, 9, exporter);
         offerPacking(Blocks.RAW_IRON_BLOCK, Items.RAW_IRON, 9, exporter);
         offerPacking(Blocks.RAW_COPPER_BLOCK, Items.RAW_COPPER, 9, exporter);
 
-        // Loose Blocks Packing Recipes
+        /** Non-Loose blocks packing **/
         offerPacking(Blocks.SANDSTONE, Items.SAND, 2, exporter);
-
-        // Uncomment and add more as necessary:
-        offerPacking(ModBlocks.DIRT_LOOSE, ModItems.PILE_DIRT, 8, exporter);
         offerPacking(ModBlocks.DIRT_PACKED, ModBlocks.DIRT_LOOSE.asItem(), 2, exporter);
+        offerPacking(ModBlocks.CLAY_BLOCK, ModItems.PILE_CLAY, 18, exporter);
+        offerPacking(ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, 9, exporter);
 
+        /** Loose blocks packing **/
+        offerPacking(ModBlocks.DIRT_LOOSE, ModItems.PILE_DIRT, 8, exporter);
         offerPacking(Blocks.GRAVEL, ModItems.PILE_GRAVEL, 8, exporter);
         offerPacking(Blocks.SAND, ModItems.PILE_SAND, 8, exporter);
         offerPacking(Blocks.RED_SAND, ModItems.PILE_RED_SAND, 8, exporter);
-        offerPacking(ModBlocks.CLAY_BLOCK, ModItems.PILE_CLAY, 18, exporter);
 
         offerPacking(ModBlocks.COBBLESTONE_LOOSE, ModItems.SMALL_STONE, 8, exporter);
         //offerPacking(ModBlocks.MANTLESTONE_LOOSE, ModItems.SMALL_STONE_1, 8, exporter);
         offerPacking(ModBlocks.COBBLED_DEEPSLATE_LOOSE, ModItems.SMALL_STONE_2, 8, exporter);
 
+        offerPacking(ModBlocks.BRICKS_LOOSE, Items.BRICK, 8, exporter);
+        offerPacking(ModBlocks.NETHER_BRICKS_LOOSE, Items.NETHER_BRICK, 8, exporter);
+
         offerPacking(ModBlocks.STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, 4, exporter);
         //offerPacking(ModBlocks.MANTLESTONE_BRICKS_LOOSE, ModItems.STONE_BRICK_1, 4, exporter);
         offerPacking(ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, 4, exporter);
 
-        offerPacking(ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, 9, exporter);
 
+        /** Mob drops packing **/
         //offerPacking(ModBlocks.BONE_BLOCK, Items.BONE, 9, exporter);
         //offerPacking(ModBlocks.ROTTEN_FLESH_BLOCK, Items.ROTTEN_FLESH, 9, exporter);
 
-        offerPacking(ModBlocks.BRICKS_LOOSE, Items.BRICK, 8, exporter);
-        offerPacking(ModBlocks.NETHER_BRICKS_LOOSE, Items.NETHER_BRICK, 8, exporter);
+        //offerPacking(ModBlocks.SPIDER_EYE_BLOCK, Items.SPIDER_EYE, 16, exporter);
+        //offerPacking(BTWR_Blocks.CREEPER_OYSTERS_BLOCK, BTWR_Items.CREEPER_OYSTERS, 16, exporter);
+
+
         //offerPacking(BTWR_Blocks.DUNG_BLOCK, BwtItems.dungItem, 8, exporter);
-        //offerPacking(BTWR_Blocks.DUNG_BLOCK, Items.FLINT, 8, exporter);
+        //offerPacking(BTWR_Blocks.FLINT_BLOCK, Items.FLINT, 8, exporter);
         //offerPacking(BTWR_Blocks.SOAP_BLOCK, BwtItems.soapItem, 8, exporter);
     }
 
     private void offerPacking(Block result, Item ingredient, int count, RecipeExporter exporter) {
-        String ingredientName = Registries.ITEM.getId(ingredient).getPath().toLowerCase();
-        String resultName = Registries.BLOCK.getId(result).getPath().toLowerCase();
+        String ingredientName = Registries.ITEM.getId(ingredient).getPath();
+        String resultName = Registries.BLOCK.getId(result).getPath();
         PackingRecipe.JsonBuilder.create().result(result)
                 .category(CraftingRecipeCategory.MISC)
                 .ingredient(ingredient, count)
                 .criterion(hasItem(ingredient), conditionsFromItem(ingredient))
                 .offerTo(exporter, ID.ofTE("_from_piston_packing_")
-                        .withPrefixedPath(resultName)
-                        .withSuffixedPath(ingredientName)
+                        .withPrefixedPath(resultName).withSuffixedPath(ingredientName)
                 );
 
     }
