@@ -18,9 +18,11 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -138,6 +140,21 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                     .offerTo(exporter, resultId);
         }
 
+        // TODO FIX recipe not generating
+        /**
+        // Adding boat recipes
+        for (String woodType : vanillaWoodTypes) {
+            Identifier resultId = ID.ofMC(woodType + "_boat");
+            Block sidingBlock = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_siding"));
+            ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, Registries.BLOCK.get(resultId))
+                    .input('S', sidingBlock)
+                    .pattern("S S")
+                    .pattern("SSS")
+                    .criterion("has_planks_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .offerTo(exporter, resultId);
+        }
+         **/
+
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
         for (String woodType : vanillaWoodTypes) {
             Identifier resultId = ID.ofMC(woodType + "_pressure_plate");
@@ -148,7 +165,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                     .input('R', Items.REDSTONE) // Redstone for the 'R' input
                     .pattern("S")
                     .pattern("R")
-                    .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .criterion("has_planks_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
                     .offerTo(exporter, resultId);
         }
 
@@ -203,19 +220,18 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
          **/
 
         // TODO: Add piston recipe when Redstone Latch item is added as item to BTWR: Core
-        /**
+
          ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
-         .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
-         .input('B', BTWR_Items.STONE_BRICK)
+         .input('W', ItemTags.PLANKS)
+         .input('B', ModItems.STONE_BRICK)
          .input('I', Items.IRON_INGOT)
-         .input('U', Items.REDSTONE)
-         .input('L', BTWR_Items.REDSTONE_LATCH)
-         .pattern("SIS")
+         .input('U', BwtItems.soulUrnItem)
+         .input('L', BTWRDS_Items.REDSTONE_LATCH)
+         .pattern("WIW")
          .pattern("BUB")
          .pattern("BLB")
-         .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
+         .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
          .offerTo(exporter, ID.ofMC("piston"));
-         **/
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.REPEATER)
                 .input('C', Items.CLOCK)

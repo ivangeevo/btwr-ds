@@ -43,6 +43,8 @@ public class DS_ModelProvider extends FabricModelProvider {
         itemModelGenerator.register(BTWRDS_Items.SOUL_FLUX, Models.GENERATED);
         itemModelGenerator.register(BTWRDS_Items.BRIMSTONE, Models.GENERATED);
         itemModelGenerator.register(BTWRDS_Items.ELEMENT, Models.GENERATED);
+        itemModelGenerator.register(BTWRDS_Items.REDSTONE_LATCH, Models.GENERATED);
+
     }
 
 }

@@ -78,6 +78,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableTE(exporter, "furnace");
         disableTE(exporter, "white_cobblestone");
         disableTE(exporter, "white_cobblestone_from_blasting");
+        disableTE(exporter, "nether_sludge");
     }
 
     protected void removeForBWT(RecipeExporter exporter) {
@@ -87,11 +88,16 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
         disableBWT(exporter, "grate");
         disableBWT(exporter, "fried_egg_from_campfire_cooking");
+
+        // Cauldron
         disableBWT(exporter, "tanned_leather_from_cauldron");
+        disableBWT(exporter, "nether_sludge_from_cauldron");
 
         // Crucible
         disableBWT(exporter, "redstone_synthesis_from_gold_ingots");
         disableBWT(exporter, "redstone_synthesis_from_gold_nuggets");
+
+        // Blocks
 
         // Removing High efficiency button recipes
         for (String woodType : vanillaWoodTypes) {

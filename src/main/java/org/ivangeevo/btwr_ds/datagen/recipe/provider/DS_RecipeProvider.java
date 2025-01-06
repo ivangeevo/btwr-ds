@@ -6,11 +6,13 @@ import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
 import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
 import com.bwt.recipes.hopper_filter.HopperFilterRecipe;
 import com.bwt.recipes.kiln.KilnRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
 import com.bwt.recipes.soul_bottling.SoulBottlingRecipe;
+import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -244,6 +246,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("gunpowder_from_cauldron"));
 
         // Stoked Cauldron recipes
+        StokedCauldronRecipe.JsonBuilder.create().result(org.tough_environment.item.ModItems.NETHER_SLUDGE)
+                .ingredient(BwtItems.potashItem)
+                .ingredient(BwtItems.hellfireDustItem, 8)
+                .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
+                .offerTo(exporter, ID.ofDS("nether_sludge_from_stoked_cauldron"));
 
         // Crucible recipes
 
@@ -252,6 +259,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(ModBlocks.WHITE_COBBLESTONE.asItem())
                 .criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE.asItem()))
                 .offerTo(exporter, ID.ofDS("white_stone_from_crucible"));
+
+        StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT)
+                .ingredient(BTWR_Items.DIAMOND_SHEARS)
+                .criterion("has_diamond_shears", conditionsFromItem(BTWR_Items.DIAMOND_SHEARS))
+                .offerTo(exporter, ID.ofDS("smelt_diamond_shears_in_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT)
                 .ingredient(CHISEL_DIAMOND)

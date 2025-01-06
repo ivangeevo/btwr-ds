@@ -106,6 +106,17 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
                 .offerTo(exporter, ID.ofBWT("he_ladder"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
+                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('B', org.tough_environment.item.ModItems.STONE_BRICK)
+                .input('I', Items.IRON_INGOT)
+                .input('U', BwtItems.soulUrnItem)
+                .input('L', BTWRDS_Items.REDSTONE_LATCH)
+                .pattern("WIW")
+                .pattern("BUB")
+                .pattern("BLB")
+                .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
+                .offerTo(exporter, ID.ofBWT("he_piston"));
 
     }
 
@@ -465,6 +476,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
         // Potash
         StokedCrucibleRecipe.JsonBuilder.create().ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_bark");
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(org.ivangeevo.vegehenna.item.ModItems.STRAW, 16).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_straw");
 
         // Arrows
         StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW).result(Items.FLINT).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, ID.ofBWT("cauldron_rendering_arrows"));

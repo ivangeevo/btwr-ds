@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "btwr_ds:item/redstone_latch"
+  }
+}
