@@ -79,7 +79,7 @@ public class Vegehenna_RecipeProvider extends FabricRecipeProvider implements Re
                 RecipeCategory.FOOD,
                 Items.BREAD,
                 0.35f,
-                6000)
+                2500)
                 .criterion("has_bread_dough", conditionsFromItem(ModItems.BREAD_DOUGH))
                 .offerTo(exporter, ID.ofVG("bread_from_smoking")
                 );

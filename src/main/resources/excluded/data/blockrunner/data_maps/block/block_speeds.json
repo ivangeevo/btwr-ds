@@ -24,10 +24,12 @@
     "minecraft:cobblestone": { "speed":  1.20 },
     "minecraft:cobbled_deepslate": { "speed":  1.20 },
 
+    "tough_environment:slab_dirt_packed": { "speed": 1.20 },
     "tough_environment:slab_gravel": { "speed": 1.20 },
     "tough_environment:slab_cobblestone_loose": { "speed": 1.20 },
     "tough_environment:slab_cobbled_deepslate_loose": { "speed": 1.20 },
 
+    "minecraft:dirt_packed": { "speed": 1.20 },
     "minecraft:gravel": { "speed": 1.20 },
 
     "tough_environment:cobblestone_loose": { "speed": 1.20 },
@@ -36,7 +38,7 @@
     "tough_environment:diorite_loose": { "speed": 1.20 },
     "tough_environment:granite_loose": { "speed": 1.20 },
 
-    "minecraft:dirt_path": { "speed": 1.00 },
+    "minecraft:dirt_path": { "speed": 1.10 },
 
 
     "minecraft:sand": { "speed": 0.8 },

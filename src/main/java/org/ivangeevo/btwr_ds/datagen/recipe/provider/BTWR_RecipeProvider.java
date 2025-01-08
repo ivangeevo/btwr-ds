@@ -10,9 +10,11 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -89,10 +91,15 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
                 .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
                 .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
 
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_KEBAB)
-                .ingredient(BTWR_Items.RAW_KEBAB)
+        CookingRecipeJsonBuilder.createSmelting(
+                Ingredient.ofItems(BTWR_Items.RAW_KEBAB), RecipeCategory.FOOD, BTWR_Items.COOKED_KEBAB, 0.20F, 2500)
                 .criterion("has_raw_kebab", conditionsFromItem(BTWR_Items.RAW_KEBAB))
-                .offerTo(exporter, ID.ofBTWR("cooked_kebab_from_cauldron"));
+                .offerTo(exporter, ID.ofBTWR("cooked_kebab"));
+
+        CookingRecipeJsonBuilder.createSmoking(
+                Ingredient.ofItems(BTWR_Items.RAW_KEBAB), RecipeCategory.FOOD, BTWR_Items.COOKED_KEBAB, 0.30f, 1250)
+                .criterion("has_raw_kebab", conditionsFromItem(BTWR_Items.RAW_KEBAB))
+                .offerTo(exporter, ID.ofBTWR("cooked_kebab_from_smoking"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHICKEN_SOUP, 3)
                 .ingredient(Items.COOKED_CHICKEN)

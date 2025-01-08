@@ -219,8 +219,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
          .offerTo(exporter, ID.ofMC("dispenser"));
          **/
 
-        // TODO: Add piston recipe when Redstone Latch item is added as item to BTWR: Core
-
+        // TODO : Consider changing the redstone latch in this recipe if this item gets added to BWT
          ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
          .input('W', ItemTags.PLANKS)
          .input('B', ModItems.STONE_BRICK)
@@ -232,6 +231,16 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
          .pattern("BLB")
          .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
          .offerTo(exporter, ID.ofMC("piston"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DISPENSER)
+                .input('S', ModItems.STONE_BRICK)
+                .input('B', Items.BOW)
+                .input('L', BTWRDS_Items.REDSTONE_LATCH)
+                .pattern("SSS")
+                .pattern("SBS")
+                .pattern("SLS")
+                .criterion(hasItem(Items.DISPENSER), conditionsFromItem(Items.DISPENSER))
+                .offerTo(exporter, ID.ofMC("dispenser"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.REPEATER)
                 .input('C', Items.CLOCK)

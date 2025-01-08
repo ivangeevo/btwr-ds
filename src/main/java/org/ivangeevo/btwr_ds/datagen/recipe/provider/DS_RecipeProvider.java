@@ -6,13 +6,10 @@ import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
-import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
 import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
 import com.bwt.recipes.hopper_filter.HopperFilterRecipe;
 import com.bwt.recipes.kiln.KilnRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
-import com.bwt.recipes.soul_bottling.SoulBottlingRecipe;
-import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -28,7 +25,6 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.animageddon.item.ModItems;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.ivangeevo.bwt_hct.recipes.mill_stone.ModernMillStoneRecipe;
 import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -237,6 +233,10 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
 
+        MillStoneRecipe.JsonBuilder.create().result(BwtItems.coalDustItem,2)
+                .ingredient(Items.CHARCOAL)
+                .criterion("has_charcoal", conditionsFromItem(Items.CHARCOAL))
+                .offerTo(exporter, ID.ofDS("coal_dust_from_milling_charcoal"));
 
         // Cauldron recipes
         CauldronRecipe.JsonBuilder.create().result(BTWRDS_Items.ELEMENT)
@@ -253,12 +253,14 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_brimstone", conditionsFromItem(BTWRDS_Items.BRIMSTONE))
                 .offerTo(exporter, ID.ofDS("gunpowder_from_cauldron"));
 
-        // Stoked Cauldron recipes
-        StokedCauldronRecipe.JsonBuilder.create().result(org.tough_environment.item.ModItems.NETHER_SLUDGE)
+        CauldronRecipe.JsonBuilder.create().result(org.tough_environment.item.ModItems.NETHER_SLUDGE)
                 .ingredient(BwtItems.potashItem)
                 .ingredient(BwtItems.hellfireDustItem, 8)
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
                 .offerTo(exporter, ID.ofDS("nether_sludge_from_stoked_cauldron"));
+
+
+        // Stoked Cauldron recipes
 
         // Crucible recipes
 

@@ -6,7 +6,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
-import org.ivangeevo.btwr_ds.registry.CustomFuelRegistry;
+import org.ivangeevo.btwr_ds.registry.OGOGCustomFuelRegistry;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,7 +29,7 @@ public abstract class AbstractFurnaceBlockEntityMixin extends LockableContainerB
     @Inject(method = "createFuelTimeMap", at = @At("HEAD"), cancellable = true)
     private static void overrideFuelMap(CallbackInfoReturnable<Map<Item, Integer>> cir) {
         Map<Item, Integer> map = fuelTimes;
-        cir.setReturnValue(Objects.requireNonNullElseGet(map, CustomFuelRegistry::getMap));
+        cir.setReturnValue(Objects.requireNonNullElseGet(map, OGOGCustomFuelRegistry::getMap));
     }
 
 }

@@ -1,6 +1,10 @@
 package org.ivangeevo.btwr_ds.registry;
 
+import com.bwt.blocks.BwtBlocks;
+import com.bwt.items.BwtItems;
+import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.Maps;
+import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.SharedConstants;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
@@ -13,186 +17,158 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Util;
+import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.tough_environment.item.ModItems;
 
 import java.util.Map;
 
-/** A provider class for a fully custom set fuel map;
- *  most likely incompatible with other mods that add to fuel with FuelRegistry
- *  to the{@link AbstractFurnaceBlockEntity#createFuelTimeMap()} **/
+/**
+ * A provider class for a fully custom set fuel map;
+ * most likely incompatible with other mods that specify fuel items with FuelRegistry
+ * which modify the {@link AbstractFurnaceBlockEntity#createFuelTimeMap()}.
+ */
 public class OGCustomFuelRegistry
 {
 
     public static Map<Item, Integer> getMap() {
-        Map<Item, Integer> tempMap = Maps.newLinkedHashMap();
-        addFuel(tempMap, Items.COAL_BLOCK, 14400);
-        addFuel(tempMap, Items.BLAZE_ROD, 12800);
+        Map<Item, Integer> fuelMap = Maps.newLinkedHashMap();
 
-        // Logs
-        addFuel(tempMap, Items.BIRCH_LOG, 16000);
-        addFuel(tempMap, Items.ACACIA_LOG, 16000);
-        addFuel(tempMap, Items.OAK_LOG, 12800);
-        addFuel(tempMap, Items.DARK_OAK_LOG, 12800);
-        addFuel(tempMap, Items.CHERRY_LOG, 12800);
-        addFuel(tempMap, Items.SPRUCE_LOG, 9600);
-        addFuel(tempMap, Items.MANGROVE_LOG, 8400);
-        addFuel(tempMap, Items.JUNGLE_LOG, 6400);
-        addFuel(tempMap, ItemTags.BAMBOO_BLOCKS, 500);
+        // Add high-level categories for better readability
+        addHighEnergyFuels(fuelMap);
+        addWoodVariants(fuelMap);
+        addFuel(fuelMap, SturdyTreesTags.Items.BARK_ITEMS, 25);
+        addFuel(fuelMap, BTWRDS_Items.BARK_BLOOD_WOOD, 25);
+        addMiscellaneousFuels(fuelMap);
 
-        // Planks
-        addFuel(tempMap, Items.BIRCH_PLANKS, 500);
-        addFuel(tempMap, Items.ACACIA_PLANKS, 500);
-        addFuel(tempMap, Items.OAK_PLANKS, 400);
-        addFuel(tempMap, Items.DARK_OAK_PLANKS, 400);
-        addFuel(tempMap, Items.CHERRY_PLANKS, 400);
-        addFuel(tempMap, Items.SPRUCE_PLANKS, 300);
-        addFuel(tempMap, Items.MANGROVE_PLANKS, 300);
-        addFuel(tempMap, Items.JUNGLE_PLANKS, 200);
-        addFuel(tempMap, Items.BAMBOO_PLANKS, 130);
+        addBwtFuels(fuelMap);
 
-        // Wooden Stairs
-        addFuel(tempMap, Items.BIRCH_STAIRS, 400);
-        addFuel(tempMap, Items.ACACIA_STAIRS, 400);
-        addFuel(tempMap, Items.OAK_STAIRS, 300);
-        addFuel(tempMap, Items.DARK_OAK_STAIRS, 300);
-        addFuel(tempMap, Items.CHERRY_STAIRS, 300);
-        addFuel(tempMap, Items.SPRUCE_STAIRS, 200);
-        addFuel(tempMap, Items.MANGROVE_STAIRS, 200);
-        addFuel(tempMap, Items.JUNGLE_STAIRS, 150);
-        addFuel(tempMap, Items.BAMBOO_STAIRS, 100);
-
-        addFuel(tempMap, Blocks.BAMBOO_MOSAIC_STAIRS, 150);
-
-        // Wooden Slabs
-        addFuel(tempMap, Items.BIRCH_SLAB, 250);
-        addFuel(tempMap, Items.ACACIA_SLAB, 250);
-        addFuel(tempMap, Items.OAK_SLAB, 200);
-        addFuel(tempMap, Items.DARK_OAK_SLAB, 200);
-        addFuel(tempMap, Items.CHERRY_SLAB, 200);
-        addFuel(tempMap, Items.SPRUCE_SLAB, 150);
-        addFuel(tempMap, Items.MANGROVE_SLAB, 150);
-        addFuel(tempMap, Items.JUNGLE_SLAB, 100);
-        addFuel(tempMap, Items.BAMBOO_SLAB, 75);
-
-        addFuel(tempMap, Blocks.BAMBOO_MOSAIC_SLAB, 150);
-
-        // Wooden Trapdoors
-        addFuel(tempMap, Items.BIRCH_TRAPDOOR, 275);
-        addFuel(tempMap, Items.ACACIA_TRAPDOOR, 275);
-        addFuel(tempMap, Items.OAK_TRAPDOOR, 225);
-        addFuel(tempMap, Items.DARK_OAK_TRAPDOOR, 225);
-        addFuel(tempMap, Items.CHERRY_TRAPDOOR, 225);
-        addFuel(tempMap, Items.SPRUCE_TRAPDOOR, 175);
-        addFuel(tempMap, Items.MANGROVE_TRAPDOOR, 175);
-        addFuel(tempMap, Items.JUNGLE_TRAPDOOR, 125);
-        addFuel(tempMap, Items.BAMBOO_TRAPDOOR, 100);
-
-        // Wooden Pressure Plates
-        addFuel(tempMap, Items.BIRCH_PRESSURE_PLATE, 125);
-        addFuel(tempMap, Items.ACACIA_PRESSURE_PLATE, 125);
-        addFuel(tempMap, Items.OAK_PRESSURE_PLATE, 100);
-        addFuel(tempMap, Items.DARK_OAK_PRESSURE_PLATE, 100);
-        addFuel(tempMap, Items.CHERRY_PRESSURE_PLATE, 100);
-        addFuel(tempMap, Items.SPRUCE_PRESSURE_PLATE, 75);
-        addFuel(tempMap, Items.MANGROVE_PRESSURE_PLATE, 75);
-        addFuel(tempMap, Items.JUNGLE_PRESSURE_PLATE, 50);
-        addFuel(tempMap, Items.BAMBOO_PRESSURE_PLATE, 50);
-
-        // Wooden Fences
-        addFuel(tempMap, Items.BIRCH_FENCE, 275);
-        addFuel(tempMap, Items.ACACIA_FENCE, 275);
-        addFuel(tempMap, Items.OAK_FENCE, 225);
-        addFuel(tempMap, Items.DARK_OAK_FENCE, 225);
-        addFuel(tempMap, Items.CHERRY_FENCE, 225);
-        addFuel(tempMap, Items.SPRUCE_FENCE, 175);
-        addFuel(tempMap, Items.MANGROVE_FENCE, 175);
-        addFuel(tempMap, Items.JUNGLE_FENCE, 125);
-        addFuel(tempMap, Items.BAMBOO_FENCE, 100);
-
-        // Wooden Fence Gates
-        addFuel(tempMap, Items.BIRCH_FENCE_GATE, 275);
-        addFuel(tempMap, Items.ACACIA_FENCE_GATE, 275);
-        addFuel(tempMap, Items.OAK_FENCE_GATE, 225);
-        addFuel(tempMap, Items.DARK_OAK_FENCE_GATE, 225);
-        addFuel(tempMap, Items.CHERRY_FENCE_GATE, 225);
-        addFuel(tempMap, Items.SPRUCE_FENCE_GATE, 175);
-        addFuel(tempMap, Items.MANGROVE_FENCE_GATE, 175);
-        addFuel(tempMap, Items.JUNGLE_FENCE_GATE, 125);
-        addFuel(tempMap, Items.BAMBOO_FENCE_GATE, 100);
-
-        // Wooden Buttons
-        addFuel(tempMap, Items.BIRCH_BUTTON, 65);
-        addFuel(tempMap, Items.ACACIA_BUTTON, 65);
-        addFuel(tempMap, Items.OAK_BUTTON, 50);
-        addFuel(tempMap, Items.DARK_OAK_BUTTON, 50);
-        addFuel(tempMap, Items.CHERRY_BUTTON, 50);
-        addFuel(tempMap, Items.SPRUCE_BUTTON, 40);
-        addFuel(tempMap, Items.MANGROVE_BUTTON, 40);
-        addFuel(tempMap, Items.JUNGLE_BUTTON, 25);
-        addFuel(tempMap, Items.BAMBOO_BUTTON, 25);
-
-        addFuel(tempMap, Items.STICK, 50);
-        addFuel(tempMap, ItemTags.SAPLINGS, 15);
-
-
-        // Signs
-        addFuel(tempMap, Items.BIRCH_SIGN, 275);
-        addFuel(tempMap, Items.ACACIA_SIGN, 275);
-        addFuel(tempMap, Items.OAK_SIGN, 225);
-        addFuel(tempMap, Items.DARK_OAK_SIGN, 225);
-        addFuel(tempMap, Items.CHERRY_SIGN, 225);
-        addFuel(tempMap, Items.SPRUCE_SIGN, 175);
-        addFuel(tempMap, Items.MANGROVE_SIGN, 175);
-        addFuel(tempMap, Items.JUNGLE_SIGN, 125);
-        addFuel(tempMap, Items.BAMBOO_SIGN, 100);
-
-        // Hanging Signs
-        addFuel(tempMap, Items.BIRCH_SIGN, 275);
-        addFuel(tempMap, Items.ACACIA_SIGN, 275);
-        addFuel(tempMap, Items.OAK_SIGN, 225);
-        addFuel(tempMap, Items.DARK_OAK_SIGN, 225);
-        addFuel(tempMap, Items.CHERRY_SIGN, 225);
-        addFuel(tempMap, Items.SPRUCE_SIGN, 175);
-        addFuel(tempMap, Items.MANGROVE_SIGN, 175);
-        addFuel(tempMap, Items.JUNGLE_SIGN, 125);
-        addFuel(tempMap, Items.BAMBOO_SIGN, 100);
-
-        addFuel(tempMap, ItemTags.BANNERS, 300);
-
-        // removed doors & boats
-
-        addFuel(tempMap, ItemTags.WOOL, 100);
-
-        addFuel(tempMap, Items.BOWL, 100);
-        addFuel(tempMap, ItemTags.WOOL_CARPETS, 67);
-
-        // TODO: Reconsider the values below up to MANGROVE ROOTS
-        addFuel(tempMap, Items.CROSSBOW, 300);
-        addFuel(tempMap, Blocks.BAMBOO, 50);
-        addFuel(tempMap, Blocks.DEAD_BUSH, 100);
-        addFuel(tempMap, Blocks.SCAFFOLDING, 50);
-        addFuel(tempMap, Blocks.LOOM, 300);
-        addFuel(tempMap, Blocks.BARREL, 300);
-        addFuel(tempMap, Blocks.CARTOGRAPHY_TABLE, 300);
-        addFuel(tempMap, Blocks.FLETCHING_TABLE, 300);
-        addFuel(tempMap, Blocks.SMITHING_TABLE, 300);
-        addFuel(tempMap, Blocks.COMPOSTER, 300);
-        addFuel(tempMap, Blocks.AZALEA, 100);
-        addFuel(tempMap, Blocks.FLOWERING_AZALEA, 100);
-        addFuel(tempMap, Blocks.MANGROVE_ROOTS, 300);
-
-        // TODO: Reconsider the values for bow, fishing rod and ladder
-        addFuel(tempMap, Items.BOW, 300);
-        addFuel(tempMap, Items.FISHING_ROD, 300);
-        addFuel(tempMap, Blocks.LADDER, 300);
-
-        // New added fuel items
-        addFuel(tempMap, Items.FEATHER, 15);
-        addFuel(tempMap, ItemTags.SMALL_FLOWERS, 15);
-        addFuel(tempMap, ItemTags.TALL_FLOWERS, 25);
-
-        return tempMap;
+        return fuelMap;
     }
 
+    private static void addHighEnergyFuels(Map<Item, Integer> map) {
+        addWoodCategory(map, "LOGS",
+                new Item[] {Items.BIRCH_LOG, Items.ACACIA_LOG, Items.OAK_LOG, Items.DARK_OAK_LOG, Items.JUNGLE_LOG},
+                new int[] {16000, 12800, 9600, 8400, 6400}
+        );
+
+        // disabled the coal block because it defeats the purpose of making coal and coal dust fuels as it
+        // would need to be too high fuel value to match the coal items
+
+        // could make coal and coal dust have much less fuelTime and then balance the coal block around that
+        //addFuel(map, Items.COAL_BLOCK, 14400);
+        addFuel(map, Items.BLAZE_ROD, 12800);
+
+        addFuel(map, BwtItems.nethercoalItem, 14200);
+        addFuel(map, Items.COAL, 12800);
+        addFuel(map, ModItems.DUST_COAL, 6400);
+        addFuel(map, BwtItems.coalDustItem, 6400);
+
+    }
+
+    private static void addWoodVariants(Map<Item, Integer> map) {
+
+        addWoodCategory(map, "PLANKS",
+            new Item[] {Items.BIRCH_PLANKS, Items.ACACIA_PLANKS, Items.OAK_PLANKS, Items.DARK_OAK_PLANKS, Items.JUNGLE_PLANKS},
+            new int[] {500, 400, 300, 200, 130}
+        );
+        addWoodCategory(map, "STAIRS",
+            new Item[] {Items.BIRCH_STAIRS, Items.ACACIA_STAIRS, Items.OAK_STAIRS, Items.DARK_OAK_STAIRS, Items.JUNGLE_STAIRS},
+            new int[] {400, 300, 200, 150, 100}
+        );
+        addWoodCategory(map, "SLABS",
+            new Item[] {Items.BIRCH_SLAB, Items.ACACIA_SLAB, Items.OAK_SLAB, Items.DARK_OAK_SLAB, Items.JUNGLE_SLAB},
+            new int[] {250, 200, 150, 100, 75}
+        );
+        addWoodCategory(map, "TRAPDOORS",
+            new Item[] {Items.BIRCH_TRAPDOOR, Items.ACACIA_TRAPDOOR, Items.OAK_TRAPDOOR, Items.DARK_OAK_TRAPDOOR, Items.JUNGLE_TRAPDOOR},
+            new int[] {275, 225, 175, 125, 100}
+        );
+        addWoodCategory(map, "PRESSURE_PLATES",
+            new Item[] {Items.BIRCH_PRESSURE_PLATE, Items.ACACIA_PRESSURE_PLATE, Items.OAK_PRESSURE_PLATE, Items.DARK_OAK_PRESSURE_PLATE, Items.JUNGLE_PRESSURE_PLATE},
+            new int[] {125, 100, 75, 50, 50}
+        );
+        addWoodCategory(map, "FENCES",
+            new Item[] {Items.BIRCH_FENCE, Items.ACACIA_FENCE, Items.OAK_FENCE, Items.DARK_OAK_FENCE, Items.JUNGLE_FENCE},
+            new int[] {275, 225, 175, 125, 100}
+        );
+        addWoodCategory(map, "FENCE_GATES",
+            new Item[] {Items.BIRCH_FENCE_GATE, Items.ACACIA_FENCE_GATE, Items.OAK_FENCE_GATE, Items.DARK_OAK_FENCE_GATE, Items.JUNGLE_FENCE_GATE},
+            new int[] {275, 225, 175, 125, 100}
+        );
+        addWoodCategory(map, "BUTTONS",
+            new Item[] {Items.BIRCH_BUTTON, Items.ACACIA_BUTTON, Items.OAK_BUTTON, Items.DARK_OAK_BUTTON, Items.JUNGLE_BUTTON},
+            new int[] {65, 50, 40, 25, 25}
+        );
+        addWoodCategory(map, "SIGNS",
+            new Item[] {Items.BIRCH_SIGN, Items.ACACIA_SIGN, Items.OAK_SIGN, Items.DARK_OAK_SIGN, Items.JUNGLE_SIGN},
+            new int[] {275, 225, 175, 125, 100}
+        );
+        addFuel(map, Blocks.BAMBOO_MOSAIC_STAIRS, 150);
+        addFuel(map, Blocks.BAMBOO_MOSAIC_SLAB, 150);
+    }
+
+    // TODO: reconsider the values for bwt items. Most haven't been changed from the original values.
+    // TODO: also move them to their appropriate categories instead of being grouped by the BWT namespace
+    private static void addBwtFuels(Map<Item, Integer> map) {
+        addFuel(map, BwtItemTags.WOODEN_SIDING_BLOCKS, 150);
+        addFuel(map, BwtItemTags.WOODEN_MOULDING_BLOCKS, 75);
+        addFuel(map, BwtItemTags.WOODEN_CORNER_BLOCKS, 38);
+        addFuel(map, BwtBlocks.axleBlock, 150);
+        addFuel(map, BwtBlocks.axlePowerSourceBlock, 150);
+        addFuel(map, BwtBlocks.bellowsBlock, 450);
+        //addFuel(map, BwtBlocks.bloodWoodBlock)
+        addFuel(map, BwtBlocks.gearBoxBlock, 600);
+        addFuel(map, BwtBlocks.grateBlock, 300);
+        addFuel(map, BwtBlocks.hopperBlock, 300);
+        addFuel(map, BwtBlocks.platformBlock, 375);
+        addFuel(map, BwtBlocks.pulleyBlock, 600);
+        addFuel(map, BwtBlocks.sawBlock, 300);
+        addFuel(map, BwtBlocks.slatsBlock, 300);
+        //addFuel(map, BwtBlocks.screwPumpBlock)
+        //addFuel(map, BwtBlocks.tableBlock)
+        addFuel(map, BwtItems.gearItem, 18);
+
+        addFuel(map, BwtItems.sawDustItem, 25);
+        addFuel(map, BwtItems.soulDustItem, 25);
+
+    }
+
+    private static void addMiscellaneousFuels(Map<Item, Integer> map) {
+        addFuel(map, Items.STICK, 50);
+        addFuel(map, ItemTags.SAPLINGS, 15);
+        addFuel(map, ItemTags.BANNERS, 300);
+        addFuel(map, ItemTags.WOOL, 100);
+        addFuel(map, Items.BOWL, 100);
+        addFuel(map, ItemTags.WOOL_CARPETS, 67);
+        addFuel(map, Items.CROSSBOW, 300);
+        addFuel(map, Blocks.BAMBOO, 50);
+        addFuel(map, Blocks.DEAD_BUSH, 100);
+        addFuel(map, Blocks.SCAFFOLDING, 50);
+        addFuel(map, Blocks.LOOM, 300);
+        addFuel(map, Blocks.BARREL, 300);
+        addFuel(map, Blocks.CARTOGRAPHY_TABLE, 300);
+        addFuel(map, Blocks.FLETCHING_TABLE, 300);
+        addFuel(map, Blocks.SMITHING_TABLE, 300);
+        addFuel(map, Blocks.COMPOSTER, 300);
+        addFuel(map, Blocks.AZALEA, 100);
+        addFuel(map, Blocks.FLOWERING_AZALEA, 100);
+        addFuel(map, Blocks.MANGROVE_ROOTS, 300);
+        addFuel(map, Items.BOW, 300);
+        addFuel(map, Items.FISHING_ROD, 300);
+        addFuel(map, Blocks.LADDER, 300);
+        addFuel(map, Items.FEATHER, 15);
+        addFuel(map, ItemTags.SMALL_FLOWERS, 15);
+        addFuel(map, ItemTags.TALL_FLOWERS, 25);
+    }
+
+    private static void addWoodCategory(Map<Item, Integer> map, String category, Item[] items, int[] values) {
+        if (items.length != values.length) {
+            throw new IllegalArgumentException("Mismatch between items and values for category: " + category);
+        }
+        for (int i = 0; i < items.length; i++) {
+            addFuel(map, items[i], values[i]);
+        }
+    }
 
     private static boolean isNonFlammableWood(Item item) {
         return item.getRegistryEntry().isIn(ItemTags.NON_FLAMMABLE_WOOD);
@@ -204,14 +180,13 @@ public class OGCustomFuelRegistry
                 fuelTimes.put(itemRegistryEntry.value(), fuelTime);
             }
         }
-
     }
 
     private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {
         Item item2 = item.asItem();
         if (isNonFlammableWood(item2)) {
             if (SharedConstants.isDevelopment) {
-                throw Util.throwOrPause(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item2.getName((ItemStack)null).getString() + " a furnace fuel. That will not work!"));
+                throw Util.throwOrPause(new IllegalStateException("A developer tried to explicitly make fire resistant item " + item2.getName((ItemStack) null).getString() + " a furnace fuel. That will not work!"));
             }
         } else {
             fuelTimes.put(item2, fuelTime);
