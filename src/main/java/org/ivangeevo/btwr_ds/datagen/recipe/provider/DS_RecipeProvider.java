@@ -270,7 +270,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE.asItem()))
                 .offerTo(exporter, ID.ofDS("white_stone_from_crucible"));
 
-        StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT)
+        StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT,2)
                 .ingredient(BTWR_Items.DIAMOND_SHEARS)
                 .criterion("has_diamond_shears", conditionsFromItem(BTWR_Items.DIAMOND_SHEARS))
                 .offerTo(exporter, ID.ofDS("smelt_diamond_shears_in_crucible"));
@@ -284,6 +284,11 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(CHISEL_IRON)
                 .criterion("has_chisel_iron", conditionsFromItem(CHISEL_IRON))
                 .offerTo(exporter, ID.ofDS("smelt_chisel_iron_in_crucible"));
+
+        StokedCrucibleRecipe.JsonBuilder.create().result(Items.IRON_NUGGET,3)
+                .ingredient(Items.SHIELD)
+                .criterion("has_shield", conditionsFromItem(Items.SHIELD))
+                .offerTo(exporter, ID.ofDS("smelt_shield_in_crucible"));
 
 
 

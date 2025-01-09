@@ -8,11 +8,9 @@ import com.bwt.recipes.cooking_pots.CauldronRecipe;
 import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
 import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
 import com.bwt.recipes.kiln.KilnRecipe;
-import com.bwt.recipes.mill_stone.MillStoneRecipe;
 import com.bwt.recipes.saw.SawRecipe;
 import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
 import com.bwt.recipes.turntable.TurntableRecipe;
-import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.Maps;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
@@ -39,7 +37,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.ivangeevo.bwt_hct.recipes.mill_stone.ModernMillStoneRecipe;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 
@@ -334,6 +331,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
     }
 
+    // TODO: add an identifier to the offerTo calls to recipes that only pass "exporter", so they get registered in the proper namespace
     private void generateResmeltingRecipes(RecipeExporter exporter) {
         // Iron
         StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.IRON_HELMET).result(Items.IRON_NUGGET, 30).offerTo(exporter);
@@ -416,7 +414,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         KilnRecipe.JsonBuilder.create(BlockTags.LOGS).drops(Items.CHARCOAL).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredCrucibleBlock).drops(BwtBlocks.crucibleBlock).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredPlanterBlock).drops(BwtBlocks.planterBlock).offerTo(exporter);
-        KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredVaseBlock).drops((ItemConvertible)BwtBlocks.vaseBlocks.get(DyeColor.WHITE)).offerTo(exporter);
+        KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredVaseBlock).drops(BwtBlocks.vaseBlocks.get(DyeColor.WHITE)).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredUrnBlock).drops(BwtBlocks.urnBlock).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredMouldBlock).drops(BwtItems.mouldItem).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(ModBlocks.CLAY_BLOCK).drops(Blocks.TERRACOTTA).offerTo(exporter);
@@ -444,7 +442,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
     private void generateStokedRecipes(RecipeExporter exporter) {
         // Glue
-        Map<Item, Integer> GLUE_AMOUNTS = Util.make(Maps.newHashMap(), map -> {
+        Map<Item, Integer> SINGLE_COUNT_TO_GLUE_AMOUNTS = Util.make(Maps.newHashMap(), map -> {
 
             // Regular leathers
             map.put(Items.LEATHER_HELMET, 2);
@@ -452,24 +450,30 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
             map.put(Items.LEATHER_LEGGINGS, 3);
             map.put(Items.LEATHER_BOOTS, 2);
             map.put(Items.SADDLE, 2);
+
+            // Leathers
             map.put(Items.LEATHER, 1);
-            map.put(BTWR_Items.LEATHER_CUT, 2);
-
-            // Scoured
             map.put(BwtItems.scouredLeatherItem, 1);
-            map.put(BTWR_Items.LEATHER_SCOURED_CUT, 2);
-
-            // Tanned
             map.put(BwtItems.tannedLeatherItem, 1);
-            map.put(BTWR_Items.LEATHER_TANNED_CUT, 2);
             // TODO tanned leather armor, gimp armor, breeding harness
         });
-        GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key).result(BwtItems.glueItem, value).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key)));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.strapItem, 8).result(BwtItems.glueItem, 1).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.strapItem));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.beltItem, 2).result(BwtItems.glueItem, 1).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.beltItem));
+        SINGLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key).result(BwtItems.glueItem, value).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key))));
 
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.BOOK));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.WRITABLE_BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.WRITABLE_BOOK));
+        Map<Item, Integer> DOUBLE_COUNT_TO_GLUE_AMOUNTS = Util.make(Maps.newHashMap(), map -> {
+
+            // Cut leathers
+            map.put(BTWR_Items.LEATHER_CUT, 1);
+            map.put(BTWR_Items.LEATHER_SCOURED_CUT, 1);
+            map.put(BTWR_Items.LEATHER_TANNED_CUT, 1);
+        });
+        DOUBLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key,2).result(BwtItems.glueItem, value).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key))));
+
+
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.strapItem, 8).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.strapItem)));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.beltItem, 2).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.beltItem)));
+
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.BOOK)));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.WRITABLE_BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.WRITABLE_BOOK)));
 
 
         // Tallow - unmodified

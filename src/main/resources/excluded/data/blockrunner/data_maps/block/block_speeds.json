@@ -29,7 +29,7 @@
     "tough_environment:slab_cobblestone_loose": { "speed": 1.20 },
     "tough_environment:slab_cobbled_deepslate_loose": { "speed": 1.20 },
 
-    "minecraft:dirt_packed": { "speed": 1.20 },
+    "tough_environment:dirt_packed": { "speed": 1.20 },
     "minecraft:gravel": { "speed": 1.20 },
 
     "tough_environment:cobblestone_loose": { "speed": 1.20 },
