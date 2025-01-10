@@ -2,6 +2,7 @@ package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
+import btwr.core.tag.BTWRTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
@@ -167,6 +168,23 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("gear_box"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soilPlanterBlock)
+                .input('D', ModBlocks.DIRT_LOOSE)
+                .input('P', BwtBlocks.planterBlock)
+                .pattern("D")
+                .pattern("P")
+                .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
+                .offerTo(exporter, ID.ofBWT("soil_planter"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.grassPlanterBlock)
+                .input('D', Blocks.GRASS_BLOCK)
+                .input('P', BwtBlocks.planterBlock)
+                .pattern("D")
+                .pattern("P")
+                .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
+                .offerTo(exporter, ID.ofBWT("grass_planter"));
+
+
         /**
         // Adding trapdoor recipes
         for (String woodType : vanillaWoodTypes) {
@@ -204,6 +222,17 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .pattern("BRB")
                 .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
                 .offerTo(exporter, ID.ofBWT("hibachi"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
+                .input('L', BTWRTags.Items.TANNED_LEATHERS)
+                .input('B', BwtItems.beltItem)
+                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('G', BwtItems.gearItem)
+                .pattern("SSS")
+                .pattern("LLL")
+                .pattern("GBG")
+                .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .offerTo(exporter, ID.ofBWT("bellows"));
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
@@ -479,8 +508,8 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         // Tallow - unmodified
 
         // Potash
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_bark");
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(org.ivangeevo.vegehenna.item.ModItems.STRAW, 16).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_straw");
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_bark");
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(org.ivangeevo.vegehenna.item.ModItems.STRAW, 16).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_straw");
 
         // Arrows
         StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW).result(Items.FLINT).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, ID.ofBWT("cauldron_rendering_arrows"));

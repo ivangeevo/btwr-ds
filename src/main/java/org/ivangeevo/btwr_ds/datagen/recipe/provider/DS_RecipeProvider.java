@@ -108,7 +108,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("redstone_latch"));
 
 
-
         // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FURNACE)
                 .input('B', ModBlocks.SLAB_BRICKS_LOOSE)
@@ -117,17 +116,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_slab_bricks_loose", conditionsFromItem(ModBlocks.SLAB_BRICKS_LOOSE))
                 .offerTo(exporter, ID.ofDS("furnace_from_slab_bricks"));
 
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
-                .input('L', BTWR_Items.LEATHER_TANNED_CUT)
-                .input('B', BwtItems.beltItem)
-                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
-                .input('G', BwtItems.gearItem)
-                .pattern("SSS")
-                .pattern("LLL")
-                .pattern("GBG")
-                .criterion("has_belt", conditionsFromItem(BwtItems.beltItem))
-                .offerTo(exporter, ID.ofDS("bellows_from_leather_tanned_cut"));
 
         // Tools
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_PICKAXE)

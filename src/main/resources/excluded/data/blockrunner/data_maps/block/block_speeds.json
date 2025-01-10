@@ -38,8 +38,9 @@
     "tough_environment:diorite_loose": { "speed": 1.20 },
     "tough_environment:granite_loose": { "speed": 1.20 },
 
-    "minecraft:dirt_path": { "speed": 1.10 },
+    "#c:ores": { "speed": 1.20 },
 
+    "minecraft:dirt_path": { "speed": 1.10 },
 
     "minecraft:sand": { "speed": 0.8 },
     "tough_environment:slab_sand": { "speed": 0.8 },
