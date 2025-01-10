@@ -77,6 +77,16 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                     .offerTo(exporter, ID.ofBWT("he_" + woodType + "_door"));
         }
 
+        Identifier bloodWoodDoorID = ID.ofBWT("blood_wood_door");
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(bloodWoodDoorID))
+                .input('P', grabRaw("bwt","blood_wood_planks_siding"))
+                .pattern("PP")
+                .pattern("PP")
+                .pattern("PP")
+                .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .offerTo(exporter, bloodWoodDoorID.withPrefixedPath("he_"));
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtItems.sailItem)
                 .input('F', BwtItems.fabricItem)
                 .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
