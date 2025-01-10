@@ -140,6 +140,14 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_blood_wood_corner", conditionsFromItem(bloodWoodCorner))
                 .offerTo(exporter, ID.ofBWT("blood_wood_button"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.doorBlock)
+                .input('P', BwtBlocks.bloodWoodBlocks.planksBlock)
+                .pattern("PP")
+                .pattern("PP")
+                .pattern("PP")
+                .criterion("has_blood_wood_planks", conditionsFromItem(BwtBlocks.bloodWoodBlocks.planksBlock))
+                .offerTo(exporter, ID.ofBWT("blood_wood_door"));
+
         // Items
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.sailItem)
                 .input('F', BwtItems.fabricItem)
@@ -209,8 +217,6 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
 
         }
          **/
-
-
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.handCrankBlock)
                 .input('B', ModItems.STONE_BRICK)
