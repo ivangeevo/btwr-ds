@@ -3,14 +3,12 @@ package org.ivangeevo.btwr_ds.datagen.recipe.provider;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
-import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
 import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
 import com.bwt.recipes.hopper_filter.HopperFilterRecipe;
 import com.bwt.recipes.kiln.KilnRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
-import com.bwt.tags.BwtItemTags;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -188,7 +186,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         this.createTannedLeatherRecipes(exporter);
 
         // Millstone recipes
-        /***
+
+        /**
         ModernMillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
                 .ingredient(BTWR_Items.LEATHER_CUT)
                 .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
@@ -200,11 +199,20 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
 
         ModernMillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem, 4)
-
-         .ingredient(BTWR_Items.HEMP_LEAVES)
+                .ingredient(BTWR_Items.HEMP_LEAVES)
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
-         **/
+
+        ModernMillStoneRecipe.JsonBuilder.create().result(BwtItems.coalDustItem,2)
+                 .ingredient(Items.CHARCOAL)
+                 .criterion("has_charcoal", conditionsFromItem(Items.CHARCOAL))
+                 .offerTo(exporter, ID.ofDS("coal_dust_from_milling_charcoal"));
+
+        ModernMillStoneRecipe.JsonBuilder.create().result(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER)
+                .ingredient(Items.COCOA_BEANS)
+                .criterion("has_cocoa_beans", conditionsFromItem(Items.COCOA_BEANS))
+                .offerTo(exporter, ID.ofDS("cocoa_powder_from_milling_cocoa_beans"));
+        **/
 
         MillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
                 .ingredient(BTWR_Items.LEATHER_CUT)
@@ -226,6 +234,12 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_charcoal", conditionsFromItem(Items.CHARCOAL))
                 .offerTo(exporter, ID.ofDS("coal_dust_from_milling_charcoal"));
 
+        MillStoneRecipe.JsonBuilder.create().result(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER)
+                .ingredient(Items.COCOA_BEANS)
+                .criterion("has_cocoa_beans", conditionsFromItem(Items.COCOA_BEANS))
+                .offerTo(exporter, ID.ofDS("cocoa_powder_from_milling_cocoa_beans"));
+
+
         // Cauldron recipes
         CauldronRecipe.JsonBuilder.create().result(BTWRDS_Items.ELEMENT)
                 .ingredient(Items.BLAZE_POWDER)
@@ -246,6 +260,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .ingredient(BwtItems.hellfireDustItem, 8)
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
                 .offerTo(exporter, ID.ofDS("nether_sludge_from_stoked_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(org.ivangeevo.vegehenna.item.ModItems.CHOCOLATE,2)
+                .ingredient(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER)
+                .ingredient(Items.SUGAR)
+                .ingredient(Items.MILK_BUCKET)
+                .criterion("has_cocoa_powder", conditionsFromItem(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER))
+                .offerTo(exporter, ID.ofDS("chocolate_from_cauldron"));
 
 
         // Stoked Cauldron recipes
@@ -288,8 +309,13 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         Block breadDoughBlock = org.ivangeevo.vegehenna.block.ModBlocks.BREAD_DOUGH;
         KilnRecipe.JsonBuilder.create(breadDoughBlock).result(Items.BREAD)
-                .criterion("has_bread_dough", conditionsFromItem(breadDoughBlock))
+                .criterion("has_bread_dough", conditionsFromItem(org.ivangeevo.vegehenna.item.ModItems.BREAD_DOUGH))
                 .offerTo(exporter, ID.ofDS("kiln_cook_bread"));
+
+        Block uncookedCakeBlock = org.ivangeevo.vegehenna.block.ModBlocks.UNCOOKED_CAKE;
+        KilnRecipe.JsonBuilder.create(uncookedCakeBlock).result(Items.CAKE)
+                .criterion("has_uncooked_cake_pastry", conditionsFromItem(org.ivangeevo.vegehenna.item.ModItems.PASTRY_UNCOOKED_CAKE))
+                .offerTo(exporter, ID.ofDS("kiln_cook_cake"));
 
 
         // Hopper filtering recipes

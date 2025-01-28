@@ -24,9 +24,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         this.removeForTE(exporter);
         this.removeForBWT(exporter);
         this.removeForBTWR(exporter);
-
-        /** Vegehenna recipes to remove **/
-        disableVG(exporter, "flour");
+        this.removeForVegehenna(exporter);
 
         /** Animageddon recipes to remove **/
         //disableAG(exporter, "gunpowder");
@@ -40,6 +38,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         /** Vanilla recipes to remove **/
         // Remove item recipes
         disableVanilla(exporter, "bone_meal");
+        disableVanilla(exporter, "brown_dye");
 
         // Food item recipes
         disableVanilla(exporter, "bread");
@@ -89,6 +88,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableBWT(exporter, "grate");
         disableBWT(exporter, "fried_egg_from_campfire_cooking");
 
+        // Millstone
+        disableBWT(exporter, "brown_dye_from_milling_cocoa_beans");
+
         // Cauldron
         disableBWT(exporter, "tanned_leather_from_cauldron");
         disableBWT(exporter, "nether_sludge_from_cauldron");
@@ -124,7 +126,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     protected void removeForBTWR(RecipeExporter exporter) {
-        disableBTWR(exporter, "boiled_potato_from_smoking");
         disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
         disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
         disableBTWR(exporter, "chicken_soup");
@@ -136,6 +137,13 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
             disableBTWR(exporter, "leather_" + leatherType);
         }
 
+    }
+
+    protected void removeForVegehenna(RecipeExporter exporter) {
+        disableVG(exporter, "flour");
+        disableVG(exporter, "boiled_potato_from_smoking");
+        disableVG(exporter, "cocoa_powder");
+        disableVG(exporter, "chocolate");
     }
 
     @Override

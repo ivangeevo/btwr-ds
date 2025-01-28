@@ -32,8 +32,7 @@ public class BTWRDS_Items {
         BTWRDSMod.LOGGER.info("Registering Mod Items for " + BTWRDSMod.MOD_ID);
 
         // and add items to item groups
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
-        {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(BTWRDS_Items.BARK_BLOOD_WOOD);
             entries.add(BTWRDS_Items.ENDER_SLAG);
             entries.add(BTWRDS_Items.SOUL_FLUX);
@@ -41,8 +40,7 @@ public class BTWRDS_Items {
 
         });
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->
-        {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             entries.add(BTWRDS_Items.ELEMENT);
         });
     }

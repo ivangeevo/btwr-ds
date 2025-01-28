@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import com.bwt.blocks.BwtBlocks;
 import com.bwt.tags.BwtBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -18,6 +19,10 @@ public class DS_BlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BwtBlockTags.CROPS_CAN_PLANT_ON)
                 .forceAddTag(BTWRConventionalTags.Blocks.FARMLAND_BLOCKS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.WOODEN_MISC_BLOCKS)
+                .add(BwtBlocks.hopperBlock)
+                .add(BwtBlocks.gearBoxBlock);
 
     }
 }

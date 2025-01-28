@@ -7,19 +7,19 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.registry.RegistryWrapper;
+import org.ivangeevo.animageddon.tag.ModTags;
+import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
-{
+public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public DS_ItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup)
-    {
+    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         // Conventional tags
         getOrCreateTagBuilder(ConventionalItemTags.STRINGS)
                 .add(BwtItems.hempFiberItem);
@@ -39,9 +39,13 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_SHEARS_CUT_SOUND)
                 .add(BwtItems.strapItem);
 
-        // BTWR-SL tags
+        // Misc tags
         getOrCreateTagBuilder(BTWRTags.Items.TANNED_LEATHERS)
                 .add(BwtItems.tannedLeatherItem);
+
+        getOrCreateTagBuilder(ModTags.Items.PIG_BREEDING_ITEMS)
+                .add(ModItems.CHOCOLATE);
+
 
 
 

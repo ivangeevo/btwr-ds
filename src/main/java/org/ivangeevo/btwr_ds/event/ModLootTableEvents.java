@@ -70,7 +70,8 @@ public class ModLootTableEvents {
             Item planksItem = Registries.ITEM.get(ID.ofMC(woodType + "_planks"));
             RegistryKey<LootTable> key = RegistryKey.of(
                     RegistryKeys.LOOT_TABLE,
-                    ID.ofST("blocks/log_" + woodType + "_stripped"));
+                    ID.ofST("blocks/log_" + woodType + "_stripped")
+            );
 
             modifySpecificItem(key, planksItem, Items.STICK);
         }

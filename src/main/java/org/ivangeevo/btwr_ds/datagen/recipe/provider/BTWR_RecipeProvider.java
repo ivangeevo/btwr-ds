@@ -52,12 +52,12 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
                 .offerTo(exporter, ID.ofBTWR("mushroom_omelette_raw"));
 
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.BOILED_POTATO)
+        CauldronRecipe.JsonBuilder.create().result(ModItems.BOILED_POTATO)
                 .ingredient(Items.POTATO)
                 .criterion("has_potato", conditionsFromItem(Items.POTATO))
                 .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.COOKED_CARROT)
+        CauldronRecipe.JsonBuilder.create().result(ModItems.COOKED_CARROT)
                 .ingredient(Items.CARROT)
                 .criterion("has_carrot", conditionsFromItem(Items.CARROT))
                 .offerTo(exporter, ID.ofBTWR("cooked_carrot_from_cauldron"));
@@ -73,22 +73,22 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.STEAK_DINNER,3)
                 .input(Items.COOKED_BEEF)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
-                .input(BTWR_Items.COOKED_CARROT)
-                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .input(ModItems.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(ModItems.COOKED_CARROT))
                 .offerTo(exporter, ID.ofBTWR("steak_dinner"));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.PORK_DINNER,3)
                 .input(Items.COOKED_PORKCHOP)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
-                .input(BTWR_Items.COOKED_CARROT)
-                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .input(ModItems.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(ModItems.COOKED_CARROT))
                 .offerTo(exporter, ID.ofBTWR("pork_dinner"));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
                 .input(BwtItems.cookedWolfChopItem)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
-                .input(BTWR_Items.COOKED_CARROT)
-                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(BTWR_Items.COOKED_CARROT))
+                .input(ModItems.COOKED_CARROT)
+                .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(ModItems.COOKED_CARROT))
                 .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
 
         CookingRecipeJsonBuilder.createSmelting(
@@ -103,20 +103,20 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHICKEN_SOUP, 3)
                 .ingredient(Items.COOKED_CHICKEN)
-                .ingredient(BTWR_Items.COOKED_CARROT)
-                .ingredient(BTWR_Items.BOILED_POTATO)
+                .ingredient(ModItems.COOKED_CARROT)
+                .ingredient(ModItems.BOILED_POTATO)
                 .ingredient(Items.BOWL, 3)
-                .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
+                .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
                 .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW, 5)
                 .ingredient(ConventionalItemTags.COOKED_MEAT_FOODS)
-                .ingredient(BTWR_Items.COOKED_CARROT)
-                .ingredient(BTWR_Items.BOILED_POTATO)
+                .ingredient(ModItems.COOKED_CARROT)
+                .ingredient(ModItems.BOILED_POTATO)
                 .ingredient(Items.BOWL, 5)
                 .ingredient(Items.BROWN_MUSHROOM, 3)
                 .ingredient(BwtItems.flourItem)
-                .criterion("has_boiled_potato", conditionsFromItem(BTWR_Items.BOILED_POTATO))
+                .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
                 .offerTo(exporter, ID.ofBTWR("hearty_stew_from_cauldron"));
 
         // Blocks
