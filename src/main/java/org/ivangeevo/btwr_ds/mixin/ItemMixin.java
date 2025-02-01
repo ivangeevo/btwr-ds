@@ -29,9 +29,6 @@ public abstract class ItemMixin {
 
     @Unique
     private boolean isMiscSetCountItem(ItemStack stack) {
-
-        return stack.isOf(Items.BONE)
-                || stack.isOf(Items.ROTTEN_FLESH);
-
+        return stack.isOf(Items.BONE) || stack.isOf(Items.ROTTEN_FLESH);
     }
 }

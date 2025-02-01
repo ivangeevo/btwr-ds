@@ -46,9 +46,5 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.PIG_BREEDING_ITEMS)
                 .add(ModItems.CHOCOLATE);
 
-
-
-
-
     }
 }

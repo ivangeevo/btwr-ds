@@ -17,6 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
@@ -24,6 +25,7 @@ import net.minecraft.util.Identifier;
 import org.ivangeevo.animageddon.item.ModItems;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
+
 
 import java.util.concurrent.CompletableFuture;
 
@@ -300,8 +302,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("smelt_shield_in_crucible"));
 
 
-
-
         // Kiln recipes
         KilnRecipe.JsonBuilder.create(BTWR_Blocks.BRICK_UNFIRED).result(Items.BRICK)
                 .criterion("has_brick_unfired", conditionsFromItem(BTWR_Blocks.BRICK_UNFIRED))
@@ -324,8 +324,19 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // Soul bottling recipes
 
-    }
 
+        // Cooking recipes
+        CookingRecipeJsonBuilder.createSmelting(
+                Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD, BwtItems.friedEggItem, 0.20f, 2500)
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBWT("fried_egg"));
+
+        CookingRecipeJsonBuilder.createSmoking(
+                        Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD, BwtItems.friedEggItem, 0.30f, 1250)
+                .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
+                .offerTo(exporter, ID.ofBWT("fried_egg_from_smoking"));
+
+    }
 
     private void createTannedLeatherRecipes(RecipeExporter exporter) {
         this.leatherRecipeBuilder(exporter, SturdyTreesItems.BARK_JUNGLE, 2);

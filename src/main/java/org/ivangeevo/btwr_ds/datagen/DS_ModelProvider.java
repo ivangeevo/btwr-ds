@@ -35,7 +35,6 @@ public class DS_ModelProvider extends FabricModelProvider {
 
     }
 
-
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(BTWRDS_Items.BARK_BLOOD_WOOD, Models.GENERATED);
