@@ -9,11 +9,13 @@ import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
 import com.bwt.recipes.hopper_filter.HopperFilterRecipe;
 import com.bwt.recipes.kiln.KilnRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
+import com.bwt.recipes.mob_spawner_conversion.MobSpawnerConversionRecipe;
 import ivangeevo.sturdy_trees.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -324,6 +326,25 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         // Soul bottling recipes
 
+        // Spawner block conversion recipes
+        MobSpawnerConversionRecipe.JsonBuilder.create(ModBlocks.COBBLESTONE_LOOSE)
+                .convertsTo(Blocks.MOSSY_COBBLESTONE)
+                .criterion("has_cobblestone_loose", conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE))
+                .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_cobblestone_loose_to_mossy_cobblestone"));
+
+        MobSpawnerConversionRecipe.JsonBuilder.create(ModBlocks.SLAB_COBBLESTONE_LOOSE)
+                .convertsTo(Blocks.MOSSY_COBBLESTONE_SLAB)
+                .criterion("has_slab_cobblestone_loose", conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE))
+                .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_slab_cobblestone_loose_to_mossy_cobblestone_slab"));
+
+        MobSpawnerConversionRecipe.JsonBuilder.create(ModBlocks.COBBLESTONE_LOOSE_STAIRS)
+                .convertsTo(Blocks.MOSSY_COBBLESTONE_STAIRS)
+                .criterion("has_cobblestone_loose_stairs", conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE_STAIRS))
+                .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_cobblestone_loose_stairs_to_mossy_cobblestone_stairs"));
+
+
+
+
 
         // Cooking recipes
         CookingRecipeJsonBuilder.createSmelting(
@@ -335,6 +356,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                         Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD, BwtItems.friedEggItem, 0.30f, 1250)
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
                 .offerTo(exporter, ID.ofBWT("fried_egg_from_smoking"));
+
 
     }
 
