@@ -166,6 +166,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
 
+        this.createConvertToSawDustToolRecipes(exporter);
     }
 
     /** Recipes that would usually be considered from other mod namespaces,
@@ -183,7 +184,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern("BBB")
                 .pattern("BGB")
                 .criterion("has_gear", conditionsFromItem(org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock))
-                .offerTo(exporter, Identifier.of("bwt_hct","modern_mill_stone"));
+                .offerTo(exporter, Identifier.of("bwt_hct", "modern_mill_stone"));
         **/
 
 
@@ -229,7 +230,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("blaze_powder_from_mill_stone"));
 
         MillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem,4)
-                .ingredient(BTWR_Items.HEMP_LEAVES)
+                .ingredient(BwtItems.hempItem)
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
 
@@ -303,10 +304,9 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_shield", conditionsFromItem(Items.SHIELD))
                 .offerTo(exporter, ID.ofDS("smelt_shield_in_crucible"));
 
-
         // Kiln recipes
-        KilnRecipe.JsonBuilder.create(BTWR_Blocks.BRICK_UNFIRED).result(Items.BRICK)
-                .criterion("has_brick_unfired", conditionsFromItem(BTWR_Blocks.BRICK_UNFIRED))
+        KilnRecipe.JsonBuilder.create(net.ivangeevo.self_sustainable.block.ModBlocks.BRICK_UNFIRED).result(Items.BRICK)
+                .criterion("has_brick_unfired", conditionsFromItem(net.ivangeevo.self_sustainable.block.ModBlocks.BRICK_UNFIRED))
                 .offerTo(exporter, ID.ofDS("kiln_cook_brick"));
 
         Block breadDoughBlock = org.ivangeevo.vegehenna.block.ModBlocks.BREAD_DOUGH;
@@ -343,9 +343,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_cobblestone_loose_stairs_to_mossy_cobblestone_stairs"));
 
 
-
-
-
         // Cooking recipes
         CookingRecipeJsonBuilder.createSmelting(
                 Ingredient.ofItems(BwtItems.rawEggItem), RecipeCategory.FOOD, BwtItems.friedEggItem, 0.20f, 2500)
@@ -372,6 +369,18 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         this.leatherRecipeBuilder(exporter, BTWRDS_Items.BARK_BLOOD_WOOD, 8);
     }
 
+    private void createConvertToSawDustToolRecipes(RecipeExporter exporter) {
+        convertToSawdustRecipeBuilder(exporter, net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_STICKS, "has_firestarter_sticks");
+        convertToSawdustRecipeBuilder(exporter, net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_BOW, "has_firestarter_bow");
+        convertToSawdustRecipeBuilder(exporter, BTWR_Items.CLUB_WOOD, "has_club_wood");
+    }
+
+    private void convertToSawdustRecipeBuilder(RecipeExporter exporter, Item tool, String criterion) {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.sawDustItem)
+                .input(tool)
+                .criterion(criterion, conditionsFromItem(tool))
+                .offerTo(exporter, ID.ofDS("saw_dust_from_converting_" + extractName(tool)));
+    }
     /** Creates a tanned leather recipe by only passing the bark item and the amount **/
     private void leatherRecipeBuilder(RecipeExporter exporter, Item barkItem, int count) {
         CauldronRecipe.JsonBuilder.create().result(BwtItems.tannedLeatherItem)

@@ -3,8 +3,6 @@
   "package": "org.ivangeevo.btwr_ds.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "ClientWorldMixin",
-    "ExampleClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

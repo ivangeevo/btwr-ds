@@ -36,7 +36,4 @@ public class ST_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofST("stump_remover"));
     }
 
-
-
-
 }

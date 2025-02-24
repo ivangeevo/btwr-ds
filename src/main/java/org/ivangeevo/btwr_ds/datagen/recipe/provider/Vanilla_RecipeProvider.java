@@ -8,6 +8,7 @@ import com.bwt.tags.BwtItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.ivangeevo.self_sustainable.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateVariantMap;
@@ -377,8 +378,8 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         // TODO: Remove the nugget recipes when we add the Brick oven from Self Sustainable
         this.createNuggetRecipes(exporter);
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(BTWR_Items.BRICK_UNFIRED), RecipeCategory.BUILDING_BLOCKS,
-                Items.BRICK, 0.10F, 10000).criterion("has_brick_unfired", conditionsFromItem(BTWR_Items.BRICK_UNFIRED)).offerTo(exporter, ID.ofMC("brick"));
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModBlocks.BRICK_UNFIRED), RecipeCategory.BUILDING_BLOCKS,
+                Items.BRICK, 0.10F, 10000).criterion("has_brick_unfired", conditionsFromItem(ModBlocks.BRICK_UNFIRED)).offerTo(exporter, ID.ofMC("brick"));
 
         // Armor
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
