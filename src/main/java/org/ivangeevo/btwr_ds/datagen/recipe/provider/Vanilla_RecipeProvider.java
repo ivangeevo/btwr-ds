@@ -373,16 +373,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_fishing_hook_material", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, ID.ofMC("fishing_rod"));
 
-        // 1 torch for infini-torches
-        // 2 when the rework in Self Sustainable for torches happens.
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH)
-                .input('C', ItemTags.COALS)
-                .input('S', Items.STICK)
-                .pattern("C")
-                .pattern("S")
-                .criterion("has_coal", conditionsFromTag(ItemTags.COALS))
-                .offerTo(exporter, ID.ofMC("torch"));
-
         // Cooking recipes
         // TODO: Remove the nugget recipes when we add the Brick oven from Self Sustainable
         this.createNuggetRecipes(exporter);
@@ -423,6 +413,25 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .pattern("I I")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofMC("diamond_boots"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH, 1)
+                .input('C', BwtItems.nethercoalItem)
+                .input('I', Items.STICK)
+                .pattern("C")
+                .pattern("I")
+                .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
+                .offerTo(exporter, ID.ofMC("torch"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SOUL_TORCH, 1)
+                .input('C', BwtItems.nethercoalItem)
+                .input('I', Items.STICK)
+                .input('S', ItemTags.SOUL_FIRE_BASE_BLOCKS)
+                .pattern("C")
+                .pattern("I")
+                .pattern("S")
+                .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
+                .offerTo(exporter, ID.ofMC("soul_torch"));
+
 
     }
 
