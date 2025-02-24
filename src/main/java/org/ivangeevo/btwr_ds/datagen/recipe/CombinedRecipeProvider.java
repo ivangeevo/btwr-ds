@@ -19,6 +19,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected Vegehenna_RecipeProvider vegehennaRecipeProvider;
     protected ST_RecipeProvider sturdyTreesRecipeProvider;
     protected TE_RecipeProvider toughEnvironmentRecipeProvider;
+    protected SS_RecipeProvider selfSustainableRecipeProvider;
     protected DisabledRecipeProvider disabledRecipeProvider;
 
     public CombinedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -30,6 +31,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.vegehennaRecipeProvider = new Vegehenna_RecipeProvider(output, registriesFuture);
         this.sturdyTreesRecipeProvider = new ST_RecipeProvider(output, registriesFuture);
         this.toughEnvironmentRecipeProvider = new TE_RecipeProvider(output, registriesFuture);
+        this.selfSustainableRecipeProvider = new SS_RecipeProvider(output, registriesFuture);
         this.disabledRecipeProvider = new DisabledRecipeProvider(output, registriesFuture);
     }
 
@@ -42,6 +44,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         vegehennaRecipeProvider.generate(exporter);
         sturdyTreesRecipeProvider.generate(exporter);
         toughEnvironmentRecipeProvider.generate(exporter);
+        selfSustainableRecipeProvider.generate(exporter);
         disabledRecipeProvider.generate(exporter);
     }
 

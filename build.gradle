@@ -21,6 +21,10 @@ repositories {
 	maven { url "https://ivangeevo.github.io/btwr-shared-lib/" }
 	maven { url "https://api.modrinth.com/maven" }
 
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
 }
 
 fabricApi {
@@ -40,8 +44,6 @@ loom {
 	}
 
 }
-
-
 
 dependencies {
 	// To change the versions see the gradle.properties file
@@ -72,6 +74,10 @@ dependencies {
 	modImplementation files("libs/animageddon-${project.animageddon_version}-1.21.1.jar")
 	modImplementation files("libs/bwt-hc-tweaks-${project.bwt_hct_version}.jar")
 	modImplementation files("libs/piston-packing-${project.piston_packing_version}.jar")
+
+	// EMI
+	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 
 }
 

@@ -415,13 +415,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofMC("diamond_boots"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH, 1)
-                .input('C', BwtItems.nethercoalItem)
-                .input('I', Items.STICK)
-                .pattern("C")
-                .pattern("I")
-                .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
-                .offerTo(exporter, ID.ofMC("torch"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SOUL_TORCH, 1)
                 .input('C', BwtItems.nethercoalItem)

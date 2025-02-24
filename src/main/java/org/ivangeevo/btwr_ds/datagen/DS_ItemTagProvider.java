@@ -17,7 +17,6 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         super(output, registriesFuture);
     }
 
-
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         // Conventional tags
