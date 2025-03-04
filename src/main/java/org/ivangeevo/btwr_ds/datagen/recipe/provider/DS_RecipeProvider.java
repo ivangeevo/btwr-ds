@@ -93,14 +93,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
                 .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.TORCH,2)
-                .input('C', BwtItems.nethercoalItem)
-                .input('S', Items.STICK)
-                .pattern("C")
-                .pattern("S")
-                .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
-                .offerTo(exporter, ID.ofDS("torch"));
-
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWRDS_Items.REDSTONE_LATCH)
                 .input('G', Items.GOLD_NUGGET)
                 .input('R', Items.REDSTONE)
@@ -108,7 +100,6 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .pattern(" R ")
                 .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
                 .offerTo(exporter, ID.ofDS("redstone_latch"));
-
 
         // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FURNACE)
@@ -174,6 +165,8 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
      *  <p> They are new ones and it's more convenient to have them separate to avoid confusion
      *   **/
     private void generateModExclusiveRecipes(RecipeExporter exporter) {
+        // temporarily disable the BWT HCT millstone recipe to not clash with the BWT one
+        disableRecipe(exporter, "bwt_hct", "modern_millstone");
 
         /**
         // Modern (HC) Millstone

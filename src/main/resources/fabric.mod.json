@@ -40,6 +40,9 @@
 	},
 	"suggests": {
 		"another-mod": "*"
-	}
+	},
+
+	"accessWidener" : "btwr_ds.accesswidener"
+
 
 }

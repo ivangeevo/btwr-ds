@@ -56,6 +56,14 @@ public class SS_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
     private void generateShaped(RecipeExporter exporter) {
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CRUDE_TORCH_UNLIT, 1)
+                .input('C', ItemTags.COALS)
+                .input('I', Items.STICK)
+                .pattern("C")
+                .pattern("I")
+                .criterion("has_coal", conditionsFromTag(ItemTags.COALS))
+                .offerTo(exporter, ID.ofSS("crude_torch_unlit"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TORCH_UNLIT, 1)
                 .input('C', BwtItems.nethercoalItem)
                 .input('I', Items.STICK)

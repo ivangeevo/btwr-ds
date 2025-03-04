@@ -228,6 +228,15 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("hand_crank"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
+                .input('B', ModItems.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .pattern("BBB")
+                .pattern("BBB")
+                .pattern("BGB")
+                .criterion("has_stone_brick", conditionsFromItem(ModItems.STONE_BRICK))
+                .offerTo(exporter, ID.ofBWT("mill_stone"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
                 .input('H', BwtItems.concentratedHellfireItem)
                 .input('E', BTWRDS_Items.ELEMENT)
@@ -307,27 +316,16 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
                 .offerTo(exporter, ID.ofBWT("buddy_block"));
 
-        // TODO: Add pulley recipe when Redstone Latch is added as item to BTWR: Core
-        /**
          ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.pulleyBlock)
-         .input('W', BTWR_Items.STONE_BRICK)
+         .input('W', ModItems.STONE_BRICK)
          .input('I', Items.IRON_INGOT)
          .input('G', BwtItems.gearItem)
-         .input('L', BTWR_Items.REDSTONE_LATCH)
+         .input('L', BTWRDS_Items.REDSTONE_LATCH)
          .pattern("WIW")
          .pattern("GLG")
          .pattern("WIW")
-         .criterion("has_redstone_latch", conditionsFromItem(BTWR_Items.REDSTONE_LATCH))
+         .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
          .offerTo(exporter, ID.ofBWT("pulley"));
-         **/
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soulForgeBlock)
-                .input(Items.ANVIL)
-                .input(Items.NETHER_STAR)
-                .criterion("has_anvil", conditionsFromItem(Items.ANVIL))
-                .offerTo(exporter, ID.ofBWT("soul_forge"));
-
-
 
         // Overwritten cauldron recipes
         CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)

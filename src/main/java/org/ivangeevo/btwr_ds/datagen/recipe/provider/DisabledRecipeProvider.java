@@ -30,8 +30,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         //disableAG(exporter, "gunpowder");
         disableRecipe(exporter, "animageddon", "gunpowder");
 
-        /** Sturdy Trees recipes to remove **/
-
     }
 
     protected void removeForVanilla(RecipeExporter exporter) {
@@ -98,6 +96,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         // Crucible
         disableBWT(exporter, "redstone_synthesis_from_gold_ingots");
         disableBWT(exporter, "redstone_synthesis_from_gold_nuggets");
+
+        // Items
+        disableBWT(exporter, "torch_from_nether_coal");
 
         // Blocks
 
