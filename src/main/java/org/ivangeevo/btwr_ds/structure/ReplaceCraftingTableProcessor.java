@@ -1,11 +1,9 @@
 package org.ivangeevo.btwr_ds.structure;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
 import net.minecraft.structure.processor.StructureProcessor;
