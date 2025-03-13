@@ -144,9 +144,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
     protected void removeForVegehenna(RecipeExporter exporter) {
         disableVG(exporter, "flour");
-        disableVG(exporter, "boiled_potato_from_smoking");
         disableVG(exporter, "cocoa_powder");
         disableVG(exporter, "chocolate");
+        disableVG(exporter, "cooked_carrot_from_smelting");
     }
 
     @Override

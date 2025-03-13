@@ -33,7 +33,9 @@ public class VG_RecipeProvider extends FabricRecipeProvider implements RecipePro
     }
 
     private void disableForVegehenna(RecipeExporter exporter) {
+        // cake and pumpkin pie recipes are only cookable in a kiln
         disableVG(exporter,"cake_from_smoking");
+        disableVG(exporter,"pumpkin_pie_from_smoking");
     }
 
     private void overrideForVegehenna(RecipeExporter exporter) {
@@ -76,13 +78,48 @@ public class VG_RecipeProvider extends FabricRecipeProvider implements RecipePro
 
         CookingRecipeJsonBuilder.createSmoking(
                 Ingredient.ofItems(ModItems.BREAD_DOUGH),
-                RecipeCategory.FOOD,
-                Items.BREAD,
-                0.35f,
-                2500)
+                        RecipeCategory.FOOD,
+                        Items.BREAD,
+                        0.35f,
+                        1250)
                 .criterion("has_bread_dough", conditionsFromItem(ModItems.BREAD_DOUGH))
-                .offerTo(exporter, ID.ofVG("bread_from_smoking")
-                );
+                .offerTo(exporter, ID.ofVG("bread_from_smoking"));
+
+        CookingRecipeJsonBuilder.createSmoking(
+                Ingredient.ofItems(Items.POTATO),
+                        RecipeCategory.FOOD,
+                        ModItems.BOILED_POTATO,
+                        0.35f,
+                        1250)
+                .criterion("has_potato", conditionsFromItem(Items.POTATO))
+                .offerTo(exporter, ID.ofVG("boiled_potato_from_smoking"));
+
+        CookingRecipeJsonBuilder.createCampfireCooking(
+                Ingredient.ofItems(Items.CARROT),
+                        RecipeCategory.FOOD,
+                        ModItems.COOKED_CARROT,
+                        0.20f,
+                        6000)
+                .criterion("has_carrot", conditionsFromItem(Items.CARROT))
+                .offerTo(exporter, ID.ofVG("cooked_carrot_from_campfire_cooking"));
+
+        CookingRecipeJsonBuilder.createSmoking(
+                Ingredient.ofItems(Items.CARROT),
+                        RecipeCategory.FOOD,
+                        ModItems.COOKED_CARROT,
+                        0.35f,
+                        1250)
+                .criterion("has_carrot", conditionsFromItem(Items.CARROT))
+                .offerTo(exporter, ID.ofVG("cooked_carrot_from_smoking"));
+
+        CookingRecipeJsonBuilder.createSmoking(
+                        Ingredient.ofItems(ModItems.PASTRY_UNCOOKED_COOKIES),
+                        RecipeCategory.FOOD,
+                        Items.COOKIE,
+                        0.30f,
+                        1250)
+                .criterion("has_pastry_uncooked_cookies", conditionsFromItem(ModItems.PASTRY_UNCOOKED_COOKIES))
+                .offerTo(exporter, ID.ofVG("cookie_from_smoking"));
 
     }
 
