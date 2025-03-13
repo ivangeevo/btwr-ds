@@ -16,7 +16,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected DS_RecipeProvider modRecipeProvider;
     protected BWT_RecipeProvider bwtRecipeProvider;
     protected BTWR_RecipeProvider btwrRecipeProvider;
-    protected Vegehenna_RecipeProvider vegehennaRecipeProvider;
+    protected VG_RecipeProvider vegehennaRecipeProvider;
     protected ST_RecipeProvider sturdyTreesRecipeProvider;
     protected TE_RecipeProvider toughEnvironmentRecipeProvider;
     protected SS_RecipeProvider selfSustainableRecipeProvider;
@@ -28,7 +28,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.modRecipeProvider = new DS_RecipeProvider(output, registriesFuture);
         this.bwtRecipeProvider = new BWT_RecipeProvider(output, registriesFuture);
         this.btwrRecipeProvider = new BTWR_RecipeProvider(output, registriesFuture);
-        this.vegehennaRecipeProvider = new Vegehenna_RecipeProvider(output, registriesFuture);
+        this.vegehennaRecipeProvider = new VG_RecipeProvider(output, registriesFuture);
         this.sturdyTreesRecipeProvider = new ST_RecipeProvider(output, registriesFuture);
         this.toughEnvironmentRecipeProvider = new TE_RecipeProvider(output, registriesFuture);
         this.selfSustainableRecipeProvider = new SS_RecipeProvider(output, registriesFuture);

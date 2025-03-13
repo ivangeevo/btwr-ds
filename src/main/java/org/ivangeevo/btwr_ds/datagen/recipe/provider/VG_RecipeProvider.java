@@ -15,9 +15,9 @@ import org.ivangeevo.vegehenna.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 
-public class Vegehenna_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class VG_RecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
 
-    public Vegehenna_RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public VG_RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
