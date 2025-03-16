@@ -33,9 +33,6 @@ public class VG_RecipeProvider extends FabricRecipeProvider implements RecipePro
     }
 
     private void disableForVegehenna(RecipeExporter exporter) {
-        // cake and pumpkin pie recipes are only cookable in a kiln
-        disableVG(exporter,"cake_from_smoking");
-        disableVG(exporter,"pumpkin_pie_from_smoking");
     }
 
     private void overrideForVegehenna(RecipeExporter exporter) {
@@ -67,7 +64,7 @@ public class VG_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .criterion("flour", conditionsFromItem(BwtItems.flourItem))
                 .offerTo(exporter, ID.ofVG("bread_dough"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_COOKIES)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_COOKIES,4)
                 .input(BwtItems.flourItem)
                 .input(BwtItems.flourItem)
                 .input(BwtItems.flourItem)

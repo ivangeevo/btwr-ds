@@ -14,4 +14,6 @@ public class BTWRDSRecipes {
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(BTWRDSMod.MOD_ID, "disabled"), DISABLED_RECIPE_TYPE);
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(BTWRDSMod.MOD_ID,"disabled"), DISABLED_RECIPE_SERIALIZER);
     }
+
+
 }

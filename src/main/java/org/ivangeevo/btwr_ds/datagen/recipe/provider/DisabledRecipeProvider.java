@@ -47,6 +47,11 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "cookie");
         disableVanilla(exporter, "sugar_from_sugar_cane");
 
+        // cake recipe is only cookable in a kiln (and eventually pumpkin pie when made placeable)
+        disableVanilla(exporter,"cake_from_smoking");
+        //disableVanilla(exporter,"pumpkin_pie_from_smoking");
+
+
         // Remove blocks recipes
         disableVanilla(exporter, "crafting_table");
         disableVanilla(exporter, "chest");
@@ -147,6 +152,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVG(exporter, "cocoa_powder");
         disableVG(exporter, "chocolate");
         disableVG(exporter, "cooked_carrot_from_smelting");
+
     }
 
     @Override

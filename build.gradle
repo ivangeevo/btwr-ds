@@ -62,7 +62,7 @@ dependencies {
 	modImplementation "maven.modrinth:sturdy-trees:${project.sturdy_trees_version}"
 	modImplementation "maven.modrinth:tough-environment:${project.tough_environment_version}"
 	modImplementation "maven.modrinth:better-with-time:${project.bwt_version}"
-	//modImplementation "maven.modrinth:54334animageddon:${project.animageddon_version}"
+	modImplementation "maven.modrinth:54334animageddon:${project.animageddon_version}"
 	modImplementation "maven.modrinth:54334vegehenna:${project.vegehenna_version}"
 
 	//modImplementation files("libs/btwr-core-${project.btwr_core_version}-1.21.1.jar")
@@ -71,7 +71,6 @@ dependencies {
 	//modImplementation files("libs/sturdy_trees-${project.sturdy_trees_version}-1.21.1.jar")
 	//modImplementation files("libs/tough_environment-${project.tough_environment_version}-1.21.1.jar")
 	//modImplementation files("libs/vegehenna-${project.vegehenna_version}-1.21.1.jar")
-	modImplementation files("libs/animageddon-${project.animageddon_version}-1.21.1.jar")
 	modImplementation files("libs/bwt-hc-tweaks-${project.bwt_hct_version}.jar")
 	modImplementation files("libs/piston-packing-${project.piston_packing_version}.jar")
 
