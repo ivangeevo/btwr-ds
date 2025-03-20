@@ -4,6 +4,7 @@ import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
+import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -14,6 +15,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -426,7 +428,39 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
                 .offerTo(exporter, ID.ofMC("soul_torch"));
 
+        this.overrideRecipesForVanillaBeds(exporter);
+    }
 
+    private void overrideRecipesForVanillaBeds(RecipeExporter exporter) {
+        offerBedRecipe(exporter, Items.WHITE_BED, Items.WHITE_WOOL);
+        offerBedRecipe(exporter, Items.ORANGE_BED, Items.ORANGE_WOOL);
+        offerBedRecipe(exporter, Items.MAGENTA_BED, Items.MAGENTA_WOOL);
+        offerBedRecipe(exporter, Items.LIGHT_BLUE_BED, Items.LIGHT_BLUE_WOOL);
+        offerBedRecipe(exporter, Items.YELLOW_BED, Items.YELLOW_WOOL);
+        offerBedRecipe(exporter, Items.LIME_BED, Items.LIME_WOOL);
+        offerBedRecipe(exporter, Items.PINK_BED, Items.PINK_WOOL);
+        offerBedRecipe(exporter, Items.GRAY_BED, Items.GRAY_WOOL);
+        offerBedRecipe(exporter, Items.LIGHT_GRAY_BED, Items.LIGHT_GRAY_WOOL);
+        offerBedRecipe(exporter, Items.CYAN_BED, Items.CYAN_WOOL);
+        offerBedRecipe(exporter, Items.PURPLE_BED, Items.PURPLE_WOOL);
+        offerBedRecipe(exporter, Items.BLUE_BED, Items.BLUE_WOOL);
+        offerBedRecipe(exporter, Items.BROWN_BED, Items.BROWN_WOOL);
+        offerBedRecipe(exporter, Items.GREEN_BED, Items.GREEN_WOOL);
+        offerBedRecipe(exporter, Items.RED_BED, Items.RED_WOOL);
+        offerBedRecipe(exporter, Items.BLACK_BED, Items.BLACK_WOOL);
+    }
+
+    public static void offerBedRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible woolInput) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, output)
+                .input('W', woolInput)
+                .input('#', BwtItems.paddingItem)
+                .input('X', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .pattern(" W ")
+                .pattern("###")
+                .pattern("XXX")
+                .group("bed")
+                .criterion(RecipeProvider.hasItem(woolInput), RecipeProvider.conditionsFromItem(woolInput))
+                .offerTo(exporter);
     }
 
     private void createNuggetRecipes(RecipeExporter exporter) {

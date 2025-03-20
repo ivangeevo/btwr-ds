@@ -168,6 +168,7 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
         // temporarily disable the BWT HCT millstone recipe to not clash with the BWT one
         disableRecipe(exporter, "bwt_hct", "modern_millstone");
 
+
         /**
         // Modern (HC) Millstone
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock)
