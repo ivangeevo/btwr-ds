@@ -1,28 +1,68 @@
 package org.ivangeevo.btwr_ds.datagen;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
+import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.MatchToolLootCondition;
-import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
 public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider
 {
-    public static final LootCondition.Builder WITH_SHOVEL_FULLY_HARVESTS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK));
-    public static final LootCondition.Builder WITHOUT_HOE = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.HOES)).invert();
 
-
-    public DS_BlockLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, registriesFuture);
+    public DS_BlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
     }
 
     @Override
-    public void generate() {}
+    public void generate() {
+        this.overrideVanilla();
+        //this.forMod();
+    }
 
+    private void overrideVanilla() {
+
+        // override bed recipes
+        addDrop(Blocks.WHITE_BED, this.btwBedDrops());
+        addDrop(Blocks.ORANGE_BED, this.btwBedDrops());
+        addDrop(Blocks.MAGENTA_BED, this.btwBedDrops());
+        addDrop(Blocks.LIGHT_BLUE_BED, this.btwBedDrops());
+        addDrop(Blocks.YELLOW_BED, this.btwBedDrops());
+        addDrop(Blocks.LIME_BED, this.btwBedDrops());
+        addDrop(Blocks.PINK_BED, this.btwBedDrops());
+        addDrop(Blocks.GRAY_BED, this.btwBedDrops());
+        addDrop(Blocks.LIGHT_GRAY_BED, this.btwBedDrops());
+        addDrop(Blocks.CYAN_BED, this.btwBedDrops());
+        addDrop(Blocks.PURPLE_BED, this.btwBedDrops());
+        addDrop(Blocks.BLUE_BED, this.btwBedDrops());
+        addDrop(Blocks.BROWN_BED, this.btwBedDrops());
+        addDrop(Blocks.GREEN_BED, this.btwBedDrops());
+        addDrop(Blocks.RED_BED, this.btwBedDrops());
+        addDrop(Blocks.BLACK_BED, this.btwBedDrops());
+
+    }
+
+    public LootTable.Builder btwBedDrops() {
+        return LootTable.builder()
+                .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                        .with(ItemEntry.builder(BwtItems.sawDustItem).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(3.0f)))))
+                .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                        .with(ItemEntry.builder(BwtItems.paddingItem).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0f)))))
+                .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                        .with(ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f))))
+                );
+
+    }
+
+    private void forMod() {
+
+    }
 
 }
