@@ -14,7 +14,7 @@ import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
 import com.bwt.recipes.turntable.TurntableRecipe;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.Maps;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;

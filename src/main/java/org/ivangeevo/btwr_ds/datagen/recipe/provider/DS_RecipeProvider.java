@@ -10,7 +10,7 @@ import com.bwt.recipes.hopper_filter.HopperFilterRecipe;
 import com.bwt.recipes.kiln.KilnRecipe;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
 import com.bwt.recipes.mob_spawner_conversion.MobSpawnerConversionRecipe;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;

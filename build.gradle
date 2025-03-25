@@ -55,7 +55,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// BTWR Shared Library
-	modImplementation "org.ivangeevo:btwr-shared-lib:${project.btwr_sl_version}"
+	//modImplementation "org.ivangeevo:btwr-shared-lib:${project.btwr_sl_version}"
+	modImplementation files("libs/btwr-shared-lib-${project.btwr_sl_version}.jar")
 
 	// BTWR related mods
 	modImplementation "maven.modrinth:btwr-core:${project.btwr_core_version}"

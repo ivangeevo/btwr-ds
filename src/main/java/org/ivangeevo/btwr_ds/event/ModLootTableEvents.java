@@ -1,10 +1,9 @@
 package org.ivangeevo.btwr_ds.event;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.google.common.collect.ImmutableList;
-import ivangeevo.sturdy_trees.SturdyTreesItems;
+import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;

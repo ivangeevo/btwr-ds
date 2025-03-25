@@ -1,5 +1,6 @@
 package org.ivangeevo.btwr_ds;
 
+import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.block.Blocks;
@@ -11,6 +12,7 @@ import net.minecraft.structure.rule.RandomBlockMatchRuleTest;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
+import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +38,8 @@ public class BTWRDSMod implements ModInitializer {
 		BTWRDS_Items.registerAndAddToGroups();
 
 		BTWRDSRecipes.init();
+
+		WorldGenBlockReplacements.register();
 
 		/**
 		//tried removing crafting tables from world gen

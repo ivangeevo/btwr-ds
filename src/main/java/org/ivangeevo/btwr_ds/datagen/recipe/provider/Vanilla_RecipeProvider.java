@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.ivangeevo.self_sustainable.block.ModBlocks;
+import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateVariantMap;
@@ -121,7 +122,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
         for (String woodType : vanillaWoodTypes)
         {
             Identifier resultId = ID.ofMC(woodType + "_door");
-            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.BLOCK.get(resultId))
                     .input('P', grabRaw(woodType + "_planks"))
                     .pattern("PP")
                     .pattern("PP")
@@ -145,18 +146,20 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
 
         // TODO FIX recipe not generating
         /**
-        // Adding boat recipes
+        // Adding boat recipes for each SidingBlock in BwtBlocks.sidingBlocks
         for (String woodType : vanillaWoodTypes) {
             Identifier resultId = ID.ofMC(woodType + "_boat");
-            Block sidingBlock = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_siding"));
             ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, Registries.BLOCK.get(resultId))
-                    .input('S', sidingBlock)
+                    .input('S', grabRaw(ID.ofBWT(woodType + "_planks_siding")))  // Use the current SidingBlock as the 'S' input
                     .pattern("S S")
                     .pattern("SSS")
-                    .criterion("has_planks_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
                     .offerTo(exporter, resultId);
-        }
+         }
          **/
+
+
+
 
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
         for (String woodType : vanillaWoodTypes) {
@@ -461,6 +464,16 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .group("bed")
                 .criterion(RecipeProvider.hasItem(woolInput), RecipeProvider.conditionsFromItem(woolInput))
                 .offerTo(exporter);
+    }
+
+    public static void offerBoatRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, String path) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, output)
+                .input('#', input)
+                .pattern("# #")
+                .pattern("###")
+                .group("boat")
+                .criterion("in_water", RecipeProvider.requireEnteringFluid(Blocks.WATER))
+                .offerTo(exporter, ID.ofMC(path));
     }
 
     private void createNuggetRecipes(RecipeExporter exporter) {
