@@ -21,7 +21,7 @@ public class DS_BlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .forceAddTag(BTWRConventionalTags.Blocks.FARMLAND_BLOCKS);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.WOODEN_MISC_BLOCKS)
-                .add(BwtBlocks.hopperBlock)
+                //.add(BwtBlocks.hopperBlock) - not a good idea
                 .add(BwtBlocks.gearBoxBlock);
 
     }
