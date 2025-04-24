@@ -3,7 +3,11 @@ package org.ivangeevo.btwr_ds;
 import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.structure.processor.*;
@@ -41,6 +45,9 @@ public class BTWRDSMod implements ModInitializer {
 
 		WorldGenBlockReplacements.register();
 
+
+	}
+
 		/**
 		//tried removing crafting tables from world gen
 		//ReplaceCraftingTableProcessor.register();
@@ -61,7 +68,5 @@ public class BTWRDSMod implements ModInitializer {
 			}
 		});
 		 **/
-	}
-
-
 }
+

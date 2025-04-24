@@ -50,8 +50,8 @@ public class TE_RecipeProvider extends FabricRecipeProvider implements RecipePro
         /** Non-Loose blocks packing **/
         offerPacking(Blocks.SANDSTONE, Items.SAND, 2, exporter);
         offerPacking(ModBlocks.DIRT_PACKED, ModBlocks.DIRT_LOOSE.asItem(), 2, exporter);
-        offerPacking(ModBlocks.CLAY_BLOCK, ModItems.PILE_CLAY, 18, exporter);
-        offerPacking(ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, 9, exporter);
+        offerPacking(Blocks.CLAY, ModItems.PILE_CLAY, 18, exporter);
+        offerPacking(Blocks.CLAY, Items.CLAY_BALL, 9, exporter);
 
         /** Loose blocks packing **/
         offerPacking(ModBlocks.DIRT_LOOSE, ModItems.PILE_DIRT, 8, exporter);

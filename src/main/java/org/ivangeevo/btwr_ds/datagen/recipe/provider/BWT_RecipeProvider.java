@@ -353,7 +353,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
                 .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
                 .offerTo(exporter, ID.ofBWT("composite_bow"));
 
-        TurntableRecipe.JsonBuilder.create(ModBlocks.CLAY_BLOCK, BwtBlocks.unfiredCrucibleBlock)
+        TurntableRecipe.JsonBuilder.create(Blocks.CLAY, BwtBlocks.unfiredCrucibleBlock)
                 .drops(Items.CLAY_BALL).offerTo(exporter, ID.ofBWT("turntable_clay"));
 
         // Stoked crucible smelting recipes
@@ -460,7 +460,7 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredVaseBlock).drops(BwtBlocks.vaseBlocks.get(DyeColor.WHITE)).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredUrnBlock).drops(BwtBlocks.urnBlock).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredMouldBlock).drops(BwtItems.mouldItem).offerTo(exporter);
-        KilnRecipe.JsonBuilder.create(ModBlocks.CLAY_BLOCK).drops(Blocks.TERRACOTTA).offerTo(exporter);
+        KilnRecipe.JsonBuilder.create(Blocks.CLAY).drops(Blocks.TERRACOTTA).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.WHITE_TERRACOTTA).drops(Blocks.WHITE_GLAZED_TERRACOTTA).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.LIGHT_GRAY_TERRACOTTA).drops(Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.GRAY_TERRACOTTA).drops(Blocks.GRAY_GLAZED_TERRACOTTA).offerTo(exporter);
