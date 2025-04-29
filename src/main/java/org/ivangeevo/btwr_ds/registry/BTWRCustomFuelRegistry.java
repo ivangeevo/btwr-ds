@@ -25,7 +25,7 @@ import java.util.Map;
 /** A provider class for a fully custom set fuel map;
  *  most likely incompatible with other mods that add to fuel with FuelRegistry
  *  to the{@link AbstractFurnaceBlockEntity#createFuelTimeMap()} **/
-public class OGOGCustomFuelRegistry
+public class BTWRCustomFuelRegistry
 {
 
     public static Map<Item, Integer> getMap() {

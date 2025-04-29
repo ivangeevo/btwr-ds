@@ -9,37 +9,44 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import org.ivangeevo.vegehenna.item.ModItems;
-import org.jetbrains.annotations.Nullable;
 import tetro48.system.GranularHunger;
 
 public class FoodComponentModifier {
 
-   private static final boolean isGranularHungerLoaded = FabricLoader.getInstance().isModLoaded("granular-hunger");
+   private static final boolean isBTWRDSLoaded = FabricLoader.getInstance().isModLoaded("btwr_ds");
 
     /**
-     * Registers a listener to modify the food components of existing food items.
+     * Registers a listener to modify the food components of food items.
      */
     public static void register() {
-        // require granular hunger
-        if (!isGranularHungerLoaded) {
-            return;
-        }
-        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyExistingFoodComponents);
+
+        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyFoodComponents);
+
     }
 
-    private static void registerNewFoods() {
-        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::setNewFoodComponents);
-    }
+    // adds a component to specified food item with granular hunger value
+    private static void addGranular(Item foodItem, int value, float saturation) {
+        DefaultItemComponentEvents.MODIFY.register(context -> {
+            context.modify(foodItem, builder -> {
+                builder.put(DataComponentTypes.FOOD, null);
+                builder.add(DataComponentTypes.FOOD, new FoodComponent(0));
+            });
+            context.modify(Items.DIAMOND_SWORD, builder -> {
+                builder.add(GranularHunger.HUNGER_PIP_COMPONENT, value);
+            });
 
-    // New items that have food components attached
-    private static void setNewFoodComponents(DefaultItemComponentEvents.ModifyContext context) {
-        context.modify(Items.BROWN_MUSHROOM, builder -> modifyEntry(builder, replaceWith(1).build()));
+        });
     }
 
     // Method to modify components
-    private static void modifyExistingFoodComponents(DefaultItemComponentEvents.ModifyContext context) {
+    private static void modifyFoodComponents(DefaultItemComponentEvents.ModifyContext context) {
+        context.modify(Items.MELON_SLICE, builder -> modifyEntry(builder, replaceWith(1).build()));
+        context.modify(Items.CHICKEN, builder -> modifyEntry(builder, replaceWith(3).statusEffect(addHungerEffect(1200, 2), 0.3F).statusEffect(addSlownessEffect(1000, 2), 0.1F).build()));
+
+        /**
         context.modify(Items.GOLDEN_APPLE, builder -> modifyEntry(builder, replaceWith(1).statusEffect(addRegenerationEffect(100, 0), 1F).statusEffect(addAbsorptionEffect(2400, 0), 1F).alwaysEdible().build()));
         context.modify(Items.BREAD, builder -> modifyEntry(builder, replaceWith(3).build()));
         context.modify(Items.DRIED_KELP, builder -> modifyEntry(builder, replaceWith(0).build()));
@@ -114,6 +121,7 @@ public class FoodComponentModifier {
             context.modify(BwtItems.cookedWolfChopItem, builder -> modifyEntry(builder, replaceWith(5).build()));
             context.modify(BwtItems.donutItem, builder -> modifyEntry(builder, new FoodComponent.Builder().nutrition(1).snack().saturationModifier(0f).build()));
         }
+         **/
 
     }
 
