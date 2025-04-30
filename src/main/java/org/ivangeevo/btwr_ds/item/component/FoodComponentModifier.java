@@ -12,6 +12,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import org.ivangeevo.vegehenna.item.ModItems;
 
+/** Used to modify all food items to work for BTWR **/
 public class FoodComponentModifier {
 
     /**
@@ -21,11 +22,13 @@ public class FoodComponentModifier {
         // register normal food modifications
         DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyNonGranularFoods);
 
-        // register all granular food entries
+        // register all granular food entries/modifications
         GranularFoodComponentRegistry.registerFoods();
     }
 
-    // Method to modify components
+    private static void modifyGranularFoods() {}
+
+    // Method to modify vanilla components
     private static void modifyNonGranularFoods(DefaultItemComponentEvents.ModifyContext context) {
         context.modify(Items.ENCHANTED_GOLDEN_APPLE, builder -> modifyEntry(builder, BTWRFoodComponents.ENCHANTED_GOLDEN_APPLE));
         context.modify(Items.GOLDEN_APPLE, builder -> modifyEntry(builder, BTWRFoodComponents.GOLDEN_APPLE));
@@ -87,7 +90,7 @@ public class FoodComponentModifier {
 
         if (FabricLoader.getInstance().isModLoaded("vegehenna")) {
             context.modify(ModItems.BOILED_POTATO, builder -> modifyEntry(builder, BTWRFoodComponents.BOILED_POTATO));
-            context.modify(ModItems.COOKED_CARROT, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_CARROT);
+            context.modify(ModItems.COOKED_CARROT, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_CARROT));
             context.modify(ModItems.CHOCOLATE, builder -> modifyEntry(builder, BTWRFoodComponents.CHOCOLATE));
             context.modify(ModItems.CHOCOLATE_MILK, builder -> modifyEntry(builder, BTWRFoodComponents.CHOCOLATE_MILK));
         }
@@ -95,7 +98,7 @@ public class FoodComponentModifier {
         if (FabricLoader.getInstance().isModLoaded("bwt")) {
             context.modify(BwtItems.rawEggItem, builder -> modifyEntry(builder, BTWRFoodComponents.RAW_EGG));
             context.modify(BwtItems.wolfChopItem, builder -> modifyEntry(builder, BTWRFoodComponents.WOLFCHOP));
-            context.modify(BwtItems.friedEggItem, builder -> modifyEntry(builder, BTWRFoodComponents.FRIED_EGG);
+            context.modify(BwtItems.friedEggItem, builder -> modifyEntry(builder, BTWRFoodComponents.FRIED_EGG));
             context.modify(BwtItems.poachedEggItem, builder -> modifyEntry(builder, BTWRFoodComponents.POACHED_EGG));
             context.modify(BwtItems.cookedWolfChopItem, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_WOLFCHOP));
             context.modify(BwtItems.donutItem, builder -> modifyEntry(builder, BTWRFoodComponents.DONUT));
@@ -106,14 +109,6 @@ public class FoodComponentModifier {
     // Directly modify the builder with access widening the put method (it was reflection before)
     private static void modifyEntry(ComponentMap.Builder builder, FoodComponent foodComponent) {
         builder.put(DataComponentTypes.FOOD, foodComponent);
-    }
-
-    private static FoodComponent.Builder replaceWith(int hunger, float saturation) {
-        return new FoodComponent.Builder().nutrition(hunger).saturationModifier(saturation);
-    }
-
-    private static FoodComponent.Builder createStew(int hunger) {
-        return (new FoodComponent.Builder()).nutrition(hunger).saturationModifier(0f).usingConvertsTo(Items.BOWL);
     }
 
     private static StatusEffectInstance addAbsorptionEffect(int dur, int amp) {

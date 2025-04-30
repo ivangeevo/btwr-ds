@@ -19,6 +19,9 @@ public class GranularFoodComponentRegistry {
     public static void registerFoods() {
 
         // Define all granular food items
+        // 1 pip = 1 hunger (out of 60)
+        // 3 pips = 0.5 shank (1 hunger from original mc values)
+        // 6 pips = 1 shank
         add(Items.BROWN_MUSHROOM, 1, BTWRFoodComponents.Granular.BROWN_MUSHROOM);
         add(Items.RED_MUSHROOM, 1, BTWRFoodComponents.Granular.RED_MUSHROOM);
         add(Items.PUMPKIN_SEEDS, 1, BTWRFoodComponents.Granular.PUMPKIN_SEEDS);

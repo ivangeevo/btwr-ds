@@ -4,7 +4,6 @@ import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
-import org.ivangeevo.btwr_ds.item.component.GranularFoodComponentRegistry;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
 import org.slf4j.Logger;
