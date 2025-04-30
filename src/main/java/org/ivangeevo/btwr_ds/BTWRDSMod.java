@@ -3,7 +3,8 @@ package org.ivangeevo.btwr_ds;
 import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.ivangeevo.btwr_ds.item.component.NewFoodComponentModifier;
+import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
+import org.ivangeevo.btwr_ds.item.component.GranularFoodComponentRegistry;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class BTWRDSMod implements ModInitializer {
 		BTWRDS_Items.registerAndAddToGroups();
 		BTWRDSRecipes.init();
 		WorldGenBlockReplacements.register();
-		NewFoodComponentModifier.register();
+		FoodComponentModifier.register();
 	}
 
 

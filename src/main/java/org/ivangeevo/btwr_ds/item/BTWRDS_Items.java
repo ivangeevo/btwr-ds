@@ -11,17 +11,11 @@ import org.ivangeevo.btwr_ds.BTWRDSMod;
 public class BTWRDS_Items {
 
     public static final Item BARK_BLOOD_WOOD = registerItem("bark_blood_wood", new Item(new Item.Settings()));
-
     public static final Item ENDER_SLAG = registerItem("ender_slag", new Item(new Item.Settings()));
-
     public static final Item SOUL_FLUX = registerItem("soul_flux", new Item(new Item.Settings()));
-
     public static final Item BRIMSTONE = registerItem("brimstone", new Item(new Item.Settings()));
-
     public static final Item ELEMENT = registerItem("element", new Item(new Item.Settings()));
-
     public static final Item REDSTONE_LATCH = registerItem("redstone_latch", new Item(new Item.Settings()));
-
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(BTWRDSMod.MOD_ID, name), item);
@@ -33,15 +27,14 @@ public class BTWRDS_Items {
 
         // and add items to item groups
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-            entries.add(BTWRDS_Items.BARK_BLOOD_WOOD);
-            entries.add(BTWRDS_Items.ENDER_SLAG);
-            entries.add(BTWRDS_Items.SOUL_FLUX);
-            entries.add(BTWRDS_Items.BRIMSTONE);
-
+            entries.add(BARK_BLOOD_WOOD);
+            entries.add(ENDER_SLAG);
+            entries.add(SOUL_FLUX);
+            entries.add(BRIMSTONE);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
-            entries.add(BTWRDS_Items.ELEMENT);
+            entries.add(ELEMENT);
         });
     }
 
