@@ -15,5 +15,4 @@ public interface ItemEntryAccessor
 {
     @Accessor RegistryEntry<Item> getItem();
     @Accessor @Mutable void setItem(RegistryEntry<Item> item);
-    @Accessor("conditions") List<LootCondition> getConditions();
 }
