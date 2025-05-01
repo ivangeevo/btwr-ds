@@ -6,7 +6,7 @@
     "AbstractBlock$AbstractBlockStateMixin",
     "AbstractFurnaceBlockEntityMixin",
     "ItemEntryAccessor",
-    "ItemMixin",
+    "ItemStackMixin",
     "LootPoolBuilderAccessor"
   ],
   "injectors": {

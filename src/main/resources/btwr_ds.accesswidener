@@ -3,3 +3,5 @@ accessWidener v2 named
 accessible field net/minecraft/structure/processor/StructureProcessorList list Ljava/util/List;
 mutable field net/minecraft/structure/processor/StructureProcessorList list Ljava/util/List;
 accessible method net/minecraft/component/ComponentMap$Builder put (Lnet/minecraft/component/ComponentType;Ljava/lang/Object;)V
+mutable	field	net/minecraft/resource/ResourcePackManager	providers	Ljava/util/Set;
+accessible	field	net/minecraft/resource/ResourcePackManager	providers	Ljava/util/Set;

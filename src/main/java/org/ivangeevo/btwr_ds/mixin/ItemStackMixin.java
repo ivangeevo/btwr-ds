@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemStack.class)
-public abstract class ItemMixin {
+public abstract class ItemStackMixin
+{
 
     @Shadow public abstract ComponentMap getComponents();
 
@@ -31,4 +32,5 @@ public abstract class ItemMixin {
     private boolean isMiscSetCountItem(ItemStack stack) {
         return stack.isOf(Items.BONE) || stack.isOf(Items.ROTTEN_FLESH);
     }
+
 }

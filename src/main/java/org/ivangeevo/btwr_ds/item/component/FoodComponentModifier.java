@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import org.ivangeevo.vegehenna.item.ModItems;
+import tetro48.system.GranularHunger;
 
 /** Used to modify all food items to work for BTWR **/
 public class FoodComponentModifier {
@@ -23,10 +24,21 @@ public class FoodComponentModifier {
         DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyNonGranularFoods);
 
         // register all granular food entries/modifications
-        GranularFoodComponentRegistry.registerFoods();
+        //GranularFoodComponentRegistry.registerFoods();
+        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyGranularFoods);
     }
 
-    private static void modifyGranularFoods() {}
+    // Define all granular food items
+    // 1 pip = 1 hunger (out of 60)
+    // 3 pips = 0.5 shank (1 hunger from original mc values)
+    // 6 pips = 1 shank
+    private static void modifyGranularFoods(DefaultItemComponentEvents.ModifyContext context) {
+        context.modify(Items.BROWN_MUSHROOM, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.BROWN_MUSHROOM));
+        context.modify(Items.RED_MUSHROOM, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.RED_MUSHROOM));
+        context.modify(Items.PUMPKIN_SEEDS, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.PUMPKIN_SEEDS));
+        context.modify(Items.COCOA_BEANS, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.COCOA_BEANS));
+        context.modify(Items.MELON_SLICE, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.MELON_SLICE));
+    }
 
     // Method to modify vanilla components
     private static void modifyNonGranularFoods(DefaultItemComponentEvents.ModifyContext context) {
@@ -109,6 +121,13 @@ public class FoodComponentModifier {
     // Directly modify the builder with access widening the put method (it was reflection before)
     private static void modifyEntry(ComponentMap.Builder builder, FoodComponent foodComponent) {
         builder.put(DataComponentTypes.FOOD, foodComponent);
+    }
+
+    private static void modifyEntryGranular(ComponentMap.Builder builder, int hungerPips, FoodComponent foodComponent) {
+        // Set the new food component
+        builder.put(DataComponentTypes.FOOD, foodComponent);
+        // Add the hunger pip component with its lesser nutrition value
+        builder.add(GranularHunger.HUNGER_PIP_COMPONENT, hungerPips);
     }
 
     private static StatusEffectInstance addAbsorptionEffect(int dur, int amp) {

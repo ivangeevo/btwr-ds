@@ -17,7 +17,8 @@ import java.util.List;
 @Mixin(ItemStack.class)
 public abstract class ItemStackComponentTooltipMixin {
 
-    @Inject(method = "getTooltip", at = @At("TAIL"))
+    // it works!
+    //@Inject(method = "getTooltip", at = @At("TAIL"))
     private void appendComponentDebug(Item.TooltipContext context, @Nullable PlayerEntity player, TooltipType type,
                                       CallbackInfoReturnable<List<Text>> cir) {
 

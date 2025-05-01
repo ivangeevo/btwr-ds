@@ -64,6 +64,12 @@ dependencies {
 	modImplementation "maven.modrinth:54334animageddon:${project.animageddon_version}"
 	modImplementation "maven.modrinth:54334vegehenna:${project.vegehenna_version}"
 	modImplementation "maven.modrinth:granular-hunger:${project.granular_hunger_version}"
+	modImplementation "maven.modrinth:immovens:${project.immovens_version}"
+	modImplementation "maven.modrinth:bwt-hc-tweaks:${project.bwt_hct_version}"
+	modImplementation "maven.modrinth:bind:${project.bind_version}"
+
+
+
 
 	//modImplementation files("libs/btwr-core-${project.btwr_core_version}-1.21.1.jar")
 	modImplementation files("libs/self_sustainable-${project.self_sustainable_version}-1.21.1.jar")
@@ -71,7 +77,7 @@ dependencies {
 	//modImplementation files("libs/sturdy_trees-${project.sturdy_trees_version}-1.21.1.jar")
 	//modImplementation files("libs/tough_environment-${project.tough_environment_version}-1.21.1.jar")
 	//modImplementation files("libs/vegehenna-${project.vegehenna_version}-1.21.1.jar")
-	modImplementation files("libs/bwt-hc-tweaks-${project.bwt_hct_version}.jar")
+	//modImplementation files("libs/bwt-hc-tweaks-${project.bwt_hct_version}.jar")
 	modImplementation files("libs/piston-packing-${project.piston_packing_version}.jar")
 
 	// EMI
@@ -85,7 +91,6 @@ dependencies {
 
 	// Mod Menu
 	modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
-
 
 }
 

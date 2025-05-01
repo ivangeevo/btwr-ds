@@ -35,6 +35,7 @@ public class BTWRDS_Items {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             entries.add(ELEMENT);
+            entries.add(REDSTONE_LATCH);
         });
     }
 
