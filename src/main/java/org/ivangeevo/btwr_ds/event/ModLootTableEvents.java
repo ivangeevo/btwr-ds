@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.event;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.bwt.items.BwtItems;
 import com.google.common.collect.ImmutableList;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
@@ -9,15 +8,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.*;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootPoolEntry;
-import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.mixin.ItemEntryAccessor;
 import org.ivangeevo.btwr_ds.mixin.LootPoolBuilderAccessor;
@@ -26,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModLootTableEvents {
-    private static final String ST = "sturdy_trees";
-    private static final IntProperty VARIATION = IntProperty.of("variation", 0, 4);
-    public static final LootCondition.Builder WITH_SHOVEL_FULLY_HARVESTS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK));
-    public static final LootCondition.Builder WITHOUT_HOE = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.HOES)).invert();
 
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
@@ -38,13 +29,12 @@ public class ModLootTableEvents {
     private static final String[] overworldToughWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"};
 
-
     // Register loot table changes
     public static void initialize() {
         replaceSawDustItemDrops();
         replacePlankItemDrops();
 
-        // Change the wheat seeds dropped by left click breaking grass block with hoe (tough environment change)
+        // Change the wheat seeds dropped by left click breaking grass block with hoe (btwr:core change)
         // to drop hemp seeds instead.
         modifySpecificItem(Blocks.GRASS_BLOCK.getLootTableKey(), Items.WHEAT_SEEDS, BwtItems.hempSeedsItem);
     }
@@ -99,40 +89,8 @@ public class ModLootTableEvents {
         });
     }
 
+    private static class ID {
 
-    private static List<Identifier> getStrippedLogsIDs() {
-        List<Identifier> strippedLogs = new ArrayList<>();
-        for (String woodType : overworldToughWoodTypes) {
-            strippedLogs.add(Identifier.of(ST, "log_" + woodType + "_stripped"));
-        }
-
-        return strippedLogs;
-    }
-
-    private static List<Identifier> getSpikeLogsIDs() {
-        List<Identifier> list = new ArrayList<>();
-
-        for (String woodType : overworldToughWoodTypes) {
-            list.add(Identifier.of(ST, "log_" + woodType + "_spike_up"));
-            list.add(Identifier.of(ST, "log_" + woodType + "_spike_down"));
-        }
-
-        return list;
-    }
-
-    private static List<Identifier> getChewedLogsIDs() {
-        List<Identifier> list = new ArrayList<>();
-
-        for (String woodType : overworldToughWoodTypes) {
-            list.add(Identifier.of(ST, "log_" + woodType + "_chewed"));
-        }
-
-        return list;
-    }
-
-
-    private static class ID
-    {
         static Identifier ofMC(String item) {
             return Identifier.ofVanilla(item);
         }
