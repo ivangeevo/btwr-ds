@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.*;
 
 @Mixin(value = MinecraftServer.class, priority = 1001)
-public abstract class ServerDatapackMixin {
+public abstract class MinecraftServerMixin {
 
     @Inject(method = "loadDataPacks(Lnet/minecraft/resource/ResourcePackManager;Ljava/util/Collection;Lnet/minecraft/resource/featuretoggle/FeatureSet;Z)Lnet/minecraft/resource/DataConfiguration;", at = @At("HEAD"))
     private static void onLoadDataPacks(ResourcePackManager manager, Collection<String> defaultPacks,

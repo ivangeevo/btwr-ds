@@ -11,8 +11,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.List;
 
 @Mixin(ItemEntry.class)
-public interface ItemEntryAccessor
-{
+public interface ItemEntryAccessor {
+
     @Accessor RegistryEntry<Item> getItem();
     @Accessor @Mutable void setItem(RegistryEntry<Item> item);
+
 }

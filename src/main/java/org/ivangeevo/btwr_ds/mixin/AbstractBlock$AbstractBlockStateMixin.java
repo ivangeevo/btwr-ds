@@ -21,8 +21,7 @@ import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.MakeAsFallingBlock;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
-public abstract class AbstractBlock$AbstractBlockStateMixin implements LandingBlock
-{
+public abstract class AbstractBlock$AbstractBlockStateMixin implements LandingBlock {
 
     @Shadow public abstract Block getBlock();
 

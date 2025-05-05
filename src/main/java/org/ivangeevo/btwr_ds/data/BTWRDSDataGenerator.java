@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds;
+package org.ivangeevo.btwr_ds.data;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

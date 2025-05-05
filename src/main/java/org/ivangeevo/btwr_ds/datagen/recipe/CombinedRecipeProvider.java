@@ -57,4 +57,5 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected Identifier getRecipeIdentifier(Identifier identifier) {
         return identifier;
     }
+
 }

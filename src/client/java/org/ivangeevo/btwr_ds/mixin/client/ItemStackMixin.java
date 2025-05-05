@@ -8,16 +8,14 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
 @Mixin(ItemStack.class)
-public abstract class ItemStackComponentTooltipMixin {
+public abstract class ItemStackMixin {
 
-    // it works!
+    // Shows detailed data for the components of an itemstack in its item's tooltip(slightly laggy, but mostly used it for debugging)
     //@Inject(method = "getTooltip", at = @At("TAIL"))
     private void appendComponentDebug(Item.TooltipContext context, @Nullable PlayerEntity player, TooltipType type,
                                       CallbackInfoReturnable<List<Text>> cir) {
@@ -32,12 +30,10 @@ public abstract class ItemStackComponentTooltipMixin {
         if (components.isEmpty()) return;
 
         // Add components to the tooltip
-        //tooltip.add(Text.literal("§8[Components:"));
         components.forEach(component -> {
             // Assuming component is an object with a value() method for its type and toString() method for its value
             tooltip.add(Text.literal("§8 - " + component.getClass().getSimpleName() + ": " + component.toString()));
         });
-        //tooltip.add(Text.literal("§8]"));
     }
 }
 

@@ -22,7 +22,7 @@
 			"org.ivangeevo.btwr_ds.BTWRDSClient"
 		],
 		"fabric-datagen": [
-			"org.ivangeevo.btwr_ds.BTWRDSDataGenerator"
+			"org.ivangeevo.btwr_ds.data.BTWRDSDataGenerator"
 		]
 	},
 	"mixins": [

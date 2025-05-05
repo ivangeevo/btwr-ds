@@ -25,8 +25,7 @@ import java.util.Map;
 /** A provider class for a fully custom set fuel map;
  *  most likely incompatible with other mods that add to fuel with FuelRegistry
  *  to the{@link AbstractFurnaceBlockEntity#createFuelTimeMap()} **/
-public class BTWRCustomFuelRegistry
-{
+public class BTWRCustomFuelRegistry {
 
     public static Map<Item, Integer> getMap() {
         Map<Item, Integer> tempMap = Maps.newLinkedHashMap();
@@ -212,7 +211,7 @@ public class BTWRCustomFuelRegistry
 
         // TODO: Reconsider the values below up to MANGROVE ROOTS
         addFuel(tempMap, Items.CROSSBOW, 300);
-        addFuel(tempMap, Blocks.BAMBOO, 50);
+        addFuel(tempMap, Blocks.BAMBOO, 15);
         addFuel(tempMap, Blocks.DEAD_BUSH, 100);
         addFuel(tempMap, Blocks.SCAFFOLDING, 50);
         addFuel(tempMap, Blocks.LOOM, 300);
@@ -232,12 +231,14 @@ public class BTWRCustomFuelRegistry
 
         // New added fuel items
         addFuel(tempMap, Items.FEATHER, 15);
+        addFuel(tempMap, Items.SUGAR_CANE, 20);
+
         addFuel(tempMap, ItemTags.SMALL_FLOWERS, 15);
         addFuel(tempMap, ItemTags.TALL_FLOWERS, 25);
 
         addFuel(tempMap, SturdyTreesTags.Items.BARK_ITEMS, 25);
         addFuel(tempMap, BTWRDS_Items.BARK_BLOOD_WOOD, 25);
-
+        addFuel(tempMap, org.ivangeevo.vegehenna.item.ModItems.SUGAR_CANE_ROOTS, 20);
 
         addBwtFuels(tempMap);
 
@@ -279,7 +280,6 @@ public class BTWRCustomFuelRegistry
 
     }
 
-
     private static boolean isNonFlammableWood(Item item) {
         return item.getDefaultStack().getRegistryEntry().isIn(ItemTags.NON_FLAMMABLE_WOOD);
     }
@@ -303,4 +303,5 @@ public class BTWRCustomFuelRegistry
             fuelTimes.put(item2, fuelTime);
         }
     }
+
 }

@@ -153,4 +153,5 @@ public class FoodComponentModifier {
     private static StatusEffectInstance addPoisonEffect(int dur, int amp) {
         return new StatusEffectInstance(StatusEffects.POISON, dur, amp, false, false, false);
     }
+
 }
