@@ -66,7 +66,7 @@ dependencies {
 	modImplementation "maven.modrinth:granular-hunger:${project.granular_hunger_version}"
 	modImplementation "maven.modrinth:immovens:${project.immovens_version}"
 	modImplementation "maven.modrinth:bwt-hc-tweaks:${project.bwt_hct_version}"
-	modImplementation "maven.modrinth:bind:${project.bind_version}"
+	//modImplementation "maven.modrinth:bind:${project.bind_version}"
 
 
 

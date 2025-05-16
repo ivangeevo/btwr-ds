@@ -54,7 +54,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
         // Remove blocks recipes
         disableVanilla(exporter, "crafting_table");
-        disableVanilla(exporter, "chest");
+        //disableVanilla(exporter, "chest");
         disableVanilla(exporter, "furnace");
 
 

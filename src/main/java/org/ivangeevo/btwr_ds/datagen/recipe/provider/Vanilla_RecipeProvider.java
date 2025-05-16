@@ -54,6 +54,14 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
     private void overrideForVanilla(RecipeExporter exporter) {
 
         // Blocks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHEST)
+                .input('W', BwtBlocks.wickerBlock)
+                .pattern("WWW")
+                .pattern("W W")
+                .pattern("WWW")
+                .criterion("has_wicker_block", RecipeProvider.conditionsFromItem(BwtBlocks.wickerBlock))
+                .offerTo(exporter, ID.ofMC("chest"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHAIN,4)
                 .input('N', Items.IRON_NUGGET)
                 .input('I', Items.IRON_INGOT)
@@ -464,16 +472,6 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .group("bed")
                 .criterion(RecipeProvider.hasItem(woolInput), RecipeProvider.conditionsFromItem(woolInput))
                 .offerTo(exporter);
-    }
-
-    public static void offerBoatRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, String path) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, output)
-                .input('#', input)
-                .pattern("# #")
-                .pattern("###")
-                .group("boat")
-                .criterion("in_water", RecipeProvider.requireEnteringFluid(Blocks.WATER))
-                .offerTo(exporter, ID.ofMC(path));
     }
 
     private void createNuggetRecipes(RecipeExporter exporter) {

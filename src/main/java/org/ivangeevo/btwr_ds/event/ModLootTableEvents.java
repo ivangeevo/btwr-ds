@@ -41,7 +41,7 @@ public class ModLootTableEvents {
 
     private static void replaceSawDustItemDrops() {
         for (String woodType : overworldToughWoodTypes) {
-            String[] logTypes = new String[]{"stripped", "chewed", "spike_up", "spike_down"};
+            String[] logTypes = new String[]{"stripped", "chewed", "spike"};
 
             for (String logType : logTypes) {
                 RegistryKey<LootTable> key = RegistryKey.of(
