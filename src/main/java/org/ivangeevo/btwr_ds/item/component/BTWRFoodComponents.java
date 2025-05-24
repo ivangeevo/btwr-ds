@@ -88,7 +88,7 @@ public class BTWRFoodComponents {
     public static final FoodComponent FRIED_EGG = new FoodComponent.Builder().nutrition(3).saturationModifier(0.25f).build();
     public static final FoodComponent POACHED_EGG = new FoodComponent.Builder().nutrition(3).saturationModifier(0.25f).build();
     public static final FoodComponent COOKED_WOLFCHOP = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).build();
-    public static final FoodComponent DONUT = new FoodComponent.Builder().nutrition(1).saturationModifier(0.5f).snack().build();
+    public static final FoodComponent DONUT = new FoodComponent.Builder().nutrition(1).saturationModifier(0.5f).alwaysEdible().build();
 
     private static StatusEffectInstance addPoisonEffect(int dur, int amp) {
         return new StatusEffectInstance(StatusEffects.POISON, dur, amp);

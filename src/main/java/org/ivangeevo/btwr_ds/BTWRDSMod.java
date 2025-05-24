@@ -53,7 +53,7 @@ public class BTWRDSMod implements ModInitializer {
 		FoodComponentModifier.register();
 
 		// Registers all tilling based interactions/modifications
-		BlockTillingManager.registerNormalTillable();
+		//BlockTillingManager.registerNormalTillable();
 	}
 
 	public void loadSettings() {
