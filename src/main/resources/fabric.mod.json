@@ -19,10 +19,13 @@
 			"org.ivangeevo.btwr_ds.BTWRDSMod"
 		],
 		"client": [
-			"org.ivangeevo.btwr_ds.BTWRDSClient"
+			"org.ivangeevo.btwr_ds.BTWRDSModClient"
 		],
 		"fabric-datagen": [
 			"org.ivangeevo.btwr_ds.data.BTWRDSDataGenerator"
+		],
+		"modmenu": [
+			"org.ivangeevo.btwr_ds.config.BTWRDSConfig"
 		]
 	},
 	"mixins": [

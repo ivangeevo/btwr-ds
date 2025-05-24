@@ -5,6 +5,8 @@
   "mixins": [
     "AbstractBlock$AbstractBlockStateMixin",
     "AbstractFurnaceBlockEntityMixin",
+    "BlockMixin",
+    "HoeItemMixin",
     "ItemEntryAccessor",
     "ItemStackMixin",
     "LootPoolBuilderAccessor"
