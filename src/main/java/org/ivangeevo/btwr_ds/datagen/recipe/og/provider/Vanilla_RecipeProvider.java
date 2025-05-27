@@ -1,18 +1,15 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.provider;
+package org.ivangeevo.btwr_ds.datagen.recipe.og.provider;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
-import com.bwt.tags.BwtBlockTags;
 import com.bwt.tags.BwtItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.ivangeevo.self_sustainable.block.ModBlocks;
-import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
@@ -22,7 +19,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -97,6 +93,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_bone", conditionsFromItem(Items.BONE))
                 .offerTo(exporter, ID.ofMC("bone_block"));
 
+        /**
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Blocks.BLAST_FURNACE)
                 .input('N', Items.IRON_NUGGET)
                 .input('F', Items.FURNACE)
@@ -106,6 +103,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
                 .pattern("SNS")
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, ID.ofMC("blast_furnace"));
+         **/
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER, 2)
                 .input('S', Items.STICK)
@@ -389,7 +387,7 @@ public class Vanilla_RecipeProvider extends FabricRecipeProvider implements Reci
 
         // Cooking recipes
         // TODO: Remove the nugget recipes when we add the Brick oven from Self Sustainable
-        this.createNuggetRecipes(exporter);
+        //this.createNuggetRecipes(exporter);
 
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModBlocks.BRICK_UNFIRED), RecipeCategory.BUILDING_BLOCKS,
                 Items.BRICK, 0.10F, 10000).criterion("has_brick_unfired", conditionsFromItem(ModBlocks.BRICK_UNFIRED)).offerTo(exporter, ID.ofMC("brick"));

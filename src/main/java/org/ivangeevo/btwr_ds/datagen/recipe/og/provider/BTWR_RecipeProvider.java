@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.provider;
+package org.ivangeevo.btwr_ds.datagen.recipe.og.provider;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
@@ -61,7 +61,6 @@ public class BTWR_RecipeProvider extends FabricRecipeProvider implements RecipeP
                 .ingredient(Items.CARROT)
                 .criterion("has_carrot", conditionsFromItem(Items.CARROT))
                 .offerTo(exporter, ID.ofBTWR("cooked_carrot_from_cauldron"));
-
 
         CauldronRecipe.JsonBuilder.create().result(BTWR_Items.CHOWDER,2)
                 .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)

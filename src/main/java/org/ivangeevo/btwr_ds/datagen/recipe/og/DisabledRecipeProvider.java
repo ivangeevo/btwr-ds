@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.provider;
+package org.ivangeevo.btwr_ds.datagen.recipe.og;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -20,6 +20,10 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
     @Override
     public void generate(RecipeExporter exporter) {
+
+        // temporarily disable the BWT HCT millstone recipe to not clash with the BWT one
+        disableRecipe(exporter, "bwt_hct", "modern_millstone");
+
         this.removeForVanilla(exporter);
         this.removeForTE(exporter);
         this.removeForBWT(exporter);
@@ -56,6 +60,8 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "crafting_table");
         //disableVanilla(exporter, "chest");
         disableVanilla(exporter, "furnace");
+        disableVanilla(exporter, "blast_furnace");
+        disableVanilla(exporter, "smoker");
 
 
         // Remove tool recipes
@@ -75,7 +81,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
         // Remove the ability to repair items by combining them
         disableVanilla(exporter, "repair_item");
-
     }
 
     protected void removeForTE(RecipeExporter exporter) {

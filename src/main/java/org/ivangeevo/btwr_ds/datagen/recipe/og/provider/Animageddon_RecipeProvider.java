@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.provider;
+package org.ivangeevo.btwr_ds.datagen.recipe.og.provider;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

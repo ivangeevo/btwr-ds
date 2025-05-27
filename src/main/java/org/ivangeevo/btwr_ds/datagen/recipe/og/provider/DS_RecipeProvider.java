@@ -1,7 +1,6 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.provider;
+package org.ivangeevo.btwr_ds.datagen.recipe.og.provider;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
-import btwr.core.block.BTWR_Blocks;
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
@@ -102,12 +101,14 @@ public class DS_RecipeProvider extends FabricRecipeProvider implements RecipePro
                 .offerTo(exporter, ID.ofDS("redstone_latch"));
 
         // Blocks
+        /**
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FURNACE)
                 .input('B', ModBlocks.SLAB_BRICKS_LOOSE)
                 .pattern("BB")
                 .pattern("BB")
                 .criterion("has_slab_bricks_loose", conditionsFromItem(ModBlocks.SLAB_BRICKS_LOOSE))
                 .offerTo(exporter, ID.ofDS("furnace_from_slab_bricks"));
+         **/
 
 
         // Tools
