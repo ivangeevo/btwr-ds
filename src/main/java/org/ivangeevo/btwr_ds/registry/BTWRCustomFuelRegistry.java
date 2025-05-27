@@ -174,8 +174,8 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.JUNGLE_BUTTON, 25);
         //addFuel(tempMap, Items.BAMBOO_BUTTON, 25);
 
-        addFuel(tempMap, Items.STICK, 50);
-        addFuel(tempMap, ItemTags.SAPLINGS, 15);
+        addFuel(tempMap, Items.STICK, 400);
+        addFuel(tempMap, ItemTags.SAPLINGS, 100);
 
 
         // Signs
@@ -203,7 +203,6 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, ItemTags.BANNERS, 300);
 
         // removed doors & boats
-
         addFuel(tempMap, ItemTags.WOOL, 100);
 
         addFuel(tempMap, Items.BOWL, 100);
@@ -233,11 +232,11 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.FEATHER, 15);
         addFuel(tempMap, Items.SUGAR_CANE, 20);
 
-        addFuel(tempMap, ItemTags.SMALL_FLOWERS, 15);
-        addFuel(tempMap, ItemTags.TALL_FLOWERS, 25);
+        addFuel(tempMap, ItemTags.SMALL_FLOWERS, 100);
+        addFuel(tempMap, ItemTags.TALL_FLOWERS, 200);
 
-        addFuel(tempMap, SturdyTreesTags.Items.BARK_ITEMS, 25);
-        addFuel(tempMap, BTWRDS_Items.BARK_BLOOD_WOOD, 25);
+        addFuel(tempMap, SturdyTreesTags.Items.BARK_ITEMS, 200);
+        addFuel(tempMap, BTWRDS_Items.BARK_BLOOD_WOOD, 200);
         addFuel(tempMap, org.ivangeevo.vegehenna.item.ModItems.SUGAR_CANE_ROOTS, 20);
 
         addBwtFuels(tempMap);
