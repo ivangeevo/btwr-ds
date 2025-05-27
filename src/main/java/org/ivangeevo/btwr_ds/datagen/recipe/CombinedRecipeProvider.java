@@ -1,14 +1,19 @@
 package org.ivangeevo.btwr_ds.datagen.recipe;
 
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
+import com.bwt.items.BwtItems;
+import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.DataWriter;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.datagen.recipe.og.DisabledRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.PackingRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.*;
+import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -59,6 +64,14 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
          .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
          .offerTo(exporter, ID.ofBTWR("chopping_block"));
          **/
+
+         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtItems.broadheadItem, 6)
+         .input('B', ModItems.NETHERITE_NUGGET)
+         .pattern(" B  ")
+         .pattern("BBB ")
+         .pattern(" B  ")
+         .criterion("has_netherite_nugget", conditionsFromItem(ModItems.NETHERITE_NUGGET))
+         .offerTo(exporter, RecipeProviderUtils.ID.ofBWT("broadhead"));
 
         shapelessRecipeProvider.generate(exporter);
         shapedRecipeProvider.generate(exporter);
