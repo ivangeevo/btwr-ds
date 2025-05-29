@@ -1,0 +1,16 @@
+package org.ivangeevo.btwr_ds.mixin;
+
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Blocks;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.*;
+
+@Mixin(Blocks.class)
+public abstract class BlocksMixin
+{
+    @ModifyArg(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/SugarCaneBlock;<init>(Lnet/minecraft/block/AbstractBlock$Settings;)V"))
+    private static AbstractBlock.Settings initSugarCane(AbstractBlock.Settings settings) {
+        return settings.strength(0.1f);
+    }
+
+}

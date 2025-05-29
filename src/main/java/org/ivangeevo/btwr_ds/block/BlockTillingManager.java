@@ -1,7 +1,6 @@
 package org.ivangeevo.btwr_ds.block;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
-import btwr.core.BTWRMod;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,7 +10,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -67,6 +69,7 @@ public class BlockTillingManager
         }
 
         public void onAfterBreak(World world, BlockPos pos, BlockState state, ItemStack tool, PlayerEntity player) {
+
             if (!BTWRDSMod.getInstance().settings.shouldChangeHoesBTWStyle()) return;
             if (world.isClient() || !tool.isIn(ItemTags.HOES) || player.isCreative()) return;
 
@@ -77,6 +80,7 @@ public class BlockTillingManager
             if (state.isIn(BTWRConventionalTags.Blocks.FARMLAND_VIABLE_DIRT)) {
                 setState(world, pos, Blocks.FARMLAND.getDefaultState());
             }
+
         }
     }
 
@@ -85,4 +89,5 @@ public class BlockTillingManager
         BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
         world.setBlockState(pos, updatedState);
     }
+
 }

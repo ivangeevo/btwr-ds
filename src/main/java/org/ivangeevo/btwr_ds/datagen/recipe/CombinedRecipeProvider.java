@@ -66,12 +66,13 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
          **/
 
          SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtItems.broadheadItem, 6)
-         .input('B', ModItems.NETHERITE_NUGGET)
-         .pattern(" B  ")
-         .pattern("BBB ")
-         .pattern(" B  ")
-         .criterion("has_netherite_nugget", conditionsFromItem(ModItems.NETHERITE_NUGGET))
-         .offerTo(exporter, RecipeProviderUtils.ID.ofBWT("broadhead"));
+                 .input('B', ModItems.NETHERITE_NUGGET)
+                 .pattern(" B  ")
+                 .pattern(" B  ")
+                 .pattern("BBB ")
+                 .pattern(" B  ")
+                 .criterion("has_netherite_nugget", conditionsFromItem(ModItems.NETHERITE_NUGGET))
+                 .offerTo(exporter, RecipeProviderUtils.ID.ofBWT("broadhead"));
 
         shapelessRecipeProvider.generate(exporter);
         shapedRecipeProvider.generate(exporter);

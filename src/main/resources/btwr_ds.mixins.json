@@ -6,10 +6,11 @@
     "AbstractBlock$AbstractBlockStateMixin",
     "AbstractFurnaceBlockEntityMixin",
     "BlockMixin",
+    "BlocksMixin",
     "HoeItemMixin",
     "ItemEntryAccessor",
-    "ItemStackMixin",
-    "LootPoolBuilderAccessor"
+    "LootPoolBuilderAccessor",
+    "VGModBlocksMixin"
   ],
   "injectors": {
     "defaultRequire": 1

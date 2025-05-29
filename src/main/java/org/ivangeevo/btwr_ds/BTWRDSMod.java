@@ -34,12 +34,6 @@ public class BTWRDSMod implements ModInitializer {
 		return instance;
 	}
 
-	/**
-	 * Getter for current BTWRDSSettings instance
-	 */
-	public static BTWRDSSettings getSettings() {
-		return getInstance().settings;
-	}
 
 	@Override
 	public void onInitialize() {

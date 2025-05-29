@@ -6,6 +6,7 @@ import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import org.ivangeevo.animageddon.tag.ModTags;
 import org.ivangeevo.vegehenna.item.ModItems;
@@ -44,6 +45,12 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModTags.Items.PIG_BREEDING_ITEMS)
                 .add(ModItems.CHOCOLATE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.STACKS_MAX_16)
+                .add(Items.BONE)
+                .add(Items.ROTTEN_FLESH);
+
+
 
     }
 }
