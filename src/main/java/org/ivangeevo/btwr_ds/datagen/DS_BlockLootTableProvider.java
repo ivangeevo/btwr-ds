@@ -3,11 +3,15 @@ package org.ivangeevo.btwr_ds.datagen;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.CopyComponentsLootFunction;
+import net.minecraft.loot.function.ExplosionDecayLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -29,7 +33,8 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider
 
     private void overrideVanilla() {
 
-        // override bed recipes
+        // override bed loot tables
+
         addDrop(Blocks.WHITE_BED, this.btwBedDrops());
         addDrop(Blocks.ORANGE_BED, this.btwBedDrops());
         addDrop(Blocks.MAGENTA_BED, this.btwBedDrops());
@@ -47,6 +52,54 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.RED_BED, this.btwBedDrops());
         addDrop(Blocks.BLACK_BED, this.btwBedDrops());
 
+    }
+
+
+    public LootTable.Builder shulkerBoxDrops(Block drop) {
+        return LootTable.builder()
+                .pool(this.addSurvivesExplosionCondition(drop,
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .with(ItemEntry.builder(drop)
+                                        .apply(
+                                                CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
+                                                        .include(DataComponentTypes.CUSTOM_NAME)
+                                                        .include(DataComponentTypes.CONTAINER)
+                                                        .include(DataComponentTypes.LOCK)
+                                                        .include(DataComponentTypes.CONTAINER_LOOT)
+                                        )
+                                )
+                        )
+                );
+    }
+
+    public LootTable.Builder btwBedDrops(Block block) {
+        return LootTable.builder()
+                .pool(this.addSurvivesExplosionCondition(block,
+                                LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                                        .with(ItemEntry.builder(BwtItems.sawDustItem)
+                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(3.0f)))
+                                        )
+                        )
+                )
+                .pool(this.addSurvivesExplosionCondition(block,
+                                LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                                        .with(ItemEntry.builder(BwtItems.paddingItem)
+                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0f)))
+                                        )
+                        )
+                )
+                .pool(this.addSurvivesExplosionCondition(block,
+                                LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
+                                        .with(ItemEntry.builder(Items.STICK)
+                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)))
+                                        )
+                        )
+                )
+
+
+
+                .apply(ExplosionDecayLootFunction.builder());
     }
 
     public LootTable.Builder btwBedDrops() {

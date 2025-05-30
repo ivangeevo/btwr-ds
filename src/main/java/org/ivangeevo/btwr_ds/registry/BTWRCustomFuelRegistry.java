@@ -22,6 +22,8 @@ import org.tough_environment.item.ModItems;
 
 import java.util.Map;
 
+import static org.ivangeevo.vegehenna.item.ModItems.SUGAR_CANE_ROOTS;
+
 /** A provider class for a fully custom set fuel map;
  *  most likely incompatible with other mods that add to fuel with FuelRegistry
  *  to the{@link AbstractFurnaceBlockEntity#createFuelTimeMap()} **/
@@ -83,46 +85,48 @@ public class BTWRCustomFuelRegistry {
         //addFuel(tempMap, ItemTags.BAMBOO_BLOCKS, 500);
 
         // Planks
-        addFuel(tempMap, Items.BIRCH_PLANKS, 500);
-        addFuel(tempMap, Items.ACACIA_PLANKS, 500);
-        addFuel(tempMap, Items.OAK_PLANKS, 400);
-        addFuel(tempMap, Items.DARK_OAK_PLANKS, 400);
-        addFuel(tempMap, Items.CHERRY_PLANKS, 400);
-        addFuel(tempMap, Items.SPRUCE_PLANKS, 300);
-        addFuel(tempMap, Items.MANGROVE_PLANKS, 300);
-        addFuel(tempMap, Items.JUNGLE_PLANKS, 200);
+        addFuel(tempMap, Items.BIRCH_PLANKS, 4000);
+        addFuel(tempMap, Items.ACACIA_PLANKS, 4000);
+        addFuel(tempMap, Items.OAK_PLANKS, 3200);
+        addFuel(tempMap, Items.DARK_OAK_PLANKS, 3200);
+        addFuel(tempMap, Items.CHERRY_PLANKS, 2400);
+        addFuel(tempMap, Items.SPRUCE_PLANKS, 2400);
+        addFuel(tempMap, Items.MANGROVE_PLANKS, 1600);
+        addFuel(tempMap, Items.JUNGLE_PLANKS, 1600);
         //addFuel(tempMap, Items.BAMBOO_PLANKS, 130);
 
         // Wooden Stairs
-        addFuel(tempMap, Items.BIRCH_STAIRS, 400);
-        addFuel(tempMap, Items.ACACIA_STAIRS, 400);
-        addFuel(tempMap, Items.OAK_STAIRS, 300);
-        addFuel(tempMap, Items.DARK_OAK_STAIRS, 300);
-        addFuel(tempMap, Items.CHERRY_STAIRS, 300);
-        addFuel(tempMap, Items.SPRUCE_STAIRS, 200);
-        addFuel(tempMap, Items.MANGROVE_STAIRS, 200);
-        addFuel(tempMap, Items.JUNGLE_STAIRS, 150);
+        addFuel(tempMap, Items.BIRCH_STAIRS, 3000);
+        addFuel(tempMap, Items.ACACIA_STAIRS, 3000);
+        addFuel(tempMap, Items.OAK_STAIRS, 2200);
+        addFuel(tempMap, Items.DARK_OAK_STAIRS, 2200);
+        addFuel(tempMap, Items.CHERRY_STAIRS, 1400);
+        addFuel(tempMap, Items.SPRUCE_STAIRS, 1400);
+        addFuel(tempMap, Items.MANGROVE_STAIRS, 600);
+        addFuel(tempMap, Items.JUNGLE_STAIRS, 600);
         //addFuel(tempMap, Items.BAMBOO_STAIRS, 100);
 
         //addFuel(tempMap, Blocks.BAMBOO_MOSAIC_STAIRS, 150);
 
         // Wooden Slabs
-        addFuel(tempMap, Items.BIRCH_SLAB, 250);
-        addFuel(tempMap, Items.ACACIA_SLAB, 250);
-        addFuel(tempMap, Items.OAK_SLAB, 200);
-        addFuel(tempMap, Items.DARK_OAK_SLAB, 200);
-        addFuel(tempMap, Items.CHERRY_SLAB, 200);
-        addFuel(tempMap, Items.SPRUCE_SLAB, 150);
-        addFuel(tempMap, Items.MANGROVE_SLAB, 150);
-        addFuel(tempMap, Items.JUNGLE_SLAB, 100);
+        addFuel(tempMap, Items.BIRCH_SLAB, 2000);
+        addFuel(tempMap, Items.ACACIA_SLAB, 2000);
+        addFuel(tempMap, Items.OAK_SLAB, 1100);
+        addFuel(tempMap, Items.DARK_OAK_SLAB, 1100);
+        addFuel(tempMap, Items.CHERRY_SLAB, 700);
+        addFuel(tempMap, Items.SPRUCE_SLAB, 700);
+        addFuel(tempMap, Items.MANGROVE_SLAB, 300);
+        addFuel(tempMap, Items.JUNGLE_SLAB, 300);
         //addFuel(tempMap, Items.BAMBOO_SLAB, 75);
 
         //addFuel(tempMap, Blocks.BAMBOO_MOSAIC_SLAB, 150);
 
+        //TODO: Re-balance fuel values. All values below this one haven't been changed fully
+
         // Wooden Trapdoors
-        addFuel(tempMap, Items.BIRCH_TRAPDOOR, 275);
-        addFuel(tempMap, Items.ACACIA_TRAPDOOR, 275);
-        addFuel(tempMap, Items.OAK_TRAPDOOR, 225);
+        addFuel(tempMap, Items.BIRCH_TRAPDOOR, 1000);
+        addFuel(tempMap, Items.ACACIA_TRAPDOOR, 1000);
+        addFuel(tempMap, Items.OAK_TRAPDOOR, 1000);
         addFuel(tempMap, Items.DARK_OAK_TRAPDOOR, 225);
         addFuel(tempMap, Items.CHERRY_TRAPDOOR, 225);
         addFuel(tempMap, Items.SPRUCE_TRAPDOOR, 175);
@@ -176,7 +180,6 @@ public class BTWRCustomFuelRegistry {
 
         addFuel(tempMap, Items.STICK, 400);
         addFuel(tempMap, ItemTags.SAPLINGS, 100);
-
 
         // Signs
         addFuel(tempMap, Items.BIRCH_SIGN, 275);
@@ -237,7 +240,7 @@ public class BTWRCustomFuelRegistry {
 
         addFuel(tempMap, SturdyTreesTags.Items.BARK_ITEMS, 200);
         addFuel(tempMap, BTWRDS_Items.BARK_BLOOD_WOOD, 200);
-        addFuel(tempMap, org.ivangeevo.vegehenna.item.ModItems.SUGAR_CANE_ROOTS, 20);
+        addFuel(tempMap, SUGAR_CANE_ROOTS, 20);
 
         addBwtFuels(tempMap);
 
