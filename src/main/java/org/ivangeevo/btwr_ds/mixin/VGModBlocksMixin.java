@@ -12,6 +12,7 @@ public abstract class VGModBlocksMixin
 
     @ModifyArg(method = "<clinit>", at = @At(value = "INVOKE", target = "Lorg/ivangeevo/vegehenna/block/blocks/SugarCaneRootsBlock;<init>(Lnet/minecraft/block/AbstractBlock$Settings;)V"))
     private static AbstractBlock.Settings initSugarCaneRoots(AbstractBlock.Settings settings) {
-        return settings.strength(0.1f);
+        return settings.strength(0.01f);
     }
+
 }

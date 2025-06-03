@@ -46,11 +46,5 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.PIG_BREEDING_ITEMS)
                 .add(ModItems.CHOCOLATE);
 
-        getOrCreateTagBuilder(BTWRConventionalTags.Items.STACKS_MAX_16)
-                .add(Items.BONE)
-                .add(Items.ROTTEN_FLESH);
-
-
-
     }
 }

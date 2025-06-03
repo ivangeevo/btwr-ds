@@ -45,7 +45,13 @@
 		"another-mod": "*"
 	},
 
-	"accessWidener" : "btwr_ds.accesswidener"
+	"accessWidener" : "btwr_ds.accesswidener",
 
+	"custom": {
+		"loom:injected_interfaces": {
 
+			"net/minecraft/class_1657": ["org/ivangeevo/btwr_ds/entity/interfaces/FoodUsageHandler"]
+
+		}
+	}
 }

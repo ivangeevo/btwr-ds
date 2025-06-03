@@ -1,10 +1,15 @@
 package org.ivangeevo.btwr_ds;
 
 import btwr.btwr_sl.BTWRSLMod;
+import btwr.btwr_sl.lib.mixin.PlayerEntityMixin;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.ivangeevo.btwr_ds.block.BlockTillingManager;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
+import org.ivangeevo.btwr_ds.entity.interfaces.FoodUsageHandler;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
@@ -46,9 +51,32 @@ public class BTWRDSMod implements ModInitializer {
 		WorldGenBlockReplacements.register();
 		FoodComponentModifier.register();
 
+		//ServerTickEvents.END_SERVER_TICK.register(this::onServerTick);
+
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();
 	}
+
+	private void onServerTick(MinecraftServer server) {
+		for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+			onPlayerTick(player);
+		}
+	}
+
+	private void onPlayerTick(ServerPlayerEntity player) {
+		FoodUsageHandler handler = player;
+
+		boolean currentlyUsing = player.isUsingItem();
+
+		if (!handler.canUseFoodAgain() && !currentlyUsing) {
+			handler.setCanUseFoodAgain(true);
+		}
+
+		if (currentlyUsing) {
+			handler.setCanUseFoodAgain(false);
+		}
+	}
+
 
 	public void loadSettings() {
 		File file = new File("./config/btwr/btwr_ds_common.json");

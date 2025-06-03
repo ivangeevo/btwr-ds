@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.mixin;
 
-import btwr.core.BTWRMod;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.HoeItem;
@@ -13,8 +12,6 @@ import org.ivangeevo.btwr_ds.util.TillingDropUtil;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayerInteractionManager.class)

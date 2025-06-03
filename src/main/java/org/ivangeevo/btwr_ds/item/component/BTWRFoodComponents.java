@@ -8,11 +8,13 @@ import net.minecraft.entity.effect.StatusEffects;
 public class BTWRFoodComponents {
 
     public static class Granular {
+        public static final FoodComponent MELON_SLICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
+        public static final FoodComponent SWEET_BERRIES = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
         public static final FoodComponent BROWN_MUSHROOM = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
         public static final FoodComponent RED_MUSHROOM = new FoodComponent.Builder().nutrition(0).saturationModifier(0).statusEffect(addPoisonEffect(100, 0), 1f).build();
         public static final FoodComponent PUMPKIN_SEEDS = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
         public static final FoodComponent COCOA_BEANS = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
-        public static final FoodComponent MELON_SLICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
+        public static final FoodComponent GLOW_BERRIES = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
     }
 
     // From vanilla
@@ -44,8 +46,6 @@ public class BTWRFoodComponents {
     public static final FoodComponent RABBIT_STEW = new FoodComponent.Builder().nutrition(6).saturationModifier(FoodComponents.RABBIT_STEW.saturation() / 4).build();
     public static final FoodComponent BEETROOT = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.BEETROOT.saturation() / 4).build();
     public static final FoodComponent BEETROOT_SOUP = new FoodComponent.Builder().nutrition(3).saturationModifier(FoodComponents.BEETROOT_SOUP.saturation() / 4).build();
-    public static final FoodComponent SWEET_BERRIES = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.SWEET_BERRIES.saturation() / 4).build();
-    public static final FoodComponent GLOW_BERRIES = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.GLOW_BERRIES.saturation() / 4).build();
     public static final FoodComponent HONEY_BOTTLE = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.HONEY_BOTTLE.saturation() / 4).build();
     public static final FoodComponent ROTTEN_FLESH = new FoodComponent.Builder().nutrition(3).saturationModifier(FoodComponents.ROTTEN_FLESH.saturation() / 4).statusEffect(addHungerEffect(600, 4), 0.8F).build();
     public static final FoodComponent SPIDER_EYE = new FoodComponent.Builder().nutrition(2).saturationModifier(FoodComponents.SPIDER_EYE.saturation() / 4).statusEffect(addPoisonEffect(100, 0), 1.0F).build();

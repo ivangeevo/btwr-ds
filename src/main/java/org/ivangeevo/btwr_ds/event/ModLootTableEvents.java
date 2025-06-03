@@ -8,11 +8,13 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.AnyOfLootCondition;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
@@ -129,6 +131,19 @@ public class ModLootTableEvents {
         }
     }
 
+    // Replacing all door drops with saw dust
+    private static void replaceChestItemDrops() {
+        Item originalDrop = Registries.ITEM.get(ID.ofMC("chest"));
+        RegistryKey<LootTable> key = RegistryKey.of(
+                RegistryKeys.LOOT_TABLE,
+                ID.ofMC("blocks/chest")
+        );
+        modifySpecificItemWithCountAndWithoutToolTag(key, originalDrop, BwtItems.sawDustItem,
+                2, BTWRConventionalTags.Items.AXES_MAKE_PLANKS);
+
+    }
+
+
 
     private static void modifySpecificItem(RegistryKey<LootTable> registryKey, Item target, Item toReplace) {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
@@ -182,24 +197,59 @@ public class ModLootTableEvents {
             if (registryKey != key) return;
 
             tableBuilder.modifyPools(builder -> {
-                List<LootPoolEntry> l = new ArrayList<>(((org.ivangeevo.animageddon.mixin.LootPoolBuilderAccessor) builder).getEntries().build());
+                List<LootPoolEntry> l = new ArrayList<>(((LootPoolBuilderAccessor) builder).getEntries().build());
                 l.replaceAll(entry -> {
                     if (!(entry instanceof ItemEntry itemEntry))
                         return entry;
-                    if (((org.ivangeevo.animageddon.mixin.ItemEntryAccessor) itemEntry).getItem().value() != target)
+                    if (((ItemEntryAccessor) itemEntry).getItem().value() != target)
                         return entry;
 
-                    // Replace the item and add a SetCount function to modify the count & a tool condition check
                     return ItemEntry.builder(toReplace)
-                            .apply(() -> SetCountLootFunction.builder(ConstantLootNumberProvider.create(count)).build())
                             .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(toolTag)).invert())
+                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(count)))
+                            .alternatively(
+                                    ItemEntry.builder(target)
+                                            .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(toolTag))))
                             .build();
+
                 });
 
-                ((org.ivangeevo.animageddon.mixin.LootPoolBuilderAccessor) builder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(l));
+                ((LootPoolBuilderAccessor) builder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(l));
             });
         });
     }
+
+    /**
+    private static void modifyChestDrops(RegistryKey<LootTable> registryKey, Item target, Item toReplace, int count, TagKey<Item> toolTag) {
+        LootTableEvents.REPLACE.register((key, original, source, registries) -> {
+
+            // Check if the key is for target's loot table
+            if (registryKey != key) return;
+
+            tableBuilder.modifyPools(builder -> {
+                List<LootPoolEntry> l = new ArrayList<>(((LootPoolBuilderAccessor) builder).getEntries().build());
+                l.replaceAll(entry -> {
+                    if (!(entry instanceof ItemEntry itemEntry))
+                        return entry;
+                    if (((ItemEntryAccessor) itemEntry).getItem().value() != target)
+                        return entry;
+
+                    return ItemEntry.builder(toReplace)
+                            .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(toolTag)).invert())
+                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(count)))
+                            .alternatively(
+                                    ItemEntry.builder(target)
+                                            .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(toolTag))))
+                            .build();
+
+                });
+
+                ((LootPoolBuilderAccessor) builder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(l));
+            });
+        });
+    }
+     **/
+
 
     protected static AnyOfLootCondition.Builder createSmeltLootCondition(RegistryWrapper.WrapperLookup registryLookup) {
         RegistryWrapper.Impl<Enchantment> impl = registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);

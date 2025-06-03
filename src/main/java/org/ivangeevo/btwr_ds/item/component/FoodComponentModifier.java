@@ -33,11 +33,13 @@ public class FoodComponentModifier {
     // 3 pips = 0.5 shank (1 hunger from original mc values)
     // 6 pips = 1 shank
     private static void modifyGranularFoods(DefaultItemComponentEvents.ModifyContext context) {
+        context.modify(Items.MELON_SLICE, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.MELON_SLICE));
+        context.modify(Items.SWEET_BERRIES, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.SWEET_BERRIES));
         context.modify(Items.BROWN_MUSHROOM, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.BROWN_MUSHROOM));
         context.modify(Items.RED_MUSHROOM, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.RED_MUSHROOM));
         context.modify(Items.PUMPKIN_SEEDS, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.PUMPKIN_SEEDS));
         context.modify(Items.COCOA_BEANS, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.COCOA_BEANS));
-        context.modify(Items.MELON_SLICE, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.MELON_SLICE));
+        context.modify(Items.GLOW_BERRIES, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.GLOW_BERRIES));
     }
 
     // Method to modify vanilla components
@@ -70,8 +72,6 @@ public class FoodComponentModifier {
         context.modify(Items.RABBIT_STEW, builder -> modifyEntry(builder, BTWRFoodComponents.RABBIT_STEW));
         context.modify(Items.BEETROOT, builder -> modifyEntry(builder, BTWRFoodComponents.BEETROOT));
         context.modify(Items.BEETROOT_SOUP, builder -> modifyEntry(builder, BTWRFoodComponents.BEETROOT_SOUP));
-        context.modify(Items.SWEET_BERRIES, builder -> modifyEntry(builder, BTWRFoodComponents.SWEET_BERRIES));
-        context.modify(Items.GLOW_BERRIES, builder -> modifyEntry(builder, BTWRFoodComponents.GLOW_BERRIES));
         context.modify(Items.HONEY_BOTTLE, builder -> modifyEntry(builder, BTWRFoodComponents.HONEY_BOTTLE));
         context.modify(Items.ROTTEN_FLESH, builder -> modifyEntry(builder, BTWRFoodComponents.ROTTEN_FLESH));
         context.modify(Items.SPIDER_EYE, builder -> modifyEntry(builder, BTWRFoodComponents.SPIDER_EYE));

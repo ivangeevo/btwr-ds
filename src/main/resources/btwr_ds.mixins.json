@@ -9,7 +9,9 @@
     "BlocksMixin",
     "HoeItemMixin",
     "ItemEntryAccessor",
+    "ItemStackMixin",
     "LootPoolBuilderAccessor",
+    "MobEntityMixin",
     "VGModBlocksMixin"
   ],
   "injectors": {
