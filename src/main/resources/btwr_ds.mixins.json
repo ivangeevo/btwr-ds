@@ -12,7 +12,8 @@
     "ItemStackMixin",
     "LootPoolBuilderAccessor",
     "MobEntityMixin",
-    "VGModBlocksMixin"
+    "VGModBlocksMixin",
+    "WolfEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
