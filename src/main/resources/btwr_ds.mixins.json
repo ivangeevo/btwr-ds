@@ -9,11 +9,11 @@
     "BlocksMixin",
     "HoeItemMixin",
     "ItemEntryAccessor",
+    "ItemsMixin",
     "ItemStackMixin",
     "LootPoolBuilderAccessor",
     "MobEntityMixin",
-    "VGModBlocksMixin",
-    "WolfEntityMixin"
+    "VGModBlocksMixin"
   ],
   "injectors": {
     "defaultRequire": 1

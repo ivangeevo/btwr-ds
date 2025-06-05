@@ -81,11 +81,7 @@ dependencies {
 	modImplementation files("libs/piston-packing-${project.piston_packing_version}.jar")
 
 	// EMI
-	//modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
-	//modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-
-	// implementing emi fully into dev so we can modify it for btwr
-	modImplementation "dev.emi:emi-fabric:${emi_version}:api"
+	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 
 	// Cloth Config

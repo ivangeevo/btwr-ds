@@ -3,6 +3,7 @@ package org.ivangeevo.btwr_ds.datagen.recipe.og;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.ivangeevo.self_sustainable.SelfSustainableMod;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
@@ -14,6 +15,8 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     public DisabledRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
+
+    private static final String foc = "_from_oven_cooking";
 
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
@@ -29,6 +32,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         this.removeForBWT(exporter);
         this.removeForBTWR(exporter);
         this.removeForVegehenna(exporter);
+        this.removeForSS(exporter);
 
         /** Animageddon recipes to remove **/
         //disableAG(exporter, "gunpowder");
@@ -79,8 +83,14 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         // Foods
         disableVanilla(exporter, "pumpkin_pie");
 
+        this.disableVanillaOreCookingRecipes(exporter);
+        // Remove vanilla 'reclaim' recipes for tools/metal armor
+        disableVanilla(exporter, "iron_nugget_from_smelting");
+        disableVanilla(exporter, "gold_nugget_from_smelting");
+
         // Remove the ability to repair items by combining them
         disableVanilla(exporter, "repair_item");
+
     }
 
     protected void removeForTE(RecipeExporter exporter) {
@@ -157,8 +167,42 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVG(exporter, "cocoa_powder");
         disableVG(exporter, "chocolate");
         disableVG(exporter, "cooked_carrot_from_smelting");
+    }
+
+    protected void removeForSS(RecipeExporter exporter) {
+        disableRecipe(exporter, SelfSustainableMod.MOD_ID, "copper_ingot" + foc);
+        disableRecipe(exporter, SelfSustainableMod.MOD_ID, "iron_ingot" + foc);
+        disableRecipe(exporter, SelfSustainableMod.MOD_ID, "gold_ingot" + foc);
+    }
+
+    private void disableVanillaOreCookingRecipes(RecipeExporter exporter) {
+        // 2 recipes for each ore type
+        // 3 metallic ore types
+        // make a method that handles all 3 recipe types and call that 2 times
+        disableVanilla(exporter, "iron_ingot_from_smelting_iron_ore");
+        disableVanilla(exporter, "iron_ingot_from_smelting_deepslate_iron_ore");
+        disableVanilla(exporter, "iron_ingot_from_smelting_raw_iron");
+        disableVanilla(exporter, "iron_ingot_from_blasting_iron_ore");
+        disableVanilla(exporter, "iron_ingot_from_blasting_deepslate_iron_ore");
+        disableVanilla(exporter, "iron_ingot_from_blasting_raw_iron");
+
+        disableVanilla(exporter, "gold_ingot_from_smelting_gold_ore");
+        disableVanilla(exporter, "gold_ingot_from_smelting_deepslate_gold_ore");
+        disableVanilla(exporter, "gold_ingot_from_smelting_nether_gold_ore");
+        disableVanilla(exporter, "gold_ingot_from_smelting_raw_gold");
+        disableVanilla(exporter, "gold_ingot_from_blasting_gold_ore");
+        disableVanilla(exporter, "gold_ingot_from_blasting_deepslate_gold_ore");
+        disableVanilla(exporter, "gold_ingot_from_blasting_nether_gold_ore");
+        disableVanilla(exporter, "gold_ingot_from_blasting_raw_gold");
 
     }
+
+    private void disableOreCookingRecipe(RecipeExporter exporter, String oreType) {
+        String[] smeltingRecipeTypes = {"_from_smelting", "_from_blasting"};
+        String[] oreTypes = {"deepslate"};
+
+    }
+
 
     @Override
     protected Identifier getRecipeIdentifier(Identifier identifier) {

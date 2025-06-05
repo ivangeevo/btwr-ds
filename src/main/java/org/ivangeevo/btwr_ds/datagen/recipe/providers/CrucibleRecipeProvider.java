@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -51,6 +52,11 @@ public class CrucibleRecipeProvider extends FabricRecipeProvider implements Reci
                 .ingredient(Items.SHIELD)
                 .criterion("has_shield", conditionsFromItem(Items.SHIELD))
                 .offerTo(exporter, ID.ofDS("smelt_shield_in_crucible"));
+
+        StokedCrucibleRecipe.JsonBuilder.create().result(Items.GOLD_NUGGET,2)
+                .ingredient(BTWRDS_Items.REDSTONE_LATCH)
+                .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
+                .offerTo(exporter, ID.ofDS("smelt_redstone_latch_in_crucible"));
 
     }
 }
