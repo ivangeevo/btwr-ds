@@ -3,7 +3,9 @@
   "package": "org.ivangeevo.btwr_ds.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "ClientPlayerInteractionManagerMixin"
+    "BipedEntityModelMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "MixinEntityModel"
   ],
   "injectors": {
     "defaultRequire": 1
