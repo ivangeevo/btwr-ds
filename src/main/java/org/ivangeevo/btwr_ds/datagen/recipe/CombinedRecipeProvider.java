@@ -23,6 +23,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected ShapedRecipeProvider shapedRecipeProvider;
     protected CampfireCookingRecipeProvider campfireCookingRecipeProvider;
     protected OvenCookingRecipeProvider ovenCookingRecipeProvider;
+    protected MillstoneRecipeProvider millstoneRecipeProvider;
     protected CrucibleRecipeProvider crucibleRecipeProvider;
     protected CauldronRecipeProvider cauldronRecipeProvider;
     protected HopperFilteringRecipeProvider hopperFilteringRecipeProvider;
@@ -40,6 +41,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.shapedRecipeProvider = new ShapedRecipeProvider(output, registriesFuture);
         this.campfireCookingRecipeProvider = new CampfireCookingRecipeProvider(output, registriesFuture);
         this.ovenCookingRecipeProvider = new OvenCookingRecipeProvider(output, registriesFuture);
+        this.millstoneRecipeProvider = new MillstoneRecipeProvider(output, registriesFuture);
         this.crucibleRecipeProvider = new CrucibleRecipeProvider(output, registriesFuture);
         this.cauldronRecipeProvider = new CauldronRecipeProvider(output, registriesFuture);
         this.hopperFilteringRecipeProvider = new HopperFilteringRecipeProvider(output, registriesFuture);
@@ -78,6 +80,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         shapedRecipeProvider.generate(exporter);
         campfireCookingRecipeProvider.generate(exporter);
         ovenCookingRecipeProvider.generate(exporter);
+        millstoneRecipeProvider.generate(exporter);
         crucibleRecipeProvider.generate(exporter);
         cauldronRecipeProvider.generate(exporter);
         hopperFilteringRecipeProvider.generate(exporter);

@@ -81,8 +81,11 @@ dependencies {
 	modImplementation files("libs/piston-packing-${project.piston_packing_version}.jar")
 
 	// EMI
-	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+	//modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+	//modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+	modCompileOnlyApi  "dev.emi:emi-fabric:${emi_version}"
 	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
 
 	// Cloth Config
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {

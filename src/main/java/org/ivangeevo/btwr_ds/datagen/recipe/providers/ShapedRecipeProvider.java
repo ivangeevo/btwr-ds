@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
@@ -397,12 +398,21 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
         // Create the recipe for the blood wood pressure plate
         Block bloodWoodSiding = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_siding"));
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.pressurePlateBlock)
-                .input('S', bloodWoodSiding)  // Use the blood wood SidingBlock as the 'S' input
-                .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                .input('S', bloodWoodSiding)
+                .input('R', Items.REDSTONE)
                 .pattern("S")
                 .pattern("R")
                 .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
                 .offerTo(exporter, ID.ofBWT("blood_wood_pressure_plate"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.pressurePlateBlock)
+                .input('S', Items.STICK)
+                .input('F', ConventionalItemTags.STRINGS)
+                .pattern("FSF")
+                .pattern("SSS")
+                .pattern("FSF")
+                .criterion("has_strings", conditionsFromTag(ConventionalItemTags.STRINGS))
+                .offerTo(exporter, ID.ofBWT("grate"));
 
 
         // BTWR: Core

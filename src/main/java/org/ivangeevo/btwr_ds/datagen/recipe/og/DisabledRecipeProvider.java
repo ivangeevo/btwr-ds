@@ -105,7 +105,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableBWT(exporter, "bread");
         disableBWT(exporter, "baked_potato_from_cauldron");
 
-        disableBWT(exporter, "grate");
         disableBWT(exporter, "fried_egg_from_campfire_cooking");
 
         // Millstone

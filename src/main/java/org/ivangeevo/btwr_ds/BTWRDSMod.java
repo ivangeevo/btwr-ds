@@ -1,16 +1,14 @@
 package org.ivangeevo.btwr_ds;
 
 import btwr.btwr_sl.BTWRSLMod;
-import btwr.btwr_sl.lib.mixin.PlayerEntityMixin;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import org.ivangeevo.btwr_ds.block.BlockTillingManager;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
 import org.ivangeevo.btwr_ds.entity.interfaces.FoodUsageHandler;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
+import org.ivangeevo.btwr_ds.event.OGModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
@@ -45,7 +43,9 @@ public class BTWRDSMod implements ModInitializer {
 		LOGGER.info("Initializing BTWR: Datapack Suite!");
 		this.loadSettings();
 		instance = this;
+		//OGModLootTableEvents.initialize();
 		ModLootTableEvents.initialize();
+
 		BTWRDS_Items.registerAndAddToGroups();
 		BTWRDSRecipes.init();
 		WorldGenBlockReplacements.register();

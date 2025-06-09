@@ -7,6 +7,8 @@
     "AbstractFurnaceBlockEntityMixin",
     "BlockMixin",
     "BlocksMixin",
+    "EmiFuelRecipeAccessor",
+    "EmiFuelRecipeMixin",
     "HoeItemMixin",
     "ItemEntryAccessor",
     "ItemsMixin",

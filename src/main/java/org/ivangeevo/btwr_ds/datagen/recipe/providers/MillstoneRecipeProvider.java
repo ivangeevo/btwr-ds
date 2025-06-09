@@ -20,7 +20,8 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
 
     @Override
     public void generate(RecipeExporter exporter) {
-
+        this.registerOverrides(exporter);
+        this.registerNew(exporter);
         // DS recipes
         /**
          ModernMillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
@@ -49,6 +50,23 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
          .offerTo(exporter, ID.ofDS("cocoa_powder_from_milling_cocoa_beans"));
          **/
 
+
+    }
+
+    private void registerOverrides(RecipeExporter exporter) {
+        MillStoneRecipe.JsonBuilder.create().result(BwtItems.coalDustItem,2)
+                .ingredient(Items.COAL)
+                .criterion("has_coal", conditionsFromItem(Items.COAL))
+                .offerTo(exporter, ID.ofBWT("coal_dust_from_milling_coal"));
+
+        MillStoneRecipe.JsonBuilder.create().result(BwtItems.coalDustItem,2)
+                .ingredient(Items.CHARCOAL)
+                .criterion("has_charcoal", conditionsFromItem(Items.CHARCOAL))
+                .offerTo(exporter, ID.ofDS("coal_dust_from_milling_charcoal"));
+
+    }
+
+    private void registerNew(RecipeExporter exporter) {
         MillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
                 .ingredient(BTWR_Items.LEATHER_CUT)
                 .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
@@ -64,10 +82,6 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_milling_hemp"));
 
-        MillStoneRecipe.JsonBuilder.create().result(BwtItems.coalDustItem,2)
-                .ingredient(Items.CHARCOAL)
-                .criterion("has_charcoal", conditionsFromItem(Items.CHARCOAL))
-                .offerTo(exporter, ID.ofDS("coal_dust_from_milling_charcoal"));
 
         MillStoneRecipe.JsonBuilder.create().result(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER)
                 .ingredient(Items.COCOA_BEANS)
