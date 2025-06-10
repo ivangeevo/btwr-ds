@@ -4,6 +4,7 @@ import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
@@ -33,6 +34,18 @@ public abstract class BlockMixin {
             world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS,
                     0.25F, 1.0F + (world.getRandom().nextFloat() * 0.25F)
             );
+        }
+
+        // Add increased exhaustion for breaking blocks
+        // Adding 0.02 exhaustion and vanilla adds 0.005 which adds to 0.025 which matches the value from retail BTW
+        player.addExhaustion(0.02f);
+    }
+
+    // Add exhaustion when placing blocks (0.005f is the default vanilla block breaking amount)
+    @Inject(method = "onPlaced", at = @At("HEAD"))
+    private void exhaustionOnPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci) {
+        if (placer instanceof PlayerEntity player) {
+            player.getHungerManager().addExhaustion(0.005f);
         }
     }
 

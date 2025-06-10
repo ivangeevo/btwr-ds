@@ -11,6 +11,7 @@
     "EmiFuelRecipeMixin",
     "HoeItemMixin",
     "ItemEntryAccessor",
+    "ItemMixin",
     "ItemsMixin",
     "ItemStackMixin",
     "LootPoolBuilderAccessor",

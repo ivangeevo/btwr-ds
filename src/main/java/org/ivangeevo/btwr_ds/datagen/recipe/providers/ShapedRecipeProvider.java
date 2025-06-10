@@ -405,7 +405,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
                 .offerTo(exporter, ID.ofBWT("blood_wood_pressure_plate"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.pressurePlateBlock)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.grateBlock)
                 .input('S', Items.STICK)
                 .input('F', ConventionalItemTags.STRINGS)
                 .pattern("FSF")
