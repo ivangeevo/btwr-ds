@@ -38,6 +38,10 @@ public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(BTWR_Items.BEAST_LIVER_COOKED)
                 .add(BURNED_MEAT);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.CHICKEN_TEMPT_ITEMS)
+                .add(BwtItems.hempSeedsItem)
+                .add(ModItems.CARROT_SEEDS);
+
         // Conventional tags
         getOrCreateTagBuilder(ConventionalItemTags.STRINGS)
                 .add(BwtItems.hempFiberItem);
