@@ -16,6 +16,7 @@
     "ItemStackMixin",
     "LootPoolBuilderAccessor",
     "MobEntityMixin",
+    "AbstractBlockMixin",
     "VGModBlocksMixin"
   ],
   "injectors": {
