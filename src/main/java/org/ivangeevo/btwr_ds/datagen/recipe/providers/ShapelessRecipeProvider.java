@@ -149,7 +149,7 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
                 .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, SturdyTreesItems.STUMP_REMOVER)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, SturdyTreesItems.STUMP_REMOVER,2)
                 .input(Items.ROTTEN_FLESH)
                 .input(Items.RED_MUSHROOM)
                 .input(BTWR_Items.CREEPER_OYSTERS)

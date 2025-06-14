@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractBlock.class)
-public class AbstractBlockMixin {
+public abstract class AbstractBlockMixin {
 
     @Inject(method = "onEntityCollision", at = @At("HEAD"))
     private void slowDownEntityMovement(BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
@@ -40,8 +40,7 @@ public class AbstractBlockMixin {
         Block block = state.getBlock();
         return state.isIn(BlockTags.LEAVES)
                 || block instanceof SugarCaneBlock
-                || block instanceof SugarCaneRootsBlock
-                || block instanceof VineBlock;
+                || block instanceof SugarCaneRootsBlock;
     }
 
 }

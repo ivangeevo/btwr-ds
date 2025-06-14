@@ -490,7 +490,13 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
             map.put(BwtItems.tannedLeatherItem, 1);
             // TODO tanned leather armor, gimp armor, breeding harness
         });
-        SINGLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key).result(BwtItems.glueItem, value).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key))));
+
+        SINGLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) ->
+                StokedCauldronRecipe.JsonBuilder.create()
+                        .ingredient(key)
+                        .result(BwtItems.glueItem, value)
+                        .offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key)))
+        );
 
         Map<Item, Integer> DOUBLE_COUNT_TO_GLUE_AMOUNTS = Util.make(Maps.newHashMap(), map -> {
 
@@ -541,13 +547,14 @@ public class BWT_RecipeProvider extends FabricRecipeProvider implements RecipePr
     }
 
     private void createSawLogRecipes(RecipeExporter exporter) {
-        this.sawLogBuilder(exporter, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS, SturdyTreesItems.BARK_JUNGLE);
-        this.sawLogBuilder(exporter, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS, SturdyTreesItems.BARK_DARK_OAK);
-        this.sawLogBuilder(exporter, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS, SturdyTreesItems.BARK_SPRUCE);
-        this.sawLogBuilder(exporter, Blocks.MANGROVE_LOG, Blocks.MANGROVE_PLANKS, SturdyTreesItems.BARK_MANGROVE);
-        this.sawLogBuilder(exporter, Blocks.CHERRY_LOG, Blocks.CHERRY_PLANKS, SturdyTreesItems.BARK_CHERRY);
         this.sawLogBuilder(exporter, Blocks.OAK_LOG, Blocks.OAK_PLANKS, SturdyTreesItems.BARK_OAK);
+        this.sawLogBuilder(exporter, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS, SturdyTreesItems.BARK_SPRUCE);
+        this.sawLogBuilder(exporter, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS, SturdyTreesItems.BARK_BIRCH);
+        this.sawLogBuilder(exporter, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS, SturdyTreesItems.BARK_JUNGLE);
         this.sawLogBuilder(exporter, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS, SturdyTreesItems.BARK_ACACIA);
+        this.sawLogBuilder(exporter, Blocks.CHERRY_LOG, Blocks.CHERRY_PLANKS, SturdyTreesItems.BARK_CHERRY);
+        this.sawLogBuilder(exporter, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS, SturdyTreesItems.BARK_DARK_OAK);
+        this.sawLogBuilder(exporter, Blocks.MANGROVE_LOG, Blocks.MANGROVE_PLANKS, SturdyTreesItems.BARK_MANGROVE);
         this.sawLogBuilder(exporter, BwtBlocks.bloodWoodBlocks.logBlock, BwtBlocks.bloodWoodBlocks.planksBlock, BTWRDS_Items.BARK_BLOOD_WOOD);
     }
 
