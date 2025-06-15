@@ -10,14 +10,14 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.datagen.recipe.og.DisabledRecipeProvider;
+import org.ivangeevo.btwr_ds.datagen.recipe.providers.DisabledRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.PackingRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.*;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CombinedRecipeProvider extends FabricRecipeProvider {
+public class CombinedRecipeGenerator extends FabricRecipeProvider {
 
     protected ShapelessRecipeProvider shapelessRecipeProvider;
     protected ShapedRecipeProvider shapedRecipeProvider;
@@ -32,10 +32,10 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected PackingRecipeProvider packingRecipeProvider;
     protected MobSpawnerConversionRecipeProvider mobSpawnerRecipeProvider;
 
-    protected org.ivangeevo.btwr_ds.datagen.recipe.og.BWT_RecipeProvider bwtRecipeProvider;
+    protected BWT_RecipeProvider bwtRecipeProvider;
     protected DisabledRecipeProvider disabledRecipeProvider;
 
-    public CombinedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public CombinedRecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
         this.shapelessRecipeProvider = new ShapelessRecipeProvider(output, registriesFuture);
         this.shapedRecipeProvider = new ShapedRecipeProvider(output, registriesFuture);
@@ -49,7 +49,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.kilnRecipeProvider = new KilnRecipeProvider(output, registriesFuture);
         this.packingRecipeProvider = new PackingRecipeProvider(output, registriesFuture);
         this.mobSpawnerRecipeProvider = new MobSpawnerConversionRecipeProvider(output, registriesFuture);
-        this.bwtRecipeProvider = new org.ivangeevo.btwr_ds.datagen.recipe.og.BWT_RecipeProvider(output, registriesFuture);
+        this.bwtRecipeProvider = new BWT_RecipeProvider(output, registriesFuture);
         this.disabledRecipeProvider = new DisabledRecipeProvider(output, registriesFuture);
     }
 

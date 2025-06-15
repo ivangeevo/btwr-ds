@@ -63,6 +63,7 @@ public class FoodComponentModifier {
         context.modify(Items.COOKED_COD, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_COD));
         context.modify(Items.COOKED_SALMON, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_SALMON));
         context.modify(Items.APPLE, builder -> modifyEntry(builder, BTWRFoodComponents.APPLE));
+        // actually called cream of mushroom \/, but it's still the same vanilla item
         context.modify(Items.MUSHROOM_STEW, builder -> modifyEntry(builder, BTWRFoodComponents.MUSHROOM_STEW));
         context.modify(Items.COOKIE, builder -> modifyEntry(builder, BTWRFoodComponents.COOKIE));
         context.modify(Items.CARROT, builder -> modifyEntry(builder, BTWRFoodComponents.CARROT));

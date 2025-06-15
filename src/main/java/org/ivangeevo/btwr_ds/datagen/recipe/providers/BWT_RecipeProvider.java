@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.og;
+package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
@@ -25,7 +25,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;

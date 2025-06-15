@@ -48,25 +48,33 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
                 .offerTo(exporter, ID.ofDS("nether_sludge_from_stoked_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(org.ivangeevo.vegehenna.item.ModItems.CHOCOLATE,2)
+        CauldronRecipe.JsonBuilder.createFood().result(ModItems.CHOCOLATE,2)
                 .ingredient(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER)
                 .ingredient(Items.SUGAR)
                 .ingredient(Items.MILK_BUCKET)
-                .criterion("has_cocoa_powder", conditionsFromItem(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER))
+                .criterion("has_cocoa_powder", conditionsFromItem(ModItems.COCOA_POWDER))
                 .offerTo(exporter, ID.ofDS("chocolate_from_cauldron"));
 
+        CauldronRecipe.JsonBuilder.createFood().result(Items.MUSHROOM_STEW,2)
+                .ingredient(Items.BROWN_MUSHROOM, 3)
+                .ingredient(Items.MILK_BUCKET)
+                .ingredient(Items.BOWL,2)
+                .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
+                .offerTo(exporter, ID.ofDS("cream_of_mushroom"));
+
+
         // BTWR: Core
-        CauldronRecipe.JsonBuilder.create().result(ModItems.BOILED_POTATO)
+        CauldronRecipe.JsonBuilder.createFood().result(ModItems.BOILED_POTATO)
                 .ingredient(Items.POTATO)
                 .criterion("has_potato", conditionsFromItem(Items.POTATO))
                 .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(ModItems.COOKED_CARROT)
+        CauldronRecipe.JsonBuilder.createFood().result(ModItems.COOKED_CARROT)
                 .ingredient(Items.CARROT)
                 .criterion("has_carrot", conditionsFromItem(Items.CARROT))
                 .offerTo(exporter, ID.ofBTWR("cooked_carrot_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.CHOWDER,2)
+        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHOWDER,2)
                 .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)
                 .ingredient(Items.MILK_BUCKET)
                 .ingredient(Items.BOWL, 2)

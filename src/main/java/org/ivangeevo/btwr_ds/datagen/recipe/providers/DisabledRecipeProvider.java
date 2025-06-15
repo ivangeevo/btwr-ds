@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.datagen.recipe.og;
+package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -47,6 +47,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "brown_dye");
         disableVanilla(exporter, "torch");
         disableVanilla(exporter, "blaze_powder");
+        disableVanilla(exporter, "mushroom_stew");
 
         disableVanilla(exporter, "bread_from_smoking");
 

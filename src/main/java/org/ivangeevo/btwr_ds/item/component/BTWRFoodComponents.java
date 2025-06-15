@@ -37,7 +37,7 @@ public class BTWRFoodComponents {
     public static final FoodComponent COOKED_COD = new FoodComponent.Builder().nutrition(2).saturationModifier(FoodComponents.COOKED_COD.saturation() / 4).build();
     public static final FoodComponent COOKED_SALMON = new FoodComponent.Builder().nutrition(2).saturationModifier(FoodComponents.COOKED_SALMON.saturation() / 4).build();
     public static final FoodComponent APPLE = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.APPLE.saturation() / 4).build();
-    public static final FoodComponent MUSHROOM_STEW = new FoodComponent.Builder().nutrition(2).saturationModifier(FoodComponents.MUSHROOM_STEW.saturation() / 4).build();
+    public static final FoodComponent MUSHROOM_STEW = new FoodComponent.Builder().nutrition(3).saturationModifier(FoodComponents.MUSHROOM_STEW.saturation() / 4).build();
     public static final FoodComponent COOKIE = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.COOKIE.saturation() / 4).build();
     public static final FoodComponent CARROT = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.CARROT.saturation() / 4).build();
     public static final FoodComponent POTATO = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.POTATO.saturation() / 4).statusEffect(addHungerEffect(700, 3), 0.35F).build();
