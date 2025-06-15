@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractBlock$AbstractBlockStateMixin",
+    "AbstractBlockMixin",
     "AbstractFurnaceBlockEntityMixin",
     "BlockMixin",
     "BlocksMixin",
@@ -14,9 +15,9 @@
     "ItemMixin",
     "ItemsMixin",
     "ItemStackMixin",
+    "LivingEntityMixin",
     "LootPoolBuilderAccessor",
     "MobEntityMixin",
-    "AbstractBlockMixin",
     "VGModBlocksMixin"
   ],
   "injectors": {

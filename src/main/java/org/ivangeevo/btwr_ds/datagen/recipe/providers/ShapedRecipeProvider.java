@@ -355,6 +355,15 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofMC("diamond_boots"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
+                .input('I', Items.STICK)
+                .input('N', Items.IRON_NUGGET)
+                .pattern("NIN")
+                .pattern("III")
+                .pattern("NIN")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("shield"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SOUL_TORCH, 1)
                 .input('C', BwtItems.nethercoalItem)
                 .input('I', Items.STICK)
