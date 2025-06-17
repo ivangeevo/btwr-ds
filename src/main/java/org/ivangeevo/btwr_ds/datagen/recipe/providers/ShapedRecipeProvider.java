@@ -3,14 +3,18 @@ package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
+import btwr.core.tag.BTWRTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
+import com.bwt.recipes.cooking_pots.CauldronRecipe;
+import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
 import com.bwt.tags.BwtItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.ivangeevo.self_sustainable.block.ModBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
@@ -43,17 +47,18 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
     public void generate(RecipeExporter exporter) {
 
 
-        // TODO FIX recipe not generating
+
         /**
+        // TODO FIX recipe not generating
          // Adding boat recipes for each SidingBlock in BwtBlocks.sidingBlocks
          for (String woodType : vanillaWoodTypes) {
-         Identifier resultId = ID.ofMC(woodType + "_boat");
-         ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, Registries.BLOCK.get(resultId))
-         .input('S', grabRaw(ID.ofBWT(woodType + "_planks_siding")))  // Use the current SidingBlock as the 'S' input
-         .pattern("S S")
-         .pattern("SSS")
-         .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-         .offerTo(exporter, resultId);
+             Identifier resultId = ID.ofMC(woodType + "_boat");
+             ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, Registries.ITEM.get(resultId))
+                     .input('S', grabRaw("bwt",woodType + "_planks_siding"))
+                     .pattern("S S")
+                     .pattern("SSS")
+                     .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                     .offerTo(exporter, resultId);
          }
          **/
 
@@ -81,6 +86,94 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
          .criterion("has_gear", conditionsFromItem(org.ivangeevo.bwt_hct.block.ModBlocks.modernMillStoneBlock))
          .offerTo(exporter, Identifier.of("bwt_hct", "modern_mill_stone"));
          **/
+
+        // High efficiency
+        for (String woodType : vanillaWoodTypes) {
+            Identifier doorID = ID.ofMC(woodType + "_door");
+            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(doorID))
+                    .input('P', grabRaw("bwt", woodType + "_planks_siding"))
+                    .pattern("PP")
+                    .pattern("PP")
+                    .pattern("PP")
+                    .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                    .offerTo(exporter, ID.ofBWT("he_" + woodType + "_door"));
+        }
+
+        Identifier bloodWoodDoorID = ID.ofBWT("blood_wood_door");
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(bloodWoodDoorID))
+                .input('P', grabRaw("bwt","blood_wood_planks_siding"))
+                .pattern("PP")
+                .pattern("PP")
+                .pattern("PP")
+                .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .offerTo(exporter, bloodWoodDoorID.withPrefixedPath("he_"));
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtItems.sailItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .pattern("FFF")
+                .pattern("WWW")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("he_sail"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
+                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('A', BwtBlocks.axleBlock)
+                .input('G', BwtItems.gearItem)
+                .pattern("WGW")
+                .pattern("GAG")
+                .pattern("WGW")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("he_gear_box"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER,2)
+                .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .input('S', ConventionalItemTags.STRINGS)
+                .pattern("PSP")
+                .pattern("PPP")
+                .pattern("PSP")
+                .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
+                .offerTo(exporter, ID.ofBWT("he_ladder"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
+                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('B', ModItems.STONE_BRICK)
+                .input('I', Items.IRON_INGOT)
+                .input('U', BwtItems.soulUrnItem)
+                .input('L', BTWRDS_Items.REDSTONE_LATCH)
+                .pattern("WIW")
+                .pattern("BUB")
+                .pattern("BLB")
+                .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
+                .offerTo(exporter, ID.ofBWT("he_piston"));
+
+        // Create the recipe for the blood wood button
+        Block bloodWoodCorner = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_corner"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.buttonBlock)
+                .input('S', bloodWoodCorner)  // Use the blood wood SidingBlock as the 'S' input
+                .input('R', Items.REDSTONE) // Redstone for the 'R' input
+                .pattern("S")
+                .pattern("R")
+                .criterion("has_blood_wood_corner", conditionsFromItem(bloodWoodCorner))
+                .offerTo(exporter, ID.ofBWT("blood_wood_button"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.doorBlock)
+                .input('P', BwtBlocks.bloodWoodBlocks.planksBlock)
+                .pattern("PP")
+                .pattern("PP")
+                .pattern("PP")
+                .criterion("has_blood_wood_planks", conditionsFromItem(BwtBlocks.bloodWoodBlocks.planksBlock))
+                .offerTo(exporter, ID.ofBWT("blood_wood_door"));
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY)
+                .input('C', Items.CLAY_BALL)
+                .pattern("CCC")
+                .pattern("CCC")
+                .pattern("CCC")
+                .criterion("has_clay_ball", RecipeProvider.conditionsFromItem(Items.CLAY_BALL))
+                .offerTo(exporter, ID.ofMC("clay"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHEST)
                 .input('W', BwtBlocks.wickerBlock)
@@ -147,7 +240,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
         // Adding door recipes
         for (String woodType : vanillaWoodTypes) {
             Identifier resultId = ID.ofMC(woodType + "_door");
-            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.BLOCK.get(resultId))
+            ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.BLOCK.get(resultId))
                     .input('P', grabRaw(woodType + "_planks"))
                     .pattern("PP")
                     .pattern("PP")
@@ -159,13 +252,25 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
         // Adding trapdoor recipes
         for (String woodType : vanillaWoodTypes) {
             Identifier resultId = ID.ofMC(woodType + "_trapdoor");
-            ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
+            ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(resultId))
                     .input('P', grabRaw(woodType + "_planks"))
                     .input('S', Items.STICK)
                     .pattern("SPP")
                     .pattern("SPP")
                     .criterion("has_planks", conditionsFromItem(Registries.ITEM.get(ID.ofMC(woodType + "_planks"))))
                     .offerTo(exporter, resultId);
+        }
+
+        // Adding High Efficiency trapdoor recipes
+        for (String woodType : vanillaWoodTypes) {
+            String name = woodType + "_trapdoor";
+            ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(ID.ofMC(name)), 2)
+                    .input('P', grabRaw("bwt",woodType + "_planks_siding" ))
+                    .input('S', Items.STICK)
+                    .pattern("SPP")
+                    .pattern("SPP")
+                    .criterion("has_planks_siding", conditionsFromItem(Registries.ITEM.get(ID.ofBWT(woodType + "_planks_siding"))))
+                    .offerTo(exporter, ID.ofBWT(name).withPrefixedPath("he_"));
         }
 
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
@@ -422,6 +527,179 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("FSF")
                 .criterion("has_strings", conditionsFromTag(ConventionalItemTags.STRINGS))
                 .offerTo(exporter, ID.ofBWT("grate"));
+
+        // Items
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.sailItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', ItemTags.PLANKS)
+                .pattern("FFF")
+                .pattern("WWW")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("sail"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.paddingItem)
+                .input('F', BwtItems.fabricItem)
+                .input('W', ItemTags.WOOL)
+                .input('C', Items.FEATHER)
+                .pattern(" F ")
+                .pattern("CWC")
+                .pattern(" F ")
+                .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
+                .offerTo(exporter, ID.ofBWT("padding"));
+
+        // Blocks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
+                .input('W', ItemTags.PLANKS)
+                .input('A', BwtBlocks.axleBlock)
+                .input('G', BwtItems.gearItem)
+                .pattern("WGW")
+                .pattern("GAG")
+                .pattern("WGW")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("gear_box"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soilPlanterBlock)
+                .input('D', org.tough_environment.block.ModBlocks.DIRT_LOOSE)
+                .input('P', BwtBlocks.planterBlock)
+                .pattern("D")
+                .pattern("P")
+                .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
+                .offerTo(exporter, ID.ofBWT("soil_planter"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.grassPlanterBlock)
+                .input('D', Blocks.GRASS_BLOCK)
+                .input('P', BwtBlocks.planterBlock)
+                .pattern("D")
+                .pattern("P")
+                .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
+                .offerTo(exporter, ID.ofBWT("grass_planter"));
+
+
+        /**
+         // Adding trapdoor recipes
+         for (String woodType : vanillaWoodTypes) {
+         Identifier resultId = ID.ofBWT("he_" + woodType + "_trapdoor");
+         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(resultId))
+         .input('P', grabRaw("bwt",woodType + "_planks_siding"))
+         .input('S', Items.STICK)
+         .pattern("SPP")
+         .pattern("SPP")
+         .criterion("has_planks_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+         .offerTo(exporter, resultId);asd
+
+         }
+         **/
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.handCrankBlock)
+                .input('B', ModItems.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .input('S', Items.STICK)
+                .pattern("  S")
+                .pattern(" S ")
+                .pattern("BGB")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("hand_crank"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
+                .input('B', ModItems.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .pattern("BBB")
+                .pattern("BBB")
+                .pattern("BGB")
+                .criterion("has_stone_brick", conditionsFromItem(ModItems.STONE_BRICK))
+                .offerTo(exporter, ID.ofBWT("mill_stone"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
+                .input('H', BwtItems.concentratedHellfireItem)
+                .input('E', BTWRDS_Items.ELEMENT)
+                .input('B', ModItems.STONE_BRICK)
+                .input('R', Items.REDSTONE)
+                .pattern("HHH")
+                .pattern("BEB")
+                .pattern("BRB")
+                .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofBWT("hibachi"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
+                .input('L', BTWRTags.Items.TANNED_LEATHERS)
+                .input('B', BwtItems.beltItem)
+                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('G', BwtItems.gearItem)
+                .pattern("SSS")
+                .pattern("LLL")
+                .pattern("GBG")
+                .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .offerTo(exporter, ID.ofBWT("bellows"));
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
+                .input('I', Items.IRON_NUGGET)
+                .input('B', ModItems.STONE_BRICK)
+                .pattern("   ")
+                .pattern(" I ")
+                .pattern("BBB")
+                .criterion("has_stone_brick", conditionsFromItem(ModItems.STONE_BRICK))
+                .offerTo(exporter, ID.ofBWT("anchor"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.turntableBlock)
+                .input('C', Items.CLOCK)
+                .input('S', BwtItemTags.WOODEN_SIDING_BLOCKS)
+                .input('B', ModItems.STONE_BRICK)
+                .input('G', BwtItems.gearItem)
+                .pattern("SSS")
+                .pattern("BCB")
+                .pattern("BGB")
+                .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
+                .offerTo(exporter, ID.ofBWT("turntable"));
+
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.detectorBlock)
+                .input('B', ModItems.STONE_BRICK)
+                .input('E', BwtItems.redstoneEyeItem)
+                .input('T', Items.REDSTONE_TORCH)
+                .input('R', Items.REDSTONE)
+                .pattern("BBBB")
+                .pattern("ETTE")
+                .pattern("BRRB")
+                .pattern("BRRB")
+                .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
+                .offerTo(exporter, ID.ofBWT("detector_block"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.pulleyBlock)
+                .input('W', ModItems.STONE_BRICK)
+                .input('I', Items.IRON_INGOT)
+                .input('G', BwtItems.gearItem)
+                .input('L', BTWRDS_Items.REDSTONE_LATCH)
+                .pattern("WIW")
+                .pattern("GLG")
+                .pattern("WIW")
+                .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
+                .offerTo(exporter, ID.ofBWT("pulley"));
+
+        // Overwritten cauldron recipes
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
+                .ingredient(BwtItems.flourItem)
+                .ingredient(Items.SUGAR)
+                .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
+                .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.createFood().result(BwtItems.nethercoalItem)
+                .ingredient(BwtItems.coalDustItem)
+                .ingredient(BwtItems.hellfireDustItem)
+                .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
+                .offerTo(exporter, ID.ofBWT("nethercoal_from_cauldron"));
+
+
+        // Tools
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.compositeBowItem)
+                .input('m', BwtItemTags.WOODEN_MOULDING_BLOCKS)
+                .input('g', BwtItems.glueItem)
+                .input('b', Items.BONE)
+                .input('s', Items.STRING)
+                .pattern("gmb")
+                .pattern("mbs")
+                .pattern("gmb")
+                .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
+                .offerTo(exporter, ID.ofBWT("composite_bow"));
 
 
         // BTWR: Core

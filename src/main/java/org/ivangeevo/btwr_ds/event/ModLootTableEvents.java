@@ -77,7 +77,7 @@ public class ModLootTableEvents {
                 // Replace door drops with saw dust
                 RegistryKey<LootTable> doorKey = RegistryKey.of(RegistryKeys.LOOT_TABLE, ID.ofMC("blocks/" + wood + "_door"));
                 if (doorKey.equals(key)) {
-                    modifyBreaksToSawdustDrops(tableBuilder, Registries.ITEM.get(ID.ofMC(wood + "_door")), 2);
+                    modifyDoorBreaksToSawdustDrops(tableBuilder, Registries.ITEM.get(ID.ofMC(wood + "_door")), 2);
                 }
             }
         });
@@ -127,6 +127,35 @@ public class ModLootTableEvents {
             ((LootPoolBuilderAccessor) poolBuilder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(entries));
         });
     }
+
+    private static void modifyDoorBreaksToSawdustDrops(LootTable.Builder tableBuilder, Item target, int count) {
+        tableBuilder.modifyPools(poolBuilder -> {
+            List<LootPoolEntry> newEntries = new ArrayList<>();
+            for (LootPoolEntry entry : ((LootPoolBuilderAccessor) poolBuilder).getEntries().build()) {
+                if (entry instanceof ItemEntry itemEntry &&
+                        ((ItemEntryAccessor) itemEntry).getItem().value() == target) {
+
+                    newEntries.add(ItemEntry.builder(BwtItems.sawDustItem)
+                            .conditionally(MatchToolLootCondition.builder(
+                                    ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)).invert())
+                            .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(count)))
+                            .build());
+
+                    newEntries.add(ItemEntry.builder(target)
+                            .conditionally(MatchToolLootCondition.builder(
+                                    ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)))
+                            .build());
+
+                } else {
+                    newEntries.add(entry);
+                }
+            }
+
+            ((LootPoolBuilderAccessor) poolBuilder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(newEntries));
+        });
+    }
+
+
 
     private static class ID {
         static Identifier ofMC(String item) { return Identifier.ofVanilla(item); }

@@ -15,16 +15,7 @@ public class DS_LangGenerator extends FabricLanguageProvider {
     }
 
     @Override
-    public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
-        this.overrideForVanilla(translationBuilder);
-        this.generateForMod(translationBuilder);
-    }
-
-    private void overrideForVanilla(TranslationBuilder tb) {
-        tb.add(Items.MUSHROOM_STEW, "Cream of Mushroom");
-    }
-
-    private void generateForMod(TranslationBuilder tb) {
+    public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder tb) {
         tb.add(BTWRDS_Items.BRIMSTONE, "Brimstone");
         tb.add(BTWRDS_Items.ENDER_SLAG, "Ender Slag");
         tb.add(BTWRDS_Items.SOUL_FLUX, "Soul Flux");
@@ -32,6 +23,5 @@ public class DS_LangGenerator extends FabricLanguageProvider {
         tb.add(BTWRDS_Items.ELEMENT, "Element");
         tb.add(BTWRDS_Items.REDSTONE_LATCH, "Redstone Latch");
     }
-
 
 }

@@ -45,6 +45,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         // Remove item recipes
         disableVanilla(exporter, "bone_meal");
         disableVanilla(exporter, "brown_dye");
+        disableVanilla(exporter, "red_dye_from_beetroot");
         disableVanilla(exporter, "torch");
         disableVanilla(exporter, "blaze_powder");
         disableVanilla(exporter, "mushroom_stew");
