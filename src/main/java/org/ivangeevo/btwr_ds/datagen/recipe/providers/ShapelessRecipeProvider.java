@@ -52,11 +52,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_stick", conditionsFromItem(Items.STICK))
                 .offerTo(exporter, ID.ofMC("arrow"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BONE, 9)
-                .input(Items.BONE_BLOCK)
-                .criterion("has_bone_block", conditionsFromItem(Items.BONE_BLOCK))
-                .offerTo(exporter, ID.ofMC("bone"));
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_SHOVEL)
                 .input(Items.STICK)
                 .input(ItemTags.STONE_TOOL_MATERIALS)

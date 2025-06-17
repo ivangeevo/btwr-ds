@@ -6,14 +6,21 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.CopyComponentsLootFunction;
 import net.minecraft.loot.function.ExplosionDecayLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -52,54 +59,20 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.RED_BED, this.btwBedDrops());
         addDrop(Blocks.BLACK_BED, this.btwBedDrops());
 
+        // override other loot tables
+        this.addDrop(Blocks.BONE_BLOCK, this::boneBlockDrops);
+
     }
 
-
-    public LootTable.Builder shulkerBoxDrops(Block drop) {
-        return LootTable.builder()
-                .pool(this.addSurvivesExplosionCondition(drop,
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .with(ItemEntry.builder(drop)
-                                        .apply(
-                                                CopyComponentsLootFunction.builder(CopyComponentsLootFunction.Source.BLOCK_ENTITY)
-                                                        .include(DataComponentTypes.CUSTOM_NAME)
-                                                        .include(DataComponentTypes.CONTAINER)
-                                                        .include(DataComponentTypes.LOCK)
-                                                        .include(DataComponentTypes.CONTAINER_LOOT)
-                                        )
-                                )
-                        )
-                );
-    }
-
-    public LootTable.Builder btwBedDrops(Block block) {
-        return LootTable.builder()
-                .pool(this.addSurvivesExplosionCondition(block,
-                                LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
-                                        .with(ItemEntry.builder(BwtItems.sawDustItem)
-                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(3.0f)))
-                                        )
-                        )
+    public LootTable.Builder boneBlockDrops(Block drop) {
+        return this.dropsWithSilkTouch(
+                drop,
+                this.applyExplosionDecay(
+                        drop,
+                        ItemEntry.builder(Items.BONE_MEAL)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 4.0F)))
                 )
-                .pool(this.addSurvivesExplosionCondition(block,
-                                LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
-                                        .with(ItemEntry.builder(BwtItems.paddingItem)
-                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0f)))
-                                        )
-                        )
-                )
-                .pool(this.addSurvivesExplosionCondition(block,
-                                LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
-                                        .with(ItemEntry.builder(Items.STICK)
-                                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)))
-                                        )
-                        )
-                )
-
-
-
-                .apply(ExplosionDecayLootFunction.builder());
+        );
     }
 
     public LootTable.Builder btwBedDrops() {

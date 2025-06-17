@@ -10,10 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -31,7 +28,7 @@ public class BlockTillingManager
     public static final Block[] dirtLikeBlocks = {Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT};
 
     /** Normal calls to the TillableBlockRegistry
-     * <p>Making variations of dirt blocks to get set to farmland
+     * <p>Setting variations of dirt blocks to farmland
      * **/
     public static void registerNormalTillable() {
         if (!BTWRDSMod.getInstance().settings.shouldChangeHoesBTWStyle()) return;
