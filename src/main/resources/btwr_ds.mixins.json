@@ -11,6 +11,7 @@
     "EmiFuelRecipeAccessor",
     "EmiFuelRecipeMixin",
     "HoeItemMixin",
+    "ItemEntityMixin",
     "ItemEntryAccessor",
     "ItemMixin",
     "ItemsMixin",
