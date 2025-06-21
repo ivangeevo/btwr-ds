@@ -19,6 +19,8 @@
     "LivingEntityMixin",
     "LootPoolBuilderAccessor",
     "MobEntityMixin",
+    "LivingEntityAccessor",
+    "PlayerEntityMixin",
     "VGModBlocksMixin"
   ],
   "injectors": {
