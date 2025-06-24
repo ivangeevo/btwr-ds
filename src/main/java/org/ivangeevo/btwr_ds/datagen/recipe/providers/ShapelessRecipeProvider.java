@@ -33,6 +33,8 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
     @Override
     public void generate(RecipeExporter exporter) {
 
+        this.addModExclusive(exporter);
+
         // TODO: figure out why .additionalDrop() builder is not working on datagen
         /**
          ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.planksBlock)
@@ -127,6 +129,24 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_chocolate", conditionsFromItem(ModItems.CHOCOLATE))
                 .offerTo(exporter, ID.ofVG("pastry_uncooked_cookies"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, SturdyTreesItems.STUMP_REMOVER,2)
+                .input(Items.ROTTEN_FLESH)
+                .input(Items.RED_MUSHROOM)
+                .input(BTWR_Items.CREEPER_OYSTERS)
+                .criterion("has_creeper_oysters", conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
+                .offerTo(exporter, ID.ofST("stump_remover"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, org.tough_environment.item.ModItems.CHISEL_DIAMOND)
+                .input(BTWR_Items.DIAMOND_INGOT)
+                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .offerTo(exporter, ID.ofTE("chisel_diamond"));
+
+
+        this.createConvertToSawDustToolRecipes(exporter);
+    }
+
+    private void addModExclusive(RecipeExporter exporter) {
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.hempFiberItem,9)
                 .input(BwtItems.fabricItem)
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
@@ -144,20 +164,12 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
                 .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, SturdyTreesItems.STUMP_REMOVER,2)
-                .input(Items.ROTTEN_FLESH)
-                .input(Items.RED_MUSHROOM)
-                .input(BTWR_Items.CREEPER_OYSTERS)
-                .criterion("has_creeper_oysters", conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
-                .offerTo(exporter, ID.ofST("stump_remover"));
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.COAL)
+                .input(BwtItems.coalDustItem)
+                .input(BwtItems.coalDustItem)
+                .criterion("has_coal_dust", conditionsFromItem(BwtItems.coalDustItem))
+                .offerTo(exporter, ID.ofDS("coal_from_coal_dust"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, org.tough_environment.item.ModItems.CHISEL_DIAMOND)
-                .input(BTWR_Items.DIAMOND_INGOT)
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofTE("chisel_diamond"));
-
-
-        this.createConvertToSawDustToolRecipes(exporter);
     }
 
     private void createConvertToSawDustToolRecipes(RecipeExporter exporter) {

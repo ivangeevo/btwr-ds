@@ -16,10 +16,10 @@
     "ItemMixin",
     "ItemsMixin",
     "ItemStackMixin",
+    "LivingEntityAccessor",
     "LivingEntityMixin",
     "LootPoolBuilderAccessor",
     "MobEntityMixin",
-    "LivingEntityAccessor",
     "PlayerEntityMixin",
     "VGModBlocksMixin"
   ],
