@@ -25,12 +25,13 @@ public abstract class BlockMixin {
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity,
                               ItemStack tool, CallbackInfo ci) {
+
+        // Execute block tilling behavior from breaking blocks with a hoe
         //BlockTillingManager.MixinMod.getInstance().onAfterBreak(world, pos, state, tool, player);
 
         // Play break sound for plank type blocks (like slabs, stairs, fences) etc.
         // if broken with an inappropriate axe tool.
-        if (!isWoodenPlankLike(state)) return;
-        if (!tool.isIn(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)) {
+        if (isWoodenPlankLike(state) && !tool.isIn(BTWRConventionalTags.Items.AXES_MAKE_PLANKS)) {
             world.playSound(null, pos, SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, SoundCategory.BLOCKS,
                     0.25F, 1.0F + (world.getRandom().nextFloat() * 0.25F)
             );
