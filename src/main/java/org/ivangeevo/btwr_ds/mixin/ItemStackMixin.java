@@ -30,7 +30,7 @@ public abstract class ItemStackMixin implements ComponentHolder, FabricItemStack
     @Shadow public abstract Item getItem();
 
     // sets items to stack up to 16 only
-    @Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "getMaxCount", at = @At("HEAD"), cancellable = true)
     private void setFoodMaxStackCount(CallbackInfoReturnable<Integer> cir) {
         if (shouldStackTo16((ItemStack)(Object)this)) {
             cir.setReturnValue(16);

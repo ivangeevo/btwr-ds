@@ -2,6 +2,7 @@ package org.ivangeevo.btwr_ds.util;
 
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ArmorMaterials;
 import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.IdentityHashMap;
@@ -12,11 +13,11 @@ public class ArmorWeightHelper
     private static final Map<ArmorMaterial, WeightedArmorStats> WEIGHT_MAP = new IdentityHashMap<>();
 
     static {
-        register(net.minecraft.item.ArmorMaterials.GOLD, new WeightedArmorStats(5, 8, 7, 4));
-        register(net.minecraft.item.ArmorMaterials.CHAIN, new WeightedArmorStats(3, 4, 4, 2));
-        register(net.minecraft.item.ArmorMaterials.IRON, new WeightedArmorStats(5, 8, 7, 4));
-        register(net.minecraft.item.ArmorMaterials.DIAMOND, new WeightedArmorStats(5, 8, 7, 4));
-        register(net.minecraft.item.ArmorMaterials.NETHERITE, new WeightedArmorStats(10, 14, 12, 8));
+        register(ArmorMaterials.GOLD, new WeightedArmorStats(5, 8, 7, 4));
+        register(ArmorMaterials.CHAIN, new WeightedArmorStats(3, 4, 4, 2));
+        register(ArmorMaterials.IRON, new WeightedArmorStats(5, 8, 7, 4));
+        register(ArmorMaterials.DIAMOND, new WeightedArmorStats(5, 8, 7, 4));
+        register(ArmorMaterials.NETHERITE, new WeightedArmorStats(10, 14, 12, 8));
     }
 
     private static void register(RegistryEntry<ArmorMaterial> material, WeightedArmorStats stats) {

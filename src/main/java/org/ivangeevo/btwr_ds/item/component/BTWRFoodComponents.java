@@ -54,14 +54,15 @@ public class BTWRFoodComponents {
     public static final FoodComponent CHORUS_FRUIT = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.CHORUS_FRUIT.saturation() / 4).build();
 
     // From BTWR: Core
-    public static final FoodComponent CHOWDER = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).build();
     public static final FoodComponent EGG_SCRAMBLED_RAW = new FoodComponent.Builder().nutrition(3).saturationModifier(0.25f).statusEffect(addHungerEffect(600, 2), 0.3F).statusEffect(addSlownessEffect(1000, 1), 0.1F).build();
     public static final FoodComponent MUSHROOM_OMELETTE_RAW = new FoodComponent.Builder().nutrition(3).saturationModifier(0.25f).statusEffect(addHungerEffect(600, 2), 0.3F).statusEffect(addSlownessEffect(1000, 1), 0.1F).build();
     public static final FoodComponent RAW_KEBAB = new FoodComponent.Builder().nutrition(6).saturationModifier(0.25f).statusEffect(addHungerEffect(600, 2), 0.3F).statusEffect(addSlownessEffect(1000, 1), 0.1F).build();
+    public static final FoodComponent BEAST_LIVER_RAW = new FoodComponent.Builder().nutrition(5).saturationModifier(0.5f).statusEffect(addHungerEffect(600, 1), 0.3F).statusEffect(addSlownessEffect(1000, 1), 0.1F).build();
     public static final FoodComponent EGG_SCRAMBLED_COOKED = new FoodComponent.Builder().nutrition(4).saturationModifier(0.25f).build();
     public static final FoodComponent MUSHROOM_OMELETTE_COOKED = new FoodComponent.Builder().nutrition(4).saturationModifier(0.25f).build();
     public static final FoodComponent SANDWICH = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).build();
     public static final FoodComponent HAM_AND_EGGS = new FoodComponent.Builder().nutrition(6).saturationModifier(0.25f).build();
+    public static final FoodComponent CHOWDER = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).build();
     public static final FoodComponent STEAK_AND_POTATOES = new FoodComponent.Builder().nutrition(6).saturationModifier(0.25f).build();
     public static final FoodComponent COOKED_KEBAB = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent STEAK_DINNER = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
@@ -69,9 +70,8 @@ public class BTWRFoodComponents {
     public static final FoodComponent WOLF_DINNER = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent CHICKEN_SOUP = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent HEARTY_STEW = new FoodComponent.Builder().nutrition(10).saturationModifier(0.25f).build();
-    public static final FoodComponent CREEPER_OYSTERS = new FoodComponent.Builder().nutrition(1).saturationModifier(0.80f).statusEffect(addPoisonEffect(100, 0), 1.0F).build();
-    public static final FoodComponent BEAST_LIVER_RAW = new FoodComponent.Builder().nutrition(5).saturationModifier(0.5f).statusEffect(addHungerEffect(600, 1), 0.3F).statusEffect(addSlownessEffect(1000, 1), 0.1F).build();
     public static final FoodComponent BEAST_LIVER_COOKED = new FoodComponent.Builder().nutrition(6).saturationModifier(0.5f).build();
+    public static final FoodComponent CREEPER_OYSTERS = new FoodComponent.Builder().nutrition(1).saturationModifier(0.80f).statusEffect(addPoisonEffect(100, 0), 1.0F).build();
 
     // From Vegehenna
     public static final FoodComponent BOILED_POTATO = new FoodComponent.Builder().nutrition(1).saturationModifier(0).build();

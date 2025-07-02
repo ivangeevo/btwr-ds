@@ -26,12 +26,12 @@ public abstract class AbstractBlockMixin {
             // Don't apply to creative mode players
             if (entity instanceof PlayerEntity player && player.isCreative()) return;
 
-            double velocityX = entity.getVelocity().getX();
-            double velocityY = entity.getVelocity().getY();
-            double velocityZ = entity.getVelocity().getZ();
+            double velX = entity.getVelocity().getX();
+            double velY = entity.getVelocity().getY();
+            double velZ = entity.getVelocity().getZ();
 
             // 0.8D = 80 percent off the original speed
-            entity.setVelocity(velocityX * 0.8D, velocityY, velocityZ * 0.8D);
+            entity.setVelocity(velX * 0.8D, velY, velZ * 0.8D);
         }
     }
 

@@ -15,7 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.function.Predicate;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin {
+public abstract class PlayerEntityMixin
+{
 
     // Add extra exhaustion to all actions when wearing armor
     @Inject(method = "addExhaustion", at = @At("HEAD"), cancellable = true)
@@ -28,7 +29,7 @@ public abstract class PlayerEntityMixin {
     }
 
     // Make the player sink in water if the armor they are wearing is too heavy
-    @Inject(method = "travel", at = @At("HEAD"))
+    //@Inject(method = "travel", at = @At("HEAD"))
     private void sinkIfTooHeavy(Vec3d movementInput, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity)(Object)this;
 

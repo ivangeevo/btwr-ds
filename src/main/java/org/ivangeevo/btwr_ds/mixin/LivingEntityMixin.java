@@ -1,20 +1,30 @@
 package org.ivangeevo.btwr_ds.mixin;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import org.ivangeevo.btwr_ds.util.PatchyMovement;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin
+public abstract class LivingEntityMixin extends Entity implements PatchyMovement
 {
+
+    public LivingEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
     // Add exhaustion when blocking with a shield for each successful hit
     @Inject(method = "damage", at = @At(
@@ -62,6 +72,5 @@ public abstract class LivingEntityMixin
 
         cir.setReturnValue(false);
     }
-
 
 }
