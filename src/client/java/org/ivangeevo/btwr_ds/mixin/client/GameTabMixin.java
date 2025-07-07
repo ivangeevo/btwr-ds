@@ -14,11 +14,10 @@ import java.util.Arrays;
 public abstract class GameTabMixin {
 
     @ModifyArg(
-        method = "<init>", // constructor of GameTab
+        method = "<init>",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/client/gui/widget/CyclingButtonWidget$Builder;values([Ljava/lang/Object;)Lnet/minecraft/client/gui/widget/CyclingButtonWidget$Builder;",
-                ordinal = 0
+            target = "Lnet/minecraft/client/gui/widget/CyclingButtonWidget$Builder;values([Ljava/lang/Object;)Lnet/minecraft/client/gui/widget/CyclingButtonWidget$Builder;", ordinal = 0
         ),
         index = 0
     )
