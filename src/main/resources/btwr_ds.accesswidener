@@ -5,3 +5,4 @@ mutable field net/minecraft/structure/processor/StructureProcessorList list Ljav
 accessible method net/minecraft/component/ComponentMap$Builder put (Lnet/minecraft/component/ComponentType;Ljava/lang/Object;)V
 mutable	field	net/minecraft/resource/ResourcePackManager	providers	Ljava/util/Set;
 accessible	field	net/minecraft/resource/ResourcePackManager	providers	Ljava/util/Set;
+accessible class net/minecraft/client/gui/screen/world/CreateWorldScreen$GameTab

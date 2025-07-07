@@ -6,7 +6,9 @@
     "BipedEntityModelMixin",
     "ClientPlayerInteractionManagerMixin",
     "DebugHudMixin",
-    "InGameHudMixin"
+    "GameTabMixin",
+    "InGameHudMixin",
+    "OptionsScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
