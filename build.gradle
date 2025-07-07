@@ -58,6 +58,8 @@ dependencies {
 
 	// BTWR related mods
 	modImplementation "maven.modrinth:btwr-core:${project.btwr_core_version}"
+	modImplementation "maven.modrinth:self-sustainable:${project.self_sustainable_version}"
+
 	modImplementation "maven.modrinth:sturdy-trees:${project.sturdy_trees_version}"
 	modImplementation "maven.modrinth:tough-environment:${project.tough_environment_version}"
 	modImplementation "maven.modrinth:better-with-time:${project.bwt_version}"
@@ -72,7 +74,7 @@ dependencies {
 
 
 	//modImplementation files("libs/btwr-core-${project.btwr_core_version}-1.21.1.jar")
-	modImplementation files("libs/self_sustainable-${project.self_sustainable_version}-1.21.1.jar")
+	//modImplementation files("libs/self_sustainable-${project.self_sustainable_version}-1.21.1.jar")
 	//modImplementation files("libs/better_with_time-${project.bwt_version}.jar")
 	//modImplementation files("libs/sturdy_trees-${project.sturdy_trees_version}-1.21.1.jar")
 	//modImplementation files("libs/tough_environment-${project.tough_environment_version}-1.21.1.jar")

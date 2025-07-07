@@ -17,25 +17,34 @@ public class ItemCountModification
 {
 
     public static void init() {
-
         DefaultItemComponentEvents.MODIFY.register(context -> {
-            for (Item item : rawFoods()) {
-                context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
-            }
-
-            for (Item item : cookedFoods()) {
-                context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
-            }
-
-            for (Item item : miscFoods()) {
-                context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
-            }
-
-            for (Item item : miscItems()) {
-                context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
-            }
-
+            modifyTo16(context);
+            modifyTo8(context);
         });
+    }
+
+    private static void modifyTo16(DefaultItemComponentEvents.ModifyContext context) {
+        for (Item item : rawFoods()) {
+            context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
+        }
+
+        for (Item item : cookedFoods()) {
+            context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
+        }
+
+        for (Item item : miscFoods()) {
+            context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
+        }
+
+        for (Item item : miscItems()) {
+            context.modify(item, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 16));
+        }
+    }
+
+    private static void modifyTo8(DefaultItemComponentEvents.ModifyContext context) {
+        context.modify(Items.POTION, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 8));
+        context.modify(Items.SPLASH_POTION, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 8));
+        context.modify(Items.LINGERING_POTION, builder -> builder.add(DataComponentTypes.MAX_STACK_SIZE, 8));
     }
 
     private static ArrayList<Item> rawFoods() {
