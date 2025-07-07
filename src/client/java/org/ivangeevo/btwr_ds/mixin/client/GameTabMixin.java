@@ -22,7 +22,7 @@ public abstract class GameTabMixin {
         ),
         index = 0
     )
-    private Object[] removeHardcoreOption(Object[] original) {
+    private Object[] removeHardcoreModeOption(Object[] original) {
         return Arrays.stream(original)
             .filter(obj -> obj != WorldCreator.Mode.HARDCORE)
             .toArray();
