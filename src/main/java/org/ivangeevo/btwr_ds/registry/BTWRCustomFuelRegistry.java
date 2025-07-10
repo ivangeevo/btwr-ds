@@ -62,8 +62,6 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.MANGROVE_WOOD, 8400);
         addFuel(tempMap, Items.JUNGLE_LOG, 6400);
         addFuel(tempMap, Items.JUNGLE_WOOD, 6400);
-        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.logBlock, 6400);
-        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.woodBlock, 6400);
 
         addFuel(tempMap, Items.STRIPPED_BIRCH_LOG, 15975);
         addFuel(tempMap, Items.STRIPPED_BIRCH_WOOD, 15975);
@@ -81,8 +79,6 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.STRIPPED_MANGROVE_WOOD, 8375);
         addFuel(tempMap, Items.STRIPPED_JUNGLE_LOG, 6375);
         addFuel(tempMap, Items.STRIPPED_JUNGLE_WOOD, 6375);
-        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.strippedLogBlock, 6375);
-        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.strippedLogBlock, 6375);
 
         addFuel(tempMap, ItemTags.WARPED_STEMS, 1500);
         addFuel(tempMap, ItemTags.CRIMSON_STEMS, 1500);
@@ -108,6 +104,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_STAIRS, 1400);
         addFuel(tempMap, Items.MANGROVE_STAIRS, 600);
         addFuel(tempMap, Items.JUNGLE_STAIRS, 600);
+
         //addFuel(tempMap, Items.BAMBOO_STAIRS, 100);
 
         //addFuel(tempMap, Blocks.BAMBOO_MOSAIC_STAIRS, 150);
@@ -136,6 +133,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_TRAPDOOR, 175);
         addFuel(tempMap, Items.MANGROVE_TRAPDOOR, 175);
         addFuel(tempMap, Items.JUNGLE_TRAPDOOR, 125);
+
         //addFuel(tempMap, Items.BAMBOO_TRAPDOOR, 100);
 
         // Wooden Pressure Plates
@@ -147,6 +145,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_PRESSURE_PLATE, 75);
         addFuel(tempMap, Items.MANGROVE_PRESSURE_PLATE, 75);
         addFuel(tempMap, Items.JUNGLE_PRESSURE_PLATE, 50);
+
         //addFuel(tempMap, Items.BAMBOO_PRESSURE_PLATE, 50);
 
         // Wooden Fences
@@ -158,6 +157,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_FENCE, 175);
         addFuel(tempMap, Items.MANGROVE_FENCE, 175);
         addFuel(tempMap, Items.JUNGLE_FENCE, 125);
+
         //addFuel(tempMap, Items.BAMBOO_FENCE, 100);
 
         // Wooden Fence Gates
@@ -169,6 +169,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_FENCE_GATE, 175);
         addFuel(tempMap, Items.MANGROVE_FENCE_GATE, 175);
         addFuel(tempMap, Items.JUNGLE_FENCE_GATE, 125);
+
         //addFuel(tempMap, Items.BAMBOO_FENCE_GATE, 100);
 
         // Wooden Buttons
@@ -180,6 +181,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_BUTTON, 40);
         addFuel(tempMap, Items.MANGROVE_BUTTON, 40);
         addFuel(tempMap, Items.JUNGLE_BUTTON, 25);
+
         //addFuel(tempMap, Items.BAMBOO_BUTTON, 25);
 
         addFuel(tempMap, Items.STICK, 400);
@@ -194,6 +196,7 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.SPRUCE_SIGN, 175);
         addFuel(tempMap, Items.MANGROVE_SIGN, 175);
         addFuel(tempMap, Items.JUNGLE_SIGN, 125);
+
         //addFuel(tempMap, Items.BAMBOO_SIGN, 100);
 
         // Hanging Signs
@@ -257,11 +260,18 @@ public class BTWRCustomFuelRegistry {
         addFuel(map, BwtItems.nethercoalItem, 14200);
         addFuel(map, BwtItems.coalDustItem, 6400);
 
-        addFuel(map, BwtBlocks.bloodWoodBlocks.logBlock, 400);
-        addFuel(map, BwtBlocks.bloodWoodBlocks.strippedWoodBlock, 400);
-        addFuel(map, BwtBlocks.bloodWoodBlocks.woodBlock, 400);
-        addFuel(map, BwtBlocks.bloodWoodBlocks.logBlock, 400);
-        addFuel(map, BwtBlocks.bloodWoodBlocks.logBlock, 400);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.logBlock, 6400);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.woodBlock, 6400);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.strippedLogBlock, 6375);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.strippedWoodBlock, 6375);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.planksBlock, 1600);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.stairsBlock, 600);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.slabBlock, 300);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.trapdoorBlock, 125);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.pressurePlateBlock, 50);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.fenceBlock, 125);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.fenceGateBlock, 125);
+        addFuel(map, BwtBlocks.bloodWoodBlocks.buttonBlock, 25);
 
 
         addFuel(map, BwtItemTags.WOODEN_SIDING_BLOCKS, 150);

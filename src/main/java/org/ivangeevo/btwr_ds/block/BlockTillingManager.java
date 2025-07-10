@@ -25,7 +25,7 @@ import static net.minecraft.block.Block.pushEntitiesUpBeforeBlockChange;
 public class BlockTillingManager
 {
 
-    public static final Block[] dirtLikeBlocks = {Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT};
+    public static final Block[] tillableDirtBlock = {Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT};
 
     /** Normal calls to the TillableBlockRegistry
      * <p>Setting variations of dirt blocks to farmland
@@ -33,7 +33,7 @@ public class BlockTillingManager
     public static void registerNormalTillable() {
         if (!BTWRDSMod.getInstance().settings.shouldChangeHoesBTWStyle()) return;
 
-        for (Block dirt : dirtLikeBlocks) {
+        for (Block dirt : tillableDirtBlock) {
             TillableBlockRegistry.register(
                     dirt,
                     HoeItem::canTillFarmland,
