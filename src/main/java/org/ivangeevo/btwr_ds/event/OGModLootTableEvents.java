@@ -18,10 +18,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.mixin.ItemEntryAccessor;
+import org.ivangeevo.btwr_ds.mixin.entity.ItemEntryAccessor;
 import org.ivangeevo.btwr_ds.mixin.LootPoolBuilderAccessor;
-import org.tough_environment.item.ModItems;
-import org.tough_environment.tag.ModTags;
 
 import java.util.ArrayList;
 import java.util.List;

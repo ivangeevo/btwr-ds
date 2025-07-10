@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.block;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.Block;
@@ -12,7 +12,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.ivangeevo.btwr_ds.block.BlockTillingManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

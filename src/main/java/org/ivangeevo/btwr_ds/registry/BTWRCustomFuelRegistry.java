@@ -62,6 +62,8 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.MANGROVE_WOOD, 8400);
         addFuel(tempMap, Items.JUNGLE_LOG, 6400);
         addFuel(tempMap, Items.JUNGLE_WOOD, 6400);
+        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.logBlock, 6400);
+        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.woodBlock, 6400);
 
         addFuel(tempMap, Items.STRIPPED_BIRCH_LOG, 15975);
         addFuel(tempMap, Items.STRIPPED_BIRCH_WOOD, 15975);
@@ -79,6 +81,8 @@ public class BTWRCustomFuelRegistry {
         addFuel(tempMap, Items.STRIPPED_MANGROVE_WOOD, 8375);
         addFuel(tempMap, Items.STRIPPED_JUNGLE_LOG, 6375);
         addFuel(tempMap, Items.STRIPPED_JUNGLE_WOOD, 6375);
+        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.strippedLogBlock, 6375);
+        addFuel(tempMap, BwtBlocks.bloodWoodBlocks.strippedLogBlock, 6375);
 
         addFuel(tempMap, ItemTags.WARPED_STEMS, 1500);
         addFuel(tempMap, ItemTags.CRIMSON_STEMS, 1500);

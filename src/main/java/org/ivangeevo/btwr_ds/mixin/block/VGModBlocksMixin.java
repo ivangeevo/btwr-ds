@@ -1,7 +1,6 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.block;
 
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Blocks;
 import org.ivangeevo.vegehenna.block.ModBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;

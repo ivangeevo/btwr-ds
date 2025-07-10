@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.entity;
 
 import net.minecraft.entity.mob.GhastEntity;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.block;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;

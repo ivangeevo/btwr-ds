@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.item;
 
 import net.minecraft.item.Items;
 import org.spongepowered.asm.mixin.Mixin;

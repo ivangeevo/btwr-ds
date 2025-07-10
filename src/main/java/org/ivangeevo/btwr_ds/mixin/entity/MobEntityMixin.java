@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;

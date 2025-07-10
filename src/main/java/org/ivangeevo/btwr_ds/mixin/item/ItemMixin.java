@@ -1,10 +1,6 @@
-package org.ivangeevo.btwr_ds.mixin;
+package org.ivangeevo.btwr_ds.mixin.item;
 
-import btwr.core.item.BTWR_Items;
-import com.bwt.items.BwtItems;
-import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
@@ -12,9 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.ivangeevo.vegehenna.item.ModItems;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -33,7 +27,7 @@ public abstract class ItemMixin {
         }
     }
 
-    @Inject(method = "hasGlint", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "hasGlint", at = @At("HEAD"), cancellable = true)
     private void setItemHasGlint(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if (stack.isOf(Items.NETHERITE_INGOT)) {
             cir.setReturnValue(true);
