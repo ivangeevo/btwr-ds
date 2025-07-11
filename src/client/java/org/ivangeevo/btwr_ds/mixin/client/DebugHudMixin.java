@@ -21,9 +21,13 @@ public abstract class DebugHudMixin {
 
     @Shadow protected abstract void drawText(DrawContext context, List<String> text, boolean left);
 
+    @Shadow @Final private MinecraftClient client;
+
     // Cancels the left text to remove the debug charts text
     @Inject(method = "drawLeftText", at = @At("HEAD"), cancellable = true)
     private void onDrawLeftText(DrawContext context, CallbackInfo ci) {
+        assert this.client.player != null;
+        if (this.client.player.isCreative()) return;
         List<String> list = this.getLeftText();
         list.add("");
         this.drawText(context, list, true);
@@ -33,6 +37,9 @@ public abstract class DebugHudMixin {
     // Filters the left text to only display specific text
     @Inject(method = "getLeftText", at = @At("RETURN"), cancellable = true)
     private void onGetLeftText(CallbackInfoReturnable<List<String>> cir) {
+        assert this.client.player != null;
+        if (this.client.player.isCreative()) return;
+
         List<String> original = cir.getReturnValue();
         List<String> filtered = new ArrayList<>();
 
@@ -52,6 +59,9 @@ public abstract class DebugHudMixin {
     // Filters the right text to only display specific text
     @Inject(method = "getRightText", at = @At("RETURN"), cancellable = true)
     private void trimRightText(CallbackInfoReturnable<List<String>> cir) {
+        assert this.client.player != null;
+        if (this.client.player.isCreative()) return;
+
         List<String> original = cir.getReturnValue();
         int gpuIndex = -1;
 

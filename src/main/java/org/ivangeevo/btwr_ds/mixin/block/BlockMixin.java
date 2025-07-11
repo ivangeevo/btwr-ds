@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.mixin.block;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import com.bwt.blocks.SoilPlanterBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +19,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static net.minecraft.state.property.Properties.MOISTURE;
 
 @Mixin(Block.class)
 public abstract class BlockMixin {
@@ -58,4 +62,12 @@ public abstract class BlockMixin {
                 || state.isIn(BlockTags.WOODEN_TRAPDOORS)
                 || state.isIn(BlockTags.WOODEN_DOORS);
     }
+
+    @Inject(method = "appendProperties", at = @At("HEAD"))
+    private void onAppendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
+        if (((Block)(Object)this) instanceof SoilPlanterBlock) {
+            builder.add(MOISTURE);
+        }
+    }
+
 }

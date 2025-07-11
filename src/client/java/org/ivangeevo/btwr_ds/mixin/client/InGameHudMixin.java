@@ -21,7 +21,7 @@ public abstract class InGameHudMixin {
     @ModifyArg(
             method = "drawHeart",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud$HeartType;getTexture(ZZZ)Lnet/minecraft/util/Identifier;"),
-            index = 0 // index 0 is the first arg (hardcore check)
+            index = 0
     )
     private boolean alwaysHardcore(boolean original) {
         return true; // force hardcore heart style
