@@ -12,6 +12,7 @@
     "block.BlocksMixin",
     "block.BwtBlocksMixin",
     "block.PaneBlockMixin",
+    "block.SoilPlanterBlockMixin",
     "block.VGModBlocksMixin",
     "entity.AbstractFurnaceBlockEntityMixin",
     "entity.GhastEntityMixin",
