@@ -150,11 +150,7 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofTE("chisel_diamond"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.MELON_SLICE, 5)
-                .input(Items.MELON)
-                .input(ItemTags.AXES)
-                .criterion("has_melon", RecipeProvider.conditionsFromItem(Items.MELON))
-                .offerTo(exporter);
+
 
         this.createConvertToSawDustToolRecipes(exporter);
     }

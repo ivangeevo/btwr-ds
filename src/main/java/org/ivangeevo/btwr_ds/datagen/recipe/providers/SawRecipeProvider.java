@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
@@ -25,6 +26,11 @@ public class SawRecipeProvider extends FabricRecipeProvider implements RecipePro
 
     @Override
     public void generate(RecipeExporter exporter) {
+        SawRecipe.JsonBuilder.create(Blocks.MELON)
+                .result(Items.MELON_SLICE, 5)
+                .criterion("has_melon", conditionsFromItem(Items.MELON))
+                .offerTo(exporter, ID.ofBWT("saw_melon"));
+
         // Recipes for sawing log blocks
         this.createSawLogRecipes(exporter);
 
