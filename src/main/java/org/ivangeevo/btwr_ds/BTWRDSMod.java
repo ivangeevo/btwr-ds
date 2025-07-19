@@ -10,6 +10,7 @@ import org.ivangeevo.btwr_ds.item.ItemCountModification;
 import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
+import org.ivangeevo.btwr_ds.world.SpawnChunksLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +49,8 @@ public class BTWRDSMod implements ModInitializer {
 		FoodComponentModifier.register();
 
 		ItemCountModification.init();
+
+		SpawnChunksLoader.init();
 
 		//ServerTickEvents.END_SERVER_TICK.register(this::onServerTick);
 
