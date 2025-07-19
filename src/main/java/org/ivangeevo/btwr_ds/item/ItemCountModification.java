@@ -77,7 +77,7 @@ public class ItemCountModification
     private static ArrayList<Item> cookedFoods() {
         ArrayList<Item> list = new ArrayList<>();
 
-        // vanilla non-meats first
+        // vanilla non-meats
         list.add(Items.BREAD);
         list.add(Items.COOKIE);
         list.add(Items.BAKED_POTATO);
@@ -129,6 +129,8 @@ public class ItemCountModification
     private static ArrayList<Item> miscFoods() {
         ArrayList<Item> list = new ArrayList<>();
 
+        list.add(Items.MELON);
+        list.add(Items.PUMPKIN);
         list.add(Items.MELON_SLICE);
         list.add(Items.COCOA_BEANS);
         list.add(Items.GOLDEN_APPLE);
