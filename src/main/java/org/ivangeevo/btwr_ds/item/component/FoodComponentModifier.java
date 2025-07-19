@@ -34,6 +34,7 @@ public class FoodComponentModifier {
     // 6 pips = 1 shank
     private static void modifyGranularFoods(DefaultItemComponentEvents.ModifyContext context) {
         context.modify(Items.MELON_SLICE, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.MELON_SLICE));
+        context.modify(ModItems.MASHED_MELON, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.MASHED_MELON));
         context.modify(Items.SWEET_BERRIES, builder -> modifyEntryGranular(builder,2, BTWRFoodComponents.Granular.SWEET_BERRIES));
         context.modify(Items.BROWN_MUSHROOM, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.BROWN_MUSHROOM));
         context.modify(Items.RED_MUSHROOM, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.RED_MUSHROOM));

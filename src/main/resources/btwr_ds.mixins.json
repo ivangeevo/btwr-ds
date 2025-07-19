@@ -24,8 +24,7 @@
     "entity.PlayerEntityMixin",
     "item.HoeItemMixin",
     "item.ItemMixin",
-    "item.ItemsMixin",
-    "item.ItemStackMixin"
+    "item.ItemsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

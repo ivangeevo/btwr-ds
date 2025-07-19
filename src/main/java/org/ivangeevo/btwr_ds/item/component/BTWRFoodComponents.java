@@ -9,6 +9,7 @@ public class BTWRFoodComponents {
 
     public static class Granular {
         public static final FoodComponent MELON_SLICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
+        public static final FoodComponent MASHED_MELON = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
         public static final FoodComponent SWEET_BERRIES = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
         public static final FoodComponent BROWN_MUSHROOM = new FoodComponent.Builder().nutrition(0).saturationModifier(0).build();
         public static final FoodComponent RED_MUSHROOM = new FoodComponent.Builder().nutrition(0).saturationModifier(0).statusEffect(addPoisonEffect(100, 0), 1f).build();

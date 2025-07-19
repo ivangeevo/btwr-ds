@@ -2,7 +2,6 @@ package org.ivangeevo.btwr_ds.mixin.block;
 
 import com.bwt.blocks.BwtBlocks;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.piston.PistonBehavior;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;

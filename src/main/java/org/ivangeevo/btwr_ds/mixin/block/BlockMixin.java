@@ -21,9 +21,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.minecraft.state.property.Properties.MOISTURE;
+import static org.ivangeevo.btwr_ds.data.ModProperties.FERTILIZED;
 
 @Mixin(Block.class)
 public abstract class BlockMixin {
+
+    // Adds MOISTURE and FERTILIZED blockstate properties to the SoilPlanterBlock
+    @Inject(method = "appendProperties", at = @At("HEAD"))
+    private void onAppendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
+        if (((Block)(Object)this) instanceof SoilPlanterBlock) {
+            builder.add(MOISTURE, FERTILIZED);
+        }
+    }
 
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity,
@@ -63,11 +72,5 @@ public abstract class BlockMixin {
                 || state.isIn(BlockTags.WOODEN_DOORS);
     }
 
-    @Inject(method = "appendProperties", at = @At("HEAD"))
-    private void onAppendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
-        if (((Block)(Object)this) instanceof SoilPlanterBlock) {
-            builder.add(MOISTURE);
-        }
-    }
 
 }

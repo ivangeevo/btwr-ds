@@ -50,6 +50,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "blaze_powder");
         disableVanilla(exporter, "mushroom_stew");
         disableVanilla(exporter, "bone_meal_from_bone_block");
+        disableVanilla(exporter, "melon_slice");
 
 
         disableVanilla(exporter, "bread_from_smoking");
