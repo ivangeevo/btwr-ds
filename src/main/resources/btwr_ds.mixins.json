@@ -16,6 +16,7 @@
     "block.SoilPlanterBlockMixin",
     "block.TorchBlockMixin",
     "block.VGModBlocksMixin",
+    "block.WallTorchBlockMixin",
     "entity.AbstractFurnaceBlockEntityMixin",
     "entity.GhastEntityMixin",
     "entity.ItemEntityMixin",
