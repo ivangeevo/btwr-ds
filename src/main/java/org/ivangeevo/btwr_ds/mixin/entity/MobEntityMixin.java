@@ -1,12 +1,16 @@
 package org.ivangeevo.btwr_ds.mixin.entity;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -102,5 +106,28 @@ public abstract class MobEntityMixin extends LivingEntity
                 cir.setReturnValue( null);
         }
 
+    }
+
+    // Repel mobs with Soul Torches
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void repelMobs(CallbackInfo ci) {
+        if (this.getWorld().isClient) return;
+
+        // Only apply to hostile mobs
+        if (!((MobEntity)(Object)this instanceof HostileEntity)) return;
+
+        BlockPos mobPos = this.getBlockPos();
+        int radius = 6;
+
+        BlockPos.stream(mobPos.add(-radius, -2, -radius), mobPos.add(radius, 2, radius))
+                .filter(pos -> this.getWorld().getBlockState(pos).getBlock() == Blocks.SOUL_TORCH)
+                .filter(pos -> pos.isWithinDistance(this.getPos(), radius))
+                .findFirst()
+                .ifPresent(pos -> {
+                    Vec3d direction = this.getPos().subtract(Vec3d.ofCenter(pos)).normalize();
+                    double strength = 0.15;
+                    this.addVelocity(direction.multiply(strength));
+                    this.velocityModified = true;
+                });
     }
 }

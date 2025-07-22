@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.impl.client.indigo.renderer.render.BlockRenderContext;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
 
 public class BTWRDSModClient implements ClientModInitializer
@@ -25,7 +26,6 @@ public class BTWRDSModClient implements ClientModInitializer
 
 	@Override
 	public void onInitializeClient() {
-
 
 
 	}
