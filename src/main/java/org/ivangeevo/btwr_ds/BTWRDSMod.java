@@ -60,8 +60,6 @@ public class BTWRDSMod implements ModInitializer {
 
 		SpawnChunksLoader.init();
 
-		BlockSpeedRegistry.init();
-
 		//BlockSpeedRegistry.init();
 
 		//ServerTickEvents.END_SERVER_TICK.register(this::onServerTick);

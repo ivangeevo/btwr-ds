@@ -12,6 +12,4 @@ public interface LivingEntityAccessor
     @Accessor("jumping")
     boolean isJumping();
 
-    @Invoker("getMovementSpeed")
-    float getMovementSpeed(float slipperiness);
 }

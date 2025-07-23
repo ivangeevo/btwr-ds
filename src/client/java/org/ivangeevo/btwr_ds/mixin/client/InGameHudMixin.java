@@ -26,6 +26,7 @@ public abstract class InGameHudMixin {
         return true;
     }
 
+    /**
     // Disables XYZ cursor rendering
     @Redirect(
             method = "renderCrosshair(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/render/RenderTickCounter;)V",
@@ -38,6 +39,7 @@ public abstract class InGameHudMixin {
         // Always return false to disable XYZ cursor rendering
         return false;
     }
+    **/
 
 
     // Displays the saturation in the left top corner for debugging
