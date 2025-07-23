@@ -63,7 +63,6 @@ public class BlockSpeedRegistry {
         registerTag("minecraft:stairs", 1.20);
         registerTag("minecraft:stone_ores", 1.20);
         registerTag("minecraft:deepslate_ores", 1.20);
-        //registerTag("c:ores", 1.20);
         register("tough_environment:stone_converting", 1.20);
         register("tough_environment:andesite_converting", 1.20);
         register("tough_environment:diorite_converting", 1.20);

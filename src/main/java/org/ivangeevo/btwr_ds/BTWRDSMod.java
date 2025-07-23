@@ -62,6 +62,8 @@ public class BTWRDSMod implements ModInitializer {
 
 		BlockSpeedRegistry.init();
 
+		//BlockSpeedRegistry.init();
+
 		//ServerTickEvents.END_SERVER_TICK.register(this::onServerTick);
 
 		// Registers all tilling based interactions/modifications
