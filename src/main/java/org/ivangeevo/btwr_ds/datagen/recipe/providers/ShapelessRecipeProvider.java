@@ -150,7 +150,15 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofTE("chisel_diamond"));
 
-
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.NETHER_GROTH_SPORES)
+                .input(Items.RED_MUSHROOM)
+                .input(Items.BROWN_MUSHROOM)
+                .input(Items.NETHER_WART)
+                .input(Items.MYCELIUM)
+                .input(BwtItems.dungItem)
+                .input(BwtItems.soulUrnItem)
+                .criterion("has_mycelium", conditionsFromItem(Items.MYCELIUM))
+                .offerTo(exporter, ID.ofBTWR("nether_groth_spores"));
 
         this.createConvertToSawDustToolRecipes(exporter);
     }
