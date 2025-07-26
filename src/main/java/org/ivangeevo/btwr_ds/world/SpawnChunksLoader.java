@@ -1,42 +1,40 @@
 package org.ivangeevo.btwr_ds.world;
 
+import net.fabricmc.fabric.api.entity.FakePlayer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.*;
-import net.minecraft.util.Unit;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.server.world.ChunkTicketType;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
 
 public class SpawnChunksLoader {
 
+    private static final int CHUNK_RADIUS = 6;
+
     public static void init() {
-        ServerTickEvents.END_WORLD_TICK.register(serverWorld -> {
-            if (!serverWorld.getRegistryKey().equals(World.OVERWORLD)) return;
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            ServerWorld overworld = server.getOverworld();
+            // Ensure fake player exists and is in spawn chunks
+            FakePlayer fake = FakePlayer.get(overworld);
+            fake.teleport(overworld,overworld.getSpawnPos().getX() + 0.5,
+                    overworld.getSpawnPos().getY(),
+                    overworld.getSpawnPos().getZ() + 0.5,
+                    0f, 0f);
 
-            MinecraftServer server = serverWorld.getServer();
-
-            // Ensure logic only runs once per tick, not per dimension
-            if (!server.getOverworld().equals(serverWorld)) return;
-
-            BlockPos spawn = serverWorld.getSpawnPos();
-            forceSpawnChunks(serverWorld, spawn);
+            // Force load surrounding spawn chunks using FORCED tickets
+            forceLoadSpawnChunks(overworld);
         });
     }
 
-    private static void forceSpawnChunks(ServerWorld world, BlockPos spawn) {
-        ChunkPos center = new ChunkPos(spawn);
-        ServerChunkManager chunkManager = world.getChunkManager();
+    private static void forceLoadSpawnChunks(ServerWorld world) {
+        var cm = world.getChunkManager();
+        var center = world.getSpawnPos();
+        var centerChunk = new net.minecraft.util.math.ChunkPos(center);
 
-        int radius = 6; // 13x13 area
-
-        for (int x = -radius; x <= radius; x++) {
-            for (int z = -radius; z <= radius; z++) {
-                ChunkPos pos = new ChunkPos(center.x + x, center.z + z);
-                chunkManager.addTicket(ChunkTicketType.START, pos, 0, Unit.INSTANCE);
+        for (int dx = -CHUNK_RADIUS; dx <= CHUNK_RADIUS; dx++) {
+            for (int dz = -CHUNK_RADIUS; dz <= CHUNK_RADIUS; dz++) {
+                var chunkPos = new ChunkPos(centerChunk.x + dx, centerChunk.z + dz);
+                cm.addTicket(ChunkTicketType.FORCED, chunkPos, 31, chunkPos);
             }
         }
     }
-
-
 }

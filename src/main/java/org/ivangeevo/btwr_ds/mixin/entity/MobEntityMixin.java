@@ -15,6 +15,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
+import org.ivangeevo.btwr_ds.util.RepellingSoulTorch;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -109,25 +110,8 @@ public abstract class MobEntityMixin extends LivingEntity
     }
 
     // Repel mobs with Soul Torches
-    @Inject(method = "tick", at = @At("TAIL"))
-    private void repelMobs(CallbackInfo ci) {
-        if (this.getWorld().isClient) return;
-
-        // Only apply to hostile mobs
-        if (!((MobEntity)(Object)this instanceof HostileEntity)) return;
-
-        BlockPos mobPos = this.getBlockPos();
-        int radius = 6;
-
-        BlockPos.stream(mobPos.add(-radius, -2, -radius), mobPos.add(radius, 2, radius))
-                .filter(pos -> this.getWorld().getBlockState(pos).getBlock() == Blocks.SOUL_TORCH)
-                .filter(pos -> pos.isWithinDistance(this.getPos(), radius))
-                .findFirst()
-                .ifPresent(pos -> {
-                    Vec3d direction = this.getPos().subtract(Vec3d.ofCenter(pos)).normalize();
-                    double strength = 0.15;
-                    this.addVelocity(direction.multiply(strength));
-                    this.velocityModified = true;
-                });
+    //@Inject(method = "tick", at = @At("TAIL"))
+    private void onTick(CallbackInfo ci) {
+        RepellingSoulTorch.getInstance().repelMobs((MobEntity)(Object)this);
     }
 }
