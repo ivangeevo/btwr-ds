@@ -1,13 +1,19 @@
 package org.ivangeevo.btwr_ds.mixin.block;
 
+import com.bwt.blocks.BwtBlocks;
 import com.bwt.blocks.SoilPlanterBlock;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -18,8 +24,10 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import static net.minecraft.state.property.Properties.MOISTURE;
+import static org.ivangeevo.btwr_ds.data.ModProperties.FERTILIZED;
 
 @Mixin(AbstractBlock.class)
 public abstract class AbstractBlockMixin {
@@ -77,6 +85,12 @@ public abstract class AbstractBlockMixin {
         // Additional check: directly below
         BlockPos below = pos.down();
         return world.getFluidState(below).isIn(FluidTags.WATER) || world.getFluidState(below).isOf(Fluids.WATER);
+    }
+
+    /** Helper method to evaluate the instance of this block **/
+    @Unique
+    private boolean isInstanceOf(Class<?> cls) {
+        return cls.isInstance(this);
     }
 
 }

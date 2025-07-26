@@ -40,19 +40,6 @@ public abstract class SoilPlanterBlockMixin extends PlanterBlock {
     }
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (stack.isOf(Items.BONE_MEAL)) {
-            world.setBlockState(pos, state.with(FERTILIZED, true));
-            if (!player.isCreative()) {
-                stack.decrement(1);
-            }
-            return ItemActionResult.success(true);
-        }
-
-        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-    }
-
-    @Override
     public boolean getIsFertilizedForPlantGrowth(World world, BlockPos pos) {
         return world.getBlockState(pos).get(FERTILIZED);
     }

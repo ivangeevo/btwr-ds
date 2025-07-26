@@ -15,6 +15,7 @@ import org.ivangeevo.btwr_ds.item.ItemCountModification;
 import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.ivangeevo.btwr_ds.util.BlockSpeedRegistry;
+import org.ivangeevo.btwr_ds.util.PlanterFertilizer;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
 import org.ivangeevo.btwr_ds.world.SpawnChunksLoader;
 import org.slf4j.Logger;
@@ -59,6 +60,8 @@ public class BTWRDSMod implements ModInitializer {
 		ItemCountModification.init();
 
 		SpawnChunksLoader.init();
+
+		PlanterFertilizer.init();
 
 		//BlockSpeedRegistry.init();
 
