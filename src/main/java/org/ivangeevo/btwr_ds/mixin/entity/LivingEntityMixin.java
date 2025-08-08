@@ -42,8 +42,11 @@ public abstract class LivingEntityMixin extends Entity implements PatchyMovement
     }
 
     // Makes the player resistant to poison and nausea if wearing full netherite armor
-    @Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
-            at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z",
+            at = @At("HEAD"),
+            cancellable = true
+    )
     private void cancelPoisonAndNausea(StatusEffectInstance effect, @Nullable Entity source, CallbackInfoReturnable<Boolean> cir) {
         if ((Object) this instanceof PlayerEntity player) {
             boolean fullNetherite = true;
