@@ -3,18 +3,14 @@ package org.ivangeevo.btwr_ds;
 import btwr.btwr_sl.BTWRSLMod;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.block.Block;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
+import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.item.ItemCountModification;
 import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
+import org.ivangeevo.btwr_ds.loot.ModLootFunctions;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
-import org.ivangeevo.btwr_ds.util.BlockSpeedRegistry;
 import org.ivangeevo.btwr_ds.util.PlanterFertilizer;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
 import org.ivangeevo.btwr_ds.world.SpawnChunksLoader;
@@ -50,18 +46,24 @@ public class BTWRDSMod implements ModInitializer {
 		instance = this;
 
 		BTWRDS_Items.registerAndAddToGroups();
-		BTWRDSRecipes.init();
+
+		BTWRDSRecipes.register();
+
 		WorldGenBlockReplacements.register();
 
 		FoodComponentModifier.register();
 
-		ModLootTableEvents.initialize();
+		ModLootTableEvents.register();
 
-		ItemCountModification.init();
+		ItemCountModification.register();
 
-		SpawnChunksLoader.init();
+		SpawnChunksLoader.register();
 
-		PlanterFertilizer.init();
+		PlanterFertilizer.register();
+
+		ModStatusEffects.register();
+
+		ModLootFunctions.register();
 
 		//BlockSpeedRegistry.init();
 

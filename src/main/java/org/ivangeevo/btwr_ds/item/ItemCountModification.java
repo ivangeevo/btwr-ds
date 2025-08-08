@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ItemCountModification
 {
 
-    public static void init() {
+    public static void register() {
         DefaultItemComponentEvents.MODIFY.register(context -> {
             modifyTo16(context);
             modifyTo8(context);

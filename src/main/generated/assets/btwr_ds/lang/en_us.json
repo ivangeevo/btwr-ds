@@ -1,4 +1,7 @@
 {
+  "effect.btwr_ds.fortune": "Fortune",
+  "effect.btwr_ds.looting": "Looting",
+  "effect.btwr_ds.true_sight": "True Sight",
   "item.btwr_ds.bark_blood_wood": "Blood Wood Bark",
   "item.btwr_ds.brimstone": "Brimstone",
   "item.btwr_ds.element": "Element",

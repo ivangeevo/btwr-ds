@@ -64,7 +64,7 @@ public class RepellingSoulTorch {
     }
 
     public void displayHorizontalParticles(BlockState state, World world, BlockPos pos, Random random) {
-        if (!state.isOf(Blocks.SOUL_TORCH) ) return;
+        if (!state.isOf(Blocks.SOUL_TORCH)) return;
 
         if (random.nextFloat() > 0.3f) return; // Control spawn rate
 

@@ -10,7 +10,7 @@ public class SpawnChunksLoader {
 
     private static final int CHUNK_RADIUS = 6;
 
-    public static void init() {
+    public static void register() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             ServerWorld overworld = server.getOverworld();
             // Ensure fake player exists and is in spawn chunks

@@ -34,8 +34,8 @@
               "name": "minecraft:coal",
               "functions": [
                 {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
+                  "function": "btwr_ds:status_effect_apply_bonus",
+                  "effect": "btwr_ds:fortune",
                   "formula": "minecraft:ore_drops"
                 },
                 {

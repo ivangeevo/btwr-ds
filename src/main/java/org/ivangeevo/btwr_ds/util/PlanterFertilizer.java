@@ -7,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -20,7 +19,7 @@ import static org.ivangeevo.btwr_ds.data.ModProperties.FERTILIZED;
 
 public class PlanterFertilizer {
 
-    public static void init() {
+    public static void register() {
         UseItemCallback.EVENT.register(PlanterFertilizer::tryFertilize);
     }
 

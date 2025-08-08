@@ -15,7 +15,7 @@ public class BTWRDSRecipes {
     public static final RecipeType<ShapelessRecipeWithCounts> COUNTED_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
 
 
-    public static void init() {
+    public static void register() {
         Registry.register(Registries.RECIPE_TYPE, Identifier.of(BTWRDSMod.MOD_ID, "disabled"), DISABLED_RECIPE_TYPE);
         Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(BTWRDSMod.MOD_ID,"disabled"), DISABLED_RECIPE_SERIALIZER);
     }
