@@ -57,6 +57,9 @@ public class OvenCookingRecipeProvider extends FabricRecipeProvider implements R
         offerOvenCooking(COOKED_CARROT, RecipeCategory.FOOD, Ingredient.ofItems(Items.CARROT), 0.10f, FOOD_COOK_TIME).criterion("has_carrot", conditionsFromItem(Items.CARROT)).offerTo(exporter, ID.ofSS("cooked_carrot" + foc));
         offerOvenCooking(Items.COOKIE, RecipeCategory.FOOD, Ingredient.ofItems(PASTRY_UNCOOKED_COOKIES), 0.10f, FOOD_COOK_TIME).criterion("has_pastry_uncooked_cookies", conditionsFromItem(PASTRY_UNCOOKED_COOKIES)).offerTo(exporter, ID.ofSS("cookie" + foc));
         offerOvenCooking(BwtItems.friedEggItem, RecipeCategory.FOOD, Ingredient.ofItems(BwtItems.rawEggItem), 0.10f, FOOD_COOK_TIME).criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem)).offerTo(exporter, ID.ofSS("fried_egg" + foc));
+        offerOvenCooking(BTWR_Items.EGG_SCRAMBLED_COOKED, RecipeCategory.FOOD, Ingredient.ofItems(BTWR_Items.EGG_SCRAMBLED_RAW), 0.10f, FOOD_COOK_TIME).criterion("has_egg_scrambled_raw", conditionsFromItem(BTWR_Items.EGG_SCRAMBLED_RAW)).offerTo(exporter, ID.ofSS("scrambled_eggs_cooked" + foc));
+        offerOvenCooking(BTWR_Items.MUSHROOM_OMELETTE_COOKED, RecipeCategory.FOOD, Ingredient.ofItems(BTWR_Items.MUSHROOM_OMELETTE_RAW), 0.10f, FOOD_COOK_TIME).criterion("has_egg_mushroom_omelette_raw", conditionsFromItem(BTWR_Items.MUSHROOM_OMELETTE_RAW)).offerTo(exporter, ID.ofSS("mushroom_omelette_cooked" + foc));
+
     }
 
     public static ModCookingRecipeJsonBuilder offerOvenCooking(ItemConvertible output, RecipeCategory category, Ingredient input , float experience, int cookingTime) {

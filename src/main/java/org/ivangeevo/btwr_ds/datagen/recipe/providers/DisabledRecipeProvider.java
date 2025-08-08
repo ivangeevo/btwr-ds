@@ -153,7 +153,11 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     protected void removeForBTWR(RecipeExporter exporter) {
+        disableBTWR(exporter, "egg_scrambled_cooked");
+        disableBTWR(exporter, "egg_scrambled_cooked_from_smoking");
         disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
+        disableBTWR(exporter, "mushroom_omelette_cooked");
+        disableBTWR(exporter, "mushroom_omelette_cooked_from_smoking");
         disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
         disableBTWR(exporter, "chicken_soup");
         disableBTWR(exporter, "hearty_stew");
