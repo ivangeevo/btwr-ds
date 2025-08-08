@@ -1,0 +1,39 @@
+{
+  "bases": [
+    "minecraft:glowstone"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:night_vision",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:night_vision",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:night_vision",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 80
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:night_vision",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 160
+      }
+    ]
+  ]
+}

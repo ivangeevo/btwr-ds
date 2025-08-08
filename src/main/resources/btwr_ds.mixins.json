@@ -18,7 +18,6 @@
     "block.VGModBlocksMixin",
     "block.WallTorchBlockMixin",
     "entity.AbstractFurnaceBlockEntityMixin",
-    "entity.BeaconBlockEntityMixin",
     "entity.GhastEntityMixin",
     "entity.ItemEntityMixin",
     "entity.ItemEntryAccessor",
