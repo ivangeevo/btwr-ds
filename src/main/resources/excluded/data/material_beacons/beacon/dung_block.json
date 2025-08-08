@@ -1,0 +1,63 @@
+{
+  "bases": [
+    "bwt:dung_block"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:poison",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 20
+      },
+      {
+        "effect": "minecraft:nausea",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:poison",
+        "duration": 9,
+        "amplifier": 1,
+        "range": 40
+      },
+      {
+        "effect": "minecraft:nausea",
+        "duration": 9,
+        "amplifier": 1,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:poison",
+        "duration": 9,
+        "amplifier": 2,
+        "range": 80
+      },
+      {
+        "effect": "minecraft:nausea",
+        "duration": 9,
+        "amplifier": 2,
+        "range": 80
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:poison",
+        "duration": 9,
+        "amplifier": 3,
+        "range": 160
+      },
+      {
+        "effect": "minecraft:nausea",
+        "duration": 9,
+        "amplifier": 3,
+        "range": 160
+      }
+    ]
+  ]
+}

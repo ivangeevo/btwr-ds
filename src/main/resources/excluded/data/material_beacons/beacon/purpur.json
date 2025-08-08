@@ -6,7 +6,7 @@
     [
       {
         "effect": "minecraft:slow_falling",
-        "duration": 11,
+        "duration": 9,
         "amplifier": 0,
         "range": 20
       }
@@ -14,15 +14,7 @@
     [
       {
         "effect": "minecraft:slow_falling",
-        "duration": 13,
-        "amplifier": 0,
-        "range": 30
-      }
-    ],
-    [
-      {
-        "effect": "minecraft:slow_falling",
-        "duration": 15,
+        "duration": 9,
         "amplifier": 0,
         "range": 40
       }
@@ -30,9 +22,17 @@
     [
       {
         "effect": "minecraft:slow_falling",
-        "duration": 17,
+        "duration": 9,
         "amplifier": 0,
-        "range": 50
+        "range": 80
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:slow_falling",
+        "duration": 9,
+        "amplifier": 0,
+        "range": 160
       }
     ]
   ]

@@ -6,7 +6,7 @@
     [
       {
         "effect": "minecraft:speed",
-        "duration": 11,
+        "duration": 9,
         "amplifier": 0,
         "range": 20
       }
@@ -14,25 +14,25 @@
     [
       {
         "effect": "minecraft:speed",
-        "duration": 13,
+        "duration": 9,
         "amplifier": 1,
-        "range": 30
-      }
-    ],
-    [
-      {
-        "effect": "minecraft:speed",
-        "duration": 15,
-        "amplifier": 2,
         "range": 40
       }
     ],
     [
       {
         "effect": "minecraft:speed",
-        "duration": 17,
+        "duration": 9,
+        "amplifier": 2,
+        "range": 80
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:speed",
+        "duration": 9,
         "amplifier": 3,
-        "range": 50
+        "range": 160
       }
     ]
   ]

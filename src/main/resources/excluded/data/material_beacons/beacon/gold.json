@@ -6,7 +6,7 @@
     [
       {
         "effect": "minecraft:haste",
-        "duration": 11,
+        "duration": 9,
         "amplifier": 0,
         "range": 20
       }
@@ -14,25 +14,25 @@
     [
       {
         "effect": "minecraft:haste",
-        "duration": 13,
+        "duration": 9,
         "amplifier": 1,
-        "range": 30
-      }
-    ],
-    [
-      {
-        "effect": "minecraft:haste",
-        "duration": 15,
-        "amplifier": 2,
         "range": 40
       }
     ],
     [
       {
         "effect": "minecraft:haste",
-        "duration": 17,
+        "duration": 9,
+        "amplifier": 2,
+        "range": 80
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:haste",
+        "duration": 9,
         "amplifier": 3,
-        "range": 50
+        "range": 160
       }
     ]
   ]
