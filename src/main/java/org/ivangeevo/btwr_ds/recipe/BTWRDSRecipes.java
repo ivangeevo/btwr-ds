@@ -11,8 +11,8 @@ public class BTWRDSRecipes {
     public static final DisabledRecipe.Serializer DISABLED_RECIPE_SERIALIZER = new DisabledRecipe.Serializer();
     public static final RecipeType<DisabledRecipe> DISABLED_RECIPE_TYPE = new RecipeType<>() {};
 
-    public static final ShapelessRecipeWithCounts.Serializer SHAPELESS_WITH_COUNTS_SERIALIZER = new ShapelessRecipeWithCounts.Serializer();
-    public static final RecipeType<ShapelessRecipeWithCounts> COUNTED_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
+    public static final CountedShapelessRecipe.Serializer SHAPELESS_WITH_COUNTS_SERIALIZER = new CountedShapelessRecipe.Serializer();
+    public static final RecipeType<CountedShapelessRecipe> COUNTED_SHAPELESS_RECIPE_TYPE = new RecipeType<>() {};
 
 
     public static void register() {

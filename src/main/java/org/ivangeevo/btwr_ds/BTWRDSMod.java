@@ -28,6 +28,7 @@ public class BTWRDSMod implements ModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+
 	public BTWRDSSettings settings;
 	private static BTWRDSMod instance;
 
@@ -64,6 +65,8 @@ public class BTWRDSMod implements ModInitializer {
 		ModStatusEffects.register();
 
 		ModLootFunctions.register();
+
+
 
 		//BlockSpeedRegistry.init();
 

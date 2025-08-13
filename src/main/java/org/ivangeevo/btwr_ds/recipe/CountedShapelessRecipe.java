@@ -1,17 +1,13 @@
 package org.ivangeevo.btwr_ds.recipe;
 
 import com.bwt.recipes.IngredientWithCount;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
@@ -22,13 +18,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ShapelessRecipeWithCounts implements CraftingRecipe {
+public class CountedShapelessRecipe implements CraftingRecipe {
 	private final String group;
 	private final CraftingRecipeCategory category;
 	private final ItemStack result;
 	private final DefaultedList<IngredientWithCount> ingredients;
 
-	public ShapelessRecipeWithCounts(String group, CraftingRecipeCategory category, ItemStack result, DefaultedList<IngredientWithCount> ingredients) {
+	public CountedShapelessRecipe(String group, CraftingRecipeCategory category, ItemStack result, DefaultedList<IngredientWithCount> ingredients) {
 		this.group = group;
 		this.category = category;
 		this.result = result;
@@ -98,7 +94,7 @@ public class ShapelessRecipeWithCounts implements CraftingRecipe {
 		return BTWRDSRecipes.SHAPELESS_WITH_COUNTS_SERIALIZER;
 	}
 
-	public static class Serializer implements RecipeSerializer<ShapelessRecipeWithCounts> {
+	public static class Serializer implements RecipeSerializer<CountedShapelessRecipe> {
 		/**
 		private static final MapCodec<ShapelessRecipeWithCounts> CODEC = RecordCodecBuilder.mapCodec(
 				instance -> instance.group(
@@ -132,22 +128,22 @@ public class ShapelessRecipeWithCounts implements CraftingRecipe {
 		);
 		 **/
 
-		public static final PacketCodec<RegistryByteBuf, ShapelessRecipeWithCounts> PACKET_CODEC = PacketCodec.ofStatic(
+		public static final PacketCodec<RegistryByteBuf, CountedShapelessRecipe> PACKET_CODEC = PacketCodec.ofStatic(
 				Serializer::write,
 				Serializer::read
 		);
 
 		@Override
-		public MapCodec<ShapelessRecipeWithCounts> codec() {
+		public MapCodec<CountedShapelessRecipe> codec() {
 			return null;
 		}
 
 		@Override
-		public PacketCodec<RegistryByteBuf, ShapelessRecipeWithCounts> packetCodec() {
+		public PacketCodec<RegistryByteBuf, CountedShapelessRecipe> packetCodec() {
 			return PACKET_CODEC;
 		}
 
-		private static ShapelessRecipeWithCounts read(RegistryByteBuf buf) {
+		private static CountedShapelessRecipe read(RegistryByteBuf buf) {
 			String group = buf.readString();
 			CraftingRecipeCategory category = buf.readEnumConstant(CraftingRecipeCategory.class);
 			int size = buf.readVarInt();
@@ -158,10 +154,10 @@ public class ShapelessRecipeWithCounts implements CraftingRecipe {
 			}
 
 			ItemStack result = ItemStack.PACKET_CODEC.decode(buf);
-			return new ShapelessRecipeWithCounts(group, category, result, ingredients);
+			return new CountedShapelessRecipe(group, category, result, ingredients);
 		}
 
-		private static void write(RegistryByteBuf buf, ShapelessRecipeWithCounts recipe) {
+		private static void write(RegistryByteBuf buf, CountedShapelessRecipe recipe) {
 			buf.writeString(recipe.group);
 			buf.writeEnumConstant(recipe.category);
 			buf.writeVarInt(recipe.ingredients.size());
