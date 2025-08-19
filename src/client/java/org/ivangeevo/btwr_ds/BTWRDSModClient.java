@@ -1,8 +1,10 @@
 package org.ivangeevo.btwr_ds;
 
+import net.createmod.ponder.foundation.PonderIndex;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.impl.client.indigo.renderer.render.BlockRenderContext;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
+import org.ivangeevo.btwr_ds.ponder.BTWRPonderPlugin;
 
 public class BTWRDSModClient implements ClientModInitializer
 {
@@ -26,6 +28,8 @@ public class BTWRDSModClient implements ClientModInitializer
 
 	@Override
 	public void onInitializeClient() {
+
+		//PonderIndex.addPlugin(new BTWRPonderPlugin());
 
 
 	}
