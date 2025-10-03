@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:golden_helmet"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 30,
+      "id": "minecraft:gold_nugget"
+    }
+  ]
+}

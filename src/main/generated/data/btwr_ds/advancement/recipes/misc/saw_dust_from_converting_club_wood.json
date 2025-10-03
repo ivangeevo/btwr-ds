@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_club_wood": {
+      "conditions": {
+        "items": [
+          {
+            "items": "btwr:club_wood"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "btwr_ds:saw_dust_from_converting_club_wood"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_club_wood"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "btwr_ds:saw_dust_from_converting_club_wood"
+    ]
+  }
+}

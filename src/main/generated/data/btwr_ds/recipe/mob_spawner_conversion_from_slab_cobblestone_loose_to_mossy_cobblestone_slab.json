@@ -1,0 +1,8 @@
+{
+  "type": "bwt:mob_spawner_conversion",
+  "category": "misc",
+  "ingredient": {
+    "block": "tough_environment:slab_cobblestone_loose"
+  },
+  "result": "minecraft:mossy_cobblestone_slab"
+}

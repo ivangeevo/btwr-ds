@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "tough_environment:stone_brick"
+    },
+    "G": {
+      "item": "bwt:gear"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "  S",
+    " S ",
+    "BGB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:hand_crank"
+  }
+}

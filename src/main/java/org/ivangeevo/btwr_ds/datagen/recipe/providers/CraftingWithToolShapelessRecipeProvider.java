@@ -3,12 +3,15 @@ package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.SturdyTreesMod;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -29,6 +32,20 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
     public void generate(RecipeExporter exporter) {
         this.createSticksWithAxe(exporter);
         this.createPlanksWithAxe(exporter);
+
+        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_SCOURED_CUT,2)
+                .withToolDamage()
+                .input(BwtItems.scouredLeatherItem)
+                .input(ConventionalItemTags.SHEAR_TOOLS)
+                .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
+                .offerTo(exporter, ID.ofDS("leather_scoured_cut"));
+
+        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_TANNED_CUT,2)
+                .withToolDamage()
+                .input(BwtItems.tannedLeatherItem)
+                .input(ConventionalItemTags.SHEAR_TOOLS)
+                .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
+                .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
     }
 
     private void createPlanksWithAxe(RecipeExporter exporter) {

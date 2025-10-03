@@ -1,0 +1,19 @@
+{
+  "type": "bwt:stoked_cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "btwr:leather_cut"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "bwt:glue"
+    }
+  ]
+}

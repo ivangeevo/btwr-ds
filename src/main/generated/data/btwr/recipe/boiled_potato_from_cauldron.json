@@ -1,0 +1,18 @@
+{
+  "type": "bwt:cauldron",
+  "category": "food",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:potato"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "vegehenna:boiled_potato"
+    }
+  ]
+}

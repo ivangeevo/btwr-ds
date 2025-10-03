@@ -1,0 +1,15 @@
+{
+  "type": "piston_packing:packing",
+  "category": "misc",
+  "ingredients": [
+    {
+      "count": 9,
+      "ingredient": {
+        "item": "minecraft:raw_gold"
+      }
+    }
+  ],
+  "result": {
+    "item": "minecraft:raw_gold_block"
+  }
+}

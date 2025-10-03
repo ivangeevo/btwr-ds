@@ -1,0 +1,23 @@
+{
+  "type": "btwr_sl:crafting_shapeless_with_tool",
+  "additional_drops": [
+    {
+      "count": 2,
+      "id": "bwt:saw_dust"
+    }
+  ],
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:primitive_axes"
+    },
+    {
+      "item": "minecraft:stripped_acacia_log"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "minecraft:stick"
+  },
+  "tool_damage": 1
+}

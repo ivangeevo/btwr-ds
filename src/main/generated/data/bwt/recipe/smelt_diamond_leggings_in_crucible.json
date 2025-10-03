@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_leggings"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 7,
+      "id": "btwr:diamond_ingot"
+    }
+  ]
+}

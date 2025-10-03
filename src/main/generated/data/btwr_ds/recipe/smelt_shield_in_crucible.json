@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:shield"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "id": "minecraft:iron_nugget"
+    }
+  ]
+}

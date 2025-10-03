@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "blocks",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "tough_environment:white_cobblestone"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "tough_environment:white_stone"
+    }
+  ]
+}

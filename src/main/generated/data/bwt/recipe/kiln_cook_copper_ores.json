@@ -1,0 +1,14 @@
+{
+  "type": "bwt:kiln",
+  "category": "misc",
+  "cookingTime": 1,
+  "drops": [
+    {
+      "count": 1,
+      "id": "tough_environment:copper_nugget"
+    }
+  ],
+  "ingredient": {
+    "blockTag": "#minecraft:copper_ores"
+  }
+}

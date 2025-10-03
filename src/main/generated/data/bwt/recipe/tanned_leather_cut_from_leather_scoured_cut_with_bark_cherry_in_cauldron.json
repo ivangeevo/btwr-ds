@@ -1,0 +1,30 @@
+{
+  "type": "bwt:cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "btwr:leather_scoured_cut"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "bwt:dung"
+      }
+    },
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "sturdy_trees:bark_cherry"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "btwr:leather_tanned_cut"
+    }
+  ]
+}

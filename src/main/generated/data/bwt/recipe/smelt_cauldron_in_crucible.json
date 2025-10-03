@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "bwt:cauldron"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 42,
+      "id": "minecraft:iron_nugget"
+    }
+  ]
+}

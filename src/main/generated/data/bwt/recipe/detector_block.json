@@ -1,0 +1,28 @@
+{
+  "type": "bwt:soul_forge_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "tough_environment:stone_brick"
+    },
+    "E": {
+      "item": "bwt:redstone_eye"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "pattern": [
+    "BBBB",
+    "ETTE",
+    "BRRB",
+    "BRRB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:detector_block"
+  }
+}

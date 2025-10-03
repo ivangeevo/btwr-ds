@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ender_slag": {
+      "conditions": {
+        "items": [
+          {
+            "items": "btwr_ds:ender_slag"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bwt:cauldron_rendering_ender_slag"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ender_slag"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bwt:cauldron_rendering_ender_slag"
+    ]
+  }
+}

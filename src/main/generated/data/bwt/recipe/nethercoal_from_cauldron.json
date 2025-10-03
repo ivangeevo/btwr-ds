@@ -1,0 +1,23 @@
+{
+  "type": "bwt:cauldron",
+  "category": "food",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "bwt:coal_dust"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "bwt:hellfire_dust"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "bwt:nethercoal"
+    }
+  ]
+}

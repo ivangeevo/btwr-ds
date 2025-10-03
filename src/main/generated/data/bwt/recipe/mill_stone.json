@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "tough_environment:stone_brick"
+    },
+    "G": {
+      "item": "bwt:gear"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BBB",
+    "BGB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:mill_stone"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "bwt:cauldron",
+  "category": "food",
+  "group": "",
+  "ingredients": [
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:brown_mushroom"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:milk_bucket"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "minecraft:bowl"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:mushroom_stew"
+    }
+  ]
+}

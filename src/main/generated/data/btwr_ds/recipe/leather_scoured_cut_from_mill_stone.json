@@ -1,0 +1,17 @@
+{
+  "type": "bwt:mill_stone",
+  "category": "misc",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "btwr:leather_cut"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "btwr:leather_scoured_cut"
+    }
+  ]
+}

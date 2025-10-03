@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_firestarter_sticks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "self_sustainable:firestarter_sticks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "btwr_ds:saw_dust_from_converting_firestarter_sticks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_firestarter_sticks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "btwr_ds:saw_dust_from_converting_firestarter_sticks"
+    ]
+  }
+}

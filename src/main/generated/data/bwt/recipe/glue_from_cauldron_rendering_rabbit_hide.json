@@ -1,0 +1,33 @@
+{
+  "type": "bwt:stoked_cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_hide"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_hide"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_hide"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:rabbit_hide"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "bwt:glue"
+    }
+  ]
+}

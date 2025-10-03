@@ -1,0 +1,14 @@
+{
+  "type": "bwt:kiln",
+  "category": "misc",
+  "cookingTime": 1,
+  "drops": [
+    {
+      "count": 1,
+      "id": "minecraft:cake"
+    }
+  ],
+  "ingredient": {
+    "block": "vegehenna:uncooked_cake"
+  }
+}

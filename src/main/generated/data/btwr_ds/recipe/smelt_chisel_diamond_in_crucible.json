@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "tough_environment:chisel_diamond"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "btwr:diamond_ingot"
+    }
+  ]
+}

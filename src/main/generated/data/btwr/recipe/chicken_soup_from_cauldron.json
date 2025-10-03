@@ -1,0 +1,34 @@
+{
+  "type": "bwt:cauldron",
+  "category": "food",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:cooked_chicken"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "vegehenna:cooked_carrot"
+      }
+    },
+    {
+      "ingredient": {
+        "item": "vegehenna:boiled_potato"
+      }
+    },
+    {
+      "count": 3,
+      "ingredient": {
+        "item": "minecraft:bowl"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 3,
+      "id": "btwr:chicken_soup"
+    }
+  ]
+}

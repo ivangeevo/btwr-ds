@@ -1,0 +1,19 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": {
+        "item": "minecraft:rail"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 18,
+      "id": "minecraft:iron_nugget"
+    }
+  ]
+}

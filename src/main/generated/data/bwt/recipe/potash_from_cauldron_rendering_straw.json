@@ -1,0 +1,19 @@
+{
+  "type": "bwt:stoked_cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "count": 16,
+      "ingredient": {
+        "item": "vegehenna:straw"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "bwt:potash"
+    }
+  ]
+}

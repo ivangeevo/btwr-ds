@@ -20,6 +20,9 @@ import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
+import static net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_BOW;
+import static net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
+
 public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
 {
     private static final String[] vanillaWoodTypes = new String[]
@@ -150,6 +153,8 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, ID.ofTE("chisel_diamond"));
 
+        // Enable this recipe when Groth is added in BWT
+        /**
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.NETHER_GROTH_SPORES)
                 .input(Items.RED_MUSHROOM)
                 .input(Items.BROWN_MUSHROOM)
@@ -159,6 +164,7 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .input(BwtItems.soulUrnItem)
                 .criterion("has_mycelium", conditionsFromItem(Items.MYCELIUM))
                 .offerTo(exporter, ID.ofBTWR("nether_groth_spores"));
+         **/
 
         this.createConvertToSawDustToolRecipes(exporter);
     }
@@ -170,18 +176,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
                 .offerTo(exporter, ID.ofDS("hemp_fiber_from_fabric"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_SCOURED_CUT,2)
-                .input(BwtItems.scouredLeatherItem)
-                .input(ConventionalItemTags.SHEAR_TOOLS)
-                .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
-                .offerTo(exporter, ID.ofDS("leather_scoured_cut"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_TANNED_CUT,2)
-                .input(BwtItems.tannedLeatherItem)
-                .input(ConventionalItemTags.SHEAR_TOOLS)
-                .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
-                .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.COAL)
                 .input(BwtItems.coalDustItem)
                 .input(BwtItems.coalDustItem)
@@ -191,8 +185,8 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
     }
 
     private void createConvertToSawDustToolRecipes(RecipeExporter exporter) {
-        convertToSawdustRecipeBuilder(exporter, net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_STICKS, "has_firestarter_sticks");
-        convertToSawdustRecipeBuilder(exporter, net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_BOW, "has_firestarter_bow");
+        convertToSawdustRecipeBuilder(exporter, FIRESTARTER_STICKS, "has_firestarter_sticks");
+        convertToSawdustRecipeBuilder(exporter, FIRESTARTER_BOW, "has_firestarter_bow");
         convertToSawdustRecipeBuilder(exporter, BTWR_Items.CLUB_WOOD, "has_club_wood");
     }
 

@@ -1,0 +1,18 @@
+{
+  "type": "bwt:stoked_crucible",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "ingredient": {
+        "item": "minecraft:diamond_shovel"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "btwr:diamond_ingot"
+    }
+  ]
+}

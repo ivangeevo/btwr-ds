@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.ivangeevo.self_sustainable.block.ModBlocks;
 import net.ivangeevo.self_sustainable.data.server.recipe.ModCookingRecipeJsonBuilder;
-import net.ivangeevo.self_sustainable.recipe.OvenCookingRecipe;
+import net.ivangeevo.self_sustainable.recipe.cooking.OvenCookingRecipe;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;

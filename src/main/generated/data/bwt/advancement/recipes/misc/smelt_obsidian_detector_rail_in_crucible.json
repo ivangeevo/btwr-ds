@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_obsidian_detector_rail": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bwt:obsidian_detector_rail"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bwt:smelt_obsidian_detector_rail_in_crucible"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_obsidian_detector_rail"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bwt:smelt_obsidian_detector_rail_in_crucible"
+    ]
+  }
+}

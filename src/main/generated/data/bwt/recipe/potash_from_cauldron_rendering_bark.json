@@ -1,0 +1,19 @@
+{
+  "type": "bwt:stoked_cauldron",
+  "category": "misc",
+  "group": "",
+  "ingredients": [
+    {
+      "count": 64,
+      "ingredient": {
+        "tag": "sturdy_trees:bark_items"
+      }
+    }
+  ],
+  "results": [
+    {
+      "count": 1,
+      "id": "bwt:potash"
+    }
+  ]
+}

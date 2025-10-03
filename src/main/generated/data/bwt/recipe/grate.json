@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "tag": "c:strings"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "FSF",
+    "SSS",
+    "FSF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bwt:grate"
+  }
+}
