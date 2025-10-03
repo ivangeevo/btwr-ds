@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
+import ivangeevo.sturdy_trees.SturdyTreesMod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.ivangeevo.self_sustainable.SelfSustainableMod;
@@ -28,6 +29,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableRecipe(exporter, "bwt_hct", "modern_millstone");
 
         this.removeForVanilla(exporter);
+        this.removeForST(exporter);
         this.removeForTE(exporter);
         this.removeForBWT(exporter);
         this.removeForBTWR(exporter);
@@ -96,6 +98,10 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         // Remove the ability to repair items by combining them
         disableVanilla(exporter, "repair_item");
 
+    }
+
+    protected void removeForST(RecipeExporter exporter) {
+        disableRecipe(exporter, SturdyTreesMod.MOD_ID, "asd");
     }
 
     protected void removeForTE(RecipeExporter exporter) {
@@ -184,9 +190,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     private void disableVanillaOreCookingRecipes(RecipeExporter exporter) {
-        // 2 recipes for each ore type
-        // 3 metallic ore types
-        // make a method that handles all 3 recipe types and call that 2 times
         disableVanilla(exporter, "iron_ingot_from_smelting_iron_ore");
         disableVanilla(exporter, "iron_ingot_from_smelting_deepslate_iron_ore");
         disableVanilla(exporter, "iron_ingot_from_smelting_raw_iron");
@@ -202,15 +205,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "gold_ingot_from_blasting_deepslate_gold_ore");
         disableVanilla(exporter, "gold_ingot_from_blasting_nether_gold_ore");
         disableVanilla(exporter, "gold_ingot_from_blasting_raw_gold");
-
     }
-
-    private void disableOreCookingRecipe(RecipeExporter exporter, String oreType) {
-        String[] smeltingRecipeTypes = {"_from_smelting", "_from_blasting"};
-        String[] oreTypes = {"deepslate"};
-
-    }
-
 
     @Override
     protected Identifier getRecipeIdentifier(Identifier identifier) {

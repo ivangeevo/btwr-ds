@@ -16,6 +16,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
 
     protected ShapelessRecipeProvider shapelessRecipeProvider;
     protected ShapedRecipeProvider shapedRecipeProvider;
+    protected CraftingWithToolShapelessRecipeProvider craftingWithToolShapelessRecipeProvider;
     protected SoulforgedRecipeProvider soulforgedRecipeProvider;
     protected CampfireCookingRecipeProvider campfireCookingRecipeProvider;
     protected OvenCookingRecipeProvider ovenCookingRecipeProvider;
@@ -38,6 +39,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         super(output, registriesFuture);
         this.shapelessRecipeProvider = new ShapelessRecipeProvider(output, registriesFuture);
         this.shapedRecipeProvider = new ShapedRecipeProvider(output, registriesFuture);
+        this.craftingWithToolShapelessRecipeProvider = new CraftingWithToolShapelessRecipeProvider(output, registriesFuture);
         this.soulforgedRecipeProvider = new SoulforgedRecipeProvider(output, registriesFuture);
         this.campfireCookingRecipeProvider = new CampfireCookingRecipeProvider(output, registriesFuture);
         this.ovenCookingRecipeProvider = new OvenCookingRecipeProvider(output, registriesFuture);
@@ -61,6 +63,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     public void generate(RecipeExporter exporter) {
         shapelessRecipeProvider.generate(exporter);
         shapedRecipeProvider.generate(exporter);
+        craftingWithToolShapelessRecipeProvider.generate(exporter);
         soulforgedRecipeProvider.generate(exporter);
         campfireCookingRecipeProvider.generate(exporter);
         ovenCookingRecipeProvider.generate(exporter);
