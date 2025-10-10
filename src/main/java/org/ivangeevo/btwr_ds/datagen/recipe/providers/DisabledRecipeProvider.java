@@ -101,7 +101,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     protected void removeForST(RecipeExporter exporter) {
-        disableRecipe(exporter, SturdyTreesMod.MOD_ID, "asd");
+        //disableRecipe(exporter, SturdyTreesMod.MOD_ID, "asd");
     }
 
     protected void removeForTE(RecipeExporter exporter) {
@@ -133,6 +133,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableBWT(exporter, "torch_from_nether_coal");
 
         // Blocks
+        disableBWT(exporter, "blood_wood_planks");
 
         // Removing High efficiency button recipes
         for (String woodType : vanillaWoodTypes) {

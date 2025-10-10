@@ -4,6 +4,7 @@ import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
+import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.SturdyTreesMod;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
@@ -11,7 +12,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -19,6 +19,8 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.ivangeevo.btwr_ds.BTWRDSMod;
+import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -46,6 +48,14 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
                 .input(ConventionalItemTags.SHEAR_TOOLS)
                 .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
                 .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
+
+        // Move this recipe into it's own provider when we figure out how to call recipes that have additional drops
+        // and how to separate them from just Tool Crafting recipes.
+        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.CARVED_PUMPKIN)
+                .additionalDrop(Items.PUMPKIN_SEEDS, 4)
+                .input(Items.PUMPKIN)
+                .criterion("has_pumpkin", conditionsFromItem(Items.PUMPKIN))
+                .offerTo(exporter, Identifier.ofVanilla("pumpkin_seeds"));
     }
 
     private void createPlanksWithAxe(RecipeExporter exporter) {
@@ -57,6 +67,28 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
         planksWithAxe(Items.DARK_OAK_PLANKS, Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, SturdyTreesItems.BARK_DARK_OAK, exporter);
         planksWithAxe(Items.MANGROVE_PLANKS, Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, SturdyTreesItems.BARK_MANGROVE, exporter);
         planksWithAxe(Items.CHERRY_PLANKS, Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, SturdyTreesItems.BARK_SPRUCE, exporter);
+        planksWithAxe(BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), BwtBlocks.bloodWoodBlocks.logBlock.asItem(), BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem(), BTWRDS_Items.BARK_BLOOD_WOOD, exporter);
+
+        // Register blood wood recipes as part of BTWRDS namespace.
+        // From log
+        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
+                .additionalDrop(BTWRDS_Items.BARK_BLOOD_WOOD)
+                .additionalDrop(BwtItems.sawDustItem)
+                .withToolDamage()
+                .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
+                .input(BwtBlocks.bloodWoodBlocks.logBlock.asItem())
+                .criterion("has_blood_wood_log", conditionsFromItem(BwtBlocks.bloodWoodBlocks.logBlock.asItem()))
+                .offerTo(exporter, Identifier.of(BTWRDSMod.MOD_ID,"blood_wood_planks_from_blood_wood_log_from_tool_crafting"));
+
+        // From stripped log
+        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
+                .additionalDrop(BwtItems.sawDustItem, 2)
+                .withToolDamage()
+                .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
+                .input(BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem())
+                .criterion("has_stripped_blood_wood", conditionsFromItem(BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem()))
+                .offerTo(exporter, Identifier.of(BTWRDSMod.MOD_ID, "blood_wood_planks_from_stripped_blood_wood_log_from_tool_crafting"));
+
     }
 
     private void createSticksWithAxe(RecipeExporter exporter) {
@@ -68,6 +100,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
         sticksWithAxes(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, SturdyTreesItems.BARK_DARK_OAK, exporter);
         sticksWithAxes(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, SturdyTreesItems.BARK_MANGROVE, exporter);
         sticksWithAxes(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, SturdyTreesItems.BARK_CHERRY, exporter);
+        sticksWithAxes(BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem(), BTWRDS_Items.BARK_BLOOD_WOOD, exporter);
     }
 
     private void sticksWithAxes(Item log, Item strippedLog, Item barkItem, RecipeExporter exporter) {
