@@ -1,6 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.recipe.CraftingWithToolShapelessRecipe;
+import btwr.btwr_sl.lib.recipe.ExtendedShapelessRecipe;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
@@ -24,9 +24,9 @@ import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
 
-    public CraftingWithToolShapelessRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public ExtendedShapelessRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -35,14 +35,14 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
         this.createSticksWithAxe(exporter);
         this.createPlanksWithAxe(exporter);
 
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_SCOURED_CUT,2)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_SCOURED_CUT,2)
                 .withToolDamage()
                 .input(BwtItems.scouredLeatherItem)
                 .input(ConventionalItemTags.SHEAR_TOOLS)
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
                 .offerTo(exporter, ID.ofDS("leather_scoured_cut"));
 
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_TANNED_CUT,2)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_TANNED_CUT,2)
                 .withToolDamage()
                 .input(BwtItems.tannedLeatherItem)
                 .input(ConventionalItemTags.SHEAR_TOOLS)
@@ -50,8 +50,8 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
                 .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
 
         // Move this recipe into it's own provider when we figure out how to call recipes that have additional drops
-        // and how to separate them from just Tool Crafting recipes.
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.CARVED_PUMPKIN)
+        // and how to separate them from just tool crafting recipes.
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.CARVED_PUMPKIN)
                 .additionalDrop(Items.PUMPKIN_SEEDS, 4)
                 .input(Items.PUMPKIN)
                 .criterion("has_pumpkin", conditionsFromItem(Items.PUMPKIN))
@@ -71,7 +71,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
 
         // Register blood wood recipes as part of BTWRDS namespace.
         // From log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
                 .additionalDrop(BTWRDS_Items.BARK_BLOOD_WOOD)
                 .additionalDrop(BwtItems.sawDustItem)
                 .withToolDamage()
@@ -81,7 +81,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
                 .offerTo(exporter, Identifier.of(BTWRDSMod.MOD_ID,"blood_wood_planks_from_blood_wood_log_from_tool_crafting"));
 
         // From stripped log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
                 .additionalDrop(BwtItems.sawDustItem, 2)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
@@ -107,7 +107,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
         String logType = Registries.ITEM.getId(log).getPath();
 
         // From log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
                 .additionalDrop(barkItem)
                 .additionalDrop(BwtItems.sawDustItem)
                 .withToolDamage()
@@ -117,7 +117,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
                 .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID,"sticks_from_tool_crafting_from_" + logType));
 
         // From stripped log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.STICK, 2)
                 .additionalDrop(BwtItems.sawDustItem, 2)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.PRIMITIVE_AXES),1)
@@ -132,7 +132,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
         String strippedType = Registries.ITEM.getId(strippedLog).getPath();
 
         // From log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
                 .additionalDrop(bark)
                 .additionalDrop(BwtItems.sawDustItem)
                 .withToolDamage()
@@ -142,7 +142,7 @@ public class CraftingWithToolShapelessRecipeProvider extends FabricRecipeProvide
                 .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, planksType + "_from_" + logType + "_tool_crafting"));
 
         // From stripped log
-        CraftingWithToolShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, planks, 4)
                 .additionalDrop(BwtItems.sawDustItem, 2)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
