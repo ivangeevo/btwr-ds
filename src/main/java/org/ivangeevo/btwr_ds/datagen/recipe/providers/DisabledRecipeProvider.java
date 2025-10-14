@@ -61,6 +61,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "bread");
         disableVanilla(exporter, "cookie");
         disableVanilla(exporter, "sugar_from_sugar_cane");
+        disableVanilla(exporter, "beetroot_soup");
+        disableVanilla(exporter, "rabbit_stew_from_red_mushroom");
+        disableVanilla(exporter, "rabbit_stew_from_brown_mushroom");
 
         // cake recipe is only cookable in a kiln (and eventually pumpkin pie when made placeable)
         disableVanilla(exporter,"cake_from_smoking");

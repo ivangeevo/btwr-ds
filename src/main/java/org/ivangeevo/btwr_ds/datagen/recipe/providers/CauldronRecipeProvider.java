@@ -28,6 +28,23 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
     public void generate(RecipeExporter exporter) {
 
         // DS recipes
+        CauldronRecipe.JsonBuilder.createFood().result(Items.RABBIT_STEW, 5)
+                .ingredient(Items.COOKED_RABBIT)
+                .ingredient(ModItems.COOKED_CARROT)
+                .ingredient(ModItems.BOILED_POTATO)
+                .ingredient(Items.BOWL, 5)
+                .ingredient(Items.BROWN_MUSHROOM, 3)
+                .ingredient(BwtItems.flourItem)
+                .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
+                .offerTo(exporter, ID.ofBTWR("rabbit_stew_from_cauldron"));
+
+        CauldronRecipe.JsonBuilder.create().result(Items.BEETROOT_SOUP, 3)
+                .ingredient(Items.BEETROOT, 6)
+                .ingredient(BwtItems.flourItem, 2)
+                .ingredient(Items.BOWL, 3)
+                .criterion("has_beetroot", conditionsFromItem(Items.BLAZE_POWDER))
+                .offerTo(exporter, ID.ofDS("beetroot_soup_from_cauldron"));
+
         CauldronRecipe.JsonBuilder.create().result(BTWRDS_Items.ELEMENT)
                 .ingredient(Items.BLAZE_POWDER)
                 .ingredient(Items.REDSTONE)

@@ -13,7 +13,7 @@ public class ModStatusEffects {
 
     public static final StatusEffect FORTUNE = new LootingStatusEffect(StatusEffectCategory.BENEFICIAL, 14270531);
     public static final StatusEffect LOOTING = new FortuneStatusEffect(StatusEffectCategory.BENEFICIAL, 9643043);
-    //public static final StatusEffect TRUE_SIGHT = new LootingStatusEffect(StatusEffectCategory.BENEFICIAL, 14270531);
+    //public static final StatusEffect TRUE_SIGHT = new TrueSightStatusEffect(StatusEffectCategory.BENEFICIAL, 14270531);
 
     public static void register() {
         Registry.register(Registries.STATUS_EFFECT, Identifier.of(BTWRDSMod.MOD_ID, "fortune"), FORTUNE);

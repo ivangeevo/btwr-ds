@@ -4,9 +4,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.world.World;
+import org.ivangeevo.btwr_ds.data.ItemDespawnData;
+import org.ivangeevo.btwr_ds.data.ModAttachments;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
+
+import java.util.UUID;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin extends Entity
@@ -16,10 +20,27 @@ public abstract class ItemEntityMixin extends Entity
         super(type, world);
     }
 
-    // Changes item entity discard (despawn) timer from 5 min(6000ticks) to 20min(24000ticks)
-    @ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))
-    private int modifyDespawnTime(int constant) {
-        return 24000;
+    //@ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))
+    private int modifyDespawnTime(int original) {
+        ItemEntity self = (ItemEntity) (Object) this;
+        UUID ownerId = self.getAttached(ModAttachments.DROP_OWNER);
+        if (ownerId == null) return original;
+
+        var world = self.getWorld();
+        if (world.getServer() == null) return original;
+
+        var owner = world.getServer().getPlayerManager().getPlayer(ownerId);
+        if (owner == null) return original;
+
+        var data = owner.getAttachedOrElse(ModAttachments.ITEM_DESPAWN, ItemDespawnData.DEFAULT);
+        if (data == null) return original;
+
+        return switch (data.type()) {
+            case NEVER -> Integer.MAX_VALUE;
+            case FULL_DAY -> 24000;
+            case PERSIST_UNTIL_PLAYER_REDEATH -> Integer.MAX_VALUE;
+            default -> original;
+        };
     }
 
 

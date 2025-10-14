@@ -4,6 +4,7 @@ import btwr.btwr_sl.BTWRSLMod;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
+import org.ivangeevo.btwr_ds.data.ModAttachments;
 import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
@@ -47,25 +48,16 @@ public class BTWRDSMod implements ModInitializer {
 		instance = this;
 
 		BTWRDS_Items.registerAndAddToGroups();
-
 		BTWRDSRecipes.register();
-
 		WorldGenBlockReplacements.register();
-
+		ModAttachments.register();
 		FoodComponentModifier.register();
-
 		ModLootTableEvents.register();
-
 		ItemCountModification.register();
-
 		SpawnChunksLoader.register();
-
 		PlanterFertilizer.register();
-
 		ModStatusEffects.register();
-
 		ModLootFunctions.register();
-
 
 
 		//BlockSpeedRegistry.init();
