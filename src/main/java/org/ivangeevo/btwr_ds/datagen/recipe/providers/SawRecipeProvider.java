@@ -15,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
+import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -30,6 +31,11 @@ public class SawRecipeProvider extends FabricRecipeProvider implements RecipePro
                 .result(Items.MELON_SLICE, 5)
                 .criterion("has_melon", conditionsFromItem(Items.MELON))
                 .offerTo(exporter, ID.ofBWT("saw_melon"));
+
+        SawRecipe.JsonBuilder.create(Blocks.HAY_BLOCK)
+                .result(ModItems.STRAW, 6)
+                .criterion("has_hay_block", conditionsFromItem(Items.HAY_BLOCK))
+                .offerTo(exporter, ID.ofBWT("saw_hay_block"));
 
         // Recipes for sawing log blocks
         this.createSawLogRecipes(exporter);
