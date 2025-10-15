@@ -107,12 +107,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(ModItems.COOKED_CARROT))
                 .offerTo(exporter, ID.ofBTWR("wolf_dinner"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.strapItem,4)
-                .input(ConventionalItemTags.SHEAR_TOOLS)
-                .input(BTWR_Items.LEATHER_TANNED_CUT)
-                .criterion("has_leather_tanned_cut", conditionsFromItem(BTWR_Items.LEATHER_TANNED_CUT))
-                .offerTo(exporter, ID.ofBWT("strap"));
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.broadheadArrowItem,4)
                 .input(Items.STICK)
                 .input(BwtItems.broadheadItem)
@@ -120,7 +114,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .input(ConventionalItemTags.STRINGS)
                 .criterion("has_broadhead", conditionsFromItem(BwtItems.broadheadItem))
                 .offerTo(exporter, ID.ofBWT("broadhead_arrow"));
-
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PASTRY_UNCOOKED_PUMPKIN_PIE)
                 .input(BwtItems.rawEggItem)

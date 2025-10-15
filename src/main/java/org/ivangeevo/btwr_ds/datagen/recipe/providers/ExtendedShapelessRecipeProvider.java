@@ -49,6 +49,14 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
                 .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
                 .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
 
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtItems.strapItem,4)
+                .withToolDamage()
+                .input(ConventionalItemTags.SHEAR_TOOLS)
+                .input(BTWR_Items.LEATHER_TANNED_CUT)
+                .criterion("has_leather_tanned_cut", conditionsFromItem(BTWR_Items.LEATHER_TANNED_CUT))
+                .offerTo(exporter, ID.ofBWT("strap"));
+
+
         // Move this recipe into it's own provider when we figure out how to call recipes that have additional drops
         // and how to separate them from just tool crafting recipes.
         ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, Items.CARVED_PUMPKIN)
