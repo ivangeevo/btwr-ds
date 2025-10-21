@@ -4,7 +4,7 @@ import btwr.btwr_sl.BTWRSLMod;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
-import org.ivangeevo.btwr_ds.data.ModAttachments;
+import org.ivangeevo.btwr_ds.attachment.ModAttachments;
 import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;

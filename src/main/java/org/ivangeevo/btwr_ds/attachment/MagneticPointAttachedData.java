@@ -26,7 +26,7 @@ public class MagneticPointAttachedData {
             instance.group(
                     Codec.BOOL
                             .fieldOf("hasValid")
-                            .forGetter(MagneticPointAttachedData::hasValid),
+                            .forGetter(MagneticPointAttachedData::getHasValid),
                     Codec.INT
                             .fieldOf("x")
                             .forGetter(MagneticPointAttachedData::getPosX),
@@ -39,7 +39,7 @@ public class MagneticPointAttachedData {
     public static PacketCodec<ByteBuf, MagneticPointAttachedData> PACKET_CODEC = PacketCodecs.codec(CODEC);
 
 
-    public boolean hasValid() {
+    public boolean getHasValid() {
         return hasValid;
     }
 

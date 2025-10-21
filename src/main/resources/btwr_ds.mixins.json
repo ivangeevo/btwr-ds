@@ -22,6 +22,7 @@
     "entity.AbstractFurnaceBlockEntityMixin",
     "entity.BeaconBlockEntityAccessor",
     "entity.BeaconBlockEntityMixin",
+    "entity.EnderPearlEntityMixin",
     "entity.GhastEntityMixin",
     "entity.ItemEntityMixin",
     "entity.ItemEntryAccessor",

@@ -46,7 +46,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
     @Override
     public void generate(RecipeExporter exporter) {
 
-
+        // Add recipe override for barrel
 
         /**
         // TODO FIX recipe not generating

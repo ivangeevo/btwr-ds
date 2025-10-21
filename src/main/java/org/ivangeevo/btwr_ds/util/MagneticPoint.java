@@ -2,6 +2,7 @@ package org.ivangeevo.btwr_ds.util;
 
 
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
 
 public class MagneticPoint
 {
@@ -29,6 +30,10 @@ public class MagneticPoint
 		this.posY = posY;
 		this.posZ = posZ;
 		this.fieldLevel = fieldLevel;
+	}
+
+	public static MagneticPoint fromBlockPos(BlockPos pos, int fieldLevel) {
+		return new MagneticPoint(pos.getX(), pos.getY(), pos.getZ(), fieldLevel);
 	}
 	
 	public MagneticPoint(NbtCompound nbt)

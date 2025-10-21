@@ -1,10 +1,11 @@
-package org.ivangeevo.btwr_ds.data;
+package org.ivangeevo.btwr_ds.attachment;
 
 import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.BTWRDSMod;
+import org.ivangeevo.btwr_ds.data.ItemDespawnData;
 
 import java.util.UUID;
 

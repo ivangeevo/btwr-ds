@@ -4,6 +4,7 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Items;
 
 public class BTWRFoodComponents {
 
@@ -47,7 +48,7 @@ public class BTWRFoodComponents {
     public static final FoodComponent RABBIT_STEW = new FoodComponent.Builder().nutrition(6).saturationModifier(FoodComponents.RABBIT_STEW.saturation() / 4).build();
     public static final FoodComponent BEETROOT = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.BEETROOT.saturation() / 4).build();
     public static final FoodComponent BEETROOT_SOUP = new FoodComponent.Builder().nutrition(3).saturationModifier(FoodComponents.BEETROOT_SOUP.saturation() / 4).build();
-    public static final FoodComponent HONEY_BOTTLE = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.HONEY_BOTTLE.saturation() / 4).build();
+    public static final FoodComponent HONEY_BOTTLE = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.HONEY_BOTTLE.saturation() / 4).usingConvertsTo(Items.GLASS_BOTTLE).build();
     public static final FoodComponent ROTTEN_FLESH = new FoodComponent.Builder().nutrition(3).saturationModifier(FoodComponents.ROTTEN_FLESH.saturation() / 4).statusEffect(addHungerEffect(600, 4), 0.8F).build();
     public static final FoodComponent SPIDER_EYE = new FoodComponent.Builder().nutrition(2).saturationModifier(FoodComponents.SPIDER_EYE.saturation() / 4).statusEffect(addPoisonEffect(100, 0), 1.0F).build();
     public static final FoodComponent PUFFERFISH = new FoodComponent.Builder().nutrition(1).saturationModifier(FoodComponents.PUFFERFISH.saturation() / 4).statusEffect(addPoisonEffect(400, 1), 1.0F).build();
@@ -63,14 +64,14 @@ public class BTWRFoodComponents {
     public static final FoodComponent MUSHROOM_OMELETTE_COOKED = new FoodComponent.Builder().nutrition(4).saturationModifier(0.25f).build();
     public static final FoodComponent SANDWICH = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).build();
     public static final FoodComponent HAM_AND_EGGS = new FoodComponent.Builder().nutrition(6).saturationModifier(0.25f).build();
-    public static final FoodComponent CHOWDER = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).build();
+    public static final FoodComponent CHOWDER = new FoodComponent.Builder().nutrition(5).saturationModifier(0.25f).usingConvertsTo(Items.BOWL).build();
     public static final FoodComponent STEAK_AND_POTATOES = new FoodComponent.Builder().nutrition(6).saturationModifier(0.25f).build();
     public static final FoodComponent COOKED_KEBAB = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent STEAK_DINNER = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent PORK_DINNER = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent WOLF_DINNER = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
     public static final FoodComponent CHICKEN_SOUP = new FoodComponent.Builder().nutrition(8).saturationModifier(0.25f).build();
-    public static final FoodComponent HEARTY_STEW = new FoodComponent.Builder().nutrition(10).saturationModifier(0.25f).build();
+    public static final FoodComponent HEARTY_STEW = new FoodComponent.Builder().nutrition(10).saturationModifier(0.25f).usingConvertsTo(Items.BOWL).build();
     public static final FoodComponent BEAST_LIVER_COOKED = new FoodComponent.Builder().nutrition(6).saturationModifier(0.5f).build();
     public static final FoodComponent CREEPER_OYSTERS = new FoodComponent.Builder().nutrition(1).saturationModifier(0.80f).statusEffect(addPoisonEffect(100, 0), 1.0F).build();
 

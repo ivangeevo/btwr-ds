@@ -4,23 +4,28 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.GlobalPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
 import org.ivangeevo.btwr_ds.attachment.MagneticPointAttachedData;
 import org.ivangeevo.btwr_ds.attachment.ModAttachmentTypes;
 import org.ivangeevo.btwr_ds.data.ItemDespawnData;
-import org.ivangeevo.btwr_ds.data.ModAttachments;
+import org.ivangeevo.btwr_ds.attachment.ModAttachments;
+import org.ivangeevo.btwr_ds.item.component.MagneticPointTrackerComponent;
+import org.ivangeevo.btwr_ds.item.component.ModComponentsTypes;
 import org.ivangeevo.btwr_ds.util.ItemDespawnType;
 import org.ivangeevo.btwr_ds.util.MagneticPoint;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Optional;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity
@@ -48,13 +53,36 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity
         // Only tag death drops with special despawn logic
         if (self.isDead() || self.getHealth() <= 0.0f) {
             self.setAttached(ModAttachments.ITEM_DESPAWN,
-                    new ItemDespawnData(ItemDespawnType.PERSIST_UNTIL_PLAYER_REDEATH));
+                    new ItemDespawnData(ItemDespawnType.PERSIST_UNTIL_PLAYER_REDEATH)
+            );
         }
     }
 
-    @Inject(method = "tick", at = @At("TAIL"))
+    //@Inject(method = "tick", at = @At("TAIL"))
     private void onTick(CallbackInfo ci) {
-        updateMagneticInfluences();
+        this.updateMagneticInfluences();
+
+        if (!this.getWorld().isClient) {
+            ServerPlayerEntity player = ((ServerPlayerEntity)(Object)this);
+
+            PlayerInventory inventory = player.getInventory();
+            ItemStack compass = Items.COMPASS.getDefaultStack();
+
+            MagneticPointAttachedData data = player.getAttachedOrElse(
+                    ModAttachmentTypes.MAGNETIC_POINT, MagneticPointAttachedData.DEFAULT
+            );
+
+            BlockPos pos = new BlockPos(data.getPosX(), 0, data.getPosZ());
+            GlobalPos globalPos = new GlobalPos(player.getWorld().getRegistryKey(), pos);
+
+            if (inventory.contains(compass)) {
+                compass.set(
+                        ModComponentsTypes.MAGNETIC_POINT_TRACKER,
+                        new MagneticPointTrackerComponent(Optional.of(globalPos), data.getHasValid())
+                );
+            }
+        }
+
     }
 
     @Unique
@@ -88,11 +116,11 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity
         } else {
 
             for (MagneticPoint tempPoint : this.getWorld().getMagneticPointList().magneticPoints) {
-                double dTempFieldStrength = tempPoint.getFieldStrengthRelativeToPositionWithBackgroundNoise(this.getX(), this.getZ());
+                double tempFieldStrength = tempPoint.getFieldStrengthRelativeToPositionWithBackgroundNoise(this.getX(), this.getZ());
 
-                if (dTempFieldStrength > strongestFieldStrength) {
+                if (tempFieldStrength > strongestFieldStrength) {
                     strongestPoint = tempPoint;
-                    strongestFieldStrength = dTempFieldStrength;
+                    strongestFieldStrength = tempFieldStrength;
                 }
             }
         }

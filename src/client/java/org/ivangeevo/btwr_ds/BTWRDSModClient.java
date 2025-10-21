@@ -1,15 +1,23 @@
 package org.ivangeevo.btwr_ds;
 
-import net.createmod.ponder.foundation.PonderIndex;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.impl.client.indigo.renderer.render.BlockRenderContext;
-import net.minecraft.item.Item;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.item.CompassAnglePredicateProvider;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.GlobalPos;
+import org.ivangeevo.btwr_ds.attachment.MagneticPointAttachedData;
+import org.ivangeevo.btwr_ds.attachment.ModAttachmentTypes;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
-import org.ivangeevo.btwr_ds.ponder.BTWRPonderPlugin;
+import org.ivangeevo.btwr_ds.util.MagneticPointGlobalPos;
+import org.jetbrains.annotations.Nullable;
 
 public class BTWRDSModClient implements ClientModInitializer
 {
@@ -33,27 +41,7 @@ public class BTWRDSModClient implements ClientModInitializer
 
 	@Override
 	public void onInitializeClient() {
-
 		//PonderIndex.addPlugin(new BTWRPonderPlugin());
-
-		/**
-		ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, lines) -> {
-			if (isNetheriteToolOrArmor(itemStack.getItem())) {
-				// Insert after the first line (which is the item name)
-				int insertIndex = 1;
-				Text soulforged = Text.literal("[Soulforged]")
-						.formatted(Formatting.GOLD, Formatting.ITALIC);
-				lines.add(insertIndex, soulforged);
-			}
-		});
-		 **/
 	}
-
-	private static boolean isNetheriteToolOrArmor(Item item) {
-		// Example: check by item class or by tag
-		// Suppose you have a tag “mod:netherite_tools_armor”
-		return item.getDefaultStack().isOf(Items.NETHERITE_PICKAXE);
-	}
-
 
 }
