@@ -60,7 +60,7 @@ public abstract class LivingEntityMixin extends Entity implements PatchyMovement
                     }
                 }
             }
-            if (fullNetherite &&
+            if ((fullNetherite || player.isCreative()) &&
                     (effect.getEffectType().matches(StatusEffects.POISON) ||
                             effect.getEffectType().matches(StatusEffects.NAUSEA))) {
                 cir.setReturnValue(false); // block the effect from being added
