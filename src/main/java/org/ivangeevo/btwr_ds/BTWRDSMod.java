@@ -6,6 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
 import org.ivangeevo.btwr_ds.attachment.ModAttachments;
 import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
+import org.ivangeevo.btwr_ds.entity.ModEntities;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.item.ItemCountModification;
@@ -50,6 +51,7 @@ public class BTWRDSMod implements ModInitializer {
 		BTWRDS_Items.registerAndAddToGroups();
 		BTWRDSRecipes.register();
 		WorldGenBlockReplacements.register();
+		ModEntities.register();
 		ModAttachments.register();
 		FoodComponentModifier.register();
 		ModLootTableEvents.register();

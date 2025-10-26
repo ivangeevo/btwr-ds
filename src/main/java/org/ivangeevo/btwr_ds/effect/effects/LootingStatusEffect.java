@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.effect.effects;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;

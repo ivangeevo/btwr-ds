@@ -1,20 +1,19 @@
 package org.ivangeevo.btwr_ds.mixin.entity;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.ivangeevo.btwr_ds.util.RepellingSoulTorch;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -34,7 +33,6 @@ public abstract class MobEntityMixin extends LivingEntity
     }
 
     @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
-
 
     @Inject(method = "initEquipment", at = @At(value = "HEAD"), cancellable = true)
     private void modifiedInitEqupment(Random random, LocalDifficulty localDifficulty, CallbackInfo ci)
