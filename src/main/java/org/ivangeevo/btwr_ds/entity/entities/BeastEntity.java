@@ -30,25 +30,19 @@ public class BeastEntity extends PathAwareEntity {
     public int howlingCountdown = 0;
     public int heardHowlCountdown = 0;
 
-    public float targetFollowRange;
-
     private boolean furWet;
 
     private static final Predicate<Difficulty> DOOR_BREAK_DIFFICULTY_CHECKER = difficulty -> difficulty == Difficulty.HARD;
     private final BreakDoorGoal breakDoorsGoal = new BreakDoorGoal(this, DOOR_BREAK_DIFFICULTY_CHECKER);
 
-
     public BeastEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
-        this.targetFollowRange = this.getTargetFollowRange();
-        //this.refreshPositionAndAngles(getX(), getY(), getZ(), getYaw(), getPitch());
-        //this.calculateDimensions(); // force update early
     }
 
     public static DefaultAttributeContainer.Builder createBeastAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, MOVE_SPEED_PASSIVE)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, MOVE_SPEED_AGGRESSIVE)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0);
     }
 
@@ -63,7 +57,7 @@ public class BeastEntity extends PathAwareEntity {
         //tasks.addTask( 1, new ZombieBreakBarricadeBehavior( this ) );
         this.goalSelector.add(4, new PounceAtTargetGoal(this, 0.4F));
         this.goalSelector.add(5, new MeleeAttackGoal(this, 1.0, true));
-        this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0));
+        this.goalSelector.add(8, new WanderAroundFarGoal(this, MOVE_SPEED_PASSIVE / MOVE_SPEED_AGGRESSIVE));
         this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(10, new LookAroundGoal(this));
         this.targetSelector.add(2, new AttackGoal(this));
@@ -83,20 +77,7 @@ public class BeastEntity extends PathAwareEntity {
         // Made them "hate" llamas, because a wolf usually flees from them
         this.targetSelector.add(5, new ActiveTargetGoal<>(this, LlamaEntity.class, false));
         this.targetSelector.add(6, new ActiveTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.BABY_TURTLE_ON_LAND_FILTER));
-
-        //this.targetSelector.add(8, new UniversalAngerGoal<>(this, true));
     }
-
-    public float getTargetFollowRange() {
-        return targetFollowRange;
-    }
-
-    @Override
-    public boolean damage(DamageSource source, float amount) {
-        System.out.println("Beast took damage: " + amount + " from " + source.getName());
-        return super.damage(source, amount);
-    }
-
 
     @Override
     public boolean cannotDespawn() {
@@ -138,17 +119,10 @@ public class BeastEntity extends PathAwareEntity {
         return this.getY() + this.getHeight() * 0.85f; // tweak 0.8–0.85 until suffocation stops
     }
 
-    // What to add here?
-    //@Override
-    //public int getMeleeAttackStrength(Entity target) {
-        //return 6;
-    //}
-
     @Override
     public float getPathfindingFavor(BlockPos pos, WorldView world) {
         return 0.5F - this.getWorld().getLightLevel(pos);
     }
-
 
     @Override
     public void tick() {
@@ -208,7 +182,7 @@ public class BeastEntity extends PathAwareEntity {
     public void handleStatus(byte status) {
         if (status == 10) {
             //howlingCountdown = WolfHowlBehavior.HOWL_DURATION;
-            // 80 is the same as in the goal, we set it separately for now
+            // 80 is the same as in the WolfHowlBehavior(goal), we set it separately for now
             howlingCountdown = 80;
         } else {
             super.handleStatus(status);
