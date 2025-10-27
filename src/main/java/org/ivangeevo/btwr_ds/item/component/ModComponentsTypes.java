@@ -14,7 +14,6 @@ public class ModComponentsTypes {
             .cache()
             .build();
 
-
     // Register method, to be called in the mod initialization
     public static void register() {
         registerDataComponent(MAGNETIC_POINT_TRACKER, "magnetic_point_tracker");
