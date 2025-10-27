@@ -6,7 +6,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.*;
@@ -59,11 +58,11 @@ public class BeastEntity extends PathAwareEntity {
         //getNavigator().setBreakDoors( true );
 
         this.goalSelector.add(1, new SwimGoal(this));
+        this.goalSelector.add(2, new AvoidSunlightGoal(this));
         // TODO: Add this goal from BTW
         //tasks.addTask( 1, new ZombieBreakBarricadeBehavior( this ) );
         this.goalSelector.add(4, new PounceAtTargetGoal(this, 0.4F));
         this.goalSelector.add(5, new MeleeAttackGoal(this, 1.0, true));
-        this.goalSelector.add(2, new AvoidSunlightGoal(this));
         this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0));
         this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(10, new LookAroundGoal(this));
