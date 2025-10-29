@@ -75,13 +75,13 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
         planksWithAxe(Items.DARK_OAK_PLANKS, Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, SturdyTreesItems.BARK_DARK_OAK, exporter);
         planksWithAxe(Items.MANGROVE_PLANKS, Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, SturdyTreesItems.BARK_MANGROVE, exporter);
         planksWithAxe(Items.CHERRY_PLANKS, Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, SturdyTreesItems.BARK_SPRUCE, exporter);
-        planksWithAxe(BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), BwtBlocks.bloodWoodBlocks.logBlock.asItem(), BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem(), BTWRDS_Items.BARK_BLOOD_WOOD, exporter);
 
         // Register blood wood recipes as part of BTWRDS namespace.
         // From log
         ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
                 .additionalDrop(BTWRDS_Items.BARK_BLOOD_WOOD)
                 .additionalDrop(BwtItems.sawDustItem)
+                .additionalDrop(BwtItems.soulDustItem)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
                 .input(BwtBlocks.bloodWoodBlocks.logBlock.asItem())
@@ -90,7 +90,7 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
 
         // From stripped log
         ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), 4)
-                .additionalDrop(BwtItems.sawDustItem, 2)
+                .additionalDrop(BwtItems.soulDustItem)
                 .withToolDamage()
                 .input(Ingredient.fromTag(BTWRConventionalTags.Items.AXES_MAKE_PLANKS),1)
                 .input(BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem())
@@ -108,7 +108,6 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
         sticksWithAxes(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG, SturdyTreesItems.BARK_DARK_OAK, exporter);
         sticksWithAxes(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG, SturdyTreesItems.BARK_MANGROVE, exporter);
         sticksWithAxes(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG, SturdyTreesItems.BARK_CHERRY, exporter);
-        sticksWithAxes(BwtBlocks.bloodWoodBlocks.planksBlock.asItem(), BwtBlocks.bloodWoodBlocks.strippedLogBlock.asItem(), BTWRDS_Items.BARK_BLOOD_WOOD, exporter);
     }
 
     private void sticksWithAxes(Item log, Item strippedLog, Item barkItem, RecipeExporter exporter) {
@@ -158,4 +157,5 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
                 .criterion("has_" + strippedType, conditionsFromItem(strippedLog))
                 .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, planksType + "_from_" + strippedType + "_tool_crafting"));
     }
+
 }
