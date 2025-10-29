@@ -43,7 +43,9 @@ public class BeastEntity extends PathAwareEntity {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, MOVE_SPEED_AGGRESSIVE)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
+                ;
     }
 
     @Override

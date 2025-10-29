@@ -1,15 +1,19 @@
 package org.ivangeevo.btwr_ds.datagen.recipe;
 
+import com.google.gson.JsonObject;
+import issame.material_beacons.config.BeaconConfig;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.DataWriter;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.ivangeevo.btwr_ds.data.BeaconConfigBuilder;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.DisabledRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.PackingRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.*;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class CombinedRecipeProvider extends FabricRecipeProvider {

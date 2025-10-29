@@ -3,9 +3,11 @@ package org.ivangeevo.btwr_ds;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.Dilation;
 import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.tutorial.TutorialStep;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
 import org.ivangeevo.btwr_ds.entity.ModEntities;
@@ -42,6 +44,8 @@ public class BTWRDSModClient implements ClientModInitializer
 
 
 		EntityModelLayerRegistry.registerModelLayer(MODEL_BEAST_LAYER, BeastEntityModel::getTextureModelData);
+
+		// TODO: Disable the vanilla Tutorial pop ups for things like WASD, or craft planks TutorialStepHandlers, etc
 	}
 
 }

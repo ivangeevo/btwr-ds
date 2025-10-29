@@ -10,7 +10,11 @@ public class SpawnChunksLoader {
 
     private static final int CHUNK_RADIUS = 6;
 
+    private static boolean loaded = false;
+
     public static void register() {
+
+        /**
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             ServerWorld overworld = server.getOverworld();
             // Ensure fake player exists and is in spawn chunks
@@ -23,6 +27,16 @@ public class SpawnChunksLoader {
             // Force load surrounding spawn chunks using FORCED tickets
             forceLoadSpawnChunks(overworld);
         });
+         **/
+
+
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            ServerWorld overworld = server.getOverworld();
+            if (!loaded) {
+                forceLoadSpawnChunks(overworld);
+                loaded = true;
+            }
+        });
     }
 
     private static void forceLoadSpawnChunks(ServerWorld world) {
@@ -33,7 +47,7 @@ public class SpawnChunksLoader {
         for (int dx = -CHUNK_RADIUS; dx <= CHUNK_RADIUS; dx++) {
             for (int dz = -CHUNK_RADIUS; dz <= CHUNK_RADIUS; dz++) {
                 var chunkPos = new ChunkPos(centerChunk.x + dx, centerChunk.z + dz);
-                cm.addTicket(ChunkTicketType.FORCED, chunkPos, 31, chunkPos);
+                cm.addTicket(ChunkTicketType.FORCED, chunkPos, 2, chunkPos);
             }
         }
     }

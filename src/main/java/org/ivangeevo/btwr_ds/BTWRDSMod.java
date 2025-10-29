@@ -56,7 +56,7 @@ public class BTWRDSMod implements ModInitializer {
 		FoodComponentModifier.register();
 		ModLootTableEvents.register();
 		ItemCountModification.register();
-		SpawnChunksLoader.register();
+		//SpawnChunksLoader.register();
 		PlanterFertilizer.register();
 		ModStatusEffects.register();
 		ModLootFunctions.register();
