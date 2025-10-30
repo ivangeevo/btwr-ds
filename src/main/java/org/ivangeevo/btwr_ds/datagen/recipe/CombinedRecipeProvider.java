@@ -1,19 +1,15 @@
 package org.ivangeevo.btwr_ds.datagen.recipe;
 
-import com.google.gson.JsonObject;
-import issame.material_beacons.config.BeaconConfig;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.DataWriter;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.data.BeaconConfigBuilder;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.DisabledRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.PackingRecipeProvider;
 import org.ivangeevo.btwr_ds.datagen.recipe.providers.*;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class CombinedRecipeProvider extends FabricRecipeProvider {
@@ -36,6 +32,8 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected KilnRecipeProvider kilnRecipeProvider;
     protected PackingRecipeProvider packingRecipeProvider;
     protected MobSpawnerConversionRecipeProvider mobSpawnerRecipeProvider;
+
+    protected MaterialBeaconsRecipeProvider materialBeaconsRecipeProvider;
 
     protected DisabledRecipeProvider disabledRecipeProvider;
 
@@ -60,6 +58,8 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.packingRecipeProvider = new PackingRecipeProvider(output, registriesFuture);
         this.mobSpawnerRecipeProvider = new MobSpawnerConversionRecipeProvider(output, registriesFuture);
 
+        this.materialBeaconsRecipeProvider = new MaterialBeaconsRecipeProvider(output, registriesFuture);
+
         this.disabledRecipeProvider = new DisabledRecipeProvider(output, registriesFuture);
     }
 
@@ -83,6 +83,8 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         kilnRecipeProvider.generate(exporter);
         packingRecipeProvider.generate(exporter);
         mobSpawnerRecipeProvider.generate(exporter);
+
+        materialBeaconsRecipeProvider.generate(exporter);
 
         disabledRecipeProvider.generate(exporter);
     }

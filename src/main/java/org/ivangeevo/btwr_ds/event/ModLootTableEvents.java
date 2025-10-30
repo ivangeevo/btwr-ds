@@ -3,11 +3,9 @@ package org.ivangeevo.btwr_ds.event;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
-import net.fabricmc.fabric.api.loot.v3.FabricLootTableBuilder;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
@@ -20,8 +18,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.btwr_ds.mixin.entity.ItemEntryAccessor;
-import org.ivangeevo.btwr_ds.mixin.LootPoolBuilderAccessor;
+import org.ivangeevo.btwr_ds.mixin.vanilla.entity.ItemEntryAccessor;
+import org.ivangeevo.btwr_ds.mixin.vanilla.LootPoolBuilderAccessor;
 
 import com.google.common.collect.ImmutableList;
 

@@ -25,7 +25,6 @@ public class DatapackEnforcer {
 
     private static final Path DATAPACKS_PATH = FabricLoader.getInstance().getGameDir().resolve("datapacks");
 
-
     private static final DatapackEnforcer INSTANCE = new DatapackEnforcer();
 
     private DatapackEnforcer() {}
@@ -36,7 +35,6 @@ public class DatapackEnforcer {
 
     public void onLoadDataPack(ResourcePackManager manager) {
         Set<ResourcePackProvider> allProviders = new HashSet<>(manager.providers);
-
 
         Path symlinkConfig = FabricLoader.getInstance().getGameDir().resolve(LevelStorage.ALLOWED_SYMLINKS_FILE_NAME);
         ResourcePackProvider externalProvider = new FileResourcePackProvider(DATAPACKS_PATH, ResourceType.SERVER_DATA,

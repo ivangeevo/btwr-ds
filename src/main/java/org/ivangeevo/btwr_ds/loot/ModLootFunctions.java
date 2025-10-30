@@ -14,7 +14,6 @@ public class ModLootFunctions {
     public static final LootFunctionType<StatusEffectApplyBonusLootFunction> STATUS_EFFECT_APPLY_BONUS =
             new LootFunctionType<>(StatusEffectApplyBonusLootFunction.CODEC);
 
-
     public static void register() {
         Registry.register(
                 Registries.LOOT_FUNCTION_TYPE,
