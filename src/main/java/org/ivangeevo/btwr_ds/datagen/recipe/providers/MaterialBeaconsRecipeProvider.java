@@ -1,43 +1,34 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import issame.material_beacons.MaterialBeacons;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.block.Block;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import org.ivangeevo.btwr_ds.recipe.StatusEffectIngredient;
-import org.ivangeevo.btwr_ds.recipe.MaterialBeaconsRecipe;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-public class MaterialBeaconsRecipeProvider extends FabricRecipeProvider {
+public class MaterialBeaconsRecipeProvider extends FabricDynamicRegistryProvider {
 
     public MaterialBeaconsRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
-        this.createRecipeFor(Blocks.REDSTONE_BLOCK, exporter);
+    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
 
     }
 
-    private void createRecipeFor(Block block, RecipeExporter exporter) {
-        MaterialBeaconsRecipe.JsonBuilder.create(Blocks.REDSTONE_BLOCK)
-                .addPowers(addRedstoneEffects())
-                .criterion("has_" + block, conditionsFromItem(block.asItem()))
-                .offerTo(exporter, Identifier.of(MaterialBeacons.MOD_ID, ""));
+    @Override
+    public String getName() {
+        return "Material Beacons Data";
     }
 
     /**
@@ -84,5 +75,6 @@ public class MaterialBeaconsRecipeProvider extends FabricRecipeProvider {
                 duration, amplifier, range
         );
     }
+
 
 }

@@ -33,8 +33,6 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected PackingRecipeProvider packingRecipeProvider;
     protected MobSpawnerConversionRecipeProvider mobSpawnerRecipeProvider;
 
-    protected MaterialBeaconsRecipeProvider materialBeaconsRecipeProvider;
-
     protected DisabledRecipeProvider disabledRecipeProvider;
 
     public CombinedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -59,8 +57,6 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.packingRecipeProvider = new PackingRecipeProvider(output, registriesFuture);
         this.mobSpawnerRecipeProvider = new MobSpawnerConversionRecipeProvider(output, registriesFuture);
 
-        this.materialBeaconsRecipeProvider = new MaterialBeaconsRecipeProvider(output, registriesFuture);
-
         this.disabledRecipeProvider = new DisabledRecipeProvider(output, registriesFuture);
     }
 
@@ -84,8 +80,6 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         kilnRecipeProvider.generate(exporter);
         packingRecipeProvider.generate(exporter);
         mobSpawnerRecipeProvider.generate(exporter);
-
-        //materialBeaconsRecipeProvider.generate(exporter);
 
         disabledRecipeProvider.generate(exporter);
     }
