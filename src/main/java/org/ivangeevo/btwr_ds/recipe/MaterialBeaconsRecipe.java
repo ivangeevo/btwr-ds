@@ -97,9 +97,6 @@ public class MaterialBeaconsRecipe implements Recipe<BeaconDataRecipeInput> {
         return ItemStack.EMPTY;
     }
 
-    public CraftingRecipeCategory getCategory() {
-        return this.category;
-    }
 
     public List<BlockOrTagIngredient> getBeaconBases() {
         return bases;
@@ -204,11 +201,6 @@ public class MaterialBeaconsRecipe implements Recipe<BeaconDataRecipeInput> {
             return this;
         }
 
-        public JsonBuilder category(CraftingRecipeCategory category) {
-            this.category = category;
-            return this;
-        }
-
         @Override
         public JsonBuilder criterion(String string, AdvancementCriterion<?> advancementCriterion) {
             return this;
@@ -216,7 +208,6 @@ public class MaterialBeaconsRecipe implements Recipe<BeaconDataRecipeInput> {
 
         @Override
         public JsonBuilder group(@Nullable String string) {
-            this.group = string;
             return this;
         }
 

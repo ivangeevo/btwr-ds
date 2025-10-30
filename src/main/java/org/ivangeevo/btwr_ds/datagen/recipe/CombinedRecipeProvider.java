@@ -39,6 +39,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
 
     public CombinedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
+
         this.shapelessRecipeProvider = new ShapelessRecipeProvider(output, registriesFuture);
         this.shapedRecipeProvider = new ShapedRecipeProvider(output, registriesFuture);
         this.craftingWithToolShapelessRecipeProvider = new ExtendedShapelessRecipeProvider(output, registriesFuture);
@@ -84,7 +85,7 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         packingRecipeProvider.generate(exporter);
         mobSpawnerRecipeProvider.generate(exporter);
 
-        materialBeaconsRecipeProvider.generate(exporter);
+        //materialBeaconsRecipeProvider.generate(exporter);
 
         disabledRecipeProvider.generate(exporter);
     }
