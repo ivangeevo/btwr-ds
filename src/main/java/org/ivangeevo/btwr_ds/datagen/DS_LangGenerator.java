@@ -27,7 +27,6 @@ public class DS_LangGenerator extends FabricLanguageProvider {
         tb.add(BTWRDS_Items.BARK_BLOOD_WOOD, "Blood Wood Bark");
         tb.add(BTWRDS_Items.ELEMENT, "Element");
         tb.add(BTWRDS_Items.REDSTONE_LATCH, "Redstone Latch");
-
     }
 
     private void generateStatusEffectsTranslations(TranslationBuilder tb) {

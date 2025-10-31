@@ -41,7 +41,6 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider
     private void overrideVanilla() {
 
         // override bed loot tables
-
         addDrop(Blocks.WHITE_BED, this.btwBedDrops());
         addDrop(Blocks.ORANGE_BED, this.btwBedDrops());
         addDrop(Blocks.MAGENTA_BED, this.btwBedDrops());
@@ -82,9 +81,7 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider
                 .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
                         .with(ItemEntry.builder(BwtItems.paddingItem).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0f)))))
                 .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F))
-                        .with(ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f))))
-                );
-
+                        .with(ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)))));
     }
 
     private void forMod() {
