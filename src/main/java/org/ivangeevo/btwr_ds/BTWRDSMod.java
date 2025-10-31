@@ -9,13 +9,12 @@ import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
 import org.ivangeevo.btwr_ds.entity.ModEntities;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.ivangeevo.btwr_ds.item.ItemCountModification;
-import org.ivangeevo.btwr_ds.item.component.FoodComponentModifier;
-import org.ivangeevo.btwr_ds.loot.ModLootFunctions;
+import org.ivangeevo.btwr_ds.event.ItemCountModificationEvents;
+import org.ivangeevo.btwr_ds.event.FoodComponentModifierEvents;
+import org.ivangeevo.btwr_ds.loot.function.ModLootFunctions;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.ivangeevo.btwr_ds.util.PlanterFertilizer;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
-import org.ivangeevo.btwr_ds.world.SpawnChunksLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,9 +52,9 @@ public class BTWRDSMod implements ModInitializer {
 		WorldGenBlockReplacements.register();
 		ModEntities.register();
 		ModAttachments.register();
-		FoodComponentModifier.register();
+		FoodComponentModifierEvents.register();
 		ModLootTableEvents.register();
-		ItemCountModification.register();
+		ItemCountModificationEvents.register();
 		//SpawnChunksLoader.register();
 		PlanterFertilizer.register();
 		ModStatusEffects.register();

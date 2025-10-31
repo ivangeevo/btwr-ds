@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.item.component;
+package org.ivangeevo.btwr_ds.item.component.components;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;

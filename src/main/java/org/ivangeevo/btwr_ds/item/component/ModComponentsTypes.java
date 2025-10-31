@@ -1,10 +1,10 @@
 package org.ivangeevo.btwr_ds.item.component;
 
 import net.minecraft.component.ComponentType;
-import net.minecraft.component.type.LodestoneTrackerComponent;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import org.ivangeevo.btwr_ds.BTWRDSMod;
+import org.ivangeevo.btwr_ds.item.component.components.MagneticPointTrackerComponent;
 
 public class ModComponentsTypes {
 

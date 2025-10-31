@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.item.component;
+package org.ivangeevo.btwr_ds.event;
 
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
@@ -10,22 +10,23 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
+import org.ivangeevo.btwr_ds.item.component.BTWRFoodComponents;
 import org.ivangeevo.vegehenna.item.ModItems;
 import tetro48.system.GranularHunger;
 
 /** Used to modify all food items to work for BTWR **/
-public class FoodComponentModifier {
+public class FoodComponentModifierEvents {
 
     /**
      * Registers a listener to modify the food components of food items.
      */
     public static void register() {
         // register normal food modifications
-        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyNonGranularFoods);
+        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifierEvents::modifyNonGranularFoods);
 
         // register all granular food entries/modifications
         //GranularFoodComponentRegistry.registerFoods();
-        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifier::modifyGranularFoods);
+        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifierEvents::modifyGranularFoods);
     }
 
     // Define all granular food items

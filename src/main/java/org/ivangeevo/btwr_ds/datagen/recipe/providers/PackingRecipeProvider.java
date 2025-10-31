@@ -82,8 +82,11 @@ public class PackingRecipeProvider extends FabricRecipeProvider implements Recip
                 .category(CraftingRecipeCategory.MISC)
                 .ingredient(ingredient, count)
                 .criterion(hasItem(ingredient), conditionsFromItem(ingredient))
-                .offerTo(exporter, ID.ofTE("_from_piston_packing_")
-                        .withPrefixedPath(resultName).withSuffixedPath(ingredientName)
+                .offerTo(
+                        exporter,
+                        ID.ofTE("_from_piston_packing_")
+                                .withPrefixedPath(resultName)
+                                .withSuffixedPath(ingredientName)
                 );
 
     }

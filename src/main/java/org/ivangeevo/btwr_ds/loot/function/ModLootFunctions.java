@@ -1,10 +1,12 @@
-package org.ivangeevo.btwr_ds.loot;
+package org.ivangeevo.btwr_ds.loot.function;
 
 import net.minecraft.loot.function.LootFunctionType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.btwr_ds.BTWRDSMod;
+import org.ivangeevo.btwr_ds.loot.function.functions.StatusEffectApplyBonusLootFunction;
+import org.ivangeevo.btwr_ds.loot.function.functions.StatusEffectCountIncreaseLootFunction;
 
 public class ModLootFunctions {
 

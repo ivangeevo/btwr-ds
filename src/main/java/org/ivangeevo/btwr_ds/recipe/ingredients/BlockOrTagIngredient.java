@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.recipe;
+package org.ivangeevo.btwr_ds.recipe.ingredients;
 
 import com.bwt.recipes.BlockIngredient;
 import com.mojang.serialization.MapCodec;

@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.item.component;
+package org.ivangeevo.btwr_ds.item.component.components;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,7 +9,6 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
-import net.minecraft.world.poi.PointOfInterestTypes;
 
 public record MagneticPointTrackerComponent(Optional<GlobalPos> target, boolean tracked) {
 

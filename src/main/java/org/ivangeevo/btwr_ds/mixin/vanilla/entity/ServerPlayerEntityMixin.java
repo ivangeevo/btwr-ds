@@ -16,7 +16,7 @@ import org.ivangeevo.btwr_ds.attachment.MagneticPointAttachedData;
 import org.ivangeevo.btwr_ds.attachment.ModAttachmentTypes;
 import org.ivangeevo.btwr_ds.data.ItemDespawnData;
 import org.ivangeevo.btwr_ds.attachment.ModAttachments;
-import org.ivangeevo.btwr_ds.item.component.MagneticPointTrackerComponent;
+import org.ivangeevo.btwr_ds.item.component.components.MagneticPointTrackerComponent;
 import org.ivangeevo.btwr_ds.item.component.ModComponentsTypes;
 import org.ivangeevo.btwr_ds.util.ItemDespawnType;
 import org.ivangeevo.btwr_ds.util.MagneticPoint;

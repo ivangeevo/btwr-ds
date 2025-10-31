@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.loot;
+package org.ivangeevo.btwr_ds.loot.function.functions;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
@@ -27,6 +27,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.random.Random;
+import org.ivangeevo.btwr_ds.loot.function.ModLootFunctions;
 
 public class StatusEffectApplyBonusLootFunction extends ConditionalLootFunction {
 

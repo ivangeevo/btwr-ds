@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.loot;
+package org.ivangeevo.btwr_ds.loot.function.functions;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -24,6 +24,7 @@ import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.registry.entry.RegistryEntry;
 import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
+import org.ivangeevo.btwr_ds.loot.function.ModLootFunctions;
 
 public class StatusEffectCountIncreaseLootFunction extends ConditionalLootFunction {
     

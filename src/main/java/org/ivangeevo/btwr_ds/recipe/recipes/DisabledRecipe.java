@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.recipe;
+package org.ivangeevo.btwr_ds.recipe.recipes;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -11,6 +11,7 @@ import net.minecraft.recipe.*;
 import net.minecraft.recipe.input.RecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
+import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
 import org.jetbrains.annotations.Nullable;
 
 public record DisabledRecipe(String group) implements Recipe<RecipeInput> {

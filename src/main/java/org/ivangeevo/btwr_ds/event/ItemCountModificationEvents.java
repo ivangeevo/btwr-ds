@@ -1,4 +1,4 @@
-package org.ivangeevo.btwr_ds.item;
+package org.ivangeevo.btwr_ds.event;
 
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.ArrayList;
 
 /** Handles modification of items max allowed count**/
-public class ItemCountModification
+public class ItemCountModificationEvents
 {
 
     public static void register() {
