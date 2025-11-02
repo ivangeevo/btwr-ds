@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "moisture=0,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=1,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=2,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=3,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=4,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=5,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=6,fertilized=false": { "model": "bwt:block/soil_planter" },
+    "moisture=7,fertilized=false": { "model": "btwr_ds:block/soil_planter_moist" },
+
+    "moisture=0,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=1,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=2,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=3,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=4,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=5,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=6,fertilized=true": { "model": "btwr_ds:block/soil_planter_fertilized" },
+    "moisture=7,fertilized=true": { "model": "btwr_ds:block/soil_planter_moist_fertilized" }
+  }
+}

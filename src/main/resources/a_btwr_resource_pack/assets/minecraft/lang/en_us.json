@@ -1,0 +1,47 @@
+{
+  "item.minecraft.stick": "Shaft",
+  "item.minecraft.mushroom_stew": "Cream of Mushroom",
+
+  "item.minecraft.netherite_axe": "Soulforged Nethersteel Axe",
+  "item.minecraft.netherite_boots": "Soulforged Nethersteel Boots",
+  "item.minecraft.netherite_chestplate": "Soulforged Nethersteel Chestplate",
+  "item.minecraft.netherite_helmet": "Soulforged Nethersteel Helmet",
+  "item.minecraft.netherite_hoe": "Soulforged Nethersteel Hoe",
+  "item.minecraft.netherite_ingot": "Soulforged Nethersteel Ingot",
+  "item.minecraft.netherite_leggings": "Soulforged Nethersteel Leggings",
+  "item.minecraft.netherite_pickaxe": "Soulforged Nethersteel Pickaxe",
+  "item.minecraft.netherite_scrap": "Nethersteel Scrap",
+  "item.minecraft.netherite_shovel": "Soulforged Nethersteel Shovel",
+  "item.minecraft.netherite_sword": "Soulforged Nethersteel Sword",
+  "block.minecraft.netherite_block": "Block of Soulforged Nethersteel",
+
+  "advancements.husbandry.netherite_hoe.description": "Craft a Soulforged Nethersteel Hoe, and then reevaluate your life choices",
+  "advancements.nether.netherite_armor.description": "Get a full suit of Soulforged Nethersteel armor",
+  "advancements.nether.netherite_armor.title": "Cover Me in Souls",
+
+  "item.minecraft.smithing_template.netherite_upgrade.additions_slot_description": "Add Soulforged Nethersteel Ingot",
+  "item.minecraft.smithing_template.netherite_upgrade.ingredients": "Soulforged Nethersteel Ingot",
+
+  "subtitles.item.armor.equip_netherite": "Nethersteel armor clanks",
+  "trim_material.minecraft.netherite": "Nethersteel Material",
+  "upgrade.minecraft.netherite_upgrade": "Nethersteel Upgrade",
+
+  "block.minecraft.tnt": "Powder Keg",
+  "entity.minecraft.tnt": "Primed Powder Keg",
+  "entity.minecraft.tnt_minecart": "Minecart with Powder Keg",
+  "gamerule.tntExplosionDropDecay": "In Powder Keg explosions, some blocks won't drop their loot",
+  "gamerule.tntExplosionDropDecay.description": "Some of the drops from blocks destroyed by explosions caused by Powder Keg are lost in the explosion.",
+  "item.minecraft.tnt_minecart": "Minecart with Powder Keg",
+  "subtitles.entity.tnt.primed": "Powder Keg fizzes"
+
+
+
+
+
+
+
+
+
+
+
+}
