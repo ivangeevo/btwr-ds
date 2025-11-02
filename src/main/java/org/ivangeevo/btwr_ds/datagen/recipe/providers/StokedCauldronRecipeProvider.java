@@ -84,8 +84,15 @@ public class StokedCauldronRecipeProvider extends FabricRecipeProvider implement
         // Tallow - unmodified
 
         // Potash
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_bark");
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(org.ivangeevo.vegehenna.item.ModItems.STRAW, 16).result(BwtItems.potashItem).offerTo(exporter, ID.ofBWT("potash") + "_from_cauldron_rendering_straw");
+        StokedCauldronRecipe.JsonBuilder.create()
+                .ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64)
+                .result(BwtItems.potashItem)
+                .offerTo(exporter, ID.ofBWT("potash").withSuffixedPath("_from_cauldron_rendering_bark"));
+
+        StokedCauldronRecipe.JsonBuilder.create()
+                .ingredient(org.ivangeevo.vegehenna.item.ModItems.STRAW, 16)
+                .result(BwtItems.potashItem)
+                .offerTo(exporter, ID.ofBWT("potash").withSuffixedPath("_from_cauldron_rendering_straw"));
 
         // Arrows
         StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW).result(Items.FLINT).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, ID.ofBWT("cauldron_rendering_arrows"));

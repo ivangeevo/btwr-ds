@@ -60,7 +60,7 @@ public class KilnRecipeProvider extends FabricRecipeProvider implements RecipePr
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredPlanterBlock).drops(BwtBlocks.planterBlock).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredVaseBlock).drops(BwtBlocks.vaseBlocks.get(DyeColor.WHITE)).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredUrnBlock).drops(BwtBlocks.urnBlock).offerTo(exporter);
-        KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredMouldBlock).drops(BwtItems.mouldItem).offerTo(exporter);
+        //KilnRecipe.JsonBuilder.create(BwtBlocks.unfiredMouldBlock).drops(BwtItems.mouldItem).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.CLAY).drops(Blocks.TERRACOTTA).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.WHITE_TERRACOTTA).drops(Blocks.WHITE_GLAZED_TERRACOTTA).offerTo(exporter);
         KilnRecipe.JsonBuilder.create(Blocks.LIGHT_GRAY_TERRACOTTA).drops(Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA).offerTo(exporter);

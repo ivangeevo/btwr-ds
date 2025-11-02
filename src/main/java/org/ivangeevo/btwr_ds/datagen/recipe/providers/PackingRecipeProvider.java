@@ -12,6 +12,7 @@ import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.ivangeevo.piston_packing.PistonPackingMod;
 import org.ivangeevo.piston_packing.recipe.PackingRecipe;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
@@ -84,11 +85,10 @@ public class PackingRecipeProvider extends FabricRecipeProvider implements Recip
                 .criterion(hasItem(ingredient), conditionsFromItem(ingredient))
                 .offerTo(
                         exporter,
-                        ID.ofTE("_from_piston_packing_")
+                        Identifier.of(PistonPackingMod.MOD_ID, "_from_piston_packing_")
                                 .withPrefixedPath(resultName)
                                 .withSuffixedPath(ingredientName)
                 );
-
     }
 
 }
