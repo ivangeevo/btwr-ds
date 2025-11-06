@@ -334,6 +334,15 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion(hasItem(Items.DISPENSER), conditionsFromItem(Items.DISPENSER))
                 .offerTo(exporter, ID.ofMC("dispenser"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DROPPER)
+                .input('S', ModItems.STONE_BRICK)
+                .input('L', BTWRDS_Items.REDSTONE_LATCH)
+                .pattern("SSS")
+                .pattern("S S")
+                .pattern("SLS")
+                .criterion(hasItem(Items.DROPPER), conditionsFromItem(Items.DROPPER))
+                .offerTo(exporter, ID.ofMC("dropper"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.REPEATER)
                 .input('C', Items.CLOCK)
                 .input('R', Items.REDSTONE_TORCH)
@@ -548,7 +557,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .offerTo(exporter, ID.ofBWT("padding"));
 
         // Blocks
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.gearBoxBlock)
                 .input('W', ItemTags.PLANKS)
                 .input('A', BwtBlocks.axleBlock)
                 .input('G', BwtItems.gearItem)
@@ -557,6 +566,16 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("WGW")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
                 .offerTo(exporter, ID.ofBWT("gear_box"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.redstoneClutchBlock)
+                .input('W', ItemTags.PLANKS)
+                .input('L', BTWRDS_Items.REDSTONE_LATCH)
+                .input('G', BwtItems.gearItem)
+                .pattern("WGW")
+                .pattern("GLG")
+                .pattern("WGW")
+                .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
+                .offerTo(exporter, ID.ofBWT("redstone_clutch"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soilPlanterBlock)
                 .input('D', org.tough_environment.block.ModBlocks.DIRT_LOOSE)
