@@ -55,5 +55,4 @@ public class DatapackEnforcer {
         manager.setEnabledProfiles(enabled);
     }
 
-
 }
