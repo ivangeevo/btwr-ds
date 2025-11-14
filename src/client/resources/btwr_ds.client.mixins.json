@@ -9,7 +9,8 @@
     "GameTabMixin",
     "InGameHudMixin",
     "InventoryScreenMixin",
-    "OptionsScreenMixin"
+    "OptionsScreenMixin",
+    "WindowMixin"
   ],
   "injectors": {
     "defaultRequire": 1

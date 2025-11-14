@@ -144,6 +144,9 @@ public class ItemCountModificationEvents
 
         list.add(ModItems.CHOCOLATE);
         list.add(ModItems.CHOCOLATE_MILK);
+        list.add(ModItems.PASTRY_UNCOOKED_CAKE);
+        list.add(ModItems.PASTRY_UNCOOKED_PUMPKIN_PIE);
+        list.add(ModItems.PASTRY_UNCOOKED_COOKIES);
 
         return list;
     }

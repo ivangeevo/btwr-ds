@@ -3,8 +3,11 @@ package org.ivangeevo.btwr_ds;
 import btwr.btwr_sl.BTWRSLMod;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
 import org.ivangeevo.btwr_ds.attachment.ModAttachments;
+import org.ivangeevo.btwr_ds.data.ModDataAttachments;
 import org.ivangeevo.btwr_ds.effect.ModStatusEffects;
 import org.ivangeevo.btwr_ds.entity.ModEntities;
 import org.ivangeevo.btwr_ds.event.ModLootTableEvents;
@@ -12,7 +15,9 @@ import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.btwr_ds.event.ItemCountModificationEvents;
 import org.ivangeevo.btwr_ds.event.FoodComponentModifierEvents;
 import org.ivangeevo.btwr_ds.loot.function.ModLootFunctions;
+import org.ivangeevo.btwr_ds.packet.CrawlToggleC2SPacket;
 import org.ivangeevo.btwr_ds.recipe.BTWRDSRecipes;
+import org.ivangeevo.btwr_ds.util.CrawlHandler;
 import org.ivangeevo.btwr_ds.util.PlanterFertilizer;
 import org.ivangeevo.btwr_ds.util.WorldGenBlockReplacements;
 import org.slf4j.Logger;
@@ -60,6 +65,7 @@ public class BTWRDSMod implements ModInitializer {
 		ModStatusEffects.register();
 		ModLootFunctions.register();
 
+		ModDataAttachments.register();
 
 		//BlockSpeedRegistry.init();
 
@@ -67,6 +73,16 @@ public class BTWRDSMod implements ModInitializer {
 
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();
+
+		PayloadTypeRegistry.playC2S().register(CrawlToggleC2SPacket.ID, CrawlToggleC2SPacket.CODEC);
+
+		ServerPlayNetworking.registerGlobalReceiver(CrawlToggleC2SPacket.ID, ((payload, context) -> {
+			context.server().execute(() -> {
+				CrawlHandler.toggleCrawl(context.player());
+			});
+		}));
+
+
 	}
 
 	public void loadSettings() {

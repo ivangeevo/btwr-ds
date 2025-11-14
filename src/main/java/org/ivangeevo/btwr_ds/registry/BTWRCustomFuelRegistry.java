@@ -29,6 +29,8 @@ import static org.ivangeevo.vegehenna.item.ModItems.SUGAR_CANE_ROOTS;
  *  to the{@link AbstractFurnaceBlockEntity#createFuelTimeMap()} **/
 public class BTWRCustomFuelRegistry {
 
+    // TODO: Add pink petals as fuel item
+
     public static Map<Item, Integer> getMap() {
         Map<Item, Integer> tempMap = Maps.newLinkedHashMap();
 

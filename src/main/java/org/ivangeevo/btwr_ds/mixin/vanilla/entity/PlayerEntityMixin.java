@@ -1,12 +1,21 @@
 package org.ivangeevo.btwr_ds.mixin.vanilla.entity;
 
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import org.ivangeevo.btwr_ds.data.ModDataAttachments;
 import org.ivangeevo.btwr_ds.util.ArmorWeightManager;
+import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -15,8 +24,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.function.Predicate;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin
+public abstract class PlayerEntityMixin extends LivingEntity
 {
+
+    @Shadow protected abstract boolean canChangeIntoPose(EntityPose pose);
+
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
     // Add extra exhaustion to all actions when wearing armor
     @Inject(method = "addExhaustion", at = @At("HEAD"), cancellable = true)
@@ -76,6 +91,33 @@ public abstract class PlayerEntityMixin
 
         // No arrow found
         cir.setReturnValue(ItemStack.EMPTY);
+    }
+
+    /**
+    @Inject(method = "updatePose", at = @At("HEAD"), cancellable = true)
+    private void forceCrawl(CallbackInfo ci) {
+        if (!((PlayerEntity)(Object)this instanceof LivingEntity self)) return;
+        var crawlData = self.getAttached(ModDataAttachments.CRAWLING_TOGGLE);
+
+        if (!this.canChangeIntoPose(EntityPose.SWIMMING)) return;
+        if (crawlData != null && crawlData.getCrawling() && !this.isSleeping()) {
+            self.setPose(EntityPose.SWIMMING);
+            self.calculateDimensions(); // recompute hitbox
+        }
+        ci.cancel(); // skip vanilla pose logic
+    }
+    **/
+
+    //@Inject(method = "updatePose", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isSneaking()Z", shift = At.Shift.AFTER), cancellable = true)
+    private void forceCrawl(CallbackInfo ci) {
+        if (!((PlayerEntity)(Object)this instanceof LivingEntity self)) return;
+        var crawlData = self.getAttached(ModDataAttachments.CRAWLING_TOGGLE);
+
+        if (crawlData != null && crawlData.getCrawling()) {
+            self.setPose(EntityPose.SWIMMING);
+            self.calculateDimensions(); // recompute hitbox
+        }
+        ci.cancel(); // skip vanilla pose logic
     }
 
 }
