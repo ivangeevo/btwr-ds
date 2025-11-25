@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.soul_forge.SoulForgeShapedRecipe;
@@ -11,11 +10,13 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class SoulforgedRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class SoulforgedRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
 {
     public SoulforgedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -42,7 +43,7 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
                 .pattern("BBB ")
                 .pattern(" B  ")
                 .criterion("has_netherite_nugget", conditionsFromItem(ModItems.NETHERITE_NUGGET))
-                .offerTo(exporter, RecipeProviderUtils.ID.ofBWT("broadhead"));
+                .offerTo(exporter, IdUtils.ofBWT("broadhead"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.blockDispenserBlock)
                 .input('B', ModItems.STONE_BRICK)
@@ -55,7 +56,7 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
                 .pattern("BTTB")
                 .pattern("BRRB")
                 .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
-                .offerTo(exporter, RecipeProviderUtils.ID.ofBWT("block_dispenser"));
+                .offerTo(exporter, IdUtils.ofBWT("block_dispenser"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.buddyBlock)
                 .input('B', ModItems.STONE_BRICK)
@@ -66,7 +67,7 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
                 .pattern("BTTE")
                 .pattern("BEBB")
                 .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
-                .offerTo(exporter, RecipeProviderUtils.ID.ofBWT("buddy_block"));
+                .offerTo(exporter, IdUtils.ofBWT("buddy_block"));
 
     }
 }

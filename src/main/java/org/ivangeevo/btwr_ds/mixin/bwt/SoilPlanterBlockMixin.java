@@ -34,24 +34,24 @@ public abstract class SoilPlanterBlockMixin extends PlanterBlock {
     }
 
     @Override
-    public boolean getIsFertilizedForPlantGrowth(World world, BlockPos pos) {
+    public boolean btwr$getIsFertilizedForPlantGrowth(World world, BlockPos pos) {
         return world.getBlockState(pos).get(FERTILIZED);
     }
 
     @Override
-    public void notifyOfFullStagePlantGrowthOn(World world, BlockPos pos, Block plantBlock) {
+    public void btwr$notifyOfFullStagePlantGrowthOn(World world, BlockPos pos, Block plantBlock) {
         // revert back to unfertilized soil
         BlockState newState = BwtBlocks.soilPlanterBlock.getDefaultState().with(MOISTURE, world.getBlockState(pos).get(MOISTURE));
         world.setBlockState(pos, newState);
     }
 
     @Override
-    public float getPlantGrowthOnMultiplier(World world, BlockPos pos, Block plantBlock) {
+    public float btwr$getPlantGrowthOnMultiplier(World world, BlockPos pos, Block plantBlock) {
         return 2F;
     }
 
     @Override
-    public boolean isBlockHydratedForPlantGrowthOn(World world, BlockPos pos) {
+    public boolean btwr$isBlockHydratedForPlantGrowthOn(World world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
         return state.get(MOISTURE) == 7;
     }

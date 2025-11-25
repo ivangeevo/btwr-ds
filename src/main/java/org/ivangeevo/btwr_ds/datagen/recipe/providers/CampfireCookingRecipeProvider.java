@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
@@ -9,13 +8,14 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CampfireCookingRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class CampfireCookingRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
 {
-
 
     public CampfireCookingRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -32,7 +32,7 @@ public class CampfireCookingRecipeProvider extends FabricRecipeProvider implemen
                         0.20f,
                         6000)
                 .criterion("has_carrot", conditionsFromItem(Items.CARROT))
-                .offerTo(exporter, ID.ofVG("cooked_carrot_from_campfire_cooking"));
+                .offerTo(exporter, IdUtils.ofVG("cooked_carrot_from_campfire_cooking"));
 
     }
 }

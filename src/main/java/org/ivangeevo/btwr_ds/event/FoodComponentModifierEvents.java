@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import org.ivangeevo.btwr_ds.item.component.BTWRFoodComponents;
+import org.ivangeevo.btwr_ds.mixin.vanilla.ComponentMap$BuilderAccessor;
 import org.ivangeevo.vegehenna.item.ModItems;
 import tetro48.system.GranularHunger;
 
@@ -123,12 +124,14 @@ public class FoodComponentModifierEvents {
 
     // Directly modify the builder with access widening the put method (it was reflection before)
     private static void modifyEntry(ComponentMap.Builder builder, FoodComponent foodComponent) {
-        builder.put(DataComponentTypes.FOOD, foodComponent);
+        ComponentMap$BuilderAccessor ba = (ComponentMap$BuilderAccessor) builder;
+        ba.put(DataComponentTypes.FOOD, foodComponent);
     }
 
     private static void modifyEntryGranular(ComponentMap.Builder builder, int hungerPips, FoodComponent foodComponent) {
+        ComponentMap$BuilderAccessor ba = (ComponentMap$BuilderAccessor) builder;
         // Set the new food component
-        builder.put(DataComponentTypes.FOOD, foodComponent);
+        ba.put(DataComponentTypes.FOOD, foodComponent);
         // Add the hunger pip component with its lesser nutrition value
         builder.add(GranularHunger.HUNGER_PIP_COMPONENT, hungerPips);
     }

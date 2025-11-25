@@ -1,11 +1,11 @@
 package org.ivangeevo.btwr_ds.recipe;
 
-import btwr.btwr_sl.BTWRSLMod;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.BTWRSLMod;
 import org.ivangeevo.btwr_ds.recipe.recipes.DisabledRecipe;
 
 public class BTWRDSRecipes {

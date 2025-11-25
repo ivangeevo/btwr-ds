@@ -1,12 +1,12 @@
 package org.ivangeevo.btwr_ds.util;
 
-import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.ivangeevo.self_sustainable.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
+import org.btwr.shared_library.registry.BlockReplacementRegistry;
+import org.btwr.shared_library.util.utils.IdUtils;
 
 public class WorldGenBlockReplacements {
 
@@ -21,7 +21,7 @@ public class WorldGenBlockReplacements {
 
         // remove beds
         for (DyeColor color : DyeColor.values()) {
-            Block bedBlock = Registries.BLOCK.get(RecipeProviderUtils.ID.ofMC(color.asString() + "_bed"));
+            Block bedBlock = Registries.BLOCK.get(IdUtils.ofMC(color.asString() + "_bed"));
             removeBlock(bedBlock);
         }
 

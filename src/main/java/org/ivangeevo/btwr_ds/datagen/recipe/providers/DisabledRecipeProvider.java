@@ -1,17 +1,16 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
-import ivangeevo.sturdy_trees.SturdyTreesMod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.ivangeevo.self_sustainable.SelfSustainableMod;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 
 import java.util.concurrent.CompletableFuture;
 
-public class DisabledRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class DisabledRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
 
     public DisabledRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

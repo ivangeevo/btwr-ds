@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -14,13 +13,15 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
 import static org.ivangeevo.vegehenna.item.ModItems.*;
 
-public class OvenCookingRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class OvenCookingRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
 
     private static final String SUFFIX = "_from_oven_cooking";
     private static final int FOOD_COOK_TIME = 1600;
@@ -83,7 +84,7 @@ public class OvenCookingRecipeProvider extends FabricRecipeProvider implements R
                         ItemConvertible input, float xp, int cookTime, String name) {
         offerOvenCooking(output, category, Ingredient.ofItems(input), xp, cookTime)
                 .criterion("has_" + getItemPath(input), conditionsFromItem(input))
-                .offerTo(exporter, ID.ofSS(name + SUFFIX));
+                .offerTo(exporter, IdUtils.ofSS(name + SUFFIX));
     }
 
     public static ModCookingRecipeJsonBuilder offerOvenCooking(ItemConvertible output, RecipeCategory category,

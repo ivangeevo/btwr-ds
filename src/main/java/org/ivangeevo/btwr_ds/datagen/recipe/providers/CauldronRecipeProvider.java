@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
@@ -12,12 +11,14 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CauldronRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class CauldronRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
 {
 
     public CauldronRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -36,67 +37,67 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .ingredient(Items.BROWN_MUSHROOM, 3)
                 .ingredient(BwtItems.flourItem)
                 .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
-                .offerTo(exporter, ID.ofBTWR("rabbit_stew_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBTWR("rabbit_stew_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(Items.BEETROOT_SOUP, 3)
                 .ingredient(Items.BEETROOT, 6)
                 .ingredient(BwtItems.flourItem, 2)
                 .ingredient(Items.BOWL, 3)
                 .criterion("has_beetroot", conditionsFromItem(Items.BLAZE_POWDER))
-                .offerTo(exporter, ID.ofDS("beetroot_soup_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofDS("beetroot_soup_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(BTWRDS_Items.ELEMENT)
                 .ingredient(Items.BLAZE_POWDER)
                 .ingredient(Items.REDSTONE)
                 .ingredient(ConventionalItemTags.STRINGS)
                 .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
-                .offerTo(exporter, ID.ofDS("element_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofDS("element_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(Items.GUNPOWDER, 2)
                 .ingredient(org.ivangeevo.animageddon.item.ModItems.NITRE)
                 .ingredient(BTWRDS_Items.BRIMSTONE)
                 .ingredient(BwtItems.coalDustItem)
                 .criterion("has_brimstone", conditionsFromItem(BTWRDS_Items.BRIMSTONE))
-                .offerTo(exporter, ID.ofDS("gunpowder_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofDS("gunpowder_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(org.tough_environment.item.ModItems.NETHER_SLUDGE)
                 .ingredient(BwtItems.potashItem)
                 .ingredient(BwtItems.hellfireDustItem, 8)
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
-                .offerTo(exporter, ID.ofDS("nether_sludge_from_stoked_cauldron"));
+                .offerTo(exporter, IdUtils.ofDS("nether_sludge_from_stoked_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(ModItems.CHOCOLATE,2)
                 .ingredient(org.ivangeevo.vegehenna.item.ModItems.COCOA_POWDER)
                 .ingredient(Items.SUGAR)
                 .ingredient(Items.MILK_BUCKET)
                 .criterion("has_cocoa_powder", conditionsFromItem(ModItems.COCOA_POWDER))
-                .offerTo(exporter, ID.ofDS("chocolate_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofDS("chocolate_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(Items.MUSHROOM_STEW,2)
                 .ingredient(Items.BROWN_MUSHROOM, 3)
                 .ingredient(Items.MILK_BUCKET)
                 .ingredient(Items.BOWL,2)
                 .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
-                .offerTo(exporter, ID.ofDS("cream_of_mushroom"));
+                .offerTo(exporter, IdUtils.ofDS("cream_of_mushroom"));
 
 
         // BTWR: Core
         CauldronRecipe.JsonBuilder.createFood().result(ModItems.BOILED_POTATO)
                 .ingredient(Items.POTATO)
                 .criterion("has_potato", conditionsFromItem(Items.POTATO))
-                .offerTo(exporter, ID.ofBTWR("boiled_potato_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBTWR("boiled_potato_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(ModItems.COOKED_CARROT)
                 .ingredient(Items.CARROT)
                 .criterion("has_carrot", conditionsFromItem(Items.CARROT))
-                .offerTo(exporter, ID.ofBTWR("cooked_carrot_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBTWR("cooked_carrot_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHOWDER,2)
                 .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)
                 .ingredient(Items.MILK_BUCKET)
                 .ingredient(Items.BOWL, 2)
                 .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
-                .offerTo(exporter, ID.ofBTWR("chowder"));
+                .offerTo(exporter, IdUtils.ofBTWR("chowder"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHICKEN_SOUP, 3)
                 .ingredient(Items.COOKED_CHICKEN)
@@ -104,7 +105,7 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .ingredient(ModItems.BOILED_POTATO)
                 .ingredient(Items.BOWL, 3)
                 .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
-                .offerTo(exporter, ID.ofBTWR("chicken_soup_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBTWR("chicken_soup_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW, 5)
                 .ingredient(ConventionalItemTags.COOKED_MEAT_FOODS)
@@ -114,7 +115,7 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .ingredient(Items.BROWN_MUSHROOM, 3)
                 .ingredient(BwtItems.flourItem)
                 .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
-                .offerTo(exporter, ID.ofBTWR("hearty_stew_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBTWR("hearty_stew_from_cauldron"));
 
         // Better With Time
         this.createTannedLeatherRecipes(exporter);
@@ -139,13 +140,13 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .ingredient(BwtItems.dungItem)
                 .ingredient(barkItem, count)
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
-                .offerTo(exporter, ID.ofBWT("tanned_leather_with_" + extractName(barkItem) + "_in_cauldron"));
+                .offerTo(exporter, IdUtils.ofBWT("tanned_leather_with_" + extractName(barkItem) + "_in_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_TANNED_CUT,2)
                 .ingredient(BTWR_Items.LEATHER_SCOURED_CUT,2)
                 .ingredient(BwtItems.dungItem)
                 .ingredient(barkItem, count)
                 .criterion("has_scoured_leather", conditionsFromItem(BTWR_Items.LEATHER_SCOURED_CUT))
-                .offerTo(exporter, ID.ofBWT("tanned_leather_cut_from_leather_scoured_cut_with_" + extractName(barkItem) + "_in_cauldron"));
+                .offerTo(exporter, IdUtils.ofBWT("tanned_leather_cut_from_leather_scoured_cut_with_" + extractName(barkItem) + "_in_cauldron"));
     }
 }

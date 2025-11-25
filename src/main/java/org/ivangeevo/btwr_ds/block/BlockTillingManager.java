@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.block;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,6 +13,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.ivangeevo.btwr_ds.BTWRDSMod;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 

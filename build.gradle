@@ -51,8 +51,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// BTWR Shared Library
-	modImplementation "maven.modrinth:btwr-shared-library:${project.btwr_sl_version}"
-	//modImplementation files("libs/btwr-shared-lib-${project.btwr_sl_version}.jar")
+	//modImplementation "maven.modrinth:btwr-shared-library:${project.btwr_sl_version}"
+	modImplementation files("libs/btwr-shared-library-${project.btwr_sl_version}.jar")
 
 	// BTWR related mods
 	modImplementation "maven.modrinth:btwr-core:${project.btwr_core_version}"
@@ -63,7 +63,7 @@ dependencies {
 	modImplementation "maven.modrinth:animageddon:${project.animageddon_version}"
 	modImplementation "maven.modrinth:vegehenna:${project.vegehenna_version}"
 	modImplementation "maven.modrinth:granular-hunger:${project.granular_hunger_version}"
-	modImplementation "maven.modrinth:immovens:${project.immovens_version}"
+	//modImplementation "maven.modrinth:im-movens:${project.im_movens_version}"
 	modImplementation "maven.modrinth:bwt-hc-tweaks:${project.bwt_hct_version}"
 	//modImplementation "maven.modrinth:bind:${project.bind_version}"
 	modImplementation "maven.modrinth:material-beacons:${project.material_beacons_version}"
@@ -75,6 +75,7 @@ dependencies {
 	//modImplementation files("libs/tough_environment-${project.tough_environment_version}-1.21.1.jar")
 	//modImplementation files("libs/better_with_time-${project.bwt_version}.jar")
 	//modImplementation files("libs/vegehenna-${project.vegehenna_version}-1.21.1.jar")
+	modImplementation files("libs/im-movens-${project.im_movens_version}-1.21.1.jar")
 	//modImplementation files("libs/bwt-hc-tweaks-${project.bwt_hct_version}.jar")
 	//modImplementation files("libs/piston-packing-${project.piston_packing_version}.jar")
 

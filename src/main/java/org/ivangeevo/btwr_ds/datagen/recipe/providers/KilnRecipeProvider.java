@@ -1,8 +1,6 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import com.bwt.blocks.BwtBlocks;
-import com.bwt.items.BwtItems;
 import com.bwt.recipes.kiln.KilnRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -14,13 +12,14 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.DyeColor;
+import org.btwr.shared_library.util.utils.IdUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class KilnRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class KilnRecipeProvider extends FabricRecipeProvider
 {
     public KilnRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -32,17 +31,17 @@ public class KilnRecipeProvider extends FabricRecipeProvider implements RecipePr
         // DS recipes
         KilnRecipe.JsonBuilder.create(net.ivangeevo.self_sustainable.block.ModBlocks.BRICK_UNFIRED).result(Items.BRICK)
                 .criterion("has_brick_unfired", conditionsFromItem(net.ivangeevo.self_sustainable.block.ModBlocks.BRICK_UNFIRED))
-                .offerTo(exporter, ID.ofDS("kiln_cook_brick"));
+                .offerTo(exporter, IdUtils.ofDS("kiln_cook_brick"));
 
         Block breadDoughBlock = org.ivangeevo.vegehenna.block.ModBlocks.BREAD_DOUGH;
         KilnRecipe.JsonBuilder.create(breadDoughBlock).result(Items.BREAD)
                 .criterion("has_bread_dough", conditionsFromItem(org.ivangeevo.vegehenna.item.ModItems.BREAD_DOUGH))
-                .offerTo(exporter, ID.ofDS("kiln_cook_bread"));
+                .offerTo(exporter, IdUtils.ofDS("kiln_cook_bread"));
 
         Block uncookedCakeBlock = org.ivangeevo.vegehenna.block.ModBlocks.UNCOOKED_CAKE;
         KilnRecipe.JsonBuilder.create(uncookedCakeBlock).result(Items.CAKE)
                 .criterion("has_uncooked_cake_pastry", conditionsFromItem(org.ivangeevo.vegehenna.item.ModItems.PASTRY_UNCOOKED_CAKE))
-                .offerTo(exporter, ID.ofDS("kiln_cook_cake"));
+                .offerTo(exporter, IdUtils.ofDS("kiln_cook_cake"));
 
         // Ore blocks
         KilnRecipe.JsonBuilder.create(BlockTags.IRON_ORES).drops(Items.IRON_NUGGET).offerTo(exporter);

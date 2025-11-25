@@ -1,22 +1,13 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
-import btwr.core.item.BTWR_Items;
-import com.bwt.recipes.cooking_pots.StokedCrucibleRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
-import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
-import static org.tough_environment.item.ModItems.CHISEL_DIAMOND;
-import static org.tough_environment.item.ModItems.CHISEL_IRON;
-
-public class CrucibleRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class CrucibleRecipeProvider extends FabricRecipeProvider
 {
     public CrucibleRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

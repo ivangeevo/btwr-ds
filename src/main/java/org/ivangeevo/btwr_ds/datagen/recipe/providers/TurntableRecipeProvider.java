@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.recipes.turntable.TurntableRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -9,10 +8,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TurntableRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class TurntableRecipeProvider extends FabricRecipeProvider
 {
     public TurntableRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -21,7 +21,7 @@ public class TurntableRecipeProvider extends FabricRecipeProvider implements Rec
     @Override
     public void generate(RecipeExporter exporter) {
         TurntableRecipe.JsonBuilder.create(Blocks.CLAY, BwtBlocks.unfiredCrucibleBlock)
-                .drops(Items.CLAY_BALL).offerTo(exporter, ID.ofBWT("turntable_clay"));
+                .drops(Items.CLAY_BALL).offerTo(exporter, IdUtils.ofBWT("turntable_clay"));
 
     }
 }

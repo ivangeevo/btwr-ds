@@ -1,7 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
 import btwr.core.tag.BTWRTags;
 import com.bwt.blocks.BwtBlocks;
@@ -25,6 +23,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.item.ModItems;
 
@@ -32,7 +32,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static org.tough_environment.block.ModBlocks.SLAB_BRICKS_LOOSE;
 
-public class ShapedRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class ShapedRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
 {
 
     private static final String[] vanillaWoodTypes = new String[]
@@ -52,7 +52,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
         // TODO FIX recipe not generating
          // Adding boat recipes for each SidingBlock in BwtBlocks.sidingBlocks
          for (String woodType : vanillaWoodTypes) {
-             Identifier resultId = ID.ofMC(woodType + "_boat");
+             Identifier resultId = IdUtils.ofMC(woodType + "_boat");
              ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, Registries.ITEM.get(resultId))
                      .input('S', grabRaw("bwt",woodType + "_planks_siding"))
                      .pattern("S S")
@@ -72,7 +72,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
          .pattern("BSB")
          .pattern("BLB")
          .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
-         .offerTo(exporter, ID.ofMC("dispenser"));
+         .offerTo(exporter, IdUtils.ofMC("dispenser"));
          **/
 
         /**
@@ -89,19 +89,19 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
 
         // High efficiency
         for (String woodType : vanillaWoodTypes) {
-            Identifier doorID = ID.ofMC(woodType + "_door");
+            Identifier doorID = IdUtils.ofMC(woodType + "_door");
             ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(doorID))
-                    .input('P', grabRaw("bwt", woodType + "_planks_siding"))
+                    .input('P', IdUtils.grabRaw("bwt", woodType + "_planks_siding"))
                     .pattern("PP")
                     .pattern("PP")
                     .pattern("PP")
                     .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-                    .offerTo(exporter, ID.ofBWT("he_" + woodType + "_door"));
+                    .offerTo(exporter, IdUtils.ofBWT("he_" + woodType + "_door"));
         }
 
-        Identifier bloodWoodDoorID = ID.ofBWT("blood_wood_door");
+        Identifier bloodWoodDoorID = IdUtils.ofBWT("blood_wood_door");
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(bloodWoodDoorID))
-                .input('P', grabRaw("bwt","blood_wood_planks_siding"))
+                .input('P', IdUtils.grabRaw("bwt","blood_wood_planks_siding"))
                 .pattern("PP")
                 .pattern("PP")
                 .pattern("PP")
@@ -115,7 +115,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("FFF")
                 .pattern("WWW")
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
-                .offerTo(exporter, ID.ofBWT("he_sail"));
+                .offerTo(exporter, IdUtils.ofBWT("he_sail"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.gearBoxBlock)
                 .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
@@ -125,7 +125,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("GAG")
                 .pattern("WGW")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
-                .offerTo(exporter, ID.ofBWT("he_gear_box"));
+                .offerTo(exporter, IdUtils.ofBWT("he_gear_box"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER,2)
                 .input('P', BwtItemTags.WOODEN_MOULDING_BLOCKS)
@@ -134,7 +134,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("PPP")
                 .pattern("PSP")
                 .criterion("has_wooden_moulding", RecipeProvider.conditionsFromTag(BwtItemTags.WOODEN_MOULDING_BLOCKS))
-                .offerTo(exporter, ID.ofBWT("he_ladder"));
+                .offerTo(exporter, IdUtils.ofBWT("he_ladder"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
                 .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
@@ -146,17 +146,17 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("BUB")
                 .pattern("BLB")
                 .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
-                .offerTo(exporter, ID.ofBWT("he_piston"));
+                .offerTo(exporter, IdUtils.ofBWT("he_piston"));
 
         // Create the recipe for the blood wood button
-        Block bloodWoodCorner = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_corner"));
+        Block bloodWoodCorner = Registries.BLOCK.get(IdUtils.ofBWT("blood_wood_planks_corner"));
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.buttonBlock)
                 .input('S', bloodWoodCorner)  // Use the blood wood SidingBlock as the 'S' input
                 .input('R', Items.REDSTONE) // Redstone for the 'R' input
                 .pattern("S")
                 .pattern("R")
                 .criterion("has_blood_wood_corner", conditionsFromItem(bloodWoodCorner))
-                .offerTo(exporter, ID.ofBWT("blood_wood_button"));
+                .offerTo(exporter, IdUtils.ofBWT("blood_wood_button"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bloodWoodBlocks.doorBlock)
                 .input('P', BwtBlocks.bloodWoodBlocks.planksBlock)
@@ -164,7 +164,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("PP")
                 .pattern("PP")
                 .criterion("has_blood_wood_planks", conditionsFromItem(BwtBlocks.bloodWoodBlocks.planksBlock))
-                .offerTo(exporter, ID.ofBWT("blood_wood_door"));
+                .offerTo(exporter, IdUtils.ofBWT("blood_wood_door"));
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY)
@@ -173,7 +173,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("CCC")
                 .pattern("CCC")
                 .criterion("has_clay_ball", RecipeProvider.conditionsFromItem(Items.CLAY_BALL))
-                .offerTo(exporter, ID.ofMC("clay"));
+                .offerTo(exporter, IdUtils.ofMC("clay"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHEST)
                 .input('W', BwtBlocks.wickerBlock)
@@ -181,7 +181,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("W W")
                 .pattern("WWW")
                 .criterion("has_wicker_block", RecipeProvider.conditionsFromItem(BwtBlocks.wickerBlock))
-                .offerTo(exporter, ID.ofMC("chest"));
+                .offerTo(exporter, IdUtils.ofMC("chest"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHAIN,4)
                 .input('N', Items.IRON_NUGGET)
@@ -190,7 +190,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" I ")
                 .pattern(" N ")
                 .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, ID.ofMC("chain"));
+                .offerTo(exporter, IdUtils.ofMC("chain"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LANTERN)
                 .input('N', Items.IRON_NUGGET)
@@ -199,7 +199,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("NTN")
                 .pattern(" N ")
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, ID.ofMC("lantern"));
+                .offerTo(exporter, IdUtils.ofMC("lantern"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SOUL_LANTERN)
                 .input('N', Items.IRON_NUGGET)
@@ -208,7 +208,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("NTN")
                 .pattern(" N ")
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, ID.ofMC("soul_lantern"));
+                .offerTo(exporter, IdUtils.ofMC("soul_lantern"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BONE_BLOCK)
                 .input('S', Items.BONE)
@@ -216,7 +216,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("SSS")
                 .pattern("SSS")
                 .criterion("has_bone", conditionsFromItem(Items.BONE))
-                .offerTo(exporter, ID.ofMC("bone_block"));
+                .offerTo(exporter, IdUtils.ofMC("bone_block"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LADDER, 2)
                 .input('S', Items.STICK)
@@ -225,7 +225,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("SSS")
                 .pattern("SFS")
                 .criterion("has_stick", conditionsFromItem(Items.STICK))
-                .offerTo(exporter, ID.ofMC( "ladder"));
+                .offerTo(exporter, IdUtils.ofMC( "ladder"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.HOPPER)
                 .input('B', Items.IRON_INGOT)
@@ -239,44 +239,44 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
 
         // Adding door recipes
         for (String woodType : vanillaWoodTypes) {
-            Identifier resultId = ID.ofMC(woodType + "_door");
+            Identifier resultId = IdUtils.ofMC(woodType + "_door");
             ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.BLOCK.get(resultId))
-                    .input('P', grabRaw(woodType + "_planks"))
+                    .input('P', IdUtils.grabRaw(woodType + "_planks"))
                     .pattern("PP")
                     .pattern("PP")
                     .pattern("PP")
-                    .criterion("has_planks", conditionsFromItem(Registries.ITEM.get(ID.ofMC(woodType + "_planks"))))
+                    .criterion("has_planks", conditionsFromItem(Registries.ITEM.get(IdUtils.ofMC(woodType + "_planks"))))
                     .offerTo(exporter, resultId);
         }
 
         // Adding trapdoor recipes
         for (String woodType : vanillaWoodTypes) {
-            Identifier resultId = ID.ofMC(woodType + "_trapdoor");
+            Identifier resultId = IdUtils.ofMC(woodType + "_trapdoor");
             ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(resultId))
-                    .input('P', grabRaw(woodType + "_planks"))
+                    .input('P', IdUtils.grabRaw(woodType + "_planks"))
                     .input('S', Items.STICK)
                     .pattern("SPP")
                     .pattern("SPP")
-                    .criterion("has_planks", conditionsFromItem(Registries.ITEM.get(ID.ofMC(woodType + "_planks"))))
+                    .criterion("has_planks", conditionsFromItem(Registries.ITEM.get(IdUtils.ofMC(woodType + "_planks"))))
                     .offerTo(exporter, resultId);
         }
 
         // Adding High Efficiency trapdoor recipes
         for (String woodType : vanillaWoodTypes) {
             String name = woodType + "_trapdoor";
-            ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(ID.ofMC(name)), 2)
-                    .input('P', grabRaw("bwt",woodType + "_planks_siding" ))
+            ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(IdUtils.ofMC(name)), 2)
+                    .input('P', IdUtils.grabRaw("bwt",woodType + "_planks_siding" ))
                     .input('S', Items.STICK)
                     .pattern("SPP")
                     .pattern("SPP")
-                    .criterion("has_planks_siding", conditionsFromItem(Registries.ITEM.get(ID.ofBWT(woodType + "_planks_siding"))))
-                    .offerTo(exporter, ID.ofBWT(name).withPrefixedPath("he_"));
+                    .criterion("has_planks_siding", conditionsFromItem(Registries.ITEM.get(IdUtils.ofBWT(woodType + "_planks_siding"))))
+                    .offerTo(exporter, IdUtils.ofBWT(name).withPrefixedPath("he_"));
         }
 
         // Adding pressure plate recipes for each SidingBlock in BwtBlocks.sidingBlocks
         for (String woodType : vanillaWoodTypes) {
-            Identifier resultId = ID.ofMC(woodType + "_pressure_plate");
-            Block sidingBlock = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_siding"));
+            Identifier resultId = IdUtils.ofMC(woodType + "_pressure_plate");
+            Block sidingBlock = Registries.BLOCK.get(IdUtils.ofBWT(woodType + "_planks_siding"));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.BLOCK.get(resultId))
                     .input('S', sidingBlock)  // Use the current SidingBlock as the 'S' input
@@ -289,8 +289,8 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
 
         // Adding button recipes for each CornerBlock in BwtBlocks.cornerBlock
         for (String woodType : vanillaWoodTypes) {
-            Identifier resultId = ID.ofMC(woodType + "_button");
-            Block block = Registries.BLOCK.get(ID.ofBWT(woodType + "_planks_corner"));
+            Identifier resultId = IdUtils.ofMC(woodType + "_button");
+            Block block = Registries.BLOCK.get(IdUtils.ofBWT(woodType + "_planks_corner"));
 
             ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Registries.ITEM.get(resultId))
                     .input('S', block)
@@ -309,7 +309,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("B")
                 .pattern("R")
                 .criterion("has_has_redstone", conditionsFromItem(Items.REDSTONE))
-                .offerTo(exporter, ID.ofMC("lever"));
+                .offerTo(exporter, IdUtils.ofMC("lever"));
 
         // TODO : Consider changing the redstone latch in this recipe if this item gets added to BWT
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.PISTON)
@@ -322,7 +322,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("BUB")
                 .pattern("BLB")
                 .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
-                .offerTo(exporter, ID.ofMC("piston"));
+                .offerTo(exporter, IdUtils.ofMC("piston"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DISPENSER)
                 .input('S', ModItems.STONE_BRICK)
@@ -332,7 +332,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("SBS")
                 .pattern("SLS")
                 .criterion(hasItem(Items.DISPENSER), conditionsFromItem(Items.DISPENSER))
-                .offerTo(exporter, ID.ofMC("dispenser"));
+                .offerTo(exporter, IdUtils.ofMC("dispenser"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DROPPER)
                 .input('S', ModItems.STONE_BRICK)
@@ -341,7 +341,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("S S")
                 .pattern("SLS")
                 .criterion(hasItem(Items.DROPPER), conditionsFromItem(Items.DROPPER))
-                .offerTo(exporter, ID.ofMC("dropper"));
+                .offerTo(exporter, IdUtils.ofMC("dropper"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.REPEATER)
                 .input('C', Items.CLOCK)
@@ -350,7 +350,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("RCR")
                 .pattern("BBB")
                 .criterion("has_redstone_torch", conditionsFromItem(Items.REDSTONE_TORCH))
-                .offerTo(exporter, ID.ofMC("repeater"));
+                .offerTo(exporter, IdUtils.ofMC("repeater"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.LEAD, 2)
                 .input('F', BwtItems.hempFiberItem)
@@ -359,7 +359,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" FF")
                 .pattern("R  ")
                 .criterion("has_rope", conditionsFromItem(BwtItems.ropeItem))
-                .offerTo(exporter, ID.ofMC("lead"));
+                .offerTo(exporter, IdUtils.ofMC("lead"));
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_PICKAXE)
@@ -370,7 +370,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("#R ")
                 .pattern(" R ")
                 .criterion("has_cobblestone", RecipeProvider.conditionsFromTag(ItemTags.STONE_TOOL_MATERIALS))
-                .offerTo(exporter, ID.ofMC("stone_pickaxe"));
+                .offerTo(exporter, IdUtils.ofMC("stone_pickaxe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_AXE)
                 .input('M', Items.IRON_INGOT)
@@ -379,7 +379,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("MI")
                 .pattern(" I")
                 .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, ID.ofMC("iron_axe"));
+                .offerTo(exporter, IdUtils.ofMC("iron_axe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_HOE)
                 .input('M', Items.IRON_INGOT)
@@ -388,7 +388,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" I")
                 .pattern(" I")
                 .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, ID.ofMC("iron_hoe"));
+                .offerTo(exporter, IdUtils.ofMC("iron_hoe"));
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_AXE)
@@ -398,7 +398,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("MI")
                 .pattern(" I")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_axe"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_axe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_PICKAXE)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
@@ -407,7 +407,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" I ")
                 .pattern(" I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_pickaxe"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_pickaxe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
@@ -416,7 +416,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" I")
                 .pattern(" I")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_hoe"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_hoe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_SHOVEL)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
@@ -425,7 +425,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" I ")
                 .pattern(" I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_shovel"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_shovel"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_SWORD)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
@@ -434,7 +434,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" M ")
                 .pattern(" I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_sword"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_sword"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
                 .input('I', BTWR_Items.DIAMOND_INGOT)
@@ -442,7 +442,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("III")
                 .pattern("IPI")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_helmet"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_helmet"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_CHESTPLATE)
                 .input('I', BTWR_Items.DIAMOND_INGOT)
@@ -451,7 +451,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("III")
                 .pattern("III")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_chestplate"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_chestplate"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_LEGGINGS)
                 .input('I', BTWR_Items.DIAMOND_INGOT)
@@ -460,14 +460,14 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("P P")
                 .pattern("P P")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_leggings"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_leggings"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_BOOTS)
                 .input('I', BTWR_Items.DIAMOND_INGOT)
                 .pattern("I I")
                 .pattern("I I")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofMC("diamond_boots"));
+                .offerTo(exporter, IdUtils.ofMC("diamond_boots"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
                 .input('I', Items.STICK)
@@ -476,7 +476,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("III")
                 .pattern("NIN")
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, ID.ofMC("shield"));
+                .offerTo(exporter, IdUtils.ofMC("shield"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.SOUL_TORCH, 1)
                 .input('C', BwtItems.nethercoalItem)
@@ -486,7 +486,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("I")
                 .pattern("S")
                 .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
-                .offerTo(exporter, ID.ofMC("soul_torch"));
+                .offerTo(exporter, IdUtils.ofMC("soul_torch"));
 
         this.overrideRecipesForVanillaBeds(exporter);
 
@@ -497,7 +497,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("SS")
                 .pattern("SS")
                 .criterion("has_slab_bricks_loose", conditionsFromItem(SLAB_BRICKS_LOOSE))
-                .offerTo(exporter, ID.ofSS("oven_brick"));
+                .offerTo(exporter, IdUtils.ofSS("oven_brick"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, net.ivangeevo.self_sustainable.item.ModItems.CRUDE_TORCH_UNLIT, 1)
                 .input('C', ItemTags.COALS)
@@ -505,7 +505,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("C")
                 .pattern("I")
                 .criterion("has_coal", conditionsFromTag(ItemTags.COALS))
-                .offerTo(exporter, ID.ofSS("crude_torch_unlit"));
+                .offerTo(exporter, IdUtils.ofSS("crude_torch_unlit"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, net.ivangeevo.self_sustainable.item.ModItems.TORCH_UNLIT, 1)
                 .input('C', BwtItems.nethercoalItem)
@@ -513,20 +513,20 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("C")
                 .pattern("I")
                 .criterion("has_nethercoal", conditionsFromItem(BwtItems.nethercoalItem))
-                .offerTo(exporter, ID.ofSS("torch_unlit"));
+                .offerTo(exporter, IdUtils.ofSS("torch_unlit"));
 
 
         // Better With Time
 
         // Create the recipe for the blood wood pressure plate
-        Block bloodWoodSiding = Registries.BLOCK.get(ID.ofBWT("blood_wood_planks_siding"));
+        Block bloodWoodSiding = Registries.BLOCK.get(IdUtils.ofBWT("blood_wood_planks_siding"));
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.bloodWoodBlocks.pressurePlateBlock)
                 .input('S', bloodWoodSiding)
                 .input('R', Items.REDSTONE)
                 .pattern("S")
                 .pattern("R")
                 .criterion("has_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-                .offerTo(exporter, ID.ofBWT("blood_wood_pressure_plate"));
+                .offerTo(exporter, IdUtils.ofBWT("blood_wood_pressure_plate"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.grateBlock)
                 .input('S', Items.STICK)
@@ -535,7 +535,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("SSS")
                 .pattern("FSF")
                 .criterion("has_strings", conditionsFromTag(ConventionalItemTags.STRINGS))
-                .offerTo(exporter, ID.ofBWT("grate"));
+                .offerTo(exporter, IdUtils.ofBWT("grate"));
 
         // Items
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.sailItem)
@@ -544,7 +544,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("FFF")
                 .pattern("WWW")
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
-                .offerTo(exporter, ID.ofBWT("sail"));
+                .offerTo(exporter, IdUtils.ofBWT("sail"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.paddingItem)
                 .input('F', BwtItems.fabricItem)
@@ -554,7 +554,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("CWC")
                 .pattern(" F ")
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
-                .offerTo(exporter, ID.ofBWT("padding"));
+                .offerTo(exporter, IdUtils.ofBWT("padding"));
 
         // Blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.gearBoxBlock)
@@ -565,7 +565,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("GAG")
                 .pattern("WGW")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
-                .offerTo(exporter, ID.ofBWT("gear_box"));
+                .offerTo(exporter, IdUtils.ofBWT("gear_box"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.redstoneClutchBlock)
                 .input('W', ItemTags.PLANKS)
@@ -575,7 +575,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("GLG")
                 .pattern("WGW")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
-                .offerTo(exporter, ID.ofBWT("redstone_clutch"));
+                .offerTo(exporter, IdUtils.ofBWT("redstone_clutch"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soilPlanterBlock)
                 .input('D', org.tough_environment.block.ModBlocks.DIRT_LOOSE)
@@ -583,7 +583,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("D")
                 .pattern("P")
                 .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
-                .offerTo(exporter, ID.ofBWT("soil_planter"));
+                .offerTo(exporter, IdUtils.ofBWT("soil_planter"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.grassPlanterBlock)
                 .input('D', Blocks.GRASS_BLOCK)
@@ -591,13 +591,13 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("D")
                 .pattern("P")
                 .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
-                .offerTo(exporter, ID.ofBWT("grass_planter"));
+                .offerTo(exporter, IdUtils.ofBWT("grass_planter"));
 
 
         /**
          // Adding trapdoor recipes
          for (String woodType : vanillaWoodTypes) {
-         Identifier resultId = ID.ofBWT("he_" + woodType + "_trapdoor");
+         Identifier resultId = IdUtils.ofBWT("he_" + woodType + "_trapdoor");
          ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Registries.ITEM.get(resultId))
          .input('P', grabRaw("bwt",woodType + "_planks_siding"))
          .input('S', Items.STICK)
@@ -617,7 +617,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" S ")
                 .pattern("BGB")
                 .criterion("has_gear", conditionsFromItem(BwtItems.gearItem))
-                .offerTo(exporter, ID.ofBWT("hand_crank"));
+                .offerTo(exporter, IdUtils.ofBWT("hand_crank"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.millStoneBlock)
                 .input('B', ModItems.STONE_BRICK)
@@ -626,7 +626,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("BBB")
                 .pattern("BGB")
                 .criterion("has_stone_brick", conditionsFromItem(ModItems.STONE_BRICK))
-                .offerTo(exporter, ID.ofBWT("mill_stone"));
+                .offerTo(exporter, IdUtils.ofBWT("mill_stone"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.hibachiBlock)
                 .input('H', BwtItems.concentratedHellfireItem)
@@ -637,7 +637,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("BEB")
                 .pattern("BRB")
                 .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
-                .offerTo(exporter, ID.ofBWT("hibachi"));
+                .offerTo(exporter, IdUtils.ofBWT("hibachi"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.bellowsBlock)
                 .input('L', BTWRTags.Items.TANNED_LEATHERS)
@@ -648,7 +648,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("LLL")
                 .pattern("GBG")
                 .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-                .offerTo(exporter, ID.ofBWT("bellows"));
+                .offerTo(exporter, IdUtils.ofBWT("bellows"));
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.anchorBlock)
@@ -658,7 +658,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" I ")
                 .pattern("BBB")
                 .criterion("has_stone_brick", conditionsFromItem(ModItems.STONE_BRICK))
-                .offerTo(exporter, ID.ofBWT("anchor"));
+                .offerTo(exporter, IdUtils.ofBWT("anchor"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.turntableBlock)
                 .input('C', Items.CLOCK)
@@ -669,7 +669,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("BCB")
                 .pattern("BGB")
                 .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-                .offerTo(exporter, ID.ofBWT("turntable"));
+                .offerTo(exporter, IdUtils.ofBWT("turntable"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.detectorBlock)
                 .input('B', ModItems.STONE_BRICK)
@@ -681,7 +681,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("BRRB")
                 .pattern("BRRB")
                 .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
-                .offerTo(exporter, ID.ofBWT("detector_block"));
+                .offerTo(exporter, IdUtils.ofBWT("detector_block"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.pulleyBlock)
                 .input('W', ModItems.STONE_BRICK)
@@ -692,20 +692,20 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("GLG")
                 .pattern("WIW")
                 .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
-                .offerTo(exporter, ID.ofBWT("pulley"));
+                .offerTo(exporter, IdUtils.ofBWT("pulley"));
 
         // Overwritten cauldron recipes
         CauldronRecipe.JsonBuilder.createFood().result(BwtItems.donutItem,2)
                 .ingredient(BwtItems.flourItem)
                 .ingredient(Items.SUGAR)
                 .criterion("has_flour", conditionsFromItem(BwtItems.flourItem))
-                .offerTo(exporter, ID.ofBWT("donut_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBWT("donut_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.createFood().result(BwtItems.nethercoalItem)
                 .ingredient(BwtItems.coalDustItem)
                 .ingredient(BwtItems.hellfireDustItem)
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
-                .offerTo(exporter, ID.ofBWT("nethercoal_from_cauldron"));
+                .offerTo(exporter, IdUtils.ofBWT("nethercoal_from_cauldron"));
 
 
         // Tools
@@ -718,7 +718,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("mbs")
                 .pattern("gmb")
                 .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
-                .offerTo(exporter, ID.ofBWT("composite_bow"));
+                .offerTo(exporter, IdUtils.ofBWT("composite_bow"));
 
 
         // BTWR: Core
@@ -728,7 +728,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("EM")
                 .pattern("MM")
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
-                .offerTo(exporter, ID.ofBTWR("mushroom_omelette_raw"));
+                .offerTo(exporter, IdUtils.ofBTWR("mushroom_omelette_raw"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.DIAMOND_PLATE)
                 .input('S', BwtItems.strapItem)
@@ -737,7 +737,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("SIS")
                 .pattern(" P ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofBTWR("diamond_plate"));
+                .offerTo(exporter, IdUtils.ofBTWR("diamond_plate"));
 
         // Vegehenna
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, org.ivangeevo.vegehenna.item.ModItems.PASTRY_UNCOOKED_CAKE)
@@ -749,21 +749,21 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("MEM")
                 .pattern("FFF")
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
-                .offerTo(exporter, ID.ofVG("pastry_uncooked_cake"));
+                .offerTo(exporter, IdUtils.ofVG("pastry_uncooked_cake"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, org.ivangeevo.vegehenna.item.ModItems.BREAD_DOUGH)
                 .input('F', BwtItems.flourItem)
                 .pattern("F ")
                 .pattern("FF")
                 .criterion("flour", conditionsFromItem(BwtItems.flourItem))
-                .offerTo(exporter, ID.ofVG("bread_dough"));
+                .offerTo(exporter, IdUtils.ofVG("bread_dough"));
 
         // DS
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)
                 .input('P', ItemTags.PLANKS)
                 .pattern("P")
                 .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
-                .offerTo(exporter, ID.ofDS("stick_from_single_planks"));
+                .offerTo(exporter, IdUtils.ofDS("stick_from_single_planks"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWRDS_Items.REDSTONE_LATCH)
                 .input('G', Items.GOLD_NUGGET)
@@ -771,7 +771,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("GGG")
                 .pattern(" R ")
                 .criterion("has_redstone", conditionsFromItem(Items.REDSTONE))
-                .offerTo(exporter, ID.ofDS("redstone_latch"));
+                .offerTo(exporter, IdUtils.ofDS("redstone_latch"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.STONE_PICKAXE)
                 .input('R', Items.STICK)
@@ -781,7 +781,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" R#")
                 .pattern(" R ")
                 .criterion("has_cobblestone", RecipeProvider.conditionsFromTag(ItemTags.STONE_TOOL_MATERIALS))
-                .offerTo(exporter, ID.ofDS("stone_pickaxe_right"));
+                .offerTo(exporter, IdUtils.ofDS("stone_pickaxe_right"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_AXE)
                 .input('M', Items.IRON_INGOT)
@@ -790,7 +790,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("IM")
                 .pattern("I ")
                 .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, ID.ofDS("iron_axe_right"));
+                .offerTo(exporter, IdUtils.ofDS("iron_axe_right"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.IRON_HOE)
                 .input('M', Items.IRON_INGOT)
@@ -799,7 +799,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("I ")
                 .pattern("I ")
                 .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
-                .offerTo(exporter, ID.ofDS("iron_hoe_right"));
+                .offerTo(exporter, IdUtils.ofDS("iron_hoe_right"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_AXE)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
@@ -808,7 +808,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("IM")
                 .pattern("I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofDS("diamond_axe_right"));
+                .offerTo(exporter, IdUtils.ofDS("diamond_axe_right"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
                 .input('M', BTWR_Items.DIAMOND_INGOT)
@@ -817,7 +817,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("I ")
                 .pattern("I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
-                .offerTo(exporter, ID.ofDS("diamond_hoe_right"));
+                .offerTo(exporter, IdUtils.ofDS("diamond_hoe_right"));
 
 
 

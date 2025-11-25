@@ -1,29 +1,26 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
-import com.bwt.recipes.cooking_pots.CauldronRecipe;
 import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
 import com.google.common.collect.Maps;
-import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Util;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
-import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public class StokedCauldronRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class StokedCauldronRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
 {
 
     public StokedCauldronRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -53,7 +50,7 @@ public class StokedCauldronRecipeProvider extends FabricRecipeProvider implement
                 StokedCauldronRecipe.JsonBuilder.create()
                         .ingredient(key)
                         .result(BwtItems.glueItem, value)
-                        .offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key)))
+                        .offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key)))
         );
 
         Map<Item, Integer> DOUBLE_COUNT_TO_GLUE_AMOUNTS = Util.make(Maps.newHashMap(), map -> {
@@ -63,7 +60,7 @@ public class StokedCauldronRecipeProvider extends FabricRecipeProvider implement
             map.put(BTWR_Items.LEATHER_SCOURED_CUT, 1);
             map.put(BTWR_Items.LEATHER_TANNED_CUT, 1);
         });
-        DOUBLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key,2).result(BwtItems.glueItem, value).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key))));
+        DOUBLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key,2).result(BwtItems.glueItem, value).offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key))));
 
         StokedCauldronRecipe.JsonBuilder.create()
                 .ingredient(Items.RABBIT_HIDE)
@@ -71,14 +68,14 @@ public class StokedCauldronRecipeProvider extends FabricRecipeProvider implement
                 .ingredient(Items.RABBIT_HIDE)
                 .ingredient(Items.RABBIT_HIDE)
                 .result(BwtItems.glueItem, 1)
-                .offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.RABBIT_HIDE)));
+                .offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.RABBIT_HIDE)));
 
 
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.strapItem, 8).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.strapItem)));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.beltItem, 2).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.beltItem)));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.strapItem, 8).result(BwtItems.glueItem, 1).offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.strapItem)));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.beltItem, 2).result(BwtItems.glueItem, 1).offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(BwtItems.beltItem)));
 
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.BOOK)));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.WRITABLE_BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, ID.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.WRITABLE_BOOK)));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.BOOK)));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.WRITABLE_BOOK, 2).result(BwtItems.glueItem, 1).offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(Items.WRITABLE_BOOK)));
 
 
         // Tallow - unmodified
@@ -87,19 +84,19 @@ public class StokedCauldronRecipeProvider extends FabricRecipeProvider implement
         StokedCauldronRecipe.JsonBuilder.create()
                 .ingredient(SturdyTreesTags.Items.BARK_ITEMS, 64)
                 .result(BwtItems.potashItem)
-                .offerTo(exporter, ID.ofBWT("potash").withSuffixedPath("_from_cauldron_rendering_bark"));
+                .offerTo(exporter, IdUtils.ofBWT("potash").withSuffixedPath("_from_cauldron_rendering_bark"));
 
         StokedCauldronRecipe.JsonBuilder.create()
                 .ingredient(org.ivangeevo.vegehenna.item.ModItems.STRAW, 16)
                 .result(BwtItems.potashItem)
-                .offerTo(exporter, ID.ofBWT("potash").withSuffixedPath("_from_cauldron_rendering_straw"));
+                .offerTo(exporter, IdUtils.ofBWT("potash").withSuffixedPath("_from_cauldron_rendering_straw"));
 
         // Arrows
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW).result(Items.FLINT).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, ID.ofBWT("cauldron_rendering_arrows"));
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.rottedArrowItem).result(Items.FLINT).offerTo(exporter, ID.ofBWT("cauldron_rendering_rotted_arrows"));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(Items.ARROW).result(Items.FLINT).result(Items.STICK).result(Items.FEATHER).offerTo(exporter, IdUtils.ofBWT("cauldron_rendering_arrows"));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BwtItems.rottedArrowItem).result(Items.FLINT).offerTo(exporter, IdUtils.ofBWT("cauldron_rendering_rotted_arrows"));
 
         // Misc
-        StokedCauldronRecipe.JsonBuilder.create().ingredient(BTWRDS_Items.ENDER_SLAG).result(BTWRDS_Items.SOUL_FLUX).result(BTWRDS_Items.BRIMSTONE).offerTo(exporter, ID.ofBWT("cauldron_rendering_ender_slag"));
+        StokedCauldronRecipe.JsonBuilder.create().ingredient(BTWRDS_Items.ENDER_SLAG).result(BTWRDS_Items.SOUL_FLUX).result(BTWRDS_Items.BRIMSTONE).offerTo(exporter, IdUtils.ofBWT("cauldron_rendering_ender_slag"));
 
     }
 

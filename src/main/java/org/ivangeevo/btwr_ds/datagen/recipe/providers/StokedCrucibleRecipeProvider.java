@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
@@ -10,6 +9,8 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
@@ -19,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 import static org.tough_environment.item.ModItems.CHISEL_DIAMOND;
 import static org.tough_environment.item.ModItems.CHISEL_IRON;
 
-public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
 {
     public StokedCrucibleRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -33,32 +34,32 @@ public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implement
         StokedCrucibleRecipe.JsonBuilder.create().result(ModBlocks.WHITE_STONE.asItem())
                 .ingredient(ModBlocks.WHITE_COBBLESTONE.asItem())
                 .criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE.asItem()))
-                .offerTo(exporter, ID.ofDS("white_stone_from_crucible"));
+                .offerTo(exporter, IdUtils.ofDS("white_stone_from_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT,2)
                 .ingredient(BTWR_Items.DIAMOND_SHEARS)
                 .criterion("has_diamond_shears", conditionsFromItem(BTWR_Items.DIAMOND_SHEARS))
-                .offerTo(exporter, ID.ofDS("smelt_diamond_shears_in_crucible"));
+                .offerTo(exporter, IdUtils.ofDS("smelt_diamond_shears_in_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT)
                 .ingredient(CHISEL_DIAMOND)
                 .criterion("has_chisel_diamond", conditionsFromItem(CHISEL_DIAMOND))
-                .offerTo(exporter, ID.ofDS("smelt_chisel_diamond_in_crucible"));
+                .offerTo(exporter, IdUtils.ofDS("smelt_chisel_diamond_in_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create().result(Items.IRON_NUGGET)
                 .ingredient(CHISEL_IRON)
                 .criterion("has_chisel_iron", conditionsFromItem(CHISEL_IRON))
-                .offerTo(exporter, ID.ofDS("smelt_chisel_iron_in_crucible"));
+                .offerTo(exporter, IdUtils.ofDS("smelt_chisel_iron_in_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create().result(Items.IRON_NUGGET,3)
                 .ingredient(Items.SHIELD)
                 .criterion("has_shield", conditionsFromItem(Items.SHIELD))
-                .offerTo(exporter, ID.ofDS("smelt_shield_in_crucible"));
+                .offerTo(exporter, IdUtils.ofDS("smelt_shield_in_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create().result(Items.GOLD_NUGGET,2)
                 .ingredient(BTWRDS_Items.REDSTONE_LATCH)
                 .criterion("has_redstone_latch", conditionsFromItem(BTWRDS_Items.REDSTONE_LATCH))
-                .offerTo(exporter, ID.ofDS("smelt_redstone_latch_in_crucible"));
+                .offerTo(exporter, IdUtils.ofDS("smelt_redstone_latch_in_crucible"));
 
         StokedCrucibleRecipe.JsonBuilder.create()
                 .ingredient(Items.IRON_INGOT)
@@ -68,13 +69,13 @@ public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implement
                 .ingredient(BTWRDS_Items.SOUL_FLUX)
                 .result(Items.NETHERITE_INGOT)
                 .markDefault()
-                .offerTo(exporter, ID.ofBWT("netherite_ingot_smelting"));
+                .offerTo(exporter, IdUtils.ofBWT("netherite_ingot_smelting"));
 
         StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.NETHERITE_SCRAP, 4)
                 .ingredient(Items.GOLD_INGOT, 4)
                 .ingredient(BTWRDS_Items.SOUL_FLUX)
                 .result(Items.NETHERITE_INGOT)
-                .offerTo(exporter, ID.ofBWT("netherite_ingot_from_scrap"));
+                .offerTo(exporter, IdUtils.ofBWT("netherite_ingot_from_scrap"));
 
     }
 

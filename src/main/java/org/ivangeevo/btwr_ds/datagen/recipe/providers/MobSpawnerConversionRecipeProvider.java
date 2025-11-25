@@ -1,17 +1,17 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import com.bwt.recipes.mob_spawner_conversion.MobSpawnerConversionRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.shared_library.util.utils.IdUtils;
 import org.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
-public class MobSpawnerConversionRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils
+public class MobSpawnerConversionRecipeProvider extends FabricRecipeProvider
 {
     public MobSpawnerConversionRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -22,17 +22,17 @@ public class MobSpawnerConversionRecipeProvider extends FabricRecipeProvider imp
         MobSpawnerConversionRecipe.JsonBuilder.create(ModBlocks.COBBLESTONE_LOOSE)
                 .convertsTo(Blocks.MOSSY_COBBLESTONE)
                 .criterion("has_cobblestone_loose", conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE))
-                .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_cobblestone_loose_to_mossy_cobblestone"));
+                .offerTo(exporter, IdUtils.ofDS("mob_spawner_conversion_from_cobblestone_loose_to_mossy_cobblestone"));
 
         MobSpawnerConversionRecipe.JsonBuilder.create(ModBlocks.SLAB_COBBLESTONE_LOOSE)
                 .convertsTo(Blocks.MOSSY_COBBLESTONE_SLAB)
                 .criterion("has_slab_cobblestone_loose", conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE))
-                .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_slab_cobblestone_loose_to_mossy_cobblestone_slab"));
+                .offerTo(exporter, IdUtils.ofDS("mob_spawner_conversion_from_slab_cobblestone_loose_to_mossy_cobblestone_slab"));
 
         MobSpawnerConversionRecipe.JsonBuilder.create(ModBlocks.COBBLESTONE_LOOSE_STAIRS)
                 .convertsTo(Blocks.MOSSY_COBBLESTONE_STAIRS)
                 .criterion("has_cobblestone_loose_stairs", conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE_STAIRS))
-                .offerTo(exporter, ID.ofDS("mob_spawner_conversion_from_cobblestone_loose_stairs_to_mossy_cobblestone_stairs"));
+                .offerTo(exporter, IdUtils.ofDS("mob_spawner_conversion_from_cobblestone_loose_stairs_to_mossy_cobblestone_stairs"));
 
     }
 }

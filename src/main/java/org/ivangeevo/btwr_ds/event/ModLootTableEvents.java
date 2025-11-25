@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.event;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -18,6 +17,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.ivangeevo.btwr_ds.mixin.vanilla.entity.ItemEntryAccessor;
 import org.ivangeevo.btwr_ds.mixin.vanilla.LootPoolBuilderAccessor;
 
@@ -29,7 +29,9 @@ import java.util.List;
 public class ModLootTableEvents {
 
     private static final Identifier ZOMBIE_LOOT_TABLE_ID = ID.ofMC("entities/zombie");
+    private static final Identifier ZOMBIE_VILLAGER_LOOT_TABLE_ID = ID.ofMC("entities/zombie_villager");
     private static final RegistryKey<LootTable> ZOMBIE_LOOT_TABLE = RegistryKey.of(RegistryKeys.LOOT_TABLE, ZOMBIE_LOOT_TABLE_ID);
+    private static final RegistryKey<LootTable> ZOMBIE_VILLAGER_LOOT_TABLE = RegistryKey.of(RegistryKeys.LOOT_TABLE, ZOMBIE_VILLAGER_LOOT_TABLE_ID);
 
     private static final String[] OVERWORLD_TOUGH_WOOD_TYPES = {
             "oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry"
@@ -42,7 +44,7 @@ public class ModLootTableEvents {
     public static void register() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
 
-            if (ZOMBIE_LOOT_TABLE.equals(key)) {
+            if (ZOMBIE_LOOT_TABLE.equals(key) || ZOMBIE_VILLAGER_LOOT_TABLE.equals(key)) {
                 replaceItemsInPools(tableBuilder, Items.POTATO, Items.AIR);
                 replaceItemsInPools(tableBuilder, Items.CARROT, Items.AIR);
                 replaceItemsInPools(tableBuilder, Items.IRON_INGOT, Items.AIR);

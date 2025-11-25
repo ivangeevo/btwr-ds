@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds;
 
-import btwr.btwr_sl.BTWRSLMod;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -94,7 +93,7 @@ public class BTWRDSMod implements ModInitializer {
 				settings = gson.fromJson(fileReader, BTWRDSSettings.class);
 				fileReader.close();
 			} catch (IOException e) {
-				BTWRDSMod.LOGGER.warn("Could not load BTWRDS settings: {}", e.getLocalizedMessage());
+				LOGGER.warn("Could not load BTWRDS settings: {}", e.getLocalizedMessage());
 			}
 		} else {
 			settings = new BTWRDSSettings();
@@ -112,7 +111,7 @@ public class BTWRDSMod implements ModInitializer {
 			fileWriter.write(gson.toJson(settings));
 			fileWriter.close();
 		} catch (IOException e) {
-			BTWRSLMod.LOGGER.warn("Could not save BTWRDS settings: {}", e.getLocalizedMessage());
+			LOGGER.warn("Could not save BTWRDS settings: {}", e.getLocalizedMessage());
 		}
 	}
 

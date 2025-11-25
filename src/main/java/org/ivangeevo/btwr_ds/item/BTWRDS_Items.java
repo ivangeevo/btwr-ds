@@ -10,6 +10,8 @@ import org.ivangeevo.btwr_ds.BTWRDSMod;
 
 public class BTWRDS_Items {
 
+    public static final Item BTWR_ICON = registerItem("btwr_icon", new Item(new Item.Settings()));
+
     public static final Item BARK_BLOOD_WOOD = registerItem("bark_blood_wood", new Item(new Item.Settings()));
     public static final Item ENDER_SLAG = registerItem("ender_slag", new Item(new Item.Settings()));
     public static final Item SOUL_FLUX = registerItem("soul_flux", new Item(new Item.Settings()));

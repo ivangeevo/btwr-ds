@@ -1,8 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.recipe.ExtendedShapelessRecipe;
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
@@ -19,12 +16,16 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.util.utils.IdUtils;
+import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.ivangeevo.btwr_ds.BTWRDSMod;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
 
     public ExtendedShapelessRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -40,21 +41,21 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
                 .input(BwtItems.scouredLeatherItem)
                 .input(ConventionalItemTags.SHEAR_TOOLS)
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
-                .offerTo(exporter, ID.ofDS("leather_scoured_cut"));
+                .offerTo(exporter, IdUtils.ofDS("leather_scoured_cut"));
 
         ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Items.LEATHER_TANNED_CUT,2)
                 .withToolDamage()
                 .input(BwtItems.tannedLeatherItem)
                 .input(ConventionalItemTags.SHEAR_TOOLS)
                 .criterion("has_tanned_leather", conditionsFromItem(BwtItems.tannedLeatherItem))
-                .offerTo(exporter, ID.ofDS("leather_tanned_cut"));
+                .offerTo(exporter, IdUtils.ofDS("leather_tanned_cut"));
 
         ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtItems.strapItem,4)
                 .withToolDamage()
                 .input(ConventionalItemTags.SHEAR_TOOLS)
                 .input(BTWR_Items.LEATHER_TANNED_CUT)
                 .criterion("has_leather_tanned_cut", conditionsFromItem(BTWR_Items.LEATHER_TANNED_CUT))
-                .offerTo(exporter, ID.ofBWT("strap"));
+                .offerTo(exporter, IdUtils.ofBWT("strap"));
 
 
         // Move this recipe into it's own provider when we figure out how to call recipes that have additional drops

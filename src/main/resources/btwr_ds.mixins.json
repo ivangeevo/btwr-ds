@@ -8,6 +8,7 @@
     "emi.EmiFuelRecipeAccessor",
     "emi.EmiFuelRecipeMixin",
     "material_beacons.BlockOrTagAccessor",
+    "vanilla.ComponentMap$BuilderAccessor",
     "vanilla.LootPoolBuilderAccessor",
     "vanilla.MinecraftServerMixin",
     "vanilla.ServerWorldMixin",

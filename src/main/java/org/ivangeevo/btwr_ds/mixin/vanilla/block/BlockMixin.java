@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.mixin.vanilla.block;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.bwt.blocks.SoilPlanterBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,6 +13,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

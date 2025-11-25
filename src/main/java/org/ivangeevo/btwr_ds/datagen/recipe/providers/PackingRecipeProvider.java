@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
@@ -20,7 +19,7 @@ import org.tough_environment.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 
-public class PackingRecipeProvider extends FabricRecipeProvider implements RecipeProviderUtils {
+public class PackingRecipeProvider extends FabricRecipeProvider {
 
     public PackingRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

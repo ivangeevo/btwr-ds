@@ -1,13 +1,12 @@
 package org.ivangeevo.btwr_ds.datagen;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import btwr.core.item.BTWR_Items;
 import btwr.core.tag.BTWRTags;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.ivangeevo.animageddon.tag.ModTags;
