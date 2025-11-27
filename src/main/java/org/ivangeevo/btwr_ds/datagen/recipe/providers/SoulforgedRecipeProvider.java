@@ -11,12 +11,12 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class SoulforgedRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class SoulforgedRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
     public SoulforgedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

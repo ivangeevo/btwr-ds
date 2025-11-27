@@ -13,13 +13,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class SawRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class SawRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
     public SawRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

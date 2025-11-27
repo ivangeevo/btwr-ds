@@ -1,7 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.core.item.BTWR_Items;
-import btwr.core.tag.BTWRTags;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
@@ -23,8 +21,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
+import org.btwr.core.item.BTWR_Items;
+import org.btwr.core.tag.BTWRTags;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.tough_environment.item.ModItems;
 
@@ -32,7 +32,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static org.tough_environment.block.ModBlocks.SLAB_BRICKS_LOOSE;
 
-public class ShapedRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class ShapedRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
 
     private static final String[] vanillaWoodTypes = new String[]

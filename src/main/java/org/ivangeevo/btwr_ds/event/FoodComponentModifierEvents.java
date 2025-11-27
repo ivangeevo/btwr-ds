@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.event;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.loader.api.FabricLoader;
@@ -10,6 +9,7 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
+import org.btwr.core.item.BTWR_Items;
 import org.ivangeevo.btwr_ds.item.component.BTWRFoodComponents;
 import org.ivangeevo.btwr_ds.mixin.vanilla.ComponentMap$BuilderAccessor;
 import org.ivangeevo.vegehenna.item.ModItems;

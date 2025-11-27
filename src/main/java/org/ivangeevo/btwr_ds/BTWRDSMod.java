@@ -2,8 +2,11 @@ package org.ivangeevo.btwr_ds;
 
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.Blocks;
+import org.btwr.shared_library.api.ServerChunkGenerateEvents;
 import org.ivangeevo.btwr_ds.config.BTWRDSSettings;
 import org.ivangeevo.btwr_ds.attachment.ModAttachments;
 import org.ivangeevo.btwr_ds.data.ModDataAttachments;
@@ -75,13 +78,14 @@ public class BTWRDSMod implements ModInitializer {
 
 		PayloadTypeRegistry.playC2S().register(CrawlToggleC2SPacket.ID, CrawlToggleC2SPacket.CODEC);
 
+		/**
 		ServerPlayNetworking.registerGlobalReceiver(CrawlToggleC2SPacket.ID, ((payload, context) -> {
 			context.server().execute(() -> {
 				CrawlHandler.toggleCrawl(context.player());
 			});
 		}));
-
-
+		 **/
+		ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
 	}
 
 	public void loadSettings() {

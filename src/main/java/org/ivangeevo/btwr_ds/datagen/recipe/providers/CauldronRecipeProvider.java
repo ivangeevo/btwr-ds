@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
@@ -11,14 +10,15 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CauldronRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class CauldronRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
 
     public CauldronRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

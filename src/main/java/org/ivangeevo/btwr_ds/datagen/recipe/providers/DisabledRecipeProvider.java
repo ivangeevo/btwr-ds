@@ -6,11 +6,11 @@ import net.ivangeevo.self_sustainable.SelfSustainableMod;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 
 import java.util.concurrent.CompletableFuture;
 
-public class DisabledRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
+public class DisabledRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
 
     public DisabledRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
 import com.google.common.collect.Maps;
@@ -13,14 +12,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Util;
+import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public class StokedCauldronRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class StokedCauldronRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
 
     public StokedCauldronRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

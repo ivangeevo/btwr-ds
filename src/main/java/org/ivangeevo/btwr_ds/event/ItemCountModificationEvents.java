@@ -1,12 +1,12 @@
 package org.ivangeevo.btwr_ds.event;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import org.btwr.core.item.BTWR_Items;
 import org.ivangeevo.vegehenna.item.ModItems;
 import org.spongepowered.asm.mixin.Unique;
 

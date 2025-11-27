@@ -1,9 +1,8 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
+import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -17,6 +16,7 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.ivangeevo.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 import static net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_BOW;
 import static net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
 
-public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};

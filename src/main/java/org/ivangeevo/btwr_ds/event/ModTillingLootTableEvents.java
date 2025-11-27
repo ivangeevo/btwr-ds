@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.event;
 
-import btwr.core.BTWRMod;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;

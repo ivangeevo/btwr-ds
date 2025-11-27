@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
-import org.btwr.shared_library.registry.BlockReplacementRegistry;
+import org.btwr.shared_library.api.ServerChunkGenerateEvents;
 import org.btwr.shared_library.util.utils.IdUtils;
 
 public class WorldGenBlockReplacements {
@@ -30,14 +30,15 @@ public class WorldGenBlockReplacements {
         removeBlock(Blocks.WATER_CAULDRON);
         removeBlock(Blocks.LANTERN);
 
-        BlockReplacementRegistry.registerReplacement(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT);
-        BlockReplacementRegistry.registerReplacement(Blocks.TORCH, ModBlocks.CRUDE_TORCH_BURNED_OUT);
+        //BlockReplacementRegistry.registerReplacement(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT);
+        //BlockReplacementRegistry.registerReplacement(Blocks.TORCH, ModBlocks.CRUDE_TORCH_BURNED_OUT);
+        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
 
     }
 
     // sets a block to air
     private static void removeBlock(Block block) {
-        BlockReplacementRegistry.registerReplacement(block, Blocks.AIR);
+        //BlockReplacementRegistry.registerReplacement(block, Blocks.AIR);
     }
 
 }

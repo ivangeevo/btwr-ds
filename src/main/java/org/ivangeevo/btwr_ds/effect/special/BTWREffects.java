@@ -1,6 +1,7 @@
 package org.ivangeevo.btwr_ds.effect.special;
 
-import org.btwr.shared_library.effect.EffectHandler;
+
+import org.ivangeevo.btwr_ds.effect.EffectHandler;
 
 public class BTWREffects {
 

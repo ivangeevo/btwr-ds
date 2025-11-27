@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -13,15 +12,16 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
 import static org.ivangeevo.vegehenna.item.ModItems.*;
 
-public class OvenCookingRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
+public class OvenCookingRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
 
     private static final String SUFFIX = "_from_oven_cooking";
     private static final int FOOD_COOK_TIME = 1600;

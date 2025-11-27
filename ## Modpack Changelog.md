@@ -18,7 +18,7 @@
 >
 > ### **BWT: HC Tweaks** - 1.4.1
 >
-> ### **Im 'Movens** - 1.7
+> ### **Im 'Movens** - 0.8
 >
 > ### **Granular Hunger** - 0.5
 >

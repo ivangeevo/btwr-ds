@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import ivangeevo.sturdy_trees.SturdyTreesMod;
@@ -16,16 +15,17 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
 import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.ivangeevo.btwr_ds.BTWRDSMod;
 import org.ivangeevo.btwr_ds.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
+public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
 
     public ExtendedShapelessRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

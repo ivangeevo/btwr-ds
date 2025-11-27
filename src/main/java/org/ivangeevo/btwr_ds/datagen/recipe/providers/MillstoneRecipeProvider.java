@@ -1,6 +1,5 @@
 package org.ivangeevo.btwr_ds.datagen.recipe.providers;
 
-import btwr.core.item.BTWR_Items;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.mill_stone.MillStoneRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -8,12 +7,13 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 
 import java.util.concurrent.CompletableFuture;
 
-public class MillstoneRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class MillstoneRecipeProvider extends FabricRecipeProvider implements RecipeUtils
 {
     public MillstoneRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
