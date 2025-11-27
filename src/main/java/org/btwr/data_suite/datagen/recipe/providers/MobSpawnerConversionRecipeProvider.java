@@ -7,7 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.tough_environment.block.ModBlocks;
+import org.btwr.tough_environment.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 

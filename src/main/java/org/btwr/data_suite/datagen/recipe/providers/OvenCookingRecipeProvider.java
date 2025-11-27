@@ -15,7 +15,7 @@ import net.minecraft.registry.RegistryWrapper;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
-import org.tough_environment.item.ModItems;
+import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 

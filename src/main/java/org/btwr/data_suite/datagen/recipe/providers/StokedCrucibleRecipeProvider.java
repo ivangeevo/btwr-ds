@@ -12,13 +12,13 @@ import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.data_suite.item.BTWRDS_Items;
-import org.tough_environment.block.ModBlocks;
-import org.tough_environment.item.ModItems;
+import org.btwr.tough_environment.block.ModBlocks;
+import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
-import static org.tough_environment.item.ModItems.CHISEL_DIAMOND;
-import static org.tough_environment.item.ModItems.CHISEL_IRON;
+import static org.btwr.tough_environment.item.ModItems.CHISEL_DIAMOND;
+import static org.btwr.tough_environment.item.ModItems.CHISEL_IRON;
 
 public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
 

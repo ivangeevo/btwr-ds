@@ -29,9 +29,10 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.tough_environment.block.ModBlocks.DIRT_LOOSE;
+import static org.btwr.tough_environment.block.ModBlocks.SLAB_BRICKS_LOOSE;
+import static org.btwr.tough_environment.item.ModItems.STONE_BRICK;
 import static org.btwr.vegehenna.item.ModItems.*;
-import static org.tough_environment.block.ModBlocks.*;
-import static org.tough_environment.item.ModItems.*;
 
 public class ShapedRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
 
@@ -574,7 +575,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .offerTo(exporter, IdUtils.ofBWT("redstone_clutch"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BwtBlocks.soilPlanterBlock)
-                .input('D', org.tough_environment.block.ModBlocks.DIRT_LOOSE)
+                .input('D', DIRT_LOOSE)
                 .input('P', BwtBlocks.planterBlock)
                 .pattern("D")
                 .pattern("P")

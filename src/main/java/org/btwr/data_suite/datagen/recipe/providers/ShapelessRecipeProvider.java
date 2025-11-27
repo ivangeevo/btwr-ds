@@ -141,7 +141,7 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_creeper_oysters", conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
                 .offerTo(exporter, IdUtils.ofST("stump_remover"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, org.tough_environment.item.ModItems.CHISEL_DIAMOND)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, org.btwr.tough_environment.item.ModItems.CHISEL_DIAMOND)
                 .input(BTWR_Items.DIAMOND_INGOT)
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofTE("chisel_diamond"));

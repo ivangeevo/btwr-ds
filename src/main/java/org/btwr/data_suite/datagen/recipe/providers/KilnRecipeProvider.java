@@ -14,8 +14,8 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.data_suite.item.BTWRDS_Items;
-import org.tough_environment.block.ModBlocks;
-import org.tough_environment.item.ModItems;
+import org.btwr.tough_environment.block.ModBlocks;
+import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 

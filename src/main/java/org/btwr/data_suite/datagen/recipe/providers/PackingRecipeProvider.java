@@ -13,8 +13,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import org.ivangeevo.piston_packing.PistonPackingMod;
 import org.ivangeevo.piston_packing.recipe.PackingRecipe;
-import org.tough_environment.block.ModBlocks;
-import org.tough_environment.item.ModItems;
+import org.btwr.tough_environment.block.ModBlocks;
+import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 

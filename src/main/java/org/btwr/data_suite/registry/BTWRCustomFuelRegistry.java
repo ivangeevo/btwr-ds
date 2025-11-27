@@ -18,7 +18,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Util;
 import org.btwr.data_suite.item.BTWRDS_Items;
-import org.tough_environment.item.ModItems;
+import org.btwr.tough_environment.item.ModItems;
 
 import java.util.Map;
 

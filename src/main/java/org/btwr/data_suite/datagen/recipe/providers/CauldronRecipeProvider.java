@@ -59,7 +59,7 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_brimstone", conditionsFromItem(BTWRDS_Items.BRIMSTONE))
                 .offerTo(exporter, IdUtils.ofDS("gunpowder_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(org.tough_environment.item.ModItems.NETHER_SLUDGE)
+        CauldronRecipe.JsonBuilder.create().result(org.btwr.tough_environment.item.ModItems.NETHER_SLUDGE)
                 .ingredient(BwtItems.potashItem)
                 .ingredient(BwtItems.hellfireDustItem, 8)
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
