@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "org.ivangeevo.btwr_ds.mixin",
+  "package": "org.btwr.data_suite.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "bwt.BwtBlocksMixin",

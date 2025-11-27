@@ -16,16 +16,16 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"org.ivangeevo.btwr_ds.BTWRDSMod"
+			"org.btwr.data_suite.BTWRDSMod"
 		],
 		"client": [
-			"org.ivangeevo.btwr_ds.BTWRDSModClient"
+			"org.btwr.data_suite.BTWRDSModClient"
 		],
 		"fabric-datagen": [
-			"org.ivangeevo.btwr_ds.data.BTWRDSDataGenerator"
+			"org.btwr.data_suite.data.BTWRDSDataGenerator"
 		],
 		"modmenu": [
-			"org.ivangeevo.btwr_ds.config.BTWRDSConfig"
+			"org.btwr.data_suite.config.BTWRDSConfig"
 		]
 	},
 	"mixins": [
@@ -44,13 +44,11 @@
 	"suggests": {
 		"another-mod": "*"
 	},
-
-	"accessWidener" : "btwr_ds.accesswidener",
-
 	"custom": {
 		"loom:injected_interfaces": {
 			"net/minecraft/class_1937": ["org/ivangeevo/btwr_ds/world/interfaces/WorldAdded"]
 
 		}
-	}
+	},
+	"accessWidener" : "btwr_ds.accesswidener"
 }
