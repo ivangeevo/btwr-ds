@@ -53,7 +53,7 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .offerTo(exporter, IdUtils.ofDS("element_from_cauldron"));
 
         CauldronRecipe.JsonBuilder.create().result(Items.GUNPOWDER, 2)
-                .ingredient(org.ivangeevo.animageddon.item.ModItems.NITRE)
+                .ingredient(org.btwr.animageddon.item.ModItems.NITRE)
                 .ingredient(BTWRDS_Items.BRIMSTONE)
                 .ingredient(BwtItems.coalDustItem)
                 .criterion("has_brimstone", conditionsFromItem(BTWRDS_Items.BRIMSTONE))

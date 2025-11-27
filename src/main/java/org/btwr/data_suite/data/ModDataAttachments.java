@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.util.Identifier;
-import org.ivangeevo.animageddon.AnimageddonMod;
+import org.btwr.animageddon.AnimageddonMod;
 import org.btwr.data_suite.BTWRDSMod;
 
 public class ModDataAttachments {

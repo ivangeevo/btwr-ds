@@ -3,7 +3,6 @@ package org.btwr.data_suite.data;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.btwr.data_suite.datagen.*;
-import org.ivangeevo.data_suite.datagen.*;
 import org.btwr.data_suite.datagen.recipe.CombinedRecipeProvider;
 
 public class BTWRDSDataGenerator implements DataGeneratorEntrypoint {

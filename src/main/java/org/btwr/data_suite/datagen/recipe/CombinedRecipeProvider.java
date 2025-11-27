@@ -7,7 +7,6 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import org.btwr.data_suite.datagen.recipe.providers.*;
-import org.ivangeevo.data_suite.datagen.recipe.providers.*;
 
 import java.util.concurrent.CompletableFuture;
 

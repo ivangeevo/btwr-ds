@@ -1,5 +1,6 @@
 package org.btwr.data_suite.datagen;
 
+import org.btwr.animageddon.tag.ModTags;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.core.tag.BTWRTags;
 import org.btwr.shared_library.tag.BTWRConventionalTags;
@@ -9,11 +10,10 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import org.ivangeevo.animageddon.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
-import static org.ivangeevo.animageddon.item.ModItems.BURNED_MEAT;
+import static org.btwr.animageddon.item.ModItems.BURNED_MEAT;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 public class DS_ItemTagProvider extends FabricTagProvider.ItemTagProvider {

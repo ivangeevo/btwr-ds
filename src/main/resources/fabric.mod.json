@@ -46,8 +46,7 @@
 	},
 	"custom": {
 		"loom:injected_interfaces": {
-			"net/minecraft/class_1937": ["org/ivangeevo/btwr_ds/world/interfaces/WorldAdded"]
-
+			"net/minecraft/class_1937": ["org/btwr/data_suite/world/interfaces/WorldAdded"]
 		}
 	},
 	"accessWidener" : "btwr_ds.accesswidener"
