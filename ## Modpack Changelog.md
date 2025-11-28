@@ -12,15 +12,17 @@
 
 + ### Updated the following mod versions in the pack:
 
-> ### **BTWR: Core** - 0.33.1
+> ### **BTWR: Core** - 0.33.2
 >
 > ### **Better With Time** - 2.0.1
 >
-> ### **BWT: HC Tweaks** - 1.4.1
+> ### **BWT: HC Tweaks** - 1.4.3
 >
-> ### **Im 'Movens** - 0.8
+> ### **Im 'Movens** - 0.8.1
 >
 > ### **Granular Hunger** - 0.5
+> 
+> ### **Tough Environment** - 0.13.1
 >
 > ### **BTWR: Shared Library** - 0.6.4(0.64)
 >
