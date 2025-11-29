@@ -26,7 +26,7 @@
 > 
 > #### **Animageddon** - 0.3.2
 >
-> #### **Vegehenna** - 0.5
+> #### **Vegehenna** - 0.5.1
 > 
 > #### **In The Gloom** - 1.4
 >

@@ -18,7 +18,6 @@ public class WorldGenBlockReplacements {
     // so it should contain only blocks that the player shouldn't have access to right away.
     // Any other replacements of blocks for specific things (like structures only) should be handled differently.
     public static void register() {
-
         // remove beds
         for (DyeColor color : DyeColor.values()) {
             Block bedBlock = Registries.BLOCK.get(IdUtils.ofMC(color.asString() + "_bed"));
