@@ -10,31 +10,33 @@
 + Removed Modern UI from the modpack
 + Removed Better Advancements from the modpack
 
-+ ### Updated the following mod versions in the pack:
++ #### Updated the following mod versions in the pack:
 
-> ### **BTWR: Core** - 0.33.2
+> #### **BTWR: Core** - 0.33.2
 >
-> ### **Better With Time** - 2.0.1
+> #### **Better With Time** - 2.0.1
 >
-> ### **BWT: HC Tweaks** - 1.4.3
+> #### **BWT: HC Tweaks** - 1.4.3
 >
-> ### **Im 'Movens** - 0.8.1
+> #### **Im 'Movens** - 0.8.1
 > 
-> ### **Sturdy Trees** - 1.6.5
+> #### **Sturdy Trees** - 1.6.5
 > 
-> ### **Animageddon** - 0.3.2
+> #### **Animageddon** - 0.3.2
 >
-> ### **Vegehenna** - 0.5
->
-> ### **Granular Hunger** - 0.5
+> #### **Vegehenna** - 0.5
 > 
-> ### **Tough Environment** - 0.13.1
+> #### **In The Gloom** - 1.4
 >
-> ### **BTWR: Shared Library** - 0.6.5
+> #### **Granular Hunger** - 0.5
+> 
+> #### **Tough Environment** - 0.13.1
 >
-> ### **Lithium** - mc1.21.1-0.15.1-fabric
+> #### **BTWR: Shared Library** - 0.6.5
 >
-> ### **Fancy Menu** - 3.8.1-1.21.1-fabric
+> #### **Lithium** - mc1.21.1-0.15.1-fabric
+>
+> #### **Fancy Menu** - 3.8.1-1.21.1-fabric
 
 ## v1.0.0(v0.1)
 + Initial pre-alpha release
