@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
+import org.btwr.self_sustainable.block.ModBlocks;
 import org.btwr.shared_library.api.ServerChunkGenerateEvents;
 import org.btwr.shared_library.util.utils.IdUtils;
 
@@ -29,15 +30,22 @@ public class WorldGenBlockReplacements {
         removeBlock(Blocks.WATER_CAULDRON);
         removeBlock(Blocks.LANTERN);
 
+        // TODO: Add copyProperties variable in ServerChunkGenerateEvents for keeping
+        //replaceBlock(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT);
+
         //BlockReplacementRegistry.registerReplacement(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT);
         //BlockReplacementRegistry.registerReplacement(Blocks.TORCH, ModBlocks.CRUDE_TORCH_BURNED_OUT);
-        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
+        //ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
+    }
 
+    // sets a block to air
+    private static void replaceBlock(Block target, Block replacement) {
+        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(target, replacement);
     }
 
     // sets a block to air
     private static void removeBlock(Block block) {
-        //BlockReplacementRegistry.registerReplacement(block, Blocks.AIR);
+        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(block, Blocks.AIR);
     }
 
 }
