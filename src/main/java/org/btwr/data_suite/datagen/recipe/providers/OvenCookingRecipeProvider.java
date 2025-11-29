@@ -89,7 +89,8 @@ public class OvenCookingRecipeProvider extends FabricRecipeProvider implements R
     }
 
     public static ModCookingRecipeJsonBuilder offerOvenCooking(ItemConvertible output, RecipeCategory category,
-                                                               Ingredient input, float xp, int cookTime) {
+                                                               Ingredient input, float xp, int cookTime)
+    {
         return new ModCookingRecipeJsonBuilder(
                 category,
                 ModCookingRecipeJsonBuilder.getRecipeCategory(output),

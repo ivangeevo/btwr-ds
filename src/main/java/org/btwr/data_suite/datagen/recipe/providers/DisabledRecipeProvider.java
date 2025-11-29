@@ -158,25 +158,24 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     }
 
     protected void removeForBTWR(RecipeExporter exporter) {
-        disableBTWR(exporter, "egg_scrambled_cooked");
-        disableBTWR(exporter, "egg_scrambled_cooked_from_smoking");
-        disableBTWR(exporter, "egg_scrambled_cooked_from_campfire_cooking");
-        disableBTWR(exporter, "mushroom_omelette_cooked");
-        disableBTWR(exporter, "mushroom_omelette_cooked_from_smoking");
-        disableBTWR(exporter, "mushroom_omelette_cooked_from_campfire_cooking");
-        disableBTWR(exporter, "chicken_soup");
-        disableBTWR(exporter, "hearty_stew");
-        disableBTWR(exporter, "diamond_plate");
-        disableBTWR(exporter, "diamond_plate_from_tanned_leather_cut");
-        disableBTWR(exporter, "diamond_helmet");
-        disableBTWR(exporter, "diamond_chestplate");
-        disableBTWR(exporter, "diamond_leggings");
-        disableBTWR(exporter, "diamond_boots");
+        this.disableRecipe(exporter, "btwr", "egg_scrambled_cooked");
+        this.disableRecipe(exporter, "btwr", "egg_scrambled_cooked_from_smoking");
+        this.disableRecipe(exporter, "btwr", "egg_scrambled_cooked_from_campfire_cooking");
+        this.disableRecipe(exporter, "btwr", "mushroom_omelette_cooked");
+        this.disableRecipe(exporter, "btwr", "mushroom_omelette_cooked_from_smoking");
+        this.disableRecipe(exporter, "btwr", "mushroom_omelette_cooked_from_campfire_cooking");
+        this.disableRecipe(exporter, "btwr", "chicken_soup");
+        this.disableRecipe(exporter, "btwr", "hearty_stew");
+        this.disableRecipe(exporter, "btwr", "diamond_plate_from_tanned_leather_cut");
+        this.disableRecipe(exporter, "btwr", "diamond_helmet");
+        this.disableRecipe(exporter, "btwr", "diamond_chestplate");
+        this.disableRecipe(exporter, "btwr", "diamond_leggings");
+        this.disableRecipe(exporter, "btwr", "diamond_boots");
 
         // Remove leather recipes
         String[] leathersToRemove = new String[]{"scoured", "tanned", "scoured_cut", "tanned_cut"};
         for (String leatherType : leathersToRemove) {
-            disableBTWR(exporter, "leather_" + leatherType);
+            this.disableRecipe(exporter, "btwr", "leather_" + leatherType);
         }
     }
 
@@ -215,5 +214,4 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
     protected Identifier getRecipeIdentifier(Identifier identifier) {
         return identifier;
     }
-
 }
