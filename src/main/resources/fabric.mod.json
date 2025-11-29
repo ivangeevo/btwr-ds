@@ -15,18 +15,10 @@
 	"icon": "assets/btwr_ds/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"org.btwr.data_suite.BTWRDSMod"
-		],
-		"client": [
-			"org.btwr.data_suite.BTWRDSModClient"
-		],
-		"fabric-datagen": [
-			"org.btwr.data_suite.data.BTWRDSDataGenerator"
-		],
-		"modmenu": [
-			"org.btwr.data_suite.config.BTWRDSConfig"
-		]
+		"main": ["org.btwr.data_suite.BTWRDSMod"],
+		"client": ["org.btwr.data_suite.BTWRDSModClient"],
+		"fabric-datagen": ["org.btwr.data_suite.data.BTWRDSDataGenerator"],
+		"modmenu": ["org.btwr.data_suite.config.BTWRDSConfig"]
 	},
 	"mixins": [
 		"btwr_ds.mixins.json",

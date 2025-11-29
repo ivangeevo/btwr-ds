@@ -2,5 +2,5 @@
 
 ## ---[Pre-Alpha]---
 
-## v1.0
+## v1.0.0
 + Initial pre-alpha release
