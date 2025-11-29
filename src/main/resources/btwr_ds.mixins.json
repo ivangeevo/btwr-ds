@@ -10,6 +10,7 @@
     "material_beacons.BlockOrTagAccessor",
     "vanilla.LootPoolBuilderAccessor",
     "vanilla.MinecraftServerMixin",
+    "vanilla.ProtoChunkMixin",
     "vanilla.ServerWorldMixin",
     "vanilla.SpawnHelperMixin",
     "vanilla.WorldMixin",

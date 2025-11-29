@@ -7,6 +7,10 @@
 + Added the "Spiders Produce Webs" mod to the modpack as a band-aid until spiders shooting webs is implemented.
 + Changed versioning scheme for pre-alpha releases (1.0.0 -> 0.1, etc.)
 + Fixed Zombie Villagers dropping iron ingots, carrots & potatoes (BTWR-DS Mod change)
++ Replaced Furnace from world generation in villages with Brick Oven (BTWR-DS Mod change)
++ Removed Blast Furnace & Smoker from world generation (BTWR-DS Mod change)
++ Removed Brewing Stand, Barrel & Campfire from world generation (BTWR-DS Mod change)
+
 + Removed Modern UI from the modpack
 + Removed Better Advancements from the modpack
 

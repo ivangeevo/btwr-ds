@@ -3,9 +3,11 @@ package org.btwr.data_suite.util;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.DyeColor;
 import org.btwr.self_sustainable.block.ModBlocks;
-import org.btwr.shared_library.api.ServerChunkGenerateEvents;
 import org.btwr.shared_library.util.utils.IdUtils;
 
 public class WorldGenBlockReplacements {
@@ -18,6 +20,7 @@ public class WorldGenBlockReplacements {
     // so it should contain only blocks that the player shouldn't have access to right away.
     // Any other replacements of blocks for specific things (like structures only) should be handled differently.
     public static void register() {
+
         // remove beds
         for (DyeColor color : DyeColor.values()) {
             Block bedBlock = Registries.BLOCK.get(IdUtils.ofMC(color.asString() + "_bed"));
@@ -26,25 +29,37 @@ public class WorldGenBlockReplacements {
 
         removeBlock(Blocks.CRAFTING_TABLE);
         removeBlock(Blocks.CAULDRON);
+        removeBlock(Blocks.CAMPFIRE);
         removeBlock(Blocks.WATER_CAULDRON);
         removeBlock(Blocks.LANTERN);
+        removeBlock(Blocks.BLAST_FURNACE);
+        removeBlock(Blocks.SMOKER);
+        removeBlock(Blocks.BREWING_STAND);
+        removeBlock(Blocks.BARREL);
 
-        // TODO: Add copyProperties variable in ServerChunkGenerateEvents for keeping
-        //replaceBlock(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT);
+        replaceWithCopyFacing(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT, Properties.HORIZONTAL_FACING);
+        replaceWithCopyFacing(Blocks.TORCH, ModBlocks.CRUDE_TORCH_BURNED_OUT, Properties.HORIZONTAL_FACING);
+        replaceWithCopyFacing(Blocks.FURNACE, ModBlocks.OVEN_BRICK, Properties.FACING);
 
-        //BlockReplacementRegistry.registerReplacement(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT);
-        //BlockReplacementRegistry.registerReplacement(Blocks.TORCH, ModBlocks.CRUDE_TORCH_BURNED_OUT);
         //ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
     }
 
-    // sets a block to air
-    private static void replaceBlock(Block target, Block replacement) {
-        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(target, replacement);
+    private static void replaceWithCopyFacing(Block target, Block replacement, DirectionProperty directionProperty) {
+        replaceBlock(target, replacement, (from, to) -> {
+            if (from.contains(directionProperty)) {
+                to = to.with(directionProperty, from.get(directionProperty));
+            }
+            return to;
+        });
+    }
+
+    private static void replaceBlock(Block from, Block to, BlockReplacementRegistry.StateTransformer transformer) {
+        BlockReplacementRegistry.registerReplacement(from, to, transformer);
     }
 
     // sets a block to air
     private static void removeBlock(Block block) {
-        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(block, Blocks.AIR);
+        BlockReplacementRegistry.registerReplacement(block, Blocks.AIR);
     }
 
 }
