@@ -19,12 +19,18 @@
 > ### **BWT: HC Tweaks** - 1.4.3
 >
 > ### **Im 'Movens** - 0.8.1
+> 
+> ### **Sturdy Trees** - 1.6.5
+> 
+> ### **Animageddon** - 0.3.2
+>
+> ### **Vegehenna** - 0.5
 >
 > ### **Granular Hunger** - 0.5
 > 
 > ### **Tough Environment** - 0.13.1
 >
-> ### **BTWR: Shared Library** - 0.6.4(0.64)
+> ### **BTWR: Shared Library** - 0.6.5
 >
 > ### **Lithium** - mc1.21.1-0.15.1-fabric
 >
