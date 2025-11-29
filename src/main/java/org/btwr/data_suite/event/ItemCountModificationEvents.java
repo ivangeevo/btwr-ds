@@ -1,7 +1,7 @@
 package org.btwr.data_suite.event;
 
 import com.bwt.items.BwtItems;
-import ivangeevo.sturdy_trees.item.SturdyTreesItems;
+import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;

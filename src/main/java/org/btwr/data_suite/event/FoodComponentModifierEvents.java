@@ -123,14 +123,13 @@ public class FoodComponentModifierEvents {
 
     // Directly modify the builder with access widening the put method (it was reflection before)
     private static void modifyEntry(ComponentMap.Builder builder, FoodComponent foodComponent) {
-        ComponentMap$BuilderAccessor ba = (ComponentMap$BuilderAccessor) builder;
-        ba.put(DataComponentTypes.FOOD, foodComponent);
+        builder.add(DataComponentTypes.FOOD, foodComponent);
     }
 
     private static void modifyEntryGranular(ComponentMap.Builder builder, int hungerPips, FoodComponent foodComponent) {
-        ComponentMap$BuilderAccessor ba = (ComponentMap$BuilderAccessor) builder;
+        //ComponentMap$BuilderAccessor ba = (ComponentMap$BuilderAccessor) builder;
         // Set the new food component
-        ba.put(DataComponentTypes.FOOD, foodComponent);
+        builder.add(DataComponentTypes.FOOD, foodComponent);
         // Add the hunger pip component with its lesser nutrition value
         builder.add(GranularHunger.HUNGER_PIP_COMPONENT, hungerPips);
     }

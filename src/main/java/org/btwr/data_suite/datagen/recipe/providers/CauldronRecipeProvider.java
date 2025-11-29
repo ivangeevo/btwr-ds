@@ -2,7 +2,7 @@ package org.btwr.data_suite.datagen.recipe.providers;
 
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.CauldronRecipe;
-import ivangeevo.sturdy_trees.item.SturdyTreesItems;
+import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;

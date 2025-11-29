@@ -28,19 +28,25 @@ public abstract class BipedEntityModelMixin<T extends LivingEntity> {
             float zScaleFactor = 1.0f;
             float xScaleFactor = 1.0f;
 
-                // Plump
+            // Plump
             if (saturation >= 36 && saturation < 42) {
                 zScaleFactor = 1.625f;
-                // Chubby
-            } else if (saturation >= 42 && saturation < 48) {
+
+            }
+            // Chubby
+            else if (saturation >= 42 && saturation < 48) {
                 zScaleFactor = 2.25f;
                 xScaleFactor = zScaleFactor / 2;
-                // Fat
-            } else if (saturation >= 48 && saturation < 54) {
+
+            }
+            // Fat
+            else if (saturation >= 48 && saturation < 54) {
                 zScaleFactor = 2.875f;
                 xScaleFactor = zScaleFactor / 2;
-                // Obese
-            } else if (saturation >= 54 && saturation <= 60) {
+
+            }
+            // Obese
+            else if (saturation >= 54 && saturation <= 60) {
                 zScaleFactor = 3.5f;
                 xScaleFactor = zScaleFactor / 2;
             }

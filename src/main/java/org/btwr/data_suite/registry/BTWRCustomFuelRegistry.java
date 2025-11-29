@@ -4,7 +4,7 @@ import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
 import com.bwt.tags.BwtItemTags;
 import com.google.common.collect.Maps;
-import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import net.minecraft.SharedConstants;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;

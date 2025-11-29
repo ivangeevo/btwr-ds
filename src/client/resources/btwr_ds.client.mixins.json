@@ -1,16 +1,16 @@
 {
   "required": true,
-  "package": "org.ivangeevo.data_suite.mixin.client",
+  "package": "org.btwr.data_suite.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "org.btwr.data_suite.mixin.client.BipedEntityModelMixin",
-    "org.btwr.data_suite.mixin.client.ClientPlayerInteractionManagerMixin",
-    "org.btwr.data_suite.mixin.client.DebugHudMixin",
-    "org.btwr.data_suite.mixin.client.GameTabMixin",
-    "org.btwr.data_suite.mixin.client.InGameHudMixin",
-    "org.btwr.data_suite.mixin.client.InventoryScreenMixin",
-    "org.btwr.data_suite.mixin.client.OptionsScreenMixin",
-    "org.btwr.data_suite.mixin.client.WindowMixin"
+    "BipedEntityModelMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "DebugHudMixin",
+    "GameTabMixin",
+    "InGameHudMixin",
+    "InventoryScreenMixin",
+    "OptionsScreenMixin",
+    "WindowMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -2,7 +2,7 @@ package org.btwr.data_suite.datagen.recipe.providers;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.ivangeevo.self_sustainable.SelfSustainableMod;
+import org.btwr.self_sustainable.SelfSustainableMod;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;

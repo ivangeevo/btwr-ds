@@ -241,10 +241,6 @@ public class BeastEntity extends PathAwareEntity {
 
     //----------- Client Side Functionality -----------//
 
-    @Override
-    public void setItemUseTime(int i) {
-
-    }
 
     @Override
     public void onKickedByCow(CowEntity cowEntity) {

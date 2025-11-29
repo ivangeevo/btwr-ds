@@ -33,8 +33,8 @@ public class KilnRecipeProvider extends FabricRecipeProvider {
     public void generate(RecipeExporter exporter) {
 
         // DS recipes
-        KilnRecipe.JsonBuilder.create(net.ivangeevo.self_sustainable.block.ModBlocks.BRICK_UNFIRED).result(Items.BRICK)
-                .criterion("has_brick_unfired", conditionsFromItem(net.ivangeevo.self_sustainable.block.ModBlocks.BRICK_UNFIRED))
+        KilnRecipe.JsonBuilder.create(org.btwr.self_sustainable.block.ModBlocks.BRICK_UNFIRED).result(Items.BRICK)
+                .criterion("has_brick_unfired", conditionsFromItem(org.btwr.self_sustainable.block.ModBlocks.BRICK_UNFIRED))
                 .offerTo(exporter, IdUtils.ofDS("kiln_cook_brick"));
 
         Block breadDoughBlock = BREAD_DOUGH;

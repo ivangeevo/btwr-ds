@@ -2,8 +2,6 @@ package org.btwr.data_suite.datagen.recipe.providers;
 
 import com.bwt.blocks.BwtBlocks;
 import com.bwt.items.BwtItems;
-import ivangeevo.sturdy_trees.SturdyTreesMod;
-import ivangeevo.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -22,6 +20,8 @@ import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.data_suite.BTWRDSMod;
 import org.btwr.data_suite.item.BTWRDS_Items;
+import org.btwr.sturdy_trees.SturdyTreesMod;
+import org.btwr.sturdy_trees.item.SturdyTreesItems;
 
 import java.util.concurrent.CompletableFuture;
 

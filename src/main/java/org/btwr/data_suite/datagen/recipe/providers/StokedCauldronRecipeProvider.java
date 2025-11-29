@@ -3,7 +3,7 @@ package org.btwr.data_suite.datagen.recipe.providers;
 import com.bwt.items.BwtItems;
 import com.bwt.recipes.cooking_pots.StokedCauldronRecipe;
 import com.google.common.collect.Maps;
-import ivangeevo.sturdy_trees.tag.SturdyTreesTags;
+import org.btwr.sturdy_trees.tag.SturdyTreesTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;

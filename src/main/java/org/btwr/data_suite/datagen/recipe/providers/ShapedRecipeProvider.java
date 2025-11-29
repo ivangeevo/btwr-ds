@@ -8,7 +8,7 @@ import com.bwt.tags.BwtItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.ivangeevo.self_sustainable.block.ModBlocks;
+import org.btwr.self_sustainable.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
@@ -23,6 +23,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.core.tag.BTWRTags;
+import org.btwr.self_sustainable.item.ModItems;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.data_suite.item.BTWRDS_Items;
@@ -497,7 +498,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_slab_bricks_loose", conditionsFromItem(SLAB_BRICKS_LOOSE))
                 .offerTo(exporter, IdUtils.ofSS("oven_brick"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, net.ivangeevo.self_sustainable.item.ModItems.CRUDE_TORCH_UNLIT, 1)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CRUDE_TORCH_UNLIT, 1)
                 .input('C', ItemTags.COALS)
                 .input('I', Items.STICK)
                 .pattern("C")
@@ -505,7 +506,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_coal", conditionsFromTag(ItemTags.COALS))
                 .offerTo(exporter, IdUtils.ofSS("crude_torch_unlit"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, net.ivangeevo.self_sustainable.item.ModItems.TORCH_UNLIT, 1)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TORCH_UNLIT, 1)
                 .input('C', BwtItems.nethercoalItem)
                 .input('I', Items.STICK)
                 .pattern("C")

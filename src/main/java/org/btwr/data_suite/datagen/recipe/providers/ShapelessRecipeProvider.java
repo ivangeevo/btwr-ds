@@ -4,7 +4,7 @@ import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
 import com.bwt.items.BwtItems;
-import ivangeevo.sturdy_trees.item.SturdyTreesItems;
+import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -20,8 +20,8 @@ import org.btwr.shared_library.util.utils.RecipeUtils;
 
 import java.util.concurrent.CompletableFuture;
 
-import static net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_BOW;
-import static net.ivangeevo.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
+import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_BOW;
+import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils {

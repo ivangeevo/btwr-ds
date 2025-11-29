@@ -22,6 +22,8 @@
 > 
 > #### **Sturdy Trees** - 1.6.5
 > 
+> #### **Self Sustainable** - 0.3
+> 
 > #### **Animageddon** - 0.3.2
 >
 > #### **Vegehenna** - 0.5
