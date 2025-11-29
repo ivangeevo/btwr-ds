@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.DyeColor;
 import org.btwr.self_sustainable.block.ModBlocks;
@@ -39,13 +38,13 @@ public class WorldGenBlockReplacements {
 
         replaceWithCopyFacing(Blocks.WALL_TORCH, ModBlocks.CRUDE_WALL_TORCH_BURNED_OUT, Properties.HORIZONTAL_FACING);
         replaceWithCopyFacing(Blocks.TORCH, ModBlocks.CRUDE_TORCH_BURNED_OUT, Properties.HORIZONTAL_FACING);
-        replaceWithCopyFacing(Blocks.FURNACE, ModBlocks.OVEN_BRICK, Properties.FACING);
+        replaceWithCopyFacing(Blocks.FURNACE, ModBlocks.OVEN_BRICK, Properties.HORIZONTAL_FACING);
 
         //ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
     }
 
     private static void replaceWithCopyFacing(Block target, Block replacement, DirectionProperty directionProperty) {
-        replaceBlock(target, replacement, (from, to) -> {
+        replaceBlockWithProperties(target, replacement, (from, to) -> {
             if (from.contains(directionProperty)) {
                 to = to.with(directionProperty, from.get(directionProperty));
             }
@@ -53,11 +52,17 @@ public class WorldGenBlockReplacements {
         });
     }
 
-    private static void replaceBlock(Block from, Block to, BlockReplacementRegistry.StateTransformer transformer) {
+    /** Replaces a block with another one with an option to copy the properties from the old blockstate **/
+    private static void replaceBlockWithProperties(Block from, Block to, boolean copy) {
+        BlockReplacementRegistry.registerReplacement(from, to, (from1, to1) -> copy ? from1 : to1);
+    }
+
+    /** Replaces a block with another one with a specified state to return **/
+    private static void replaceBlockWithProperties(Block from, Block to, BlockReplacementRegistry.StateTransformer transformer) {
         BlockReplacementRegistry.registerReplacement(from, to, transformer);
     }
 
-    // sets a block to air
+    /** Simply replaces a block with air **/
     private static void removeBlock(Block block) {
         BlockReplacementRegistry.registerReplacement(block, Blocks.AIR);
     }
