@@ -20,7 +20,6 @@ public abstract class ProtoChunkMixin {
             target = "Lnet/minecraft/world/chunk/ChunkSection;setBlockState(IIILnet/minecraft/block/BlockState;)Lnet/minecraft/block/BlockState;")
     )
     private BlockState replaceBlockState(ChunkSection chunkSection, int x, int y, int z, BlockState state) {
-
         Block original = state.getBlock();
         Block replacement = BlockReplacementRegistry.getReplacementFor(original);
 
