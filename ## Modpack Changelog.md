@@ -18,9 +18,9 @@
 
 > #### **BTWR: Core** - 0.33.2
 >
-> #### **Better With Time** - 2.0.1
+> #### **Better With Time** - 2.0.2
 >
-> #### **BWT: HC Tweaks** - 1.4.3
+> #### **BWT: HC Tweaks** - 1.4.4
 >
 > #### **Im 'Movens** - 0.8.1
 > 
