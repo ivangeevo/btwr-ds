@@ -32,11 +32,11 @@
 >
 > #### **Vegehenna** - 0.5.1
 > 
-> #### **In The Gloom** - 1.4
+> #### **In The Gloom** - 1.4.1
 >
 > #### **Granular Hunger** - 0.5
 > 
-> #### **Tough Environment** - 0.13.3
+> #### **Tough Environment** - 0.13.4
 >
 > #### **BTWR: Shared Library** - 0.6.5
 >
