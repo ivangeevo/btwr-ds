@@ -23,19 +23,19 @@
 > #### **BWT: HC Tweaks** - 1.4.4
 >
 > #### **Im 'Movens** - 0.8.2
-> 
+>
 > #### **Sturdy Trees** - 1.6.5
-> 
+>
 > #### **Self Sustainable** - 0.3
-> 
+>
 > #### **Animageddon** - 0.3.2
 >
 > #### **Vegehenna** - 0.5.1
-> 
+>
 > #### **In The Gloom** - 1.4.1
 >
 > #### **Granular Hunger** - 0.5
-> 
+>
 > #### **Tough Environment** - 0.13.4
 >
 > #### **BTWR: Shared Library** - 0.6.5
@@ -43,12 +43,12 @@
 > #### **Lithium** - mc1.21.1-0.15.1-fabric
 >
 > #### **Fancy Menu** - 3.8.1-1.21.1-fabric
-> 
-> ### **Entity Cullting** - 1.9.4
-> 
-> ## **Immediately Fast** - 1.6.8+1.21.1-fabric
-> 
-> ## **YetAnotherConfigLib** - 3.8.1+1.21.1-fabric
+>
+> #### **Entity Cullting** - 1.9.4
+>
+> #### **Immediately Fast** - 1.6.8+1.21.1-fabric
+>
+> #### **YetAnotherConfigLib** - 3.8.1+1.21.1-fabric
 
 ## v1.0.0(v0.1)
 + Initial pre-alpha release
