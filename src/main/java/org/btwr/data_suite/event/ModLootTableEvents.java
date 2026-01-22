@@ -17,7 +17,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.data_suite.mixin.vanilla.entity.ItemEntryAccessor;
 import org.btwr.data_suite.mixin.vanilla.LootPoolBuilderAccessor;

@@ -3,7 +3,7 @@ package org.btwr.data_suite.datagen;
 import org.btwr.animageddon.tag.ModTags;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.core.tag.BTWRTags;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;

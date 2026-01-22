@@ -13,7 +13,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.data_suite.BTWRDSMod;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 

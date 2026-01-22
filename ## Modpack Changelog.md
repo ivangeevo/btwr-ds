@@ -1,5 +1,25 @@
 # BTWR: Modpack Changelog
 
+## ---[Alpha]---
+## v1.0(dev)
+
++ #### Updated the following mod versions in the pack:
+
+> #### **BTWR: Core** - 0.33.4
+> #### **Bind** - 1.5
+> #### **Sturdy Trees** - 1.6.6
+> #### **Self Sustainable** - 0.3.1
+> #### **Animageddon** - 0.3.3
+> #### **Vegehenna** - 0.5.2
+> #### **In The Gloom** - 1.4.2
+> #### **Tough Environment** - 0.13.5
+> #### **BTWR: Shared Library** - 0.7
+> #### **Immediately Fast** - 1.6.9+1.21.1-fabric
+> #### **Jade** - 15.10.4+1.21.1-fabric
+> #### **Entity Cullting** - 1.9.5
+> #### **Dynamic FPS** - 3.11.3
+
+
 ## ---[Pre-Alpha]---
 
 ## v0.2

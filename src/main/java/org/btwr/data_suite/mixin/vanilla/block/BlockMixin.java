@@ -13,7 +13,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,7 +34,14 @@ public abstract class BlockMixin {
         }
     }
 
-    @Inject(method = "afterBreak", at = @At("HEAD"))
+    //@Inject(method = "afterBreak", at = @At("HEAD"))
+    private void onAfterBreakTill(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity,
+                              ItemStack tool, CallbackInfo ci) {
+        // Execute block tilling behavior from breaking blocks with a hoe
+        //BlockTillingManager.MixinMod.getInstance().onAfterBreak(world, pos, state, tool, player);
+    }
+
+    @Inject(method = "afterBreak", at = @At("TAIL"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity,
                               ItemStack tool, CallbackInfo ci) {
 

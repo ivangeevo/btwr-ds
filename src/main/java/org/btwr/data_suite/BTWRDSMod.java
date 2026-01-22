@@ -12,7 +12,6 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 import org.btwr.data_suite.event.ItemCountModificationEvents;
 import org.btwr.data_suite.event.FoodComponentModifierEvents;
 import org.btwr.data_suite.loot.function.ModLootFunctions;
-import org.btwr.data_suite.recipe.BTWRDSRecipes;
 import org.btwr.data_suite.util.PlanterFertilizer;
 import org.btwr.data_suite.util.WorldGenBlockReplacements;
 import org.slf4j.Logger;
@@ -46,7 +45,6 @@ public class BTWRDSMod implements ModInitializer {
 		instance = this;
 
 		BTWRDS_Items.registerAndAddToGroups();
-		BTWRDSRecipes.register();
 		WorldGenBlockReplacements.register();
 		ModEntities.register();
 		ModAttachments.register();
@@ -66,14 +64,6 @@ public class BTWRDSMod implements ModInitializer {
 
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();
-
-		/**
-		ServerPlayNetworking.registerGlobalReceiver(CrawlToggleC2SPacket.ID, ((payload, context) -> {
-			context.server().execute(() -> {
-				CrawlHandler.toggleCrawl(context.player());
-			});
-		}));
-		 **/
 
 		//ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
 	}

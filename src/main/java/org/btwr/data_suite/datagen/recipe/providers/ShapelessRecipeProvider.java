@@ -1,7 +1,7 @@
 package org.btwr.data_suite.datagen.recipe.providers;
 
 import org.btwr.core.item.BTWR_Items;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
 import com.bwt.items.BwtItems;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
