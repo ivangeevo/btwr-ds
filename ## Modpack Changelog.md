@@ -2,6 +2,7 @@
 
 ## ---[Alpha]---
 ## v1.0(dev)
++ Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
 
 + #### Updated the following mod versions in the pack:
 
