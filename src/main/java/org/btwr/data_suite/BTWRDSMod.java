@@ -51,6 +51,7 @@ public class BTWRDSMod implements ModInitializer {
 		FoodComponentModifierEvents.register();
 		ModLootTableEvents.register();
 		ItemCountModificationEvents.register();
+		// TODO: Not tested enough
 		//SpawnChunksLoader.register();
 		PlanterFertilizer.register();
 		ModStatusEffects.register();
@@ -68,6 +69,7 @@ public class BTWRDSMod implements ModInitializer {
 		//ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.RED_STAINED_GLASS);
 	}
 
+	// TODO: Obsolete; No existing config options atm. Replace with the BTWR:SL config system if doing so
 	public void loadSettings() {
 		File file = new File("./config/btwr/btwr_ds_common.json");
 		Gson gson = new Gson();

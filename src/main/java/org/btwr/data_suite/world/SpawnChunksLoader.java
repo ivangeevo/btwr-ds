@@ -1,54 +1,40 @@
 package org.btwr.data_suite.world;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.server.world.ChunkTicketType;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.GameRules;
 
-public class SpawnChunksLoader {
-
-    private static final int CHUNK_RADIUS = 6;
+public final class SpawnChunksLoader {
 
     private static boolean loaded = false;
 
     public static void register() {
+        ServerLifecycleEvents.SERVER_STARTED.register(SpawnChunksLoader::onServerStarted);
+    }
 
-        /**
-        ServerTickEvents.END_SERVER_TICK.register(server -> {
-            ServerWorld overworld = server.getOverworld();
-            // Ensure fake player exists and is in spawn chunks
-            FakePlayer fake = FakePlayer.get(overworld);
-            fake.teleport(overworld,overworld.getSpawnPos().getX() + 0.5,
-                    overworld.getSpawnPos().getY(),
-                    overworld.getSpawnPos().getZ() + 0.5,
-                    0f, 0f);
+    private static void onServerStarted(MinecraftServer server) {
+        if (loaded) return;
 
-            // Force load surrounding spawn chunks using FORCED tickets
-            forceLoadSpawnChunks(overworld);
-        });
-         **/
+        ServerWorld overworld = server.getOverworld();
+        if (overworld == null) return;
 
-
-        ServerTickEvents.END_SERVER_TICK.register(server -> {
-            ServerWorld overworld = server.getOverworld();
-            if (!loaded) {
-                forceLoadSpawnChunks(overworld);
-                loaded = true;
-            }
-        });
+        forceLoadSpawnChunks(overworld);
+        loaded = true;
     }
 
     private static void forceLoadSpawnChunks(ServerWorld world) {
-        var cm = world.getChunkManager();
-        var center = world.getSpawnPos();
-        var centerChunk = new net.minecraft.util.math.ChunkPos(center);
+        ChunkPos spawnChunk = new ChunkPos(world.getSpawnPos());
 
-        for (int dx = -CHUNK_RADIUS; dx <= CHUNK_RADIUS; dx++) {
-            for (int dz = -CHUNK_RADIUS; dz <= CHUNK_RADIUS; dz++) {
-                var chunkPos = new ChunkPos(centerChunk.x + dx, centerChunk.z + dz);
-                cm.addTicket(ChunkTicketType.FORCED, chunkPos, 2, chunkPos);
-            }
-        }
+        int spawnRadius = world.getGameRules().getInt(GameRules.SPAWN_CHUNK_RADIUS);
+
+        world.getChunkManager().addTicket(
+                ChunkTicketType.PLAYER,
+                spawnChunk,
+                spawnRadius,
+                spawnChunk
+        );
     }
-
 }

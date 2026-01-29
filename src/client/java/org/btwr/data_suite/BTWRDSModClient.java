@@ -42,6 +42,7 @@ public class BTWRDSModClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(ModEntities.BEAST, BeastEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_BEAST_LAYER, BeastEntityModel::getTextureModelData);
+
 	}
 
 }
