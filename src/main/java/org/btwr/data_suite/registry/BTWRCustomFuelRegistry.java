@@ -306,7 +306,6 @@ public class BTWRCustomFuelRegistry {
                 fuelTimes.put(itemRegistryEntry.value(), fuelTime);
             }
         }
-
     }
 
     private static void addFuel(Map<Item, Integer> fuelTimes, ItemConvertible item, int fuelTime) {

@@ -44,7 +44,8 @@ public class OvenCookingRecipeProvider extends FabricRecipeProvider implements R
         ore(exporter, ModItems.COPPER_NUGGET, Items.RAW_COPPER, 0.20f);
 
         // Custom
-        custom(exporter, Items.BRICK, RecipeCategory.MISC, ModBlocks.BRICK_UNFIRED, 0.10f, 6000);
+        // added by SS by default ( remove later )
+        //custom(exporter, Items.BRICK, RecipeCategory.MISC, ModBlocks.BRICK_UNFIRED, 0.10f, 6000);
     }
 
     private void generateFoods(RecipeExporter exporter) {
