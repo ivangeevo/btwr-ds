@@ -23,11 +23,14 @@ public class BTWRDS_Items {
         return Registry.register(Registries.ITEM, Identifier.of(BTWRDSMod.MOD_ID, name), item);
     }
 
-    public static void registerAndAddToGroups() {
+    public static void register() {
         // log message into console
         BTWRDSMod.LOGGER.info("Registering Mod Items for " + BTWRDSMod.MOD_ID);
 
-        // and add items to item groups
+        registerToItemGroups();
+    }
+
+    private static void registerToItemGroups() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(BARK_BLOOD_WOOD);
             entries.add(ENDER_SLAG);
