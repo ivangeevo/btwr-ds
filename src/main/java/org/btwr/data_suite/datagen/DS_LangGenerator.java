@@ -27,16 +27,27 @@ public class DS_LangGenerator extends FabricLanguageProvider {
         tb.add(BTWRDS_Items.BARK_BLOOD_WOOD, "Blood Wood Bark");
         tb.add(BTWRDS_Items.ELEMENT, "Element");
         tb.add(BTWRDS_Items.REDSTONE_LATCH, "Redstone Latch");
+
+        // Potions
+        //tb.add(potionItem("potion", "reduced_hunger"), "Potion of Reduced Hunger");
+        //tb.add(potionItem("splash_potion", "reduced_hunger"), "Splash Potion of Reduced Hunger");
+        //tb.add(potionItem("lingering_potion","reduced_hunger"), "Lingering Potion of Reduced Hunger");
     }
 
     private void generateStatusEffectsTranslations(TranslationBuilder tb) {
-        tb.add(effectTranslationKey("fortune"), "Fortune");
-        tb.add(effectTranslationKey("looting"), "Looting");
-        tb.add(effectTranslationKey("true_sight"), "True Sight");
+        tb.add(statusEffect("fortune"), "Fortune");
+        tb.add(statusEffect("looting"), "Looting");
+        tb.add(statusEffect("true_sight"), "True Sight");
+
+        //tb.add(statusEffect("reduced_hunger"), "Reduced Hunger");
     }
 
-    private String effectTranslationKey(String effect) {
+    private String statusEffect(String effect) {
         return "effect." + BTWRDSMod.MOD_ID + "." + effect;
     }
 
+    // Potion type can be "potion", "splash_potion", "lingering_potion
+    private String potionItem(String potionType, String name) {
+        return "item.minecraft." + potionType + "." + name;
+    }
 }

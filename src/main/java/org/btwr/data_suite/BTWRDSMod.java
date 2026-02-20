@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
 import org.btwr.data_suite.config.BTWRDSSettings;
 import org.btwr.data_suite.attachment.ModAttachments;
-import org.btwr.data_suite.data.ModDataAttachments;
 import org.btwr.data_suite.effect.ModStatusEffects;
 import org.btwr.data_suite.entity.ModEntities;
 import org.btwr.data_suite.event.ModLootTableEvents;
@@ -44,7 +43,7 @@ public class BTWRDSMod implements ModInitializer {
 		this.loadSettings();
 		instance = this;
 
-		BTWRDS_Items.registerAndAddToGroups();
+		BTWRDS_Items.register();
 		WorldGenBlockReplacements.register();
 		ModEntities.register();
 		ModAttachments.register();
@@ -57,11 +56,10 @@ public class BTWRDSMod implements ModInitializer {
 		ModStatusEffects.register();
 		ModLootFunctions.register();
 
-		ModDataAttachments.register();
+		//ModDataAttachments.register();
+		//BTWRPotions.register();
 
 		//BlockSpeedRegistry.init();
-
-		//ServerTickEvents.END_SERVER_TICK.register(this::onServerTick);
 
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();

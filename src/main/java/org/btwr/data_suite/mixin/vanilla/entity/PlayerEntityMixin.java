@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.btwr.data_suite.effect.ModStatusEffects;
 import org.btwr.data_suite.util.ArmorWeightManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,6 +24,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
+    /**
     // Add extra exhaustion to all actions when wearing armor
     @Inject(method = "addExhaustion", at = @At("HEAD"), cancellable = true)
     private void addExhaustionWithArmorWeight(float originalAmount, CallbackInfo ci) {
@@ -30,6 +32,31 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         float weight = ArmorWeightManager.getInstance().getArmorWeight(player);
         float multiplier = 1.0f + (Math.min(weight, 44.0f) / 44.0f); // max 2x
         player.getHungerManager().addExhaustion(originalAmount * multiplier);
+        ci.cancel();
+    }
+    **/
+
+    @Inject(method = "addExhaustion", at = @At("HEAD"), cancellable = true)
+    private void addExhaustionWithArmorWeight(float originalAmount, CallbackInfo ci) {
+        PlayerEntity player = (PlayerEntity)(Object)this;
+
+        // 1. Armor scaling
+        float weight = ArmorWeightManager.getInstance().getArmorWeight(player);
+        float multiplier = 1.0f + (Math.min(weight, 44.0f) / 44.0f); // max 2x
+        float modified = originalAmount * multiplier;
+
+        // 2. Potion reduction (applied AFTER armor)
+        var effect = player.getStatusEffect(ModStatusEffects.REDUCED_HUNGER);
+        if (effect != null) {
+            int amp = effect.getAmplifier(); // 0 = level I
+            float reduction = 0.5f + (0.25f * amp); // 50% / 75%
+            reduction = Math.min(reduction, 0.9f); // safety cap
+            modified *= (1.0f - reduction);
+        }
+
+        // 3. Forward to HungerManager
+        player.getHungerManager().addExhaustion(modified);
+
         ci.cancel();
     }
 
