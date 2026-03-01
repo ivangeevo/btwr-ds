@@ -1,5 +1,8 @@
 # BTWR: Modpack Changelog
 
+## UNUSED ONES CURRENTLY
++ Added a new potion type: Reduced Hunger Potion. It has only a single level of strength, and it's made with a healing potion + dragon's breath (recipe subject to change). It has both the splash and lingering variations, with the normal variant decreasing hunger consumption by 50% and the lingering one by 75% (BTWR-DS Mod change)
+
 ## ---[Alpha]---
 ## v1.0(dev)
 + Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
@@ -7,19 +10,21 @@
 + #### Updated the following mod versions in the pack:
 
 > #### **BTWR: Core** - 0.33.4
-> #### **Bind** - 1.5
+> #### **Bind** - 1.5.1
 > #### **Sturdy Trees** - 1.6.6
-> #### **Self Sustainable** - 0.3.1
+> #### **Self Sustainable** - 0.4
 > #### **Animageddon** - 0.3.3
 > #### **Vegehenna** - 0.5.2
 > #### **In The Gloom** - 1.4.2
 > #### **Tough Environment** - 0.13.5
+> #### **Im 'movens** - 0.8.3
+> #### **Granular Hunger** - 0.7+1.21.1
 > #### **BTWR: Shared Library** - 0.7
-> #### **Immediately Fast** - 1.6.9+1.21.1-fabric
-> #### **Jade** - 15.10.4+1.21.1-fabric
+> #### **Immediately Fast** - 1.6.10+1.21.1-fabric
+> #### **Jade** - 15.10.5+fabric
 > #### **Entity Cullting** - 1.9.5
-> #### **Dynamic FPS** - 3.11.3
-
+> #### **Dynamic FPS** - 3.11.4
+> #### **FerriteCore** - 7.0.3-fabric
 
 ## ---[Pre-Alpha]---
 
