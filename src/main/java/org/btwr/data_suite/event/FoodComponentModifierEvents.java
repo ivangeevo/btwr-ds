@@ -43,6 +43,7 @@ public class FoodComponentModifierEvents {
         context.modify(Items.PUMPKIN_SEEDS, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.PUMPKIN_SEEDS));
         context.modify(Items.COCOA_BEANS, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.COCOA_BEANS));
         context.modify(Items.GLOW_BERRIES, builder -> modifyEntryGranular(builder,1, BTWRFoodComponents.Granular.GLOW_BERRIES));
+        context.modify(ModItems.CHOCOLATE_MILK, builder -> modifyEntryGranular(builder,9, BTWRFoodComponents.Granular.CHOCOLATE_MILK));
     }
 
     // Method to modify vanilla components
@@ -108,7 +109,6 @@ public class FoodComponentModifierEvents {
             context.modify(ModItems.BOILED_POTATO, builder -> modifyEntry(builder, BTWRFoodComponents.BOILED_POTATO));
             context.modify(ModItems.COOKED_CARROT, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_CARROT));
             context.modify(ModItems.CHOCOLATE, builder -> modifyEntry(builder, BTWRFoodComponents.CHOCOLATE));
-            context.modify(ModItems.CHOCOLATE_MILK, builder -> modifyEntry(builder, BTWRFoodComponents.CHOCOLATE_MILK));
         }
 
         if (FabricLoader.getInstance().isModLoaded("bwt")) {
@@ -127,7 +127,6 @@ public class FoodComponentModifierEvents {
     }
 
     private static void modifyEntryGranular(ComponentMap.Builder builder, int hungerPips, FoodComponent foodComponent) {
-        //ComponentMap$BuilderAccessor ba = (ComponentMap$BuilderAccessor) builder;
         // Set the new food component
         builder.add(DataComponentTypes.FOOD, foodComponent);
         // Add the hunger pip component with its lesser nutrition value
