@@ -6,6 +6,8 @@
 ## ---[Alpha]---
 ## v1.0(dev)
 + Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
++ Fixed a bug with some vanilla food items giving full fat when eaten close to full hunger (BTWR-DS Mod change)
++ Changed food values of most food items to match those in BTW CE 3.0 (BTWR-DS Mod change)
 
 + #### Updated the following mod versions in the pack:
 
@@ -18,7 +20,7 @@
 > #### **In The Gloom** - 1.4.2
 > #### **Tough Environment** - 0.13.5
 > #### **Im 'movens** - 0.8.3
-> #### **Granular Hunger** - 0.7+1.21.1
+> #### **Granular Hunger** - 0.7.1+1.21.1
 > #### **BTWR: Shared Library** - 0.7
 > #### **Immediately Fast** - 1.6.10+1.21.1-fabric
 > #### **Jade** - 15.10.5+fabric

@@ -43,13 +43,13 @@ public abstract class BeaconBlockEntityMixin extends BlockEntity implements Beac
         BeaconBlockEntityAdded added = (BeaconBlockEntityAdded) blockEntity;
         int oldLevel = added.getOldLevel();
         int newLevel = ((BeaconBlockEntityAccessor) blockEntity).getLevel();
-        if (newLevel != oldLevel) {
-            // Call your custom logic here
-            if (!world.isClient) {
-                BeaconBlockEntityMagneticTracker.getInstance().onPowerChange(newLevel, oldLevel, blockEntity);
-            }
-            added.setOldLevel(newLevel);
+
+        if (newLevel == oldLevel) return;
+
+        if (!world.isClient) {
+            BeaconBlockEntityMagneticTracker.getInstance().onPowerChange(newLevel, oldLevel, blockEntity);
         }
+        added.setOldLevel(newLevel);
     }
 
 }
