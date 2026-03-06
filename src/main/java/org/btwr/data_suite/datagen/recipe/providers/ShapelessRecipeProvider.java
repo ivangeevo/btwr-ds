@@ -24,6 +24,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_BOW;
 import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
+import static org.btwr.tough_environment.item.ModItems.CHISEL_WOOD;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
@@ -153,6 +154,13 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .input(BTWR_Items.DIAMOND_INGOT)
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofTE("chisel_diamond"));
+
+        // Self-Sustainable
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.KNITTING_NEEDLES)
+                .input(CHISEL_WOOD)
+                .input(CHISEL_WOOD)
+                .criterion(hasItem(CHISEL_WOOD), conditionsFromItem(CHISEL_WOOD))
+                .offerTo(exporter, IdUtils.ofSS("knitting_needles"));
 
         // Enable this recipe when Groth is added in BWT
         /**
