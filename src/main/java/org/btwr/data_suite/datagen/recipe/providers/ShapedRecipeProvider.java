@@ -177,11 +177,11 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .offerTo(exporter, IdUtils.ofMC("clay"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHEST)
-                .input('W', BwtBlocks.wickerBlock)
+                .input('W', BwtItemTags.WOODEN_SIDING_BLOCKS)
                 .pattern("WWW")
                 .pattern("W W")
                 .pattern("WWW")
-                .criterion("has_wicker_block", RecipeProvider.conditionsFromItem(BwtBlocks.wickerBlock))
+                .criterion("has_wooden_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
                 .offerTo(exporter, IdUtils.ofMC("chest"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CHAIN,4)
@@ -754,6 +754,16 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("FF")
                 .criterion("flour", conditionsFromItem(BwtItems.flourItem))
                 .offerTo(exporter, IdUtils.ofVG("bread_dough"));
+
+        // Self-Sustainable
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.HAMPER)
+                .input('#', ModItems.WICKER)
+                .input('P', ItemTags.PLANKS)
+                .pattern("###")
+                .pattern("#P#")
+                .pattern("###")
+                .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
+                .offerTo(exporter, IdUtils.ofSS("hamper"));
 
         // DS
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)

@@ -1,6 +1,8 @@
 package org.btwr.data_suite.datagen.recipe.providers;
 
+import com.bwt.blocks.BwtBlocks;
 import org.btwr.core.item.BTWR_Items;
+import org.btwr.self_sustainable.item.ModItems;
 import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
 import com.bwt.items.BwtItems;
@@ -114,6 +116,12 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .input(ConventionalItemTags.STRINGS)
                 .criterion("has_broadhead", conditionsFromItem(BwtItems.broadheadItem))
                 .offerTo(exporter, IdUtils.ofBWT("broadhead_arrow"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, BwtBlocks.wickerPaneBlock)
+                .input(BwtBlocks.grateBlock)
+                .input(ModItems.WICKER)
+                .criterion(hasItem(BwtBlocks.grateBlock), conditionsFromItem(BwtBlocks.grateBlock))
+                .offerTo(exporter, IdUtils.ofBWT("wicker"));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, PASTRY_UNCOOKED_PUMPKIN_PIE)
                 .input(BwtItems.rawEggItem)
