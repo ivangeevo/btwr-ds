@@ -73,6 +73,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "furnace");
         disableVanilla(exporter, "blast_furnace");
         disableVanilla(exporter, "smoker");
+        disableVanilla(exporter, "white_wool_from_string");
 
         // Remove tool recipes
         String[] woodenToolsToRemove = new String[]{"sword", "pickaxe", "axe", "shovel", "hoe"};
