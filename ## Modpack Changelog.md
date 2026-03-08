@@ -8,25 +8,29 @@
 + Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
 + Fixed a bug with some vanilla food items giving full fat when eaten close to full hunger (BTWR-DS Mod change)
 + Changed food values of most food items to match those in BTW CE 3.0 (BTWR-DS Mod change)
++ Changed recipes for BWT's wicker pane block and the vanilla chest since Self-Sustainable update v0.5 additions/changes (BTWR-DS Mod change)
++ Removed the recipe for crafting a white wool block from four string (BTWR-DS Mod change)
 
 + #### Updated the following mod versions in the pack:
 
-> #### **BTWR: Core** - 0.33.4
-> #### **Bind** - 1.5.1
+> #### **BTWR: Shared Library** - 0.8.1
+> #### **BTWR: Core** - 0.33.5
+> #### **Bind** - 1.5.2
 > #### **Sturdy Trees** - 1.6.6
-> #### **Self Sustainable** - 0.4
+> #### **Self Sustainable** - 0.5
 > #### **Animageddon** - 0.3.3
 > #### **Vegehenna** - 0.5.2
 > #### **In The Gloom** - 1.4.2
 > #### **Tough Environment** - 0.13.5
 > #### **Im 'movens** - 0.8.3
+> #### **Nomad's Rest** - 1.2
 > #### **Granular Hunger** - 0.7.1+1.21.1
-> #### **BTWR: Shared Library** - 0.7
 > #### **Immediately Fast** - 1.6.10+1.21.1-fabric
 > #### **Jade** - 15.10.5+fabric
 > #### **Entity Cullting** - 1.9.5
 > #### **Dynamic FPS** - 3.11.4
 > #### **FerriteCore** - 7.0.3-fabric
+> #### **Lithium** - 0.15.2-fabric
 
 ## ---[Pre-Alpha]---
 
