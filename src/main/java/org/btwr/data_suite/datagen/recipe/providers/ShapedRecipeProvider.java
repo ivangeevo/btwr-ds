@@ -8,6 +8,8 @@ import com.bwt.tags.BwtItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.item.Item;
+import net.minecraft.util.DyeColor;
 import org.btwr.self_sustainable.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -764,6 +766,22 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("###")
                 .criterion("has_planks", conditionsFromTag(ItemTags.PLANKS))
                 .offerTo(exporter, IdUtils.ofSS("hamper"));
+
+        // replace SS wool block recipes & make them require wicker block
+        for (DyeColor color : DyeColor.values()) {
+            Item woolItem = Registries.ITEM.get(IdUtils.ofSS(color.getName() + "_wool"));
+            Identifier woolBlockId = IdUtils.ofMC(color.getName() + "_wool");
+            Item woolBlock = Registries.ITEM.get(woolBlockId);
+
+            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, woolBlock)
+                    .input('W', BwtBlocks.wickerBlock)
+                    .input('P', woolItem)
+                    .pattern(" P ")
+                    .pattern("PWP")
+                    .pattern(" P ")
+                    .criterion(hasItem(BwtBlocks.wickerBlock), conditionsFromItem(BwtBlocks.wickerBlock))
+                    .offerTo(exporter, IdUtils.ofSS(color.getName() + "_wool_block"));
+        }
 
         // DS
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STICK,2)

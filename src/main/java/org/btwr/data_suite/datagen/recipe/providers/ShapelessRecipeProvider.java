@@ -1,6 +1,9 @@
 package org.btwr.data_suite.datagen.recipe.providers;
 
 import com.bwt.blocks.BwtBlocks;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.DyeColor;
+import net.minecraft.util.Identifier;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.self_sustainable.item.ModItems;
 import org.btwr.shared_library.api.tag.BTWRConventionalTags;
@@ -162,6 +165,20 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion(hasItem(CHISEL_WOOD), conditionsFromItem(CHISEL_WOOD))
                 .offerTo(exporter, IdUtils.ofSS("knitting_needles"));
 
+        // Nomad's Rest
+        for (DyeColor color : DyeColor.values()) {
+            Item woolKnitItem = Registries.ITEM.get(IdUtils.ofSS(color.getName() + "_wool_knit"));
+            Identifier bedrollId = Identifier.of("nomads_rest", color.getName() + "_bedroll");
+            Item bedrollItem = Registries.ITEM.get(bedrollId);
+
+            ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, bedrollItem)
+                    .input(woolKnitItem)
+                    .input(woolKnitItem)
+                    .input(BTWRConventionalTags.Items.STRING_TOOL_MATERIALS)
+                    .criterion(hasItem(woolKnitItem), conditionsFromItem(woolKnitItem))
+                    .offerTo(exporter, bedrollId);
+        }
+
         // Enable this recipe when Groth is added in BWT
         /**
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.NETHER_GROTH_SPORES)
@@ -190,6 +207,12 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .input(BwtItems.coalDustItem)
                 .criterion("has_coal_dust", conditionsFromItem(BwtItems.coalDustItem))
                 .offerTo(exporter, IdUtils.ofDS("coal_from_coal_dust"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, BwtItems.sawDustItem, 2)
+                .input(ModItems.KNITTING_NEEDLES)
+                .criterion(hasItem(ModItems.KNITTING_NEEDLES), conditionsFromItem(ModItems.KNITTING_NEEDLES))
+                .offerTo(exporter, IdUtils.ofDS("saw_dust_from_knitting_needles"));
+
     }
 
     private void createConvertToSawDustToolRecipes(RecipeExporter exporter) {
