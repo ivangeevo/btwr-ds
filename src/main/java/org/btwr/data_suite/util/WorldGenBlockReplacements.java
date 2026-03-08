@@ -20,6 +20,9 @@ public class WorldGenBlockReplacements {
     // Any other replacements of blocks for specific things (like structures only) should be handled differently.
     public static void register() {
 
+        // For ruined portals
+        BlockReplacementRegistry.registerReplacement(Blocks.NETHERRACK, Blocks.NETHER_BRICKS);
+
         // remove beds
         for (DyeColor color : DyeColor.values()) {
             Block bedBlock = Registries.BLOCK.get(IdUtils.ofMC(color.asString() + "_bed"));
