@@ -12,7 +12,6 @@ import net.minecraft.item.Items;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.vegehenna.item.ModItems;
 import org.btwr.data_suite.item.component.BTWRFoodComponents;
-import org.btwr.data_suite.mixin.vanilla.ComponentMap$BuilderAccessor;
 import tetro48.system.GranularHunger;
 
 /** Used to modify all food items to work for BTWR **/

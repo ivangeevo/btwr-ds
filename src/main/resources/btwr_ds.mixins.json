@@ -8,7 +8,7 @@
     "emi.EmiFuelRecipeAccessor",
     "emi.EmiFuelRecipeMixin",
     "material_beacons.BlockOrTagAccessor",
-    "vanilla.LootPoolBuilderAccessor",
+    "vanilla.accessor.LootPoolBuilderAccessor",
     "vanilla.ProtoChunkMixin",
     "vanilla.block.AbstractBlock$AbstractBlockStateMixin",
     "vanilla.block.AbstractBlockMixin",

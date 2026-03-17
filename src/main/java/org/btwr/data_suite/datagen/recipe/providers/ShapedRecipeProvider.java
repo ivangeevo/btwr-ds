@@ -230,6 +230,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_stick", conditionsFromItem(Items.STICK))
                 .offerTo(exporter, IdUtils.ofMC( "ladder"));
 
+        /**
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.HOPPER)
                 .input('B', Items.IRON_INGOT)
                 .input('N', Items.IRON_NUGGET)
@@ -239,6 +240,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern(" N ")
                 .criterion("has_chest", conditionsFromItem(Items.CHEST))
                 .offerTo(exporter);
+         **/
 
         // Adding door recipes
         for (String woodType : vanillaWoodTypes) {
@@ -604,8 +606,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
          .pattern("SPP")
          .pattern("SPP")
          .criterion("has_planks_siding", conditionsFromTag(BwtItemTags.WOODEN_SIDING_BLOCKS))
-         .offerTo(exporter, resultId);asd
-
+         .offerTo(exporter, resultId);
          }
          **/
 

@@ -2,13 +2,11 @@ package org.btwr.data_suite.event;
 
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableSource;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.AnyOfLootCondition;
 import net.minecraft.loot.condition.InvertedLootCondition;
 import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -29,7 +27,7 @@ import net.minecraft.util.Identifier;
 import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.data_suite.mixin.vanilla.entity.ItemEntryAccessor;
-import org.btwr.data_suite.mixin.vanilla.LootPoolBuilderAccessor;
+import org.btwr.data_suite.mixin.vanilla.accessor.LootPoolBuilderAccessor;
 
 import com.google.common.collect.ImmutableList;
 

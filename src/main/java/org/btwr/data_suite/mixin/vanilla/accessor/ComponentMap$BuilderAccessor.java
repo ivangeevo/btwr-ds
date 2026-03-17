@@ -1,4 +1,4 @@
-package org.btwr.data_suite.mixin.vanilla;
+package org.btwr.data_suite.mixin.vanilla.accessor;
 
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.ComponentType;

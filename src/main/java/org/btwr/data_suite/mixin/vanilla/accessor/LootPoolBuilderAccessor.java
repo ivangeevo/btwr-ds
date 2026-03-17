@@ -1,4 +1,4 @@
-package org.btwr.data_suite.mixin.vanilla;
+package org.btwr.data_suite.mixin.vanilla.accessor;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.loot.LootPool;
