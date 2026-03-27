@@ -7,9 +7,11 @@
 ## v1.0(dev)
 + Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
 + Fixed a bug with some vanilla food items giving full fat when eaten close to full hunger (BTWR-DS Mod change)
++ Changed the vanilla cauldron name to "Cistern" (BTWR: DS Resource Pack change)
 + Changed food values of most food items to match those in BTW CE 3.0 (BTWR-DS Mod change)
 + Changed recipes for BWT's wicker pane block and the vanilla chest since Self-Sustainable update v0.5 additions/changes (BTWR-DS Mod change)
 + Removed the recipe for crafting a white wool block from four string (BTWR-DS Mod change)
++ Removed the vanilla recipe for bucket (BTWR-DS Mod change)
 
 + #### Updated the following mod versions in the pack:
 
