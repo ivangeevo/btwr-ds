@@ -32,16 +32,15 @@
   "gamerule.tntExplosionDropDecay": "In Powder Keg explosions, some blocks won't drop their loot",
   "gamerule.tntExplosionDropDecay.description": "Some of the drops from blocks destroyed by explosions caused by Powder Keg are lost in the explosion.",
   "item.minecraft.tnt_minecart": "Minecart with Powder Keg",
-  "subtitles.entity.tnt.primed": "Powder Keg fizzes"
+  "subtitles.entity.tnt.primed": "Powder Keg fizzes",
 
-
-
-
-
-
-
-
-
-
-
+  "block.minecraft.cauldron": "Cistern",
+  "block.minecraft.lava_cauldron": "Lava Cistern",
+  "block.minecraft.powder_snow_cauldron": "Powder Snow Cistern",
+  "block.minecraft.water_cauldron": "Water Cistern",
+  "item.minecraft.cauldron": "Cistern",
+  "stat.minecraft.fill_cauldron": "Cisterns Filled",
+  "stat.minecraft.use_cauldron": "Water Taken from Cistern",
+  "subtitles.block.pointed_dripstone.drip_lava_into_cauldron": "Lava drips into Cistern",
+  "subtitles.block.pointed_dripstone.drip_water_into_cauldron": "Water drips into Cistern"
 }
