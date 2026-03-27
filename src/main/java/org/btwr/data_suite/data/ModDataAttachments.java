@@ -1,10 +1,5 @@
 package org.btwr.data_suite.data;
 
-import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
-import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
-import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
-import net.minecraft.util.Identifier;
-import org.btwr.animageddon.AnimageddonMod;
 import org.btwr.data_suite.BTWRDSMod;
 
 public class ModDataAttachments {
@@ -15,14 +10,6 @@ public class ModDataAttachments {
             Codec.BOOL
     );
      **/
-
-    public static final AttachmentType<CrawlingToggleData> CRAWLING_TOGGLE = AttachmentRegistry.create(
-            Identifier.of(AnimageddonMod.MOD_ID, "crawling_toggle_data"),
-            builder -> builder
-                    .initializer(() -> new CrawlingToggleData(false))
-                    .persistent(CrawlingToggleData.CODEC)
-                    .syncWith(CrawlingToggleData.PACKET_CODEC, AttachmentSyncPredicate.all())
-    );
 
     public static void register() {
         BTWRDSMod.LOGGER.info("Registering {} attachments", BTWRDSMod.MOD_ID);

@@ -13,7 +13,9 @@ import org.btwr.data_suite.render.entity.model.BeastEntityModel;
 // TODO: Disable the vanilla Tutorial pop ups for things like WASD, or craft planks TutorialStepHandlers, etc
 public class BTWRDSModClient implements ClientModInitializer {
 
-	public static final EntityModelLayer MODEL_BEAST_LAYER = new EntityModelLayer(Identifier.of(BTWRDSMod.MOD_ID, "beast"), "main");
+	public static final EntityModelLayer MODEL_BEAST_LAYER = new EntityModelLayer(
+			Identifier.of(BTWRDSMod.MOD_ID, "beast"), "main"
+	);
 
 	public BTWRDSSettings settings;
 	private static BTWRDSModClient instance;
