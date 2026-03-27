@@ -51,9 +51,7 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "blaze_powder");
         disableVanilla(exporter, "mushroom_stew");
         disableVanilla(exporter, "bone_meal_from_bone_block");
-        disableVanilla(exporter, "melon_slice");
-
-        disableVanilla(exporter, "bread_from_smoking");
+        disableVanilla(exporter, "bucket");
 
         // Food item recipes
         disableVanilla(exporter, "bread");
@@ -62,6 +60,9 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "beetroot_soup");
         disableVanilla(exporter, "rabbit_stew_from_red_mushroom");
         disableVanilla(exporter, "rabbit_stew_from_brown_mushroom");
+        disableVanilla(exporter, "melon_slice");
+        disableVanilla(exporter, "bread_from_smoking");
+
 
         // cake recipe is only cookable in a kiln (and eventually pumpkin pie when made placeable)
         disableVanilla(exporter,"cake_from_smoking");
