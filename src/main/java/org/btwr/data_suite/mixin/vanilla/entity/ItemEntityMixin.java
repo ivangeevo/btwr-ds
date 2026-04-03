@@ -4,8 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.world.World;
-import org.btwr.data_suite.data.ItemDespawnData;
-import org.btwr.data_suite.attachment.ModAttachments;
+import org.btwr.data_suite.data.attachment.ItemDespawnAttachedData;
+import org.btwr.data_suite.data.ModDataAttachments;
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ public abstract class ItemEntityMixin extends Entity {
     //@ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))
     private int modifyDespawnTime(int original) {
         ItemEntity self = (ItemEntity) (Object) this;
-        UUID ownerId = self.getAttached(ModAttachments.DROP_OWNER);
+        UUID ownerId = self.getAttached(ModDataAttachments.DROP_OWNER);
         if (ownerId == null) return original;
 
         var world = self.getWorld();
@@ -29,7 +29,7 @@ public abstract class ItemEntityMixin extends Entity {
         var owner = world.getServer().getPlayerManager().getPlayer(ownerId);
         if (owner == null) return original;
 
-        var data = owner.getAttachedOrElse(ModAttachments.ITEM_DESPAWN, ItemDespawnData.DEFAULT);
+        var data = owner.getAttachedOrElse(ModDataAttachments.ITEM_DESPAWN, ItemDespawnAttachedData.DEFAULT);
         if (data == null) return original;
 
         return switch (data.type()) {

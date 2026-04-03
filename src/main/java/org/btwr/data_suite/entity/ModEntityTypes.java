@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import org.btwr.data_suite.BTWRDSMod;
 import org.btwr.data_suite.entity.entities.BeastEntity;
 
-public class ModEntities {
+public class ModEntityTypes {
 
     public static final EntityType<BeastEntity> BEAST = Registry.register(
             Registries.ENTITY_TYPE,

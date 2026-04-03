@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
 import org.btwr.data_suite.config.BTWRDSSettings;
-import org.btwr.data_suite.entity.ModEntities;
+import org.btwr.data_suite.entity.ModEntityTypes;
 import org.btwr.data_suite.render.entity.BeastEntityRenderer;
 import org.btwr.data_suite.render.entity.model.BeastEntityModel;
 
@@ -42,7 +42,7 @@ public class BTWRDSModClient implements ClientModInitializer {
 
 		//PonderIndex.addPlugin(new BTWRPonderPlugin());
 
-		EntityRendererRegistry.register(ModEntities.BEAST, BeastEntityRenderer::new);
+		EntityRendererRegistry.register(ModEntityTypes.BEAST, BeastEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_BEAST_LAYER, BeastEntityModel::getTextureModelData);
 
 	}

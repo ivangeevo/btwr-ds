@@ -1,4 +1,4 @@
-package org.btwr.data_suite.event;
+package org.btwr.data_suite.event.events;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.enchantment.Enchantment;
@@ -37,7 +37,7 @@ public class ModTillingLootTableEvents {
     private static final LootCondition.Builder WITHOUT_HOE = MatchToolLootCondition.builder(
             ItemPredicate.Builder.create().tag(ItemTags.HOES)).invert();
 
-    public static void initialize() {
+    public static void register() {
         // set new loot tables for when breaking dirt and grass blocks
         //if (BTWRMod.getInstance().settings.shouldChangeHoesBTWStyle()) {
             //replaceGrassAndDirtLootTables();

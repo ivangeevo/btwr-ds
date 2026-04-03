@@ -1,4 +1,4 @@
-package org.btwr.data_suite.attachment;
+package org.btwr.data_suite.data.attachment;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,4 +1,4 @@
-package org.btwr.data_suite.event;
+package org.btwr.data_suite.event.events;
 
 import com.bwt.items.BwtItems;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;

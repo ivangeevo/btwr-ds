@@ -45,9 +45,6 @@
     "minecraft:sand": { "speed": 0.8 },
     "tough_environment:slab_sand": { "speed": 0.8 },
     "minecraft:red_sand": { "speed": 0.8 },
-    "tough_environment:slab_red_sand": { "speed": 0.8 },
-
-
-    "#minecraft:leaves": { "speed": 0.5 }
+    "tough_environment:slab_red_sand": { "speed": 0.8 }
   }
 }

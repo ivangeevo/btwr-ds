@@ -3,13 +3,11 @@ package org.btwr.data_suite;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
 import org.btwr.data_suite.config.BTWRDSSettings;
-import org.btwr.data_suite.attachment.ModAttachments;
+import org.btwr.data_suite.data.ModDataAttachments;
 import org.btwr.data_suite.effect.ModStatusEffects;
-import org.btwr.data_suite.entity.ModEntities;
-import org.btwr.data_suite.event.ModLootTableEvents;
+import org.btwr.data_suite.entity.ModEntityTypes;
+import org.btwr.data_suite.event.ModEvents;
 import org.btwr.data_suite.item.BTWRDS_Items;
-import org.btwr.data_suite.event.ItemCountModificationEvents;
-import org.btwr.data_suite.event.FoodComponentModifierEvents;
 import org.btwr.data_suite.loot.function.ModLootFunctions;
 import org.btwr.data_suite.util.PlanterFertilizer;
 import org.btwr.data_suite.util.WorldGenBlockReplacements;
@@ -45,18 +43,15 @@ public class BTWRDSMod implements ModInitializer {
 
 		BTWRDS_Items.register();
 		WorldGenBlockReplacements.register();
-		ModEntities.register();
-		ModAttachments.register();
-		FoodComponentModifierEvents.register();
-		ModLootTableEvents.register();
-		ItemCountModificationEvents.register();
+		ModEntityTypes.register();
+		ModDataAttachments.register();
+		ModEvents.register();
 		// TODO: Not tested enough
 		//SpawnChunksLoader.register();
 		PlanterFertilizer.register();
 		ModStatusEffects.register();
 		ModLootFunctions.register();
 
-		//ModDataAttachments.register();
 		//BTWRPotions.register();
 
 		//BlockSpeedRegistry.init();

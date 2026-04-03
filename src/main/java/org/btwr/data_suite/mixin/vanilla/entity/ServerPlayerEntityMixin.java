@@ -12,10 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionTypes;
-import org.btwr.data_suite.attachment.MagneticPointAttachedData;
-import org.btwr.data_suite.attachment.ModAttachmentTypes;
-import org.btwr.data_suite.data.ItemDespawnData;
-import org.btwr.data_suite.attachment.ModAttachments;
+import org.btwr.data_suite.data.attachment.MagneticPointAttachedData;
+import org.btwr.data_suite.data.attachment.ItemDespawnAttachedData;
+import org.btwr.data_suite.data.ModDataAttachments;
 import org.btwr.data_suite.item.component.components.MagneticPointTrackerComponent;
 import org.btwr.data_suite.item.component.ModComponentsTypes;
 import org.btwr.data_suite.util.ItemDespawnType;
@@ -39,7 +38,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         ServerPlayerEntity self = (ServerPlayerEntity)(Object)this;
 
         // Always tag drop owner
-        itemEntity.setAttached(ModAttachments.DROP_OWNER, self.getUuid());
+        itemEntity.setAttached(ModDataAttachments.DROP_OWNER, self.getUuid());
     }
 
     //@Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;", at = @At("RETURN"))
@@ -51,8 +50,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
         // Only tag death drops with special despawn logic
         if (self.isDead() || self.getHealth() <= 0.0f) {
-            self.setAttached(ModAttachments.ITEM_DESPAWN,
-                    new ItemDespawnData(ItemDespawnType.PERSIST_UNTIL_PLAYER_REDEATH)
+            self.setAttached(ModDataAttachments.ITEM_DESPAWN,
+                    new ItemDespawnAttachedData(ItemDespawnType.PERSIST_UNTIL_PLAYER_REDEATH)
             );
         }
     }
@@ -68,7 +67,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             ItemStack compass = Items.COMPASS.getDefaultStack();
 
             MagneticPointAttachedData data = player.getAttachedOrElse(
-                    ModAttachmentTypes.MAGNETIC_POINT, MagneticPointAttachedData.DEFAULT
+                    ModDataAttachments.MAGNETIC_POINT, MagneticPointAttachedData.DEFAULT
             );
 
             BlockPos pos = new BlockPos(data.getPosX(), 0, data.getPosZ());
@@ -126,7 +125,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         }
 
         MagneticPointAttachedData data = this.getWorld().getAttachedOrElse(
-                ModAttachmentTypes.MAGNETIC_POINT, MagneticPointAttachedData.DEFAULT
+                ModDataAttachments.MAGNETIC_POINT, MagneticPointAttachedData.DEFAULT
         );
 
         if (strongestPoint != null) {
@@ -138,7 +137,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             data.setHasValid(false);
         }
 
-        this.getWorld().setAttached(ModAttachmentTypes.MAGNETIC_POINT, data);
+        this.getWorld().setAttached(ModDataAttachments.MAGNETIC_POINT, data);
     }
 
 }
