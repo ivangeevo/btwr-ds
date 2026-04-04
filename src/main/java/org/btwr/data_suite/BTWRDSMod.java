@@ -58,6 +58,8 @@ public class BTWRDSMod implements ModInitializer {
 
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();
+
+
 	}
 
 	// TODO: Obsolete; No existing config options atm. Replace with the BTWR:SL config system if doing so

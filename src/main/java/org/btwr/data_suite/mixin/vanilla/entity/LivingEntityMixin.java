@@ -7,16 +7,19 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.btwr.data_suite.data.ModDataAttachments;
 import org.btwr.data_suite.util.ShieldModificationManager;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
@@ -60,6 +63,22 @@ public abstract class LivingEntityMixin extends Entity {
                             effect.getEffectType().matches(StatusEffects.NAUSEA))) {
                 cir.setReturnValue(false); // block the effect from being added
             }
+        }
+    }
+
+    @Inject(method = "heal", at = @At("TAIL"))
+    private void afterHealWolf(float amount, CallbackInfo ci) {
+        LivingEntity self = (LivingEntity)(Object)this;
+
+        if (!(self.getType() == EntityType.WOLF)) return;
+
+        var beastTimerData = self.getAttached(ModDataAttachments.BEAST_TIMER);
+
+        if (beastTimerData == null) return;
+
+        if (beastTimerData.getAteRottenFlesh()) {
+            beastTimerData.setAteRottenFlesh(false);
+            beastTimerData.tick((WolfEntity)self);
         }
     }
 

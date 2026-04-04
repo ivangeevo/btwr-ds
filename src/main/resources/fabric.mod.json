@@ -18,7 +18,8 @@
 		"main": ["org.btwr.data_suite.BTWRDSMod"],
 		"client": ["org.btwr.data_suite.BTWRDSModClient"],
 		"fabric-datagen": ["org.btwr.data_suite.data.BTWRDSDataGenerator"],
-		"modmenu": ["org.btwr.data_suite.config.BTWRDSConfig"]
+		"modmenu": ["org.btwr.data_suite.config.BTWRDSConfig"],
+		"mixinsquared": ["org.btwr.data_suite.mixin.BTWRDSMixinCanceller"]
 	},
 	"mixins": [
 		"btwr_ds.mixins.json",

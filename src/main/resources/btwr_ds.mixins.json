@@ -8,8 +8,8 @@
     "emi.EmiFuelRecipeAccessor",
     "emi.EmiFuelRecipeMixin",
     "material_beacons.BlockOrTagAccessor",
-    "vanilla.accessor.LootPoolBuilderAccessor",
     "vanilla.ProtoChunkMixin",
+    "vanilla.accessor.LootPoolBuilderAccessor",
     "vanilla.block.AbstractBlock$AbstractBlockStateMixin",
     "vanilla.block.AbstractBlockMixin",
     "vanilla.block.BlockMixin",
@@ -24,6 +24,7 @@
     "vanilla.entity.MobEntityMixin",
     "vanilla.entity.PlayerEntityMixin",
     "vanilla.entity.VillagerEntityMixin",
+    "vanilla.entity.WolfEntityMixin",
     "vanilla.item.ItemMixin",
     "vanilla.item.ItemsMixin"
   ],
