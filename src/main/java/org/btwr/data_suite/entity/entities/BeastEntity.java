@@ -18,9 +18,8 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.btwr.data_suite.ai.goal.BeastActiveTargetGoal;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Predicate;
 
 public class BeastEntity extends PathAwareEntity {
 
@@ -31,9 +30,6 @@ public class BeastEntity extends PathAwareEntity {
     public int heardHowlCountdown = 0;
 
     private boolean furWet;
-
-    private static final Predicate<Difficulty> DOOR_BREAK_DIFFICULTY_CHECKER = difficulty -> difficulty == Difficulty.HARD;
-    private final BreakDoorGoal breakDoorsGoal = new BreakDoorGoal(this, DOOR_BREAK_DIFFICULTY_CHECKER);
 
     public BeastEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
@@ -56,7 +52,7 @@ public class BeastEntity extends PathAwareEntity {
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(2, new AvoidSunlightGoal(this));
         // TODO: Add this goal from BTW
-        //tasks.addTask( 1, new ZombieBreakBarricadeBehavior( this ) );
+        //this.goalSelector.add(1, new BreakDoorGoal(this, difficulty -> difficulty == Difficulty.HARD));
         this.goalSelector.add(4, new PounceAtTargetGoal(this, 0.4F));
         this.goalSelector.add(5, new MeleeAttackGoal(this, 1.0, true));
         this.goalSelector.add(8, new WanderAroundFarGoal(this, MOVE_SPEED_PASSIVE / MOVE_SPEED_AGGRESSIVE));
@@ -69,16 +65,16 @@ public class BeastEntity extends PathAwareEntity {
         // This might mean making a new target class that accepts a custom follow range
         // Make the range 32 for players & llamas and 16 for all other target animals
 
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, PlayerEntity.class, false));
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, VillagerEntity.class, false));
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, ChickenEntity.class, false));
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, CowEntity.class, false));
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, PigEntity.class, false));
-        this.targetSelector.add(4, new ActiveTargetGoal<>(this, SheepEntity.class, false));
+        this.targetSelector.add(4, new BeastActiveTargetGoal<>(this, PlayerEntity.class, false, 32));
+        this.targetSelector.add(4, new BeastActiveTargetGoal<>(this, VillagerEntity.class, false, 32));
+        this.targetSelector.add(4, new BeastActiveTargetGoal<>(this, ChickenEntity.class, false, 32));
+        this.targetSelector.add(4, new BeastActiveTargetGoal<>(this, CowEntity.class, false, 32));
+        this.targetSelector.add(4, new BeastActiveTargetGoal<>(this, PigEntity.class, false, 32));
+        this.targetSelector.add(4, new BeastActiveTargetGoal<>(this, SheepEntity.class, false, 32));
 
         // Made them "hate" llamas, because a wolf usually flees from them
-        this.targetSelector.add(5, new ActiveTargetGoal<>(this, LlamaEntity.class, false));
-        this.targetSelector.add(6, new ActiveTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.BABY_TURTLE_ON_LAND_FILTER));
+        this.targetSelector.add(5, new BeastActiveTargetGoal<>(this, LlamaEntity.class, false, 32));
+        this.targetSelector.add(6, new BeastActiveTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.BABY_TURTLE_ON_LAND_FILTER, 32));
     }
 
     @Override
@@ -118,7 +114,7 @@ public class BeastEntity extends PathAwareEntity {
 
     @Override
     public double getEyeY() {
-        return this.getY() + this.getHeight() * 0.85f; // tweak 0.8–0.85 until suffocation stops
+        return this.getY() + this.getHeight() * 0.85f;
     }
 
     @Override
@@ -175,7 +171,6 @@ public class BeastEntity extends PathAwareEntity {
 
 
     //------------- Class Specific Methods ------------//
-
 
     public float getTailRotation() {
         return 1.5393804F;
