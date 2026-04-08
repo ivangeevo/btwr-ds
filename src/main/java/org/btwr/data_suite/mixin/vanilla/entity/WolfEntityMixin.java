@@ -1,7 +1,6 @@
 package org.btwr.data_suite.mixin.vanilla.entity;
 
 import com.bwt.entities.GoToAndPickUpBreedingItemGoal;
-import com.bwt.entities.PickUpBreedingItemWhileSittingGoal;
 import com.bwt.entities.WolfIsFedAccess;
 import com.bwt.items.BwtItems;
 import com.bwt.mixin.accessors.MobEntityAccessorMixin;
@@ -23,7 +22,6 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -31,6 +29,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
+import org.btwr.data_suite.ai.goal.WolfGoToAndPickupBreedingItemGoal;
+import org.btwr.data_suite.ai.goal.WolfPickUpBreedingItemWhileSittingGoal;
 import org.btwr.data_suite.data.ModDataAttachments;
 import org.btwr.data_suite.data.attachment.BeastTimerAttachedData;
 import org.spongepowered.asm.mixin.Mixin;
@@ -77,13 +77,13 @@ public abstract class WolfEntityMixin extends TameableEntity implements MobEntit
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     public void addGoal(CallbackInfo ci) {
-        this.getGoalSelector().add(1, new PickUpBreedingItemWhileSittingGoal(
+        this.getGoalSelector().add(1, new WolfPickUpBreedingItemWhileSittingGoal(
                 this,
                 1.7,
                 wolf -> !wolf.getDataTracker().get(IS_FED) || wolf.getHealth() < wolf.getMaxHealth(),
                 this::bwt$feed
         ));
-        this.getGoalSelector().add(7, new GoToAndPickUpBreedingItemGoal(
+        this.getGoalSelector().add(7, new WolfGoToAndPickupBreedingItemGoal(
                 this,
                 8,
                 1.8,
@@ -97,48 +97,50 @@ public abstract class WolfEntityMixin extends TameableEntity implements MobEntit
     public void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
 
-        // Rotten flesh feeding
-        if (!this.isBaby() && itemStack.isOf(Items.ROTTEN_FLESH)) {
-            if (!getWorld().isClient()) {
+        if (!this.isBaby() && !bwt$isFed()) {
+            // Rotten flesh feeding
+            if (itemStack.isOf(Items.ROTTEN_FLESH)) {
                 var beastData = this.getAttached(ModDataAttachments.BEAST_TIMER);
-                if (beastData != null) {
-                    beastData.setAteRottenFlesh(true);
-                }
-                itemStack.decrementUnlessCreative(1, player);
-            }
-            cir.setReturnValue(ActionResult.success(getWorld().isClient()));
-            return;
-        }
+                boolean alreadyFed = beastData != null && beastData.getAteRottenFlesh();
 
-        // Normal feeding of tamed wolves
-        if (!this.isBaby() && this.isTamed() && this.isBreedingItem(itemStack) && !bwt$isFed()) {
-            if (this.getWorld().isClient()) {
+                if (!alreadyFed) {
+                    if (!getWorld().isClient()) {
+                        itemStack.decrementUnlessCreative(1, player);
+                        this.bwt$feed(itemStack);
+                    }
+                    cir.setReturnValue(ActionResult.success(this.getWorld().isClient()));
+                    return;
+                }
+
+                // Already fed rotten flesh — consume the interaction but don't swing
                 cir.setReturnValue(ActionResult.CONSUME);
                 return;
             }
 
-            itemStack.decrementUnlessCreative(1, player);
+            // Normal feeding of tamed wolves
+            if (this.isTamed() && this.isBreedingItem(itemStack)) {
+                if (this.getWorld().isClient()) {
+                    cir.setReturnValue(ActionResult.CONSUME);
+                    return;
+                }
 
-            this.bwt$feed(itemStack);
-            cir.setReturnValue(ActionResult.success(this.getWorld().isClient()));
+                itemStack.decrementUnlessCreative(1, player);
+
+                this.bwt$feed(itemStack);
+                cir.setReturnValue(ActionResult.success(this.getWorld().isClient()));
+            }
         }
     }
 
     @Inject(method = "isBreedingItem", at = @At("HEAD"), cancellable = true)
     public void isBreedingItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.isOf(BwtItems.kibbleItem) || stack.isOf(Items.ROTTEN_FLESH)) {
+        if (stack.isOf(BwtItems.kibbleItem)) {
             cir.setReturnValue(true);
             return;
         }
-        if (stack.isOf(BwtItems.wolfChopItem) || stack.isOf(BwtItems.cookedWolfChopItem)) {
+        if (stack.isOf(Items.ROTTEN_FLESH) || stack.isOf(BwtItems.wolfChopItem) || stack.isOf(BwtItems.cookedWolfChopItem)) {
             cir.setReturnValue(false);
         }
-
-        if (stack.isIn(ItemTags.WOLF_FOOD)) {
-            cir.setReturnValue(true);
-        }
-
-        cir.cancel();
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -257,15 +259,16 @@ public abstract class WolfEntityMixin extends TameableEntity implements MobEntit
     @Unique
     public void bwt$feed(ItemStack itemStack) {
         int nutrition = itemStack.isOf(BwtItems.kibbleItem) ? 2 : itemStack.getOrDefault(DataComponentTypes.FOOD, new FoodComponent.Builder().build()).nutrition();
-        heal(nutrition * 2);
-        bwt$feed(nutrition);
 
         if (itemStack.isOf(Items.ROTTEN_FLESH)) {
             var beastData = this.getAttached(ModDataAttachments.BEAST_TIMER);
-            if (beastData == null) return;
-
-            beastData.setAteRottenFlesh(true);
+            if (beastData != null && !beastData.getAteRottenFlesh()) {
+                beastData.setAteRottenFlesh(true);
+            }
         }
+
+        heal(nutrition * 2);
+        bwt$feed(nutrition);
     }
 
     @Unique
