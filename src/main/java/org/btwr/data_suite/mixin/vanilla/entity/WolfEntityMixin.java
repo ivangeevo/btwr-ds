@@ -134,13 +134,21 @@ public abstract class WolfEntityMixin extends TameableEntity implements MobEntit
 
     @Inject(method = "isBreedingItem", at = @At("HEAD"), cancellable = true)
     public void isBreedingItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        // Kibble is a feeding item, not a breeding item
         if (stack.isOf(BwtItems.kibbleItem)) {
-            cir.setReturnValue(true);
+            cir.setReturnValue(false);
             return;
         }
-        if (stack.isOf(Items.ROTTEN_FLESH) || stack.isOf(BwtItems.wolfChopItem) || stack.isOf(BwtItems.cookedWolfChopItem)) {
+        // Wolf chops are neither feeding nor breeding items
+        if (stack.isOf(BwtItems.wolfChopItem) || stack.isOf(BwtItems.cookedWolfChopItem)) {
+            cir.setReturnValue(false);
+            return;
+        }
+        // Rotten flesh is a feeding-only item, not a breeding item
+        if (stack.isOf(Items.ROTTEN_FLESH)) {
             cir.setReturnValue(false);
         }
+        // Anything else in WOLF_FOOD tag falls through to vanilla -> true
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -258,17 +266,32 @@ public abstract class WolfEntityMixin extends TameableEntity implements MobEntit
 
     @Unique
     public void bwt$feed(ItemStack itemStack) {
-        int nutrition = itemStack.isOf(BwtItems.kibbleItem) ? 2 : itemStack.getOrDefault(DataComponentTypes.FOOD, new FoodComponent.Builder().build()).nutrition();
+        int nutrition;
+        if (itemStack.isOf(BwtItems.kibbleItem)) {
+            nutrition = 2;
+        } else if (itemStack.isOf(Items.ROTTEN_FLESH)) {
+            nutrition = 4;
+        } else {
+            FoodComponent food = itemStack.getOrDefault(DataComponentTypes.FOOD, null);
+            nutrition = food != null ? food.nutrition() : 0;
+        }
 
+        if (nutrition <= 0) return;
+
+        // Rotten flesh: mark ateRottenFlesh, set isFed, heal
         if (itemStack.isOf(Items.ROTTEN_FLESH)) {
             var beastData = this.getAttached(ModDataAttachments.BEAST_TIMER);
             if (beastData != null && !beastData.getAteRottenFlesh()) {
                 beastData.setAteRottenFlesh(true);
             }
+            bwt$setIsFed(true);
+            heal(nutrition * 2);
+            return;
         }
 
+        // All other items: heal and set isFed
         heal(nutrition * 2);
-        bwt$feed(nutrition);
+        bwt$feed(nutrition); // → bwt$setIsFed(nutrition > 0)
     }
 
     @Unique
