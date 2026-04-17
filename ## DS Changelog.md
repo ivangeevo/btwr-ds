@@ -1,6 +1,6 @@
 # BTWR: DS Changelog
 
-## ---[Pre-Alpha]---
+## ---[Alpha]---
 
-## v1.0.0
-+ Initial pre-alpha release
+## v0.0.1
++ Initial alpha release

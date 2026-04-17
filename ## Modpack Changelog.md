@@ -15,11 +15,12 @@
 
 + #### Updated the following mod versions in the pack:
 
-> #### **BTWR: Shared Library** - 0.8.1
+> #### **BTWR: Shared Library** - 0.8.3
 > #### **BTWR: Core** - 0.33.5
+> #### **Better With Time: HC Tweaks** - 1.4.5
 > #### **Bind** - 1.5.2
-> #### **Sturdy Trees** - 1.6.6
-> #### **Self Sustainable** - 0.5
+> #### **Sturdy Trees** - 2.0
+> #### **Self Sustainable** - 0.5.2
 > #### **Animageddon** - 0.3.3
 > #### **Vegehenna** - 0.5.2
 > #### **In The Gloom** - 1.4.2
