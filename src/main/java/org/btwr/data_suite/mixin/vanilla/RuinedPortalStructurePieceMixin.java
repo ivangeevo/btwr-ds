@@ -25,8 +25,6 @@ import java.util.List;
 
 @Mixin(RuinedPortalStructurePiece.class)
 public abstract class RuinedPortalStructurePieceMixin extends SimpleStructurePiece {
-
-
     public RuinedPortalStructurePieceMixin(StructurePieceType type, int length, StructureTemplateManager structureTemplateManager, Identifier id, String template, StructurePlacementData placementData, BlockPos pos) {
         super(type, length, structureTemplateManager, id, template, placementData, pos);
     }
@@ -80,6 +78,4 @@ public abstract class RuinedPortalStructurePieceMixin extends SimpleStructurePie
     private Block replaceNetherrackBottom() {
         return Blocks.NETHER_BRICKS;
     }
-
-
 }

@@ -8,7 +8,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.GameRules;
 
 public final class SpawnChunksLoader {
-
     private static boolean loaded = false;
 
     public static void register() {

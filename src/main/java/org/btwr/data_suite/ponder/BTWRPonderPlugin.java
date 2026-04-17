@@ -9,7 +9,6 @@ import org.btwr.data_suite.ponder.scene.BTWRPonderScenes;
 import org.btwr.data_suite.ponder.tag.BTWRPonderTags;
 
 public class BTWRPonderPlugin implements PonderPlugin {
-
     @Override
     public String getModId() {
         return BTWRDSMod.MOD_ID;
@@ -24,5 +23,4 @@ public class BTWRPonderPlugin implements PonderPlugin {
     public void registerTags(PonderTagRegistrationHelper<Identifier> helper) {
         BTWRPonderTags.register(helper);
     }
-
 }

@@ -16,7 +16,6 @@ import org.btwr.data_suite.BTWRDSMod;
 import java.util.*;
 
 public class BlockSpeedRegistry {
-
     private static final Map<Identifier, Double> BLOCK_SPEEDS = new HashMap<>();
     private static final Map<TagKey<Block>, Double> TAG_SPEEDS = new HashMap<>();
 
@@ -25,7 +24,6 @@ public class BlockSpeedRegistry {
         initializeEntries();
 
         ServerTickEvents.END_WORLD_TICK.register(world -> {
-
             for (ServerPlayerEntity player : world.getPlayers()) {
                 BlockPos pos = player.getBlockPos().down();
                 Block block = player.getWorld().getBlockState(pos).getBlock();
@@ -42,7 +40,6 @@ public class BlockSpeedRegistry {
                     attr.addTemporaryModifier(mod.toAttributeModifier());
                 });
             }
-
         });
     }
 
@@ -124,5 +121,4 @@ public class BlockSpeedRegistry {
     public static Optional<BlockSpeedModifier> get(BlockView world, BlockPos pos) {
         return get(world.getBlockState(pos));
     }
-
 }

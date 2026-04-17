@@ -21,7 +21,6 @@ import static org.btwr.tough_environment.item.ModItems.CHISEL_DIAMOND;
 import static org.btwr.tough_environment.item.ModItems.CHISEL_IRON;
 
 public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public StokedCrucibleRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }

@@ -10,7 +10,6 @@ import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import java.util.concurrent.CompletableFuture;
 
 public class DS_BlockTagProvider extends FabricTagProvider.BlockTagProvider {
-
     public DS_BlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -29,7 +28,5 @@ public class DS_BlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 //.add(Blocks.RAW_GOLD_BLOCK)
         //.add(Blocks.NETHERRACK)
         ;
-        
     }
-
 }

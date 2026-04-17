@@ -11,7 +11,6 @@ import org.btwr.data_suite.datagen.recipe.providers.*;
 import java.util.concurrent.CompletableFuture;
 
 public class CombinedRecipeProvider extends FabricRecipeProvider {
-
     protected ShapelessRecipeProvider shapelessRecipeProvider;
     protected ShapedRecipeProvider shapedRecipeProvider;
     protected ExtendedShapelessRecipeProvider craftingWithToolShapelessRecipeProvider;
@@ -30,12 +29,10 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected KilnRecipeProvider kilnRecipeProvider;
     protected PackingRecipeProvider packingRecipeProvider;
     protected MobSpawnerConversionRecipeProvider mobSpawnerRecipeProvider;
-
     protected DisabledRecipeProvider disabledRecipeProvider;
 
     public CombinedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
-
         this.shapelessRecipeProvider = new ShapelessRecipeProvider(output, registriesFuture);
         this.shapedRecipeProvider = new ShapedRecipeProvider(output, registriesFuture);
         this.craftingWithToolShapelessRecipeProvider = new ExtendedShapelessRecipeProvider(output, registriesFuture);
@@ -54,7 +51,6 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         this.soulBottlingRecipeProvider = new SoulBottlingRecipeProvider(output, registriesFuture);
         this.packingRecipeProvider = new PackingRecipeProvider(output, registriesFuture);
         this.mobSpawnerRecipeProvider = new MobSpawnerConversionRecipeProvider(output, registriesFuture);
-
         this.disabledRecipeProvider = new DisabledRecipeProvider(output, registriesFuture);
     }
 
@@ -78,7 +74,6 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
         kilnRecipeProvider.generate(exporter);
         packingRecipeProvider.generate(exporter);
         mobSpawnerRecipeProvider.generate(exporter);
-
         disabledRecipeProvider.generate(exporter);
     }
 
@@ -91,5 +86,4 @@ public class CombinedRecipeProvider extends FabricRecipeProvider {
     protected Identifier getRecipeIdentifier(Identifier identifier) {
         return identifier;
     }
-
 }

@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SpawnHelper.class)
 public abstract class SpawnHelperMixin {
-
     /**
      * Changes the world spawn 24-block restriction to 0, effectively
      * allowing hostile mobs to spawn right at world spawn.
@@ -32,5 +31,4 @@ public abstract class SpawnHelperMixin {
             cir.setReturnValue(false); // cancel spawn
         }
     }
-
 }

@@ -27,7 +27,6 @@ import org.btwr.data_suite.effect.ModStatusEffects;
 import org.btwr.data_suite.loot.function.ModLootFunctions;
 
 public class StatusEffectCountIncreaseLootFunction extends ConditionalLootFunction {
-    
     public static final int DEFAULT_LIMIT = 0;
     public static final MapCodec<StatusEffectCountIncreaseLootFunction> CODEC = RecordCodecBuilder.mapCodec(
             instance -> addConditionsField(instance)
@@ -80,7 +79,6 @@ public class StatusEffectCountIncreaseLootFunction extends ConditionalLootFuncti
         return stack;
     }
 
-
     public static StatusEffectCountIncreaseLootFunction.Builder builder(LootNumberProvider count) {
         RegistryEntry<StatusEffect> lootingEffectEntry = RegistryEntry.of(ModStatusEffects.LOOTING);
         return new StatusEffectCountIncreaseLootFunction.Builder(lootingEffectEntry, count);
@@ -110,5 +108,4 @@ public class StatusEffectCountIncreaseLootFunction extends ConditionalLootFuncti
             return new StatusEffectCountIncreaseLootFunction(this.getConditions(), this.effect, this.count, this.limit);
         }
     }
-
 }

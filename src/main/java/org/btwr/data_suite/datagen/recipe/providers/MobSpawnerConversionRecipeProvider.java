@@ -12,7 +12,6 @@ import org.btwr.tough_environment.block.ModBlocks;
 import java.util.concurrent.CompletableFuture;
 
 public class MobSpawnerConversionRecipeProvider extends FabricRecipeProvider {
-
     public MobSpawnerConversionRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -34,5 +33,4 @@ public class MobSpawnerConversionRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_cobblestone_loose_stairs", conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE_STAIRS))
                 .offerTo(exporter, IdUtils.ofDS("mob_spawner_conversion_from_cobblestone_loose_stairs_to_mossy_cobblestone_stairs"));
     }
-
 }

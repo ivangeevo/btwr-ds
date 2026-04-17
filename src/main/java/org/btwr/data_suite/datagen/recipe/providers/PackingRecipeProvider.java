@@ -20,7 +20,6 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class PackingRecipeProvider extends FabricRecipeProvider {
-
     public PackingRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -32,7 +31,6 @@ public class PackingRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         /** Normal items packing **/
         offerPacking(Blocks.RAW_GOLD_BLOCK, Items.RAW_GOLD, 9, exporter);
         offerPacking(Blocks.RAW_IRON_BLOCK, Items.RAW_IRON, 9, exporter);
@@ -88,5 +86,4 @@ public class PackingRecipeProvider extends FabricRecipeProvider {
                                 .withSuffixedPath(ingredientName)
                 );
     }
-
 }

@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 // TODO: Fix categories for each effect? Right now they are all MISC
 @Environment(EnvType.CLIENT)
 public class BTWREffectManager {
-
     public static final int ANIMAL_BIRTHING_EFFECT_ID = 2222;
     public static final int SAW_DAMAGE_EFFECT_ID = 2223;
     public static final int NETHER_GROTH_SPORES_EFFECT_ID = 2224;
@@ -1004,5 +1003,4 @@ public class BTWREffectManager {
     private static float rand(World world, float base, float range) {
         return base + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * range;
     }
-
 }

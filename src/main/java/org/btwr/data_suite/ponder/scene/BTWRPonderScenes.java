@@ -9,7 +9,6 @@ import org.btwr.data_suite.ponder.scene.scenes.KineticScenes;
 import org.btwr.data_suite.ponder.tag.BTWRPonderTags;
 
 public class BTWRPonderScenes {
-
     public static void register(PonderSceneRegistrationHelper<Identifier> helper) {
 
         PonderSceneRegistrationHelper<Block> HELPER =
@@ -18,5 +17,4 @@ public class BTWRPonderScenes {
         HELPER.forComponents(BwtBlocks.axleBlock)
                 .addStoryBoard("axle/relay", KineticScenes::axleAsRelay, BTWRPonderTags.MECHANICAL_RELAYS);
     }
-
 }

@@ -19,7 +19,6 @@ import java.util.function.Predicate;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
-
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -109,5 +108,4 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         // No arrow found
         cir.setReturnValue(ItemStack.EMPTY);
     }
-
 }

@@ -22,5 +22,4 @@ public enum ItemDespawnType {
         ItemDespawnType::valueOf,
         Enum::name
     );
-
 }

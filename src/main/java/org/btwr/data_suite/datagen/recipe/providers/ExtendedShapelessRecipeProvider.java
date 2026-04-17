@@ -26,7 +26,6 @@ import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import java.util.concurrent.CompletableFuture;
 
 public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public ExtendedShapelessRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -56,7 +55,6 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
                 .input(BTWR_Items.LEATHER_TANNED_CUT)
                 .criterion("has_leather_tanned_cut", conditionsFromItem(BTWR_Items.LEATHER_TANNED_CUT))
                 .offerTo(exporter, IdUtils.ofBWT("strap"));
-
 
         // Move this recipe into it's own provider when we figure out how to call recipes that have additional drops
         // and how to separate them from just tool crafting recipes.
@@ -157,5 +155,4 @@ public class ExtendedShapelessRecipeProvider extends FabricRecipeProvider implem
                 .criterion("has_" + strippedType, conditionsFromItem(strippedLog))
                 .offerTo(exporter, Identifier.of(SturdyTreesMod.MOD_ID, planksType + "_from_" + strippedType + "_tool_crafting"));
     }
-
 }

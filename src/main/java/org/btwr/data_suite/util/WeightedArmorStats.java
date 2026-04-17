@@ -1,7 +1,6 @@
 package org.btwr.data_suite.util;
 
 public enum WeightedArmorStats {
-
     GOLD(5, 8, 7, 4),
     CHAIN(3, 4, 4, 2),
     IRON(5, 8, 7, 4),

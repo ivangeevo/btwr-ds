@@ -8,7 +8,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.PersistentState;
 
 public class MagneticPointsState extends PersistentState {
-
     private final MagneticPointList list = new MagneticPointList();
 
     public MagneticPointsState() {}
@@ -41,5 +40,4 @@ public class MagneticPointsState extends PersistentState {
     public static MagneticPointsState get(ServerWorld world) {
         return world.getPersistentStateManager().getOrCreate(TYPE, "magnetic_points");
     }
-
 }

@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModLootTableEvents {
-
     private static final Identifier ZOMBIE_LOOT_TABLE_ID = IdUtils.ofMC("entities/zombie");
     private static final Identifier ZOMBIE_VILLAGER_LOOT_TABLE_ID = IdUtils.ofMC("entities/zombie_villager");
     private static final RegistryKey<LootTable> ZOMBIE_LOOT_TABLE = RegistryKey.of(RegistryKeys.LOOT_TABLE, ZOMBIE_LOOT_TABLE_ID);

@@ -9,7 +9,6 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 import java.util.concurrent.CompletableFuture;
 
 public class DS_LangGenerator extends FabricLanguageProvider {
-
     public DS_LangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }

@@ -12,7 +12,6 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class MaterialBeaconsDataProvider implements DataProvider {
-
     @Override
     public CompletableFuture<?> run(DataWriter writer) {
         return null;
@@ -58,5 +57,4 @@ public class MaterialBeaconsDataProvider implements DataProvider {
     private StatusEffectInstance addEffectIngredient(RegistryEntry<StatusEffect> effect, int duration, int amplifier) {
         return new StatusEffectInstance(effect, duration, amplifier);
     }
-
 }

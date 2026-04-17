@@ -14,15 +14,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public abstract class AbstractBlock$AbstractBlockStateMixin implements LandingBlock {
-
     @Shadow public abstract Block getBlock();
 
-    // remove the outline of fire blocks in order to make them unbreakable by hand
+    // Remove the outline of fire blocks to make them unbreakable by hand
     @Inject(method = "getOutlineShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"),  cancellable = true)
     private void removeOutline(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if (this.getBlock().getDefaultState().isIn(BlockTags.FIRE)) {
             cir.setReturnValue(VoxelShapes.empty());
         }
     }
-
 }

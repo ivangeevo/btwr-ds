@@ -31,7 +31,6 @@ import static org.btwr.tough_environment.item.ModItems.CHISEL_WOOD;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
 
@@ -41,7 +40,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         this.addModExclusive(exporter);
 
         // TODO: figure out why .additionalDrop() builder is not working on datagen
@@ -196,7 +194,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
     }
 
     private void addModExclusive(RecipeExporter exporter) {
-
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, BwtItems.hempFiberItem,9)
                 .input(BwtItems.fabricItem)
                 .criterion("has_fabric", conditionsFromItem(BwtItems.fabricItem))
@@ -212,7 +209,6 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .input(ModItems.KNITTING_NEEDLES)
                 .criterion(hasItem(ModItems.KNITTING_NEEDLES), conditionsFromItem(ModItems.KNITTING_NEEDLES))
                 .offerTo(exporter, IdUtils.ofDS("saw_dust_from_knitting_needles"));
-
     }
 
     private void createConvertToSawDustToolRecipes(RecipeExporter exporter) {
@@ -227,5 +223,4 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion(criterion, conditionsFromItem(tool))
                 .offerTo(exporter, IdUtils.ofDS("saw_dust_from_converting_" + extractName(tool)));
     }
-
 }

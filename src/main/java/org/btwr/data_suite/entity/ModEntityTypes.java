@@ -10,7 +10,6 @@ import org.btwr.data_suite.BTWRDSMod;
 import org.btwr.data_suite.entity.entities.BeastEntity;
 
 public class ModEntityTypes {
-
     public static final EntityType<BeastEntity> BEAST = Registry.register(
             Registries.ENTITY_TYPE,
             Identifier.of(BTWRDSMod.MOD_ID, "beast"),
@@ -20,5 +19,4 @@ public class ModEntityTypes {
     public static void register() {
         FabricDefaultAttributeRegistry.register(BEAST, BeastEntity.createBeastAttributes());
     }
-
 }

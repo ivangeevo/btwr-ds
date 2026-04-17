@@ -30,7 +30,6 @@ import net.minecraft.util.math.random.Random;
 import org.btwr.data_suite.loot.function.ModLootFunctions;
 
 public class StatusEffectApplyBonusLootFunction extends ConditionalLootFunction {
-
 	private static final Map<Identifier, StatusEffectApplyBonusLootFunction.Type> FACTORIES = Stream.of(
 			BinomialWithBonusCount.TYPE,
 			OreDrops.TYPE,
@@ -105,7 +104,7 @@ public class StatusEffectApplyBonusLootFunction extends ConditionalLootFunction 
 		return builder(conditions -> new StatusEffectApplyBonusLootFunction(conditions, effect, new StatusEffectApplyBonusLootFunction.UniformBonusCount(bonusMultiplier)));
 	}
 
-	static record BinomialWithBonusCount(int extra, float probability) implements StatusEffectApplyBonusLootFunction.Formula {
+	record BinomialWithBonusCount(int extra, float probability) implements StatusEffectApplyBonusLootFunction.Formula {
 		private static final Codec<StatusEffectApplyBonusLootFunction.BinomialWithBonusCount> CODEC = RecordCodecBuilder.create(
 			instance -> instance.group(
 						Codec.INT.fieldOf("extra").forGetter(StatusEffectApplyBonusLootFunction.BinomialWithBonusCount::extra),
@@ -186,5 +185,4 @@ public class StatusEffectApplyBonusLootFunction extends ConditionalLootFunction 
 			return TYPE;
 		}
 	}
-
 }

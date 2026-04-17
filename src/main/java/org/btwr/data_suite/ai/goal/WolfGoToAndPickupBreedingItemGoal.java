@@ -16,7 +16,6 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class WolfGoToAndPickupBreedingItemGoal extends GoToAndPickUpBreedingItemGoal {
-
     public WolfGoToAndPickupBreedingItemGoal(AnimalEntity animal, double searchRadius, double pickupRadius,
                                              double speed, Predicate<AnimalEntity> wantsFoodCondition, Consumer<ItemStack> foodConsumer) {
         super(animal, searchRadius, pickupRadius, speed, wantsFoodCondition, foodConsumer);

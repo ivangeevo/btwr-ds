@@ -13,7 +13,6 @@ import net.minecraft.util.math.ColorHelper;
 import org.btwr.data_suite.effect.ModStatusEffects;
 
 public class FortuneStatusEffect extends StatusEffect {
-
     public FortuneStatusEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
@@ -33,5 +32,4 @@ public class FortuneStatusEffect extends StatusEffect {
         int alpha = effect.isAmbient() ? 38 : 255;
         return EntityEffectParticleEffect.create(ParticleTypes.ENTITY_EFFECT, ColorHelper.Argb.withAlpha(alpha, this.getColor()));
     }
-
 }

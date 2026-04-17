@@ -19,7 +19,6 @@ import org.btwr.shared_library.util.utils.IdUtils;
 import java.util.UUID;
 
 public class ModDataAttachments {
-
     public static final AttachmentType<MagneticPointAttachedData> MAGNETIC_POINT = AttachmentRegistry.create(
             Identifier.of(BTWRDSMod.MOD_ID, "magnetic_point"),
             builder -> builder
@@ -62,5 +61,4 @@ public class ModDataAttachments {
             entity.setAttached(type, attachment);
         }
     }
-
 }

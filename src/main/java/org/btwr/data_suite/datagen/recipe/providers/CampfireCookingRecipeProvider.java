@@ -15,7 +15,6 @@ import org.btwr.vegehenna.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 public class CampfireCookingRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public CampfireCookingRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }

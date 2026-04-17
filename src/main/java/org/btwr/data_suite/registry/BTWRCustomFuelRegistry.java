@@ -28,7 +28,6 @@ import static org.btwr.vegehenna.item.ModItems.SUGAR_CANE_ROOTS;
  *  most likely incompatible with other mods that add to fuel with FuelRegistry
  *  to the{@link AbstractFurnaceBlockEntity#createFuelTimeMap()} **/
 public class BTWRCustomFuelRegistry {
-
     // TODO: Add pink petals as fuel item
     public static Map<Item, Integer> getMap() {
         Map<Item, Integer> tempMap = Maps.newLinkedHashMap();
@@ -273,7 +272,6 @@ public class BTWRCustomFuelRegistry {
         addFuel(map, BwtBlocks.bloodWoodBlocks.fenceGateBlock, 125);
         addFuel(map, BwtBlocks.bloodWoodBlocks.buttonBlock, 25);
 
-
         addFuel(map, BwtItemTags.WOODEN_SIDING_BLOCKS, 150);
         addFuel(map, BwtItemTags.WOODEN_MOULDING_BLOCKS, 75);
         addFuel(map, BwtItemTags.WOODEN_CORNER_BLOCKS, 38);
@@ -293,7 +291,6 @@ public class BTWRCustomFuelRegistry {
 
         addFuel(map, BwtItems.sawDustItem, 25);
         addFuel(map, BwtItems.soulDustItem, 25);
-
     }
 
     private static boolean isNonFlammableWood(Item item) {
@@ -318,5 +315,4 @@ public class BTWRCustomFuelRegistry {
             fuelTimes.put(item2, fuelTime);
         }
     }
-
 }

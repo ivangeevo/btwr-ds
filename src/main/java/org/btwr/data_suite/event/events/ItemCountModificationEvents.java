@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 /** Handles modification of items max allowed count**/
 public class ItemCountModificationEvents {
-
     public static void register() {
         DefaultItemComponentEvents.MODIFY.register(context -> {
             modifyTo16(context);

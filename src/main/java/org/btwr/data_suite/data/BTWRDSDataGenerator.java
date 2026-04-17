@@ -6,7 +6,6 @@ import org.btwr.data_suite.datagen.*;
 import org.btwr.data_suite.datagen.recipe.CombinedRecipeProvider;
 
 public class BTWRDSDataGenerator implements DataGeneratorEntrypoint {
-
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
@@ -20,5 +19,4 @@ public class BTWRDSDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(DS_LangGenerator::new);
 		pack.addProvider(DS_ModelProvider::new);
 	}
-
 }

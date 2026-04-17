@@ -24,14 +24,12 @@ import static org.btwr.vegehenna.block.ModBlocks.BREAD_DOUGH;
 import static org.btwr.vegehenna.item.ModItems.PASTRY_UNCOOKED_CAKE;
 
 public class KilnRecipeProvider extends FabricRecipeProvider {
-
     public KilnRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         // DS recipes
         KilnRecipe.JsonBuilder.create(org.btwr.self_sustainable.block.ModBlocks.BRICK_UNFIRED).result(Items.BRICK)
                 .criterion("has_brick_unfired", conditionsFromItem(org.btwr.self_sustainable.block.ModBlocks.BRICK_UNFIRED))
@@ -83,6 +81,5 @@ public class KilnRecipeProvider extends FabricRecipeProvider {
         KilnRecipe.JsonBuilder.create(Blocks.PINK_TERRACOTTA).drops(Blocks.PINK_GLAZED_TERRACOTTA).offerTo(exporter);
 
         KilnRecipe.JsonBuilder.create(Blocks.END_STONE).drops(ModBlocks.WHITE_COBBLESTONE).drops(BTWRDS_Items.ENDER_SLAG).offerTo(exporter);
-
     }
 }

@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 public record BlockOrTagIngredient(BlockIngredient blockIngredient) implements CustomIngredient {
-
     public static final BlockOrTagIngredient.Serializer SERIALIZER = new BlockOrTagIngredient.Serializer();
     public static final BlockOrTagIngredient EMPTY = new BlockOrTagIngredient(
             new BlockIngredient(Optional.empty(), Optional.empty())
@@ -92,5 +91,4 @@ public record BlockOrTagIngredient(BlockIngredient blockIngredient) implements C
             BlockIngredient.Serializer.PACKET_CODEC.encode(buf, ingredient.blockIngredient);
         }
     }
-
 }

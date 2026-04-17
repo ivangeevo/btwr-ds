@@ -11,11 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TorchBlock.class)
 public abstract class TorchBlockMixin {
-
     // Add soul particle effects to soul torches to indicate of their repel and spawn blocking behavior
     //@Inject(method = "randomDisplayTick", at = @At("TAIL"))
     private void addHorizontalSoulParticles(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
         RepellingSoulTorch.getInstance().displayHorizontalParticles(state, world, pos, random);
     }
-
 }

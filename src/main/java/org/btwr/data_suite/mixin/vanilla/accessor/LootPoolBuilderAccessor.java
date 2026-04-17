@@ -8,8 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(LootPool.Builder.class)
 public interface LootPoolBuilderAccessor {
-
     @Accessor("entries") ImmutableList.Builder<LootPoolEntry> getEntries();
     @Accessor("entries") void setEntries(ImmutableList.Builder<LootPoolEntry> entries);
-
 }

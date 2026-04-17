@@ -18,7 +18,6 @@ import static org.btwr.data_suite.data.ModProperties.FERTILIZED;
 
 
 public class PlanterFertilizer {
-
     public static void register() {
         UseItemCallback.EVENT.register(PlanterFertilizer::tryFertilize);
     }
@@ -55,5 +54,4 @@ public class PlanterFertilizer {
 
         return TypedActionResult.pass(stack);
     }
-
 }

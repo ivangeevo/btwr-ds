@@ -6,15 +6,12 @@ import net.minecraft.data.client.*;
 import org.btwr.data_suite.item.BTWRDS_Items;
 
 public class DS_ModelProvider extends FabricModelProvider {
-
     public DS_ModelProvider(FabricDataOutput generator) {
         super(generator);
     }
 
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-
-    }
+    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {}
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
@@ -25,5 +22,4 @@ public class DS_ModelProvider extends FabricModelProvider {
         itemModelGenerator.register(BTWRDS_Items.ELEMENT, Models.GENERATED);
         itemModelGenerator.register(BTWRDS_Items.REDSTONE_LATCH, Models.GENERATED);
     }
-
 }

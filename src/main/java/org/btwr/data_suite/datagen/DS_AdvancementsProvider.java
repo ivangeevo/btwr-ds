@@ -36,7 +36,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class DS_AdvancementsProvider extends FabricAdvancementProvider {
-
     public static final Identifier background = Id.mc("textures/gui/advancements/backgrounds/adventure.png");
 
     public DS_AdvancementsProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
@@ -267,5 +266,4 @@ public class DS_AdvancementsProvider extends FabricAdvancementProvider {
         AdvancementCriterion<ItemCriterion.Conditions> criterion = ItemCriterion.Conditions.createPlacedBlock(thisCondition, neighborCondition);
         return blockPlacedAdvancement(block, title, description, criterion);
     }
-
 }

@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BeaconBlockEntity.class)
 public abstract class BeaconBlockEntityMixin extends BlockEntity implements BeaconBlockEntityAdded {
-
     @Unique private int oldLevel = 0;
 
     public BeaconBlockEntityMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -51,5 +50,4 @@ public abstract class BeaconBlockEntityMixin extends BlockEntity implements Beac
         }
         added.setOldLevel(newLevel);
     }
-
 }

@@ -9,7 +9,6 @@ import org.btwr.data_suite.loot.function.functions.StatusEffectApplyBonusLootFun
 import org.btwr.data_suite.loot.function.functions.StatusEffectCountIncreaseLootFunction;
 
 public class ModLootFunctions {
-
     public static final LootFunctionType<StatusEffectCountIncreaseLootFunction> STATUS_EFFECT_LOOT =
             new LootFunctionType<>(StatusEffectCountIncreaseLootFunction.CODEC);
 
@@ -29,5 +28,4 @@ public class ModLootFunctions {
                 STATUS_EFFECT_APPLY_BONUS
         );
     }
-
 }

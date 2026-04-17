@@ -21,10 +21,8 @@ import static issame.material_beacons.MaterialBeacons.LOGGER;
 import static issame.material_beacons.MaterialBeacons.MOD_ID;
 
 public class BeaconDataReloadListener implements SimpleSynchronousResourceReloadListener {
-
     private static final Gson GSON = new Gson();
     private static final Map<Identifier, BeaconData> beaconData = new HashMap<>();
-
 
     @Override
     public Identifier getFabricId() {
@@ -58,5 +56,4 @@ public class BeaconDataReloadListener implements SimpleSynchronousResourceReload
         }
         return matching.isEmpty() ? null : matching;
     }
-
 }

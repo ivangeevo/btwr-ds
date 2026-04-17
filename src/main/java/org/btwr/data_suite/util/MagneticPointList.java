@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MagneticPointList {
-
 	public List<MagneticPoint> magneticPoints;
 	
 	public MagneticPointList()
@@ -70,5 +69,4 @@ public class MagneticPointList {
 		}
 		return null;
     }
-
 }

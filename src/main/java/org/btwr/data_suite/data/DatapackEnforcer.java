@@ -13,7 +13,6 @@ import java.util.*;
 import java.util.function.UnaryOperator;
 
 public class DatapackEnforcer {
-
     private static final ResourcePackSource RESOURCE_PACK_SOURCE = ResourcePackSource.create(
             getSourceTextSupplier("pack.source." + BTWRDSMod.MOD_ID), true
     );
@@ -54,5 +53,4 @@ public class DatapackEnforcer {
 
         manager.setEnabledProfiles(enabled);
     }
-
 }

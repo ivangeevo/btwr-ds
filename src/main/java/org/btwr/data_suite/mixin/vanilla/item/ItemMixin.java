@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Item.class)
 public abstract class ItemMixin {
-
     // Add no damage to axe items when breaking replaceable blocks like short grass, fern, tall grass, etc.
     @Inject(method = "postMine", at = @At(
             value = "INVOKE",
@@ -33,5 +32,4 @@ public abstract class ItemMixin {
             cir.setReturnValue(true);
         }
     }
-
 }

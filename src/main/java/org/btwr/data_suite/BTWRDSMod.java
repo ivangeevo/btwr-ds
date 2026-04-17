@@ -20,7 +20,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class BTWRDSMod implements ModInitializer {
-
 	public static final String MOD_ID = "btwr_ds";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -33,7 +32,6 @@ public class BTWRDSMod implements ModInitializer {
 	public static BTWRDSMod getInstance() {
 		return instance;
 	}
-
 
 	@Override
 	public void onInitialize() {
@@ -58,8 +56,6 @@ public class BTWRDSMod implements ModInitializer {
 
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();
-
-
 	}
 
 	// TODO: Obsolete; No existing config options atm. Replace with the BTWR:SL config system if doing so
@@ -93,7 +89,4 @@ public class BTWRDSMod implements ModInitializer {
 			LOGGER.warn("Could not save BTWRDS settings: {}", e.getLocalizedMessage());
 		}
 	}
-
 }
-
-

@@ -8,7 +8,6 @@ import net.minecraft.util.math.Direction;
 import org.btwr.data_suite.ponder.scene.BTWRSceneBuilder;
 
 public class KineticScenes {
-
     /**
     public static void axleAsRelay(SceneBuilder builder, SceneBuildingUtil util) {
         BTWRSceneBuilder scene = new BTWRSceneBuilder(builder);
@@ -85,5 +84,4 @@ public class KineticScenes {
         scene.idle(20);
         scene.markAsFinished();
     }
-
 }

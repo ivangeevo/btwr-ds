@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 
 public record StatusEffectIngredient(StatusEffectInstance effectInstance, Integer duration, Integer amplifier, Double range) implements CustomIngredient {
-
     public static final Serializer SERIALIZER = new Serializer();
 
     public static StatusEffectIngredient create(StatusEffectInstance effectInstance, Integer duration, Integer amplifier, Double range) {
@@ -60,7 +59,6 @@ public record StatusEffectIngredient(StatusEffectInstance effectInstance, Intege
             return ID;
         }
 
-
         @Override public PacketCodec<RegistryByteBuf, StatusEffectIngredient> getPacketCodec() {
             return PACKET_CODEC;
         }
@@ -87,5 +85,4 @@ public record StatusEffectIngredient(StatusEffectInstance effectInstance, Intege
             buf.writeDouble(ingredient.range);
         }
     }
-
 }

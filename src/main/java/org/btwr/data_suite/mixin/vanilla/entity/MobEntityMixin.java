@@ -23,7 +23,6 @@ import static net.minecraft.entity.mob.MobEntity.getEquipmentForSlot;
 
 @Mixin(MobEntity.class)
 public abstract class MobEntityMixin extends LivingEntity {
-
     protected MobEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -107,5 +106,4 @@ public abstract class MobEntityMixin extends LivingEntity {
     private void onTick(CallbackInfo ci) {
         RepellingSoulTorch.getInstance().repelMobs((MobEntity)(Object)this);
     }
-
 }

@@ -38,7 +38,6 @@ import static org.btwr.tough_environment.item.ModItems.STONE_BRICK;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 public class ShapedRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
 
@@ -595,7 +594,6 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_planter", conditionsFromItem(BwtBlocks.planterBlock))
                 .offerTo(exporter, IdUtils.ofBWT("grass_planter"));
 
-
         /**
          // Adding trapdoor recipes
          for (String woodType : vanillaWoodTypes) {
@@ -707,7 +705,6 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .ingredient(BwtItems.hellfireDustItem)
                 .criterion("has_hellfire_dust", conditionsFromItem(BwtItems.hellfireDustItem))
                 .offerTo(exporter, IdUtils.ofBWT("nethercoal_from_cauldron"));
-
 
         // Tools
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, BwtItems.compositeBowItem)
@@ -844,7 +841,6 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofDS("diamond_hoe_right"));
-
     }
 
     private void overrideRecipesForVanillaBeds(RecipeExporter exporter) {
@@ -878,5 +874,4 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion(RecipeProvider.hasItem(woolInput), RecipeProvider.conditionsFromItem(woolInput))
                 .offerTo(exporter);
     }
-
 }

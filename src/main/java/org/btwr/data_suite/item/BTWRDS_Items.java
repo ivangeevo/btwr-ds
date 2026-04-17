@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 import org.btwr.data_suite.BTWRDSMod;
 
 public class BTWRDS_Items {
-
     public static final Item BTWR_ICON = registerItem("btwr_icon", new Item(new Item.Settings()));
 
     public static final Item BARK_BLOOD_WOOD = registerItem("bark_blood_wood", new Item(new Item.Settings()));
@@ -43,5 +42,4 @@ public class BTWRDS_Items {
             entries.add(REDSTONE_LATCH);
         });
     }
-
 }

@@ -21,7 +21,6 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class TillingDropUtil {
-
 	public static boolean simulateTillingDrop(ServerWorld world, BlockPos pos, PlayerEntity player, Hand hand,
 											  BiPredicate<BlockState, BlockState> shouldRevertBlockChange,
 											  BlockState customTilledState) {
@@ -61,8 +60,6 @@ public class TillingDropUtil {
 
 			return true;
 		}
-
 		return false;
 	}
-
 }

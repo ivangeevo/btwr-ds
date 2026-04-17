@@ -13,7 +13,6 @@ import org.btwr.data_suite.entity.entities.BeastEntity;
 import org.btwr.shared_library.api.data.UpdateRequiringData;
 
 public class BeastTimerAttachedData extends UpdateRequiringData<WolfEntity> {
-
     private boolean ateRottenFlesh;
     private int timer;
 

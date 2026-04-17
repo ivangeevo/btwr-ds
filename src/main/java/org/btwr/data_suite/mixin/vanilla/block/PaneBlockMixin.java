@@ -16,7 +16,6 @@ import java.util.Set;
 
 @Mixin(PaneBlock.class)
 public abstract class PaneBlockMixin {
-
     // Define blocks that panes must NOT connect to
     @Unique
     private static final Set<Block> BLACKLISTED_CONNECTION_BLOCKS = Set.of(
@@ -34,5 +33,4 @@ public abstract class PaneBlockMixin {
             cir.setReturnValue(false);
         }
     }
-
 }

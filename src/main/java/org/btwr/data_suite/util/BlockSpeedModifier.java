@@ -4,7 +4,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.util.Identifier;
 
 public class BlockSpeedModifier {
-
     private final double modifier;
     private final Identifier id;
     private final EntityAttributeModifier.Operation operation;
@@ -22,5 +21,4 @@ public class BlockSpeedModifier {
     public Identifier getId() {
         return id;
     }
-
 }

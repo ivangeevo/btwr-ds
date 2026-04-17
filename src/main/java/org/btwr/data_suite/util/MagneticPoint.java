@@ -5,7 +5,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
 public class MagneticPoint {
-
 	static private double[] fieldStrengthMultipliersByLevel =
 			new double[] { 0D, 1D, 8D, 27D, 64D, 125D, 216D, 343D, 4096D };
 
@@ -77,5 +76,4 @@ public class MagneticPoint {
     		return -1D;
     	}
     }
-
 }

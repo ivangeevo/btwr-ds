@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayerInteractionManager.class)
 public abstract class ServerPlayerInteractionManagerMixin {
-
     @Shadow @Final protected ServerPlayerEntity player;
     @Shadow protected ServerWorld world;
 
@@ -42,5 +41,4 @@ public abstract class ServerPlayerInteractionManagerMixin {
             }
         }
     }
-
 }

@@ -13,7 +13,6 @@ import org.btwr.self_sustainable.block.ModBlocks;
 import org.btwr.shared_library.util.utils.IdUtils;
 
 public class WorldGenBlockReplacements {
-
     private static final String[] vanillaWoodTypes = new String[]
             {"oak", "birch", "spruce", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped"};
 
@@ -91,5 +90,4 @@ public class WorldGenBlockReplacements {
 
         });
     }
-
 }

@@ -15,7 +15,6 @@ import org.btwr.vegehenna.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 public class MillstoneRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public MillstoneRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -86,5 +85,4 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_cocoa_beans", conditionsFromItem(Items.COCOA_BEANS))
                 .offerTo(exporter, IdUtils.ofDS("cocoa_powder_from_milling_cocoa_beans"));
     }
-
 }

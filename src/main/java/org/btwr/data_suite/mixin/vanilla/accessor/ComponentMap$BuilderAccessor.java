@@ -8,7 +8,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(ComponentMap.Builder.class)
 public interface ComponentMap$BuilderAccessor {
-    
     @Invoker("put") <T> void put(ComponentType<T> type, @Nullable Object value);
-
 }

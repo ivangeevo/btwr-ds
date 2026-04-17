@@ -23,7 +23,6 @@ import static org.btwr.vegehenna.item.ModItems.*;
 
 
 public class OvenCookingRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     private static final String SUFFIX = "_from_oven_cooking";
     private static final int FOOD_COOK_TIME = 1600;
     private static final int ORE_COOK_TIME = 12800;
@@ -102,5 +101,4 @@ public class OvenCookingRecipeProvider extends FabricRecipeProvider implements R
                 OvenCookingRecipe::new
         );
     }
-
 }

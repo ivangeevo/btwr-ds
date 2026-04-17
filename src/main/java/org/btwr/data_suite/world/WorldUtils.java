@@ -13,7 +13,6 @@ import static org.btwr.data_suite.data.ModProperties.FERTILIZED;
  * Helper functions related to the world
  */
 public class WorldUtils {
-
     /** Fertilizes a farmland block **/
     public static void fertilizeFarmland(ItemUsageContext context, BlockPos pos, BlockState farmlandState) {
         context.getWorld().setBlockState(pos, ModBlocks.FARMLAND_FERTILIZED.getDefaultState().with(MOISTURE, farmlandState.get(MOISTURE)));
@@ -30,5 +29,4 @@ public class WorldUtils {
         if (context.getPlayer() != null && context.getPlayer().isCreative()) return;
         context.getStack().decrement(1);
     }
-
 }

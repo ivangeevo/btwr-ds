@@ -23,7 +23,6 @@ import static net.minecraft.state.property.Properties.MOISTURE;
 
 @Mixin(AbstractBlock.class)
 public abstract class AbstractBlockMixin {
-
     @Inject(method = "randomTick", at = @At("HEAD"))
     private void onRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         if (((AbstractBlock)(Object)this) instanceof SoilPlanterBlock) {
@@ -84,5 +83,4 @@ public abstract class AbstractBlockMixin {
     private boolean isInstanceOf(Class<?> cls) {
         return cls.isInstance(this);
     }
-
 }

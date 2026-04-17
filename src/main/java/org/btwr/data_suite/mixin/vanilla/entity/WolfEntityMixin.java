@@ -42,7 +42,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = WolfEntity.class, priority = 99999)
 public abstract class WolfEntityMixin extends TameableEntity implements MobEntityAccessorMixin, WolfIsFedAccess {
-
     protected WolfEntityMixin(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -298,5 +297,4 @@ public abstract class WolfEntityMixin extends TameableEntity implements MobEntit
     public boolean bwt$isInTheDark() {
         return getWorld().getLightLevel(getBlockPos()) < 5;
     }
-
 }

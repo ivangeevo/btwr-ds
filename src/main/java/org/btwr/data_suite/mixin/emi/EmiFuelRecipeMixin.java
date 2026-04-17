@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EmiFuelRecipe.class)
 public abstract class EmiFuelRecipeMixin {
-
     @Inject(method = "addWidgets", at = @At(
             value = "INVOKE",
             target = "Ldev/emi/emi/api/widget/WidgetHolder;addText(Lnet/minecraft/text/Text;IIIZ)Ldev/emi/emi/api/widget/TextWidget;"),
@@ -34,5 +33,4 @@ public abstract class EmiFuelRecipeMixin {
         int remainingSeconds = seconds % 60;
         return "Burns for " + (minutes > 0 ? minutes + "m " : "") + remainingSeconds + "s";
     }
-
 }

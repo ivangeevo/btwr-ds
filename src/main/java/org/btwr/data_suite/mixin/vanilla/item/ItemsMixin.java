@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(Items.class)
 public abstract class ItemsMixin {
-
     @ModifyArg(method = "<clinit>", at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/item/AxeItem;createAttributeModifiers(Lnet/minecraft/item/ToolMaterial;FF)Lnet/minecraft/component/type/AttributeModifiersComponent;"
@@ -15,5 +14,4 @@ public abstract class ItemsMixin {
     private static float setAxesBaseDamage(float par2) {
         return 2;
     }
-
 }

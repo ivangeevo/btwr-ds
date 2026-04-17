@@ -8,12 +8,10 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(World.class)
 public abstract class WorldMixin implements WorldAdded {
-
     @Unique private MagneticPointList magneticPointList = new MagneticPointList();
 
     @Override
     public MagneticPointList getMagneticPointList() {
         return magneticPointList;
     }
-
 }

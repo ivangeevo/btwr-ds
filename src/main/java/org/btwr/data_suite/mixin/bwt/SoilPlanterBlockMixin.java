@@ -19,9 +19,7 @@ import static org.btwr.data_suite.data.ModProperties.FERTILIZED;
 
 @Mixin(SoilPlanterBlock.class)
 public abstract class SoilPlanterBlockMixin extends PlanterBlock {
-
-    @Unique
-    private static final IntProperty MOISTURE = Properties.MOISTURE;
+    @Unique private static final IntProperty MOISTURE = Properties.MOISTURE;
 
     public SoilPlanterBlockMixin(Settings settings) {
         super(settings);
@@ -54,5 +52,4 @@ public abstract class SoilPlanterBlockMixin extends PlanterBlock {
         BlockState state = world.getBlockState(pos);
         return state.get(MOISTURE) == 7;
     }
-
 }

@@ -23,7 +23,6 @@ import static net.minecraft.block.Block.pushEntitiesUpBeforeBlockChange;
  *
  */
 public class BlockTillingManager {
-
     public static final Block[] tillableDirtBlock = {Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT};
 
     /** Normal calls to the TillableBlockRegistry
@@ -45,7 +44,6 @@ public class BlockTillingManager {
     }
 
     public static class MixinMod {
-
         private static final MixinMod INSTANCE = new MixinMod();
         private MixinMod() {}
         public static MixinMod getInstance() {
@@ -85,5 +83,4 @@ public class BlockTillingManager {
         BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
         world.setBlockState(pos, updatedState);
     }
-
 }

@@ -13,7 +13,6 @@ import org.btwr.data_suite.BTWRDSMod;
 import org.btwr.data_suite.effect.ModStatusEffects;
 
 public class BTWRPotions {
-
     public static final Potion REDUCED_HUNGER =
             Registry.register(
                     Registries.POTION,

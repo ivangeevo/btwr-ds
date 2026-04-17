@@ -19,14 +19,12 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 import java.util.concurrent.CompletableFuture;
 
 public class CauldronRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public CauldronRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         // DS recipes
         CauldronRecipe.JsonBuilder.createFood().result(Items.RABBIT_STEW, 5)
                 .ingredient(Items.COOKED_RABBIT)
@@ -148,5 +146,4 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_scoured_leather", conditionsFromItem(BTWR_Items.LEATHER_SCOURED_CUT))
                 .offerTo(exporter, IdUtils.ofBWT("tanned_leather_cut_from_leather_scoured_cut_with_" + extractName(barkItem) + "_in_cauldron"));
     }
-
 }

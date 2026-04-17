@@ -9,8 +9,7 @@ import java.util.Map;
  * Handles block replacement mappings for world generation and other modifications.
  * Mods can register block replacements dynamically.
  */
-public class OGBlockReplacementRegistry
-{
+public class OGBlockReplacementRegistry {
     private record ReplacementInfo(Block block, boolean copyProperties) {}
     private static final Map<Block, ReplacementInfo> REPLACEMENTS = new HashMap<>();
 
@@ -50,5 +49,4 @@ public class OGBlockReplacementRegistry
     public static boolean shouldCopyProperties(Block original) {
         return getReplacementInfo(original).copyProperties();
     }
-
 }

@@ -8,14 +8,10 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 public class SoulBottlingRecipeProvider extends FabricRecipeProvider {
-
     public SoulBottlingRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
-
-    }
-
+    public void generate(RecipeExporter exporter) {}
 }

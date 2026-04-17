@@ -13,7 +13,6 @@ import org.btwr.shared_library.util.utils.IdUtils;
 import java.util.concurrent.CompletableFuture;
 
 public class TurntableRecipeProvider extends FabricRecipeProvider {
-
     public TurntableRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -23,5 +22,4 @@ public class TurntableRecipeProvider extends FabricRecipeProvider {
         TurntableRecipe.JsonBuilder.create(Blocks.CLAY, BwtBlocks.unfiredCrucibleBlock)
                 .drops(Items.CLAY_BALL).offerTo(exporter, IdUtils.ofBWT("turntable_clay"));
     }
-
 }

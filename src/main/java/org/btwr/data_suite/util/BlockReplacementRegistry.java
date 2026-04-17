@@ -12,7 +12,6 @@ import java.util.Map;
  * that defines how to derive the final {@link BlockState}.
  */
 public class BlockReplacementRegistry {
-
     /**
      * Functional interface for transforming the original blockstate into the
      * final blockstate used for the replacement.

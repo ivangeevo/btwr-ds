@@ -11,7 +11,6 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 import java.util.concurrent.CompletableFuture;
 
 public class HopperFilteringRecipeProvider extends FabricRecipeProvider {
-
     public HopperFilteringRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -26,5 +25,4 @@ public class HopperFilteringRecipeProvider extends FabricRecipeProvider {
                 .soulCount(1)
                 .offerTo(exporter);
     }
-
 }

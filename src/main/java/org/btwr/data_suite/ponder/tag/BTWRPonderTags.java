@@ -10,7 +10,6 @@ import net.minecraft.util.Identifier;
 import org.btwr.data_suite.BTWRDSMod;
 
 public class BTWRPonderTags {
-
     public static final Identifier
 
     MECHANICAL_RELAYS = loc("mechanical_relays");
@@ -20,7 +19,6 @@ public class BTWRPonderTags {
     }
 
     public static void register(PonderTagRegistrationHelper<Identifier> helper) {
-
         PonderTagRegistrationHelper<Block> HELPER = helper.withKeyFunction(
                 Registries.BLOCK::getId
         );
@@ -40,5 +38,4 @@ public class BTWRPonderTags {
                 .add(BwtBlocks.axleBlock)
                 .add(BwtBlocks.gearBoxBlock);
     }
-
 }

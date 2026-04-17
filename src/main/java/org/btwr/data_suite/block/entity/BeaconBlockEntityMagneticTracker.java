@@ -3,7 +3,6 @@ package org.btwr.data_suite.block.entity;
 import net.minecraft.block.entity.BeaconBlockEntity;
 
 public class BeaconBlockEntityMagneticTracker {
-
     private static final BeaconBlockEntityMagneticTracker INSTANCE = new BeaconBlockEntityMagneticTracker();
 
     private BeaconBlockEntityMagneticTracker() {}
@@ -34,5 +33,4 @@ public class BeaconBlockEntityMagneticTracker {
             beacon.getWorld().getMagneticPointList().changePowerLevelOfPointAt(beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ(), newPowerLevel * 2);
         }
     }
-
 }

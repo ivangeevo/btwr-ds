@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
 
 public record MagneticPointTrackerComponent(Optional<GlobalPos> target, boolean tracked) {
-
 	public static final Codec<MagneticPointTrackerComponent> CODEC = RecordCodecBuilder.create(
 		instance -> instance.group(
 					GlobalPos.CODEC
@@ -46,5 +45,4 @@ public record MagneticPointTrackerComponent(Optional<GlobalPos> target, boolean 
 			return this;
 		}
 	}
-
 }

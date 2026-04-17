@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 public class RepellingSoulTorch {
-
     private static final RepellingSoulTorch INSTANCE = new RepellingSoulTorch();
 
     private RepellingSoulTorch() {}
@@ -38,7 +37,6 @@ public class RepellingSoulTorch {
             }
         }
         return false;
-
     }
 
     /** Repel mobs close to a soul torch **/
@@ -60,7 +58,6 @@ public class RepellingSoulTorch {
                     mobEntity.addVelocity(direction.multiply(strength));
                     mobEntity.velocityModified = true;
                 });
-
     }
 
     public void displayHorizontalParticles(BlockState state, World world, BlockPos pos, Random random) {
@@ -103,5 +100,4 @@ public class RepellingSoulTorch {
             world.addParticle(ParticleTypes.SOUL, dx, centerY, dz, vx, 0, vz);
         }
     }
-
 }

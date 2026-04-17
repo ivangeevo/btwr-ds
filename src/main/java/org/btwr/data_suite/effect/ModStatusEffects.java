@@ -12,7 +12,6 @@ import org.btwr.data_suite.effect.effects.LootingStatusEffect;
 import org.btwr.data_suite.effect.effects.ReducedHungerStatusEffect;
 
 public class ModStatusEffects {
-
     public static final StatusEffect FORTUNE = new LootingStatusEffect(StatusEffectCategory.BENEFICIAL, 14270531);
     public static final StatusEffect LOOTING = new FortuneStatusEffect(StatusEffectCategory.BENEFICIAL, 9643043);
     //public static final StatusEffect TRUE_SIGHT = new TrueSightStatusEffect(StatusEffectCategory.BENEFICIAL, 14270531);
@@ -32,5 +31,4 @@ public class ModStatusEffects {
         Registry.register(Registries.STATUS_EFFECT, Identifier.of(BTWRDSMod.MOD_ID, "looting"), LOOTING);
        //Registry.register(Registries.STATUS_EFFECT, Identifier.of(BTWRDSMod.MOD_ID, "true_sight"), TRUE_SIGHT);
     }
-
 }

@@ -9,7 +9,6 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 public class ArmorWeightHelper {
-
     private static final Map<ArmorMaterial, WeightedArmorStats> WEIGHT_MAP = new IdentityHashMap<>();
 
     static {
@@ -42,5 +41,4 @@ public class ArmorWeightHelper {
             };
         }
     }
-
 }

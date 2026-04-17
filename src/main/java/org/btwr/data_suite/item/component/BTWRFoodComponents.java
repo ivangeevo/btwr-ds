@@ -7,7 +7,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 
 public class BTWRFoodComponents {
-
     public static class Granular {
         public static final FoodComponent MELON_SLICE = newGranular(0f).build();
         public static final FoodComponent MASHED_MELON = newGranular(0f).build();
@@ -121,5 +120,4 @@ public class BTWRFoodComponents {
     private static StatusEffectInstance addRegenerationEffect(int dur, int amp) {
         return new StatusEffectInstance(StatusEffects.REGENERATION, dur, amp);
     }
-
 }

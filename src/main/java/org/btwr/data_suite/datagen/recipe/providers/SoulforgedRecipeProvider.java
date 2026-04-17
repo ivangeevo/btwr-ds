@@ -17,14 +17,12 @@ import org.btwr.tough_environment.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 public class SoulforgedRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public SoulforgedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         // TODO: Add soulforged recipe for the chopping block when it's added to BTWR: Core
         /**
          SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BTWR_Blocks.CHOPPING_BLOCK)
@@ -69,5 +67,4 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
                 .criterion("has_soul_urn", conditionsFromItem(BwtItems.soulUrnItem))
                 .offerTo(exporter, IdUtils.ofBWT("buddy_block"));
     }
-
 }

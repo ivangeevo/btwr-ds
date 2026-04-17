@@ -20,7 +20,6 @@ import org.btwr.vegehenna.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 public class SawRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public SawRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -39,7 +38,6 @@ public class SawRecipeProvider extends FabricRecipeProvider implements RecipeUti
 
         // Recipes for sawing log blocks
         this.createSawLogRecipes(exporter);
-
     }
 
     private void createSawLogRecipes(RecipeExporter exporter) {
@@ -83,5 +81,4 @@ public class SawRecipeProvider extends FabricRecipeProvider implements RecipeUti
                 .criterion("has_", conditionsFromItem(strippedLogBlock))
                 .offerTo(exporter, IdUtils.ofBWT("saw_" + extractName(strippedLogBlock)));
     }
-
 }

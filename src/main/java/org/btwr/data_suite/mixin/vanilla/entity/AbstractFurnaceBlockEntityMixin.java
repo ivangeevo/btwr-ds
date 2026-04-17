@@ -19,7 +19,6 @@ import java.util.Objects;
 
 @Mixin(AbstractFurnaceBlockEntity.class)
 public abstract class AbstractFurnaceBlockEntityMixin extends LockableContainerBlockEntity {
-
     @Shadow @Nullable private static volatile Map<Item, Integer> fuelTimes;
 
     protected AbstractFurnaceBlockEntityMixin(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
@@ -31,5 +30,4 @@ public abstract class AbstractFurnaceBlockEntityMixin extends LockableContainerB
         Map<Item, Integer> map = fuelTimes;
         cir.setReturnValue(Objects.requireNonNullElseGet(map, BTWRCustomFuelRegistry::getMap));
     }
-
 }

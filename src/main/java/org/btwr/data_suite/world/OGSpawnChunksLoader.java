@@ -6,7 +6,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.ChunkPos;
 
 public class OGSpawnChunksLoader {
-
     private static final int CHUNK_RADIUS = 6;
 
     private static boolean loaded = false;
@@ -33,5 +32,4 @@ public class OGSpawnChunksLoader {
             }
         }
     }
-
 }

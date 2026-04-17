@@ -8,7 +8,6 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.util.math.BlockPos;
 
 public record MagneticPointGlobalPos(BlockPos pos) {
-
 	public static final MapCodec<MagneticPointGlobalPos> MAP_CODEC = RecordCodecBuilder.mapCodec(
 		instance -> instance.group(
 				 BlockPos.CODEC.fieldOf("pos").forGetter(MagneticPointGlobalPos::pos))
@@ -26,5 +25,4 @@ public record MagneticPointGlobalPos(BlockPos pos) {
 	public String toString() {
 		return " " + this.pos;
 	}
-
 }

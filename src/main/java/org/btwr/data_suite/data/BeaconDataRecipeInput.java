@@ -16,7 +16,6 @@ import java.util.Objects;
 import static issame.material_beacons.MaterialBeacons.LOGGER;
 
 public record BeaconDataRecipeInput(List<String> bases) implements RecipeInput {
-
     @Override
     public ItemStack getStackInSlot(int slot) {
         for (BlockOrTag b : getBaseTags()) {
@@ -52,5 +51,4 @@ public record BeaconDataRecipeInput(List<String> bases) implements RecipeInput {
                 .filter(Objects::nonNull)
                 .toList();
     }
-
 }

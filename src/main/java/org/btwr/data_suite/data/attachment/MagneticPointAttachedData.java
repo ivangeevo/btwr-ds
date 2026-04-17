@@ -7,7 +7,6 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 
 public class MagneticPointAttachedData {
-
     private boolean hasValid;
     private int posX;
     private int posZ;
@@ -65,5 +64,4 @@ public class MagneticPointAttachedData {
 
     // A default value we can use as an "empty" or reset data component
     public static MagneticPointAttachedData DEFAULT = new MagneticPointAttachedData(false, 0, 0);
-
 }

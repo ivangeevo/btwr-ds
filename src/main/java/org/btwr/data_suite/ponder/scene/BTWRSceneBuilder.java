@@ -5,7 +5,6 @@ import net.createmod.ponder.foundation.PonderScene;
 import net.createmod.ponder.foundation.PonderSceneBuilder;
 
 public class BTWRSceneBuilder extends PonderSceneBuilder {
-
     private final WorldInstructions world;
 
     public BTWRSceneBuilder(SceneBuilder baseSceneBuilder) {
@@ -17,8 +16,5 @@ public class BTWRSceneBuilder extends PonderSceneBuilder {
         world = new WorldInstructions();
     }
 
-    public class WorldInstructions extends PonderWorldInstructions {
-
-    }
-
+    public class WorldInstructions extends PonderWorldInstructions {}
 }

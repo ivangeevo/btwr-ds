@@ -12,7 +12,6 @@ import java.util.UUID;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin extends Entity {
-
     public ItemEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -38,5 +37,4 @@ public abstract class ItemEntityMixin extends Entity {
             default -> original;
         };
     }
-
 }

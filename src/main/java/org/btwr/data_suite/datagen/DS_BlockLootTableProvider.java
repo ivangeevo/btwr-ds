@@ -17,7 +17,6 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider {
-
     public DS_BlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
@@ -49,7 +48,6 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider {
 
         // override other loot tables
         this.addDrop(Blocks.BONE_BLOCK, this::boneBlockDrops);
-
     }
 
     public LootTable.Builder boneBlockDrops(Block drop) {
@@ -73,8 +71,5 @@ public class DS_BlockLootTableProvider extends FabricBlockLootTableProvider {
                         .with(ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0f)))));
     }
 
-    private void forMod() {
-
-    }
-
+    private void forMod() {}
 }

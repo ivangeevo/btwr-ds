@@ -27,7 +27,6 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class ModTillingLootTableEvents {
-
     private static final RegistryKey<LootTable> DIRT_LOOT_TABLE_ID = RegistryKey.of(
             RegistryKeys.LOOT_TABLE, Identifier.ofVanilla("blocks/dirt"));
 
@@ -89,5 +88,4 @@ public class ModTillingLootTableEvents {
                         )
         );
     }
-
 }

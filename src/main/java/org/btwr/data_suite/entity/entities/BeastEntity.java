@@ -22,7 +22,6 @@ import org.btwr.data_suite.ai.goal.BeastActiveTargetGoal;
 import org.jetbrains.annotations.Nullable;
 
 public class BeastEntity extends PathAwareEntity {
-
     private static final float MOVE_SPEED_AGGRESSIVE = 0.45F;
     private static final float MOVE_SPEED_PASSIVE = 0.3F;
 
@@ -40,15 +39,11 @@ public class BeastEntity extends PathAwareEntity {
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, MOVE_SPEED_AGGRESSIVE)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
-                ;
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0);
     }
 
     @Override
     protected void initGoals() {
-
-        //getNavigator().setBreakDoors( true );
-
         this.goalSelector.add(1, new SwimGoal(this));
         this.goalSelector.add(2, new AvoidSunlightGoal(this));
         // TODO: Add this goal from BTW
@@ -238,8 +233,5 @@ public class BeastEntity extends PathAwareEntity {
 
 
     @Override
-    public void onKickedByCow(CowEntity cowEntity) {
-
-    }
-
+    public void onKickedByCow(CowEntity cowEntity) {}
 }

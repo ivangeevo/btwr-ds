@@ -5,7 +5,6 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 
 public class ArmorWeightManager {
-
     private static final ArmorWeightManager INSTANCE = new ArmorWeightManager();
     private ArmorWeightManager() {}
     public static ArmorWeightManager getInstance() {
@@ -24,5 +23,4 @@ public class ArmorWeightManager {
         }
         return weight;
     }
-
 }

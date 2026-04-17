@@ -11,10 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WallTorchBlock.class)
 public abstract class WallTorchBlockMixin {
-
     //@Inject(method = "randomDisplayTick", at = @At("TAIL"))
     private void addHorizontalSoulParticles(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
         RepellingSoulTorch.getInstance().displayHorizontalWallParticles(state, world, pos, random);
     }
-
 }

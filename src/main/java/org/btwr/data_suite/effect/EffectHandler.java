@@ -12,7 +12,6 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class EffectHandler {
-
     public static Map<Integer, Effect> effectMap = new HashMap<>();
 
     public static boolean playEffect(int effectID, World world, PlayerEntity player, BlockPos pos, BlockState state) {
@@ -29,5 +28,4 @@ public class EffectHandler {
     public interface Effect {
         void playEffect(World world, PlayerEntity player, BlockPos pos, BlockState state);
     }
-
 }

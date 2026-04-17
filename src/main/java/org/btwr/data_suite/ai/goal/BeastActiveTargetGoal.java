@@ -8,7 +8,6 @@ import net.minecraft.util.math.Box;
 import java.util.function.Predicate;
 
 public class BeastActiveTargetGoal<T extends LivingEntity> extends ActiveTargetGoal<T> {
-
     protected double targetFollowRange;
 
     public BeastActiveTargetGoal(MobEntity mob, Class<T> targetClass, boolean checkVisibility, double targetFollowRange) {

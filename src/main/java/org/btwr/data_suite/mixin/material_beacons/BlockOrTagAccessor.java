@@ -8,8 +8,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(BlockOrTag.class)
 public interface BlockOrTagAccessor {
-
     @Accessor("block") Block getBlock();
     @Accessor("tag") TagKey<Block> getTag();
-
 }

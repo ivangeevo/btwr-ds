@@ -37,7 +37,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class DS_VanillaOverrideAdvancementsProvider extends FabricAdvancementProvider {
-
     public static final Identifier background = Id.mc("textures/gui/advancements/backgrounds/adventure.png");
 
     public DS_VanillaOverrideAdvancementsProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
@@ -46,7 +45,6 @@ public class DS_VanillaOverrideAdvancementsProvider extends FabricAdvancementPro
 
     @Override
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
-
         AdvancementEntry rootAdvancement = Advancement.Builder.create()
                 .display(
                         BTWRDS_Items.BTWR_ICON,
@@ -269,5 +267,4 @@ public class DS_VanillaOverrideAdvancementsProvider extends FabricAdvancementPro
         AdvancementCriterion<ItemCriterion.Conditions> criterion = ItemCriterion.Conditions.createPlacedBlock(thisCondition, neighborCondition);
         return blockPlacedAdvancement(block, title, description, criterion);
     }
-
 }

@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BoneMealItem.class)
 public abstract class BoneMealItemMixin {
-
     // Fertilize farmland on use
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
@@ -36,5 +35,4 @@ public abstract class BoneMealItemMixin {
             cir.setReturnValue(ActionResult.SUCCESS);
         }
     }
-
 }

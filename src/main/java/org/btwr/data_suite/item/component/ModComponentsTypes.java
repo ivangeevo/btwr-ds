@@ -7,7 +7,6 @@ import org.btwr.data_suite.BTWRDSMod;
 import org.btwr.data_suite.item.component.components.MagneticPointTrackerComponent;
 
 public class ModComponentsTypes {
-
     public static final ComponentType<MagneticPointTrackerComponent> MAGNETIC_POINT_TRACKER = ComponentType.<MagneticPointTrackerComponent>builder()
             .codec(MagneticPointTrackerComponent.CODEC)
             .packetCodec(MagneticPointTrackerComponent.PACKET_CODEC)
@@ -27,5 +26,4 @@ public class ModComponentsTypes {
     {
         Registry.register(registryType, BTWRDSMod.MOD_ID + ":" + stringName, componentType);
     }
-
 }

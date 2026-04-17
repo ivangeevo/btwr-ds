@@ -4,7 +4,6 @@ package org.btwr.data_suite.effect.special;
 import org.btwr.data_suite.effect.EffectHandler;
 
 public class BTWREffects {
-
     private static void register(int id, EffectHandler.Effect e) {
         EffectHandler.effectMap.put(id, e);
     }
@@ -94,5 +93,4 @@ public class BTWREffects {
         register("wood_door");
          **/
     }
-
 }

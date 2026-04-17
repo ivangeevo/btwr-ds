@@ -25,7 +25,6 @@ import static org.btwr.data_suite.data.ModProperties.FERTILIZED;
 
 @Mixin(Block.class)
 public abstract class BlockMixin {
-
     // Adds MOISTURE and FERTILIZED blockstate properties to the SoilPlanterBlock
     @Inject(method = "appendProperties", at = @At("HEAD"))
     private void onAppendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
@@ -43,8 +42,9 @@ public abstract class BlockMixin {
 
     @Inject(method = "afterBreak", at = @At("TAIL"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity,
-                              ItemStack tool, CallbackInfo ci) {
-
+                              ItemStack tool, CallbackInfo ci
+    )
+    {
         // Execute block tilling behavior from breaking blocks with a hoe
         //BlockTillingManager.MixinMod.getInstance().onAfterBreak(world, pos, state, tool, player);
 
@@ -78,5 +78,4 @@ public abstract class BlockMixin {
                 || state.isIn(BlockTags.WOODEN_TRAPDOORS)
                 || state.isIn(BlockTags.WOODEN_DOORS);
     }
-
 }

@@ -11,7 +11,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class AnimateBlockEntityInstruction extends TickingInstruction {
-
 	protected double deltaPerTick;
 	protected double totalDelta;
 	protected double target;
@@ -21,7 +20,9 @@ public class AnimateBlockEntityInstruction extends TickingInstruction {
 	private final Function<PonderLevel, Float> getter;
 
 	protected AnimateBlockEntityInstruction(BlockPos location, float totalDelta, int ticks,
-											BiConsumer<PonderLevel, Float> setter, Function<PonderLevel, Float> getter) {
+											BiConsumer<PonderLevel, Float> setter, Function<PonderLevel, Float> getter
+	)
+	{
 		super(false, ticks);
 		this.location = location;
 		this.setter = setter;
@@ -54,5 +55,4 @@ public class AnimateBlockEntityInstruction extends TickingInstruction {
 			return Optional.of(beType.cast(blockEntity));
 		return Optional.empty();
 	}
-
 }

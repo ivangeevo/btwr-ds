@@ -11,7 +11,6 @@ import org.btwr.shared_library.util.utils.RecipeUtils;
 import java.util.concurrent.CompletableFuture;
 
 public class DisabledRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
-
     public DisabledRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -23,7 +22,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         // temporarily disable the BWT HCT millstone recipe to not clash with the BWT one
         disableRecipe(exporter, "bwt_hct", "modern_millstone");
 
@@ -38,7 +36,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         /** Animageddon recipes to remove **/
         //disableAG(exporter, "gunpowder");
         disableRecipe(exporter, "animageddon", "gunpowder");
-
     }
 
     protected void removeForVanilla(RecipeExporter exporter) {
@@ -62,7 +59,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         disableVanilla(exporter, "rabbit_stew_from_brown_mushroom");
         disableVanilla(exporter, "melon_slice");
         disableVanilla(exporter, "bread_from_smoking");
-
 
         // cake recipe is only cookable in a kiln (and eventually pumpkin pie when made placeable)
         disableVanilla(exporter,"cake_from_smoking");
@@ -98,7 +94,6 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
 
         // Remove the ability to repair items by combining them
         disableVanilla(exporter, "repair_item");
-
     }
 
     protected void removeForST(RecipeExporter exporter) {
