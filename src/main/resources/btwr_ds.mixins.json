@@ -24,7 +24,6 @@
     "vanilla.entity.MobEntityMixin",
     "vanilla.entity.PlayerEntityMixin",
     "vanilla.entity.VillagerEntityMixin",
-    "vanilla.entity.WolfEntityMixin",
     "vanilla.item.ItemMixin",
     "vanilla.item.ItemsMixin"
   ],
