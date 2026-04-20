@@ -1,5 +1,6 @@
 package org.btwr.data_suite.ponder.scene.scenes;
 
+import com.bwt.blocks.axles.AxleBlock;
 import com.bwt.entities.BwtEntities;
 import com.bwt.entities.HorizontalMechPowerSourceEntity;
 import com.bwt.entities.WaterWheelEntity;
@@ -24,11 +25,7 @@ public class KineticScenes {
         scene.configureBasePlate(0, 0, 6);
         scene.rotateCameraY(180);
 
-        // 1. Show base layer
-        scene.world().showSection(util.select().layer(0), Direction.UP);
-        scene.idle(10);
-
-        // 1.1 Show water column at Z=1
+        // 1 Show water column at Z=1
         scene.world().showSection(util.select().position(0, 0, 1), Direction.UP);
         scene.world().showSection(util.select().position(1, 0, 1), Direction.UP);
         scene.world().showSection(util.select().position(2, 0, 1), Direction.UP);
@@ -39,11 +36,11 @@ public class KineticScenes {
         scene.world().showSection(util.select().position(1, 1, 1), Direction.UP);
         scene.idle(20);
 
-        // 2. Show axle at power source position
+        // 2. Show axle at the power source position
         scene.world().showSection(util.select().position(3, 3, 1), Direction.DOWN);
         scene.idle(20);
 
-        // 3. Spawn the water wheel entity
+        // 3. Spawn the water-wheel entity
         ElementLink<EntityElement> waterWheel = scene.world().createEntity(world -> {
             HorizontalMechPowerSourceEntity e = BwtEntities.waterWheelEntity.create(world);
             if (e != null) {
@@ -61,13 +58,22 @@ public class KineticScenes {
 
         // 5. Show axles one by one
         scene.world().showSection(util.select().position(3, 3, 3), Direction.DOWN);
-        scene.idle(5);
-        scene.world().showSection(util.select().position(3, 3, 4), Direction.DOWN);
-        scene.idle(5);
-        scene.world().showSection(util.select().position(3, 3, 5), Direction.DOWN);
+        scene.world().modifyBlock(util.grid().at(3,3,3),
+                s -> s.with(AxleBlock.MECH_POWER, 3), false);
+
         scene.idle(5);
 
-        scene.idle(10);
+        scene.world().showSection(util.select().position(3, 3, 4), Direction.DOWN);
+        scene.world().modifyBlock(util.grid().at(3,3,4),
+                s -> s.with(AxleBlock.MECH_POWER, 2), false);
+
+        scene.idle(5);
+
+        scene.world().showSection(util.select().position(3, 3, 5), Direction.DOWN);
+        scene.world().modifyBlock(util.grid().at(3,3,5),
+                s -> s.with(AxleBlock.MECH_POWER, 1), false);
+
+        scene.idle(5);
 
         scene.overlay().showText(80)
                 .text("Axles relay rotation in a straight line, losing power over distance")
