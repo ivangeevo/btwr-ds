@@ -28,6 +28,7 @@
 > #### **Im 'movens** - 0.8.3
 > #### **Nomad's Rest** - 1.2
 > #### **Granular Hunger** - 0.7.1+1.21.1
+> #### **Material Beacons** - 1.0.2+1.21.1
 > #### **Immediately Fast** - 1.6.10+1.21.1-fabric
 > #### **Jade** - 15.10.5+fabric
 > #### **Entity Cullting** - 1.9.5
