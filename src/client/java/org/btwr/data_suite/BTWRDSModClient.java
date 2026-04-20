@@ -22,7 +22,7 @@ public class BTWRDSModClient implements ClientModInitializer {
 	public BTWRDSSettings settings;
 	private static BTWRDSModClient instance;
 
-	private static final String RELEASE_VERSION_TYPE = "[Pre-Alpha]";
+	private static final String RELEASE_VERSION_TYPE = "[Alpha]";
 	public static final String MC_WINDOW_TITLE = "BTW: Remastered! " + RELEASE_VERSION_TYPE;
 
 	/**
