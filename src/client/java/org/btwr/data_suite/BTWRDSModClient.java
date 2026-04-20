@@ -41,8 +41,7 @@ public class BTWRDSModClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-
-		PonderIndex.addPlugin(new BTWRPonderPlugin());
+		//PonderIndex.addPlugin(new BTWRPonderPlugin());
 
 		EntityRendererRegistry.register(ModEntityTypes.BEAST, BeastEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_BEAST_LAYER, BeastEntityModel::getTextureModelData);
