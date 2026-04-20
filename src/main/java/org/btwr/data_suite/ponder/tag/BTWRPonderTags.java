@@ -19,13 +19,19 @@ public class BTWRPonderTags {
     }
 
     public static void register(PonderTagRegistrationHelper<Identifier> helper) {
-        PonderTagRegistrationHelper<Block> HELPER = helper.withKeyFunction(
+        BTWRDSMod.LOGGER.info("Registering BTWR Ponder scenes...");
+
+        PonderTagRegistrationHelper<Block> blockHelper = helper.withKeyFunction(
                 Registries.BLOCK::getId
         );
 
         PonderTagRegistrationHelper<ItemConvertible> itemHelper = helper.withKeyFunction(
                 RegisteredObjectsHelper::getKeyOrThrow
         );
+
+        blockHelper.addToTag(MECHANICAL_RELAYS)
+                .add(BwtBlocks.axleBlock)
+                .add(BwtBlocks.gearBoxBlock);
 
         helper.registerTag(MECHANICAL_RELAYS)
                 .addToIndex()
@@ -34,8 +40,5 @@ public class BTWRPonderTags {
                 .description("Components which help relaying Mechanical Power elsewhere")
                 .register();
 
-        HELPER.addToTag(MECHANICAL_RELAYS)
-                .add(BwtBlocks.axleBlock)
-                .add(BwtBlocks.gearBoxBlock);
     }
 }
