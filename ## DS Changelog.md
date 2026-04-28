@@ -3,6 +3,14 @@
 ## ---[Alpha]---
 
 ## v???(dev)
-
++ Changed the web-untangling item texture and recipe from Animageddon to be the proper one with a chisel
++ Updated the following mods in the project:
+> Fabric API - 0.116.11
+> Fabric Loader - 0.19.2
+> BTWR: Shared Library - 0.8.4
+> Animageddon - 0.4
+> Better With Time: HC Tweaks - 1.5
+> Vegehenna - 0.6
+> Material Beacons - 1.0.2+1.21.1
 ## v0.0.1
 + Initial alpha release
