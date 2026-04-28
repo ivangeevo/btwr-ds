@@ -1,12 +1,15 @@
 package org.btwr.data_suite.datagen.recipe.providers;
 
 import com.bwt.blocks.BwtBlocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.self_sustainable.item.ModItems;
+import org.btwr.shared_library.api.item.ProgressiveCraftingItem;
 import org.btwr.shared_library.api.tag.BTWRConventionalTags;
+import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
 import org.btwr.shared_library.util.utils.IdUtils;
 import com.bwt.items.BwtItems;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
@@ -25,8 +28,11 @@ import org.btwr.shared_library.util.utils.RecipeUtils;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.animageddon.item.ModItems.TANGLED_WEB;
+import static org.btwr.animageddon.item.ModItems.WEB_UNTANGLING;
 import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_BOW;
 import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
+import static org.btwr.tough_environment.item.ModItems.CHISEL_STONE;
 import static org.btwr.tough_environment.item.ModItems.CHISEL_WOOD;
 import static org.btwr.vegehenna.item.ModItems.*;
 
@@ -189,6 +195,17 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_mycelium", conditionsFromItem(Items.MYCELIUM))
                 .offerTo(exporter, IdUtils.ofBTWR("nether_groth_spores"));
          **/
+
+        // Web Untangling (changed from Animageddon to also require a chisel)
+        ItemStack webUntanglingResult = new ItemStack(WEB_UNTANGLING);
+        webUntanglingResult.setDamage(ProgressiveCraftingItem.DEFAULT_MAX_DAMAGE - 1);
+
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, webUntanglingResult)
+                .withToolDamage()
+                .input(TANGLED_WEB)
+                .input(CHISEL_STONE)
+                .criterion(hasItem(TANGLED_WEB), conditionsFromItem(TANGLED_WEB))
+                .offerTo(exporter);
 
         this.createConvertToSawDustToolRecipes(exporter);
     }
