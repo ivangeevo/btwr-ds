@@ -1,0 +1,15 @@
+{
+  "type": "btwr_ds:liminal_type",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+        {
+          "height": 1,
+          "block": "minecraft:dark_oak_planks"
+        }
+      ],
+      "biome": "minecraft:the_void"
+    }
+  }
+}

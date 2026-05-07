@@ -12,6 +12,7 @@ import org.btwr.data_suite.BTWRDSMod;
 import org.btwr.data_suite.data.attachment.BeastTimerAttachedData;
 import org.btwr.data_suite.data.attachment.ItemDespawnAttachedData;
 import org.btwr.data_suite.data.attachment.MagneticPointAttachedData;
+import org.btwr.data_suite.ending.LiminalPlayerState;
 import org.btwr.shared_library.api.data.EntityAttachmentBase;
 import org.btwr.shared_library.api.event.BTWREvents;
 import org.btwr.shared_library.util.utils.IdUtils;
@@ -42,6 +43,19 @@ public class ModDataAttachments {
                     .syncWith(BeastTimerAttachedData.PACKET_CODEC, AttachmentSyncPredicate.all())
     );
 
+    public static final AttachmentType<LiminalPlayerState> LIMINAL_STATE = AttachmentRegistry.create(
+            IdUtils.ofDS("liminal_state"),
+            builder -> builder
+                    .initializer(() -> LiminalPlayerState.DEFAULT)
+                    .persistent(LiminalPlayerState.CODEC)
+                    .syncWith(
+                            LiminalPlayerState.PACKET_CODEC,
+                            AttachmentSyncPredicate.all()
+                    )
+    );
+
+
+
     public static void register() {
         BTWRDSMod.LOGGER.info("Registering {} attachments", BTWRDSMod.MOD_ID);
         // Technically this method can stay empty, but some developers like to notify
@@ -50,6 +64,9 @@ public class ModDataAttachments {
         BTWREvents.LIVING_TICK.add(living -> {
             if (living.getType() == EntityType.WOLF) {
                 tickAndSync(BEAST_TIMER, living);
+            }
+            if (living.getType() == EntityType.PLAYER) {
+                tickAndSync(LIMINAL_STATE, living);
             }
         });
     }

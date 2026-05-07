@@ -11,6 +11,7 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 import org.btwr.data_suite.loot.function.ModLootFunctions;
 import org.btwr.data_suite.util.PlanterFertilizer;
 import org.btwr.data_suite.util.WorldGenBlockReplacements;
+import org.btwr.data_suite.world.ModDimensions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +57,8 @@ public class BTWRDSMod implements ModInitializer {
 
 		// Registers all tilling based interactions/modifications
 		//BlockTillingManager.registerNormalTillable();
+
+		ModDimensions.register();
 	}
 
 	// TODO: Obsolete; No existing config options atm. Replace with the BTWR:SL config system if doing so
