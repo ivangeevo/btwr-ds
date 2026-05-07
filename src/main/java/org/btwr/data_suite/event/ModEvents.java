@@ -48,7 +48,7 @@ public class ModEvents {
         });
 
         // Ending
-        registerLiminalEvents();
+        //registerLiminalEvents();
     }
 
     private static void registerLiminalEvents() {

@@ -65,9 +65,11 @@ public class ModDataAttachments {
             if (living.getType() == EntityType.WOLF) {
                 tickAndSync(BEAST_TIMER, living);
             }
+            /**
             if (living.getType() == EntityType.PLAYER) {
                 tickAndSync(LIMINAL_STATE, living);
             }
+             **/
         });
     }
 
