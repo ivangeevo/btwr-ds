@@ -16,7 +16,7 @@
 + #### Updated the following mod versions in the pack:
 
 > #### **BTWR: Shared Library** - 0.8.3
-> #### **BTWR: Core** - 0.33.5
+> #### **BTWR: Core** - 0.4
 > #### **Better With Time: HC Tweaks** - 1.4.5
 > #### **Bind** - 1.5.2
 > #### **Sturdy Trees** - 2.0
