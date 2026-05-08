@@ -168,6 +168,8 @@ public class DisabledRecipeProvider extends FabricRecipeProvider implements Reci
         this.disableBTWR(exporter,"diamond_chestplate");
         this.disableBTWR(exporter, "diamond_leggings");
         this.disableBTWR(exporter, "diamond_boots");
+        this.disableBTWR(exporter, "creeper_oyster_block");
+        this.disableBTWR(exporter, "spider_eye_block");
 
         // Remove leather recipes
         String[] leathersToRemove = new String[]{"scoured", "tanned", "scoured_cut", "tanned_cut"};

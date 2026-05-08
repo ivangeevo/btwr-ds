@@ -841,6 +841,13 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .pattern("I ")
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofDS("diamond_hoe_right"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.ENDER_SPECTACLES)
+                .input('O', BTWR_Items.OCULAR_OF_ENDER)
+                .input('S', BwtItems.strapItem)
+                .pattern("OSO")
+                .criterion(hasItem(BTWR_Items.OCULAR_OF_ENDER), conditionsFromItem(BTWR_Items.OCULAR_OF_ENDER))
+                .offerTo(exporter);
     }
 
     private void overrideRecipesForVanillaBeds(RecipeExporter exporter) {
