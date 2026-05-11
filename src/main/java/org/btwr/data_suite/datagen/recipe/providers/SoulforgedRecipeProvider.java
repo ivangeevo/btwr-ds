@@ -14,9 +14,11 @@ import org.btwr.core.block.BTWR_Blocks;
 import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
-import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
+
+import static org.btwr.tough_environment.item.ModItems.NETHERITE_NUGGET;
+import static org.btwr.tough_environment.item.ModItems.STONE_BRICK;
 
 public class SoulforgedRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
     public SoulforgedRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -37,16 +39,16 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
          **/
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, BwtItems.broadheadItem, 6)
-                .input('B', ModItems.NETHERITE_NUGGET)
+                .input('B', NETHERITE_NUGGET)
                 .pattern(" B  ")
                 .pattern(" B  ")
                 .pattern("BBB ")
                 .pattern(" B  ")
-                .criterion("has_netherite_nugget", conditionsFromItem(ModItems.NETHERITE_NUGGET))
+                .criterion("has_netherite_nugget", conditionsFromItem(NETHERITE_NUGGET))
                 .offerTo(exporter, IdUtils.ofBWT("broadhead"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.blockDispenserBlock)
-                .input('B', ModItems.STONE_BRICK)
+                .input('B', STONE_BRICK)
                 .input('M', Blocks.MOSSY_COBBLESTONE)
                 .input('U', BwtItems.soulUrnItem)
                 .input('T', Items.REDSTONE_TORCH)
@@ -59,7 +61,7 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
                 .offerTo(exporter, IdUtils.ofBWT("block_dispenser"));
 
         SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BwtBlocks.buddyBlock)
-                .input('B', ModItems.STONE_BRICK)
+                .input('B', STONE_BRICK)
                 .input('E', BwtItems.redstoneEyeItem)
                 .input('T', Items.REDSTONE_TORCH)
                 .pattern("BBEB")

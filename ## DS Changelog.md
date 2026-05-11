@@ -2,7 +2,11 @@
 
 ## ---[Alpha]---
 
-## v???(dev)
+## v0.0.3
++ Updated the following mods in the project:
+> ##### Sturdy Trees - 2.0.1
+> ##### BTWR: Core - 0.4.1
+> ##### Tough Environment - 0.2
 
 ## v0.0.2
 + Changed the ender spectacles recipe to require strap instead of leather

@@ -32,9 +32,8 @@ import static org.btwr.animageddon.item.ModItems.TANGLED_WEB;
 import static org.btwr.animageddon.item.ModItems.WEB_UNTANGLING;
 import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_BOW;
 import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
-import static org.btwr.tough_environment.item.ModItems.CHISEL_STONE;
-import static org.btwr.tough_environment.item.ModItems.CHISEL_WOOD;
 import static org.btwr.vegehenna.item.ModItems.*;
+import static org.btwr.tough_environment.item.ModItems.*;
 
 public class ShapelessRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
     private static final String[] vanillaWoodTypes = new String[]
@@ -157,7 +156,7 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_creeper_oysters", conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
                 .offerTo(exporter, IdUtils.ofST("stump_remover"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, org.btwr.tough_environment.item.ModItems.CHISEL_DIAMOND)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, CHISEL_DIAMOND)
                 .input(BTWR_Items.DIAMOND_INGOT)
                 .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofTE("chisel_diamond"));
