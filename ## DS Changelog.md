@@ -3,6 +3,7 @@
 ## ---[Alpha]---
 
 ## v???(dev)
++ Fixed fire to be breakable like normal in creative mode
 
 ## v0.0.3
 + Updated the following mods in the project:

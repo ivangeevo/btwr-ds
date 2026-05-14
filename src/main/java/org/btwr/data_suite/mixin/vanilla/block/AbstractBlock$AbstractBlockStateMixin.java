@@ -1,6 +1,7 @@
 package org.btwr.data_suite.mixin.vanilla.block;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -17,10 +18,17 @@ public abstract class AbstractBlock$AbstractBlockStateMixin implements LandingBl
     @Shadow public abstract Block getBlock();
 
     // Remove the outline of fire blocks to make them unbreakable by hand
-    @Inject(method = "getOutlineShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"),  cancellable = true)
+    @Inject(method = "getOutlineShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"), cancellable = true)
     private void removeOutline(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (this.getBlock().getDefaultState().isIn(BlockTags.FIRE)) {
-            cir.setReturnValue(VoxelShapes.empty());
+        if (!this.getBlock().getDefaultState().isIn(BlockTags.FIRE)) return;
+
+        if (context instanceof EntityShapeContext entityContext
+                && entityContext.getEntity() instanceof PlayerEntity player
+                && player.isCreative()) {
+            return; // Let vanilla handle it — creative players get the normal outline
         }
+
+        cir.setReturnValue(VoxelShapes.empty());
     }
+
 }
