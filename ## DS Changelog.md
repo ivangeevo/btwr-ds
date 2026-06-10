@@ -4,6 +4,10 @@
 
 ## v???(dev)
 + Fixed fire to be breakable like normal in creative mode
++ Fixed mushroom stew not giving back bowl after eating
++ Updated the following mods in the project:
+> ##### Self Sustainable - 0.5.3
+> ##### In The Gloom - 1.4.3
 
 ## v0.0.3
 + Updated the following mods in the project:

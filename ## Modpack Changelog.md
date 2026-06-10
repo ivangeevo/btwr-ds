@@ -4,7 +4,7 @@
 + Added a new potion type: Reduced Hunger Potion. It has only a single level of strength, and it's made with a healing potion + dragon's breath (recipe subject to change). It has both the splash and lingering variations, with the normal variant decreasing hunger consumption by 50% and the lingering one by 75% (BTWR-DS Mod change)
 
 ## ---[Alpha]---
-## v0.0.1(dev)
+## v0.0.1
 + Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
 + Fixed a bug with some vanilla food items giving full fat when eaten close to full hunger (BTWR-DS Mod change)
 + Changed the vanilla cauldron name to "Cistern" (BTWR: DS Resource Pack change)
