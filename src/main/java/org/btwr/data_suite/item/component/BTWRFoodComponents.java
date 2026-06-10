@@ -39,13 +39,13 @@ public class BTWRFoodComponents {
     public static final FoodComponent COOKED_COD = registerNew(5, 0.25f).build();
     public static final FoodComponent COOKED_SALMON = registerNew(5, 0.25f).build();
     public static final FoodComponent APPLE = registerNew(1, 0f).build();
-    public static final FoodComponent MUSHROOM_STEW = registerNew(3, 0.25f).build();
+    public static final FoodComponent MUSHROOM_STEW = registerNew(3, 0.25f).usingConvertsTo(Items.BOWL).build();
     public static final FoodComponent COOKIE = registerNew(1, 1f).build();
     public static final FoodComponent CARROT = registerNew(1, 0f).build();
     public static final FoodComponent POTATO = registerNew(1, 0f).statusEffect(addHungerEffect(700, 3), 0.35F).build();
     public static final FoodComponent BAKED_POTATO = registerNew(2, 0f).build();
     public static final FoodComponent PUMPKIN_PIE = registerNew(2, 2.5f).build();
-    public static final FoodComponent RABBIT_STEW = registerNew(5, 0.25f).build();
+    public static final FoodComponent RABBIT_STEW = registerNew(5, 0.25f).usingConvertsTo(Items.BOWL).build();
     public static final FoodComponent BEETROOT = registerNew(1, 0f).build();
     public static final FoodComponent BEETROOT_SOUP = registerNew(3, 0f).usingConvertsTo(Items.BOWL).build();
     public static final FoodComponent HONEY_BOTTLE = registerNew(1, 0.5f).usingConvertsTo(Items.GLASS_BOTTLE).build();
