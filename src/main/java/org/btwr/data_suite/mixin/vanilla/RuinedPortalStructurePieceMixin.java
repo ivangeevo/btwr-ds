@@ -1,27 +1,12 @@
 package org.btwr.data_suite.mixin.vanilla;
 
-import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.structure.*;
-import net.minecraft.structure.processor.*;
-import net.minecraft.structure.rule.AlwaysTrueRuleTest;
-import net.minecraft.structure.rule.RandomBlockMatchRuleTest;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.List;
 
 @Mixin(RuinedPortalStructurePiece.class)
 public abstract class RuinedPortalStructurePieceMixin extends SimpleStructurePiece {

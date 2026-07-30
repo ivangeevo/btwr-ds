@@ -44,9 +44,7 @@ public class WolfGoToAndPickupBreedingItemGoal extends GoToAndPickUpBreedingItem
         if (animal instanceof WolfIsFedAccess wolf && wolf.bwt$isFed()) {
             if (targetBreedingItem != null) {
                 ItemStack stack = targetBreedingItem.getStack();
-                if (stack.isOf(Items.ROTTEN_FLESH) || stack.isOf(BwtItems.kibbleItem)) {
-                    return false; // fed wolf ignores rotten flesh and kibble on the ground
-                }
+                return !stack.isOf(Items.ROTTEN_FLESH) && !stack.isOf(BwtItems.kibbleItem); // fed wolf ignores rotten flesh and kibble on the ground
             }
         }
         return true;
