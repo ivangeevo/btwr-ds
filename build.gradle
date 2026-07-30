@@ -73,7 +73,7 @@ dependencies {
 	//modImplementation "maven.modrinth:bind:${project.bind_version}"
 	modImplementation "maven.modrinth:material-beacons:${project.material_beacons_version}"
 	modImplementation "maven.modrinth:piston-packing:${project.piston_packing_version}"
-	modImplementation "maven.modrinth:nomads-rest:${project.nomads_rest_version}"
+	modImplementation "maven.modrinth:nomads-rest:${project.nomads_rest_version}-fabric"
 
 	//modImplementation files("libs/btwr-core-${project.btwr_core_version}-1.21.1.jar")
 	//modImplementation files("libs/self-sustainable-${project.self_sustainable_version}-1.21.1.jar")
