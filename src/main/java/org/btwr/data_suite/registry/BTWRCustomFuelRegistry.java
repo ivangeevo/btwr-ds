@@ -289,8 +289,8 @@ public class BTWRCustomFuelRegistry {
         //addFuel(map, BwtBlocks.tableBlock)
         addFuel(map, BwtItems.gearItem, 18);
 
-        addFuel(map, BwtItems.sawDustItem, 25);
-        addFuel(map, BwtItems.soulDustItem, 25);
+        addFuel(map, BwtItems.sawDustItem, 200);
+        addFuel(map, BwtItems.soulDustItem, 200);
     }
 
     private static boolean isNonFlammableWood(Item item) {

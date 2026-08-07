@@ -3,6 +3,7 @@
 ## ---[Alpha]---
 
 ## v???(dev)
++ Fixed saw dust and soul dust having wrong fuel values
 + Fixed fire to be breakable like normal in creative mode
 + Fixed mushroom stew not giving back a bowl after eating
 + Updated the following mods in the project:
