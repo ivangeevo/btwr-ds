@@ -24,13 +24,19 @@ public class BeaconBlockEntityMagneticTracker {
     private void updateGlobalMagneticFieldListForStateChange(int newPowerLevel, int oldPowerLevel, BeaconBlockEntity beacon) {
         assert beacon.getWorld() != null;
         if (newPowerLevel <= 0) {
-            beacon.getWorld().getMagneticPointList().removePointAt(beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ());
+            beacon.getWorld().btwr$magneticPoints().removePointAt(
+                    beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ()
+            );
         }
         else if (oldPowerLevel <= 0) {
-            beacon.getWorld().getMagneticPointList().addPoint(beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ(), newPowerLevel * 2);
+            beacon.getWorld().btwr$magneticPoints().addPoint(
+                    beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ(), newPowerLevel * 2
+            );
         }
         else if (oldPowerLevel != newPowerLevel) {
-            beacon.getWorld().getMagneticPointList().changePowerLevelOfPointAt(beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ(), newPowerLevel * 2);
+            beacon.getWorld().btwr$magneticPoints().changePowerLevelOfPointAt(
+                    beacon.getPos().getX(), beacon.getPos().getY(), beacon.getPos().getZ(), newPowerLevel * 2
+            );
         }
     }
 }

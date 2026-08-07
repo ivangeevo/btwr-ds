@@ -101,7 +101,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             strongestFieldStrength = strongestPoint.getFieldStrengthRelativeToPosition(this.getX(), this.getZ());
 
 
-            for (MagneticPoint tempPoint : this.getWorld().getMagneticPointList().magneticPoints) {
+            for (MagneticPoint tempPoint : this.getWorld().btwr$magneticPoints().magneticPoints) {
                 double tempFieldStrength = tempPoint.getFieldStrengthRelativeToPosition(this.getX(), this.getZ());
 
                 if (tempFieldStrength > strongestFieldStrength) {
@@ -112,7 +112,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         }
         else {
 
-            for (MagneticPoint tempPoint : this.getWorld().getMagneticPointList().magneticPoints) {
+            for (MagneticPoint tempPoint : this.getWorld().btwr$magneticPoints().magneticPoints) {
                 double tempFieldStrength = tempPoint.getFieldStrengthRelativeToPositionWithBackgroundNoise(this.getX(), this.getZ());
 
                 if (tempFieldStrength > strongestFieldStrength) {

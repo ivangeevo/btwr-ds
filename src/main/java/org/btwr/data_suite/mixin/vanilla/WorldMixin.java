@@ -11,7 +11,7 @@ public abstract class WorldMixin implements WorldAdded {
     @Unique private MagneticPointList magneticPointList = new MagneticPointList();
 
     @Override
-    public MagneticPointList getMagneticPointList() {
+    public MagneticPointList btwr$magneticPoints() {
         return magneticPointList;
     }
 }
