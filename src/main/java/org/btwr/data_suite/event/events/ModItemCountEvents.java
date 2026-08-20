@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.ArrayList;
 
 /** Handles modification of items max allowed count**/
-public class ItemCountModificationEvents {
+public class ModItemCountEvents {
     public static void register() {
         DefaultItemComponentEvents.MODIFY.register(context -> {
             modifyTo16(context);

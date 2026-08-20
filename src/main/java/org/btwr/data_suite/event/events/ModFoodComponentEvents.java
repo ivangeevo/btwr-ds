@@ -15,18 +15,18 @@ import org.btwr.data_suite.item.component.BTWRFoodComponents;
 import tetro48.system.GranularHunger;
 
 /** Used to modify all food items to work for BTWR **/
-public class FoodComponentModifierEvents {
+public class ModFoodComponentEvents {
 
     /**
      * Registers a listener to modify the food components of food items.
      */
     public static void register() {
         // register normal food modifications
-        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifierEvents::modifyNonGranularFoods);
+        DefaultItemComponentEvents.MODIFY.register(ModFoodComponentEvents::modifyNonGranularFoods);
 
         // register all granular food entries/modifications
         //GranularFoodComponentRegistry.registerFoods();
-        DefaultItemComponentEvents.MODIFY.register(FoodComponentModifierEvents::modifyGranularFoods);
+        DefaultItemComponentEvents.MODIFY.register(ModFoodComponentEvents::modifyGranularFoods);
     }
 
     // Define all granular food items
