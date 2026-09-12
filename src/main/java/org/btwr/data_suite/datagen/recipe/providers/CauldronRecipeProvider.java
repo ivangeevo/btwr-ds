@@ -10,13 +10,15 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.vegehenna.item.ModItems;
 import org.btwr.data_suite.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
+
+import static org.btwr.core.item.ModItems.*;
+import static org.btwr.self_sustainable.item.ModItems.*;
 
 public class CauldronRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
     public CauldronRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -89,14 +91,14 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_carrot", conditionsFromItem(Items.CARROT))
                 .offerTo(exporter, IdUtils.ofBTWR("cooked_carrot_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHOWDER,2)
+        CauldronRecipe.JsonBuilder.createFood().result(CHOWDER,2)
                 .ingredient(ConventionalItemTags.COOKED_FISH_FOODS)
                 .ingredient(Items.MILK_BUCKET)
                 .ingredient(Items.BOWL, 2)
                 .criterion("has_milk_bucket", conditionsFromItem(Items.MILK_BUCKET))
                 .offerTo(exporter, IdUtils.ofBTWR("chowder"));
 
-        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.CHICKEN_SOUP, 3)
+        CauldronRecipe.JsonBuilder.createFood().result(CHICKEN_SOUP, 3)
                 .ingredient(Items.COOKED_CHICKEN)
                 .ingredient(ModItems.COOKED_CARROT)
                 .ingredient(ModItems.BOILED_POTATO)
@@ -104,7 +106,7 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_boiled_potato", conditionsFromItem(ModItems.BOILED_POTATO))
                 .offerTo(exporter, IdUtils.ofBTWR("chicken_soup_from_cauldron"));
 
-        CauldronRecipe.JsonBuilder.createFood().result(BTWR_Items.HEARTY_STEW, 5)
+        CauldronRecipe.JsonBuilder.createFood().result(HEARTY_STEW, 5)
                 .ingredient(ConventionalItemTags.COOKED_MEAT_FOODS)
                 .ingredient(ModItems.COOKED_CARROT)
                 .ingredient(ModItems.BOILED_POTATO)
@@ -139,11 +141,11 @@ public class CauldronRecipeProvider extends FabricRecipeProvider implements Reci
                 .criterion("has_scoured_leather", conditionsFromItem(BwtItems.scouredLeatherItem))
                 .offerTo(exporter, IdUtils.ofBWT("tanned_leather_with_" + extractName(barkItem) + "_in_cauldron"));
 
-        CauldronRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_TANNED_CUT,2)
-                .ingredient(BTWR_Items.LEATHER_SCOURED_CUT,2)
+        CauldronRecipe.JsonBuilder.create().result(LEATHER_TANNED_CUT,2)
+                .ingredient(LEATHER_SCOURED_CUT,2)
                 .ingredient(BwtItems.dungItem)
                 .ingredient(barkItem, count)
-                .criterion("has_scoured_leather", conditionsFromItem(BTWR_Items.LEATHER_SCOURED_CUT))
+                .criterion("has_scoured_leather", conditionsFromItem(LEATHER_SCOURED_CUT))
                 .offerTo(exporter, IdUtils.ofBWT("tanned_leather_cut_from_leather_scoured_cut_with_" + extractName(barkItem) + "_in_cauldron"));
     }
 }

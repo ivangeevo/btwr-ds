@@ -3,7 +3,6 @@ package org.btwr.data_suite.datagen.recipe.providers;
 import com.bwt.items.BwtItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import org.btwr.self_sustainable.block.ModBlocks;
 import org.btwr.self_sustainable.data.server.recipe.ModCookingRecipeJsonBuilder;
 import org.btwr.self_sustainable.recipe.cooking.OvenCookingRecipe;
 import net.minecraft.data.server.recipe.RecipeExporter;
@@ -12,13 +11,13 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.self_sustainable.item.ModItems.*;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 
@@ -63,9 +62,9 @@ public class OvenCookingRecipeProvider extends FabricRecipeProvider implements R
         // Foods from other mods
         food(exporter, COOKED_CARROT, Items.CARROT, 0.10f);
         food(exporter, BwtItems.friedEggItem, BwtItems.rawEggItem, 0.10f);
-        food(exporter, BTWR_Items.EGG_SCRAMBLED_COOKED, BTWR_Items.EGG_SCRAMBLED_RAW, 0.10f);
-        food(exporter, BTWR_Items.MUSHROOM_OMELETTE_COOKED, BTWR_Items.MUSHROOM_OMELETTE_RAW, 0.10f);
-        food(exporter, BTWR_Items.COOKED_KEBAB, BTWR_Items.RAW_KEBAB, 0.15f);
+        food(exporter, EGG_SCRAMBLED_COOKED, EGG_SCRAMBLED_RAW, 0.10f);
+        food(exporter, MUSHROOM_OMELETTE_COOKED, MUSHROOM_OMELETTE_RAW, 0.10f);
+        food(exporter, COOKED_KEBAB, RAW_KEBAB, 0.15f);
     }
 
     private void food(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, float xp) {

@@ -5,7 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.self_sustainable.item.ModItems;
 import org.btwr.shared_library.api.item.ProgressiveCraftingItem;
 import org.btwr.shared_library.api.tag.BTWRConventionalTags;
@@ -30,8 +29,9 @@ import java.util.concurrent.CompletableFuture;
 
 import static org.btwr.animageddon.item.ModItems.TANGLED_WEB;
 import static org.btwr.animageddon.item.ModItems.WEB_UNTANGLING;
-import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_BOW;
-import static org.btwr.self_sustainable.item.ModItems.FIRESTARTER_STICKS;
+import static org.btwr.core.item.ModItems.*;
+import static org.btwr.creeper_shearing.item.ModItems.*;
+import static org.btwr.self_sustainable.item.ModItems.*;
 import static org.btwr.vegehenna.item.ModItems.*;
 import static org.btwr.tough_environment.item.ModItems.*;
 
@@ -89,27 +89,27 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
                 .criterion("has_fishing_hook_material", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, IdUtils.ofMC("fishing_rod"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.EGG_SCRAMBLED_RAW, 2)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, EGG_SCRAMBLED_RAW, 2)
                 .input(BwtItems.rawEggItem)
                 .input(Items.MILK_BUCKET)
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
                 .offerTo(exporter, IdUtils.ofBTWR("egg_scrambled_raw"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.STEAK_DINNER,3)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, STEAK_DINNER,3)
                 .input(Items.COOKED_BEEF)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .input(COOKED_CARROT)
                 .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(COOKED_CARROT))
                 .offerTo(exporter, IdUtils.ofBTWR("steak_dinner"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.PORK_DINNER,3)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, PORK_DINNER,3)
                 .input(Items.COOKED_PORKCHOP)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .input(COOKED_CARROT)
                 .criterion("has_cooked_carrot", RecipeProvider.conditionsFromItem(COOKED_CARROT))
                 .offerTo(exporter, IdUtils.ofBTWR("pork_dinner"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.WOLF_DINNER,3)
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, WOLF_DINNER,3)
                 .input(BwtItems.cookedWolfChopItem)
                 .input(BTWRConventionalTags.Items.COOKED_POTATO_FOODS)
                 .input(COOKED_CARROT)
@@ -152,13 +152,13 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, SturdyTreesItems.STUMP_REMOVER,2)
                 .input(Items.ROTTEN_FLESH)
                 .input(Items.RED_MUSHROOM)
-                .input(BTWR_Items.CREEPER_OYSTERS)
-                .criterion("has_creeper_oysters", conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
+                .input(CREEPER_OYSTERS)
+                .criterion("has_creeper_oysters", conditionsFromItem(CREEPER_OYSTERS))
                 .offerTo(exporter, IdUtils.ofST("stump_remover"));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, CHISEL_DIAMOND)
-                .input(BTWR_Items.DIAMOND_INGOT)
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .input(DIAMOND_INGOT)
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofTE("chisel_diamond"));
 
         // Self-Sustainable
@@ -230,7 +230,7 @@ public class ShapelessRecipeProvider extends FabricRecipeProvider implements Rec
     private void createConvertToSawDustToolRecipes(RecipeExporter exporter) {
         convertToSawdustRecipeBuilder(exporter, FIRESTARTER_STICKS, "has_firestarter_sticks");
         convertToSawdustRecipeBuilder(exporter, FIRESTARTER_BOW, "has_firestarter_bow");
-        convertToSawdustRecipeBuilder(exporter, BTWR_Items.CLUB_WOOD, "has_club_wood");
+        convertToSawdustRecipeBuilder(exporter, CLUB_WOOD, "has_club_wood");
     }
 
     private void convertToSawdustRecipeBuilder(RecipeExporter exporter, Item tool, String criterion) {

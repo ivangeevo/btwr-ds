@@ -9,10 +9,13 @@ import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.vegehenna.item.ModItems;
 import org.btwr.data_suite.item.component.BTWRFoodComponents;
 import tetro48.system.GranularHunger;
+
+import static org.btwr.creeper_shearing.item.ModItems.CREEPER_OYSTERS;
+import static org.btwr.core.item.ModItems.*;
+import static org.btwr.self_sustainable.item.ModItems.*;
 
 /** Used to modify all food items to work for BTWR **/
 public class ModFoodComponentEvents {
@@ -84,24 +87,24 @@ public class ModFoodComponentEvents {
         context.modify(Items.CHORUS_FRUIT, builder -> modifyEntry(builder, BTWRFoodComponents.CHORUS_FRUIT));
 
         if (FabricLoader.getInstance().isModLoaded("btwr")) {
-            context.modify(BTWR_Items.CHOWDER, builder -> modifyEntry(builder, BTWRFoodComponents.CHOWDER));
-            context.modify(BTWR_Items.EGG_SCRAMBLED_RAW, builder -> modifyEntry(builder, BTWRFoodComponents.EGG_SCRAMBLED_RAW));
-            context.modify(BTWR_Items.MUSHROOM_OMELETTE_RAW, builder -> modifyEntry(builder, BTWRFoodComponents.MUSHROOM_OMELETTE_RAW));
-            context.modify(BTWR_Items.RAW_KEBAB, builder -> modifyEntry(builder, BTWRFoodComponents.RAW_KEBAB));
-            context.modify(BTWR_Items.EGG_SCRAMBLED_COOKED, builder -> modifyEntry(builder, BTWRFoodComponents.EGG_SCRAMBLED_COOKED));
-            context.modify(BTWR_Items.MUSHROOM_OMELETTE_COOKED, builder -> modifyEntry(builder, BTWRFoodComponents.MUSHROOM_OMELETTE_COOKED));
-            context.modify(BTWR_Items.SANDWICH, builder -> modifyEntry(builder, BTWRFoodComponents.SANDWICH));
-            context.modify(BTWR_Items.HAM_AND_EGGS, builder -> modifyEntry(builder, BTWRFoodComponents.HAM_AND_EGGS));
-            context.modify(BTWR_Items.STEAK_AND_POTATOES, builder -> modifyEntry(builder, BTWRFoodComponents.STEAK_AND_POTATOES));
-            context.modify(BTWR_Items.COOKED_KEBAB, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_KEBAB));
-            context.modify(BTWR_Items.STEAK_DINNER, builder -> modifyEntry(builder, BTWRFoodComponents.STEAK_DINNER));
-            context.modify(BTWR_Items.PORK_DINNER, builder -> modifyEntry(builder, BTWRFoodComponents.PORK_DINNER));
-            context.modify(BTWR_Items.WOLF_DINNER, builder -> modifyEntry(builder, BTWRFoodComponents.WOLF_DINNER));
-            context.modify(BTWR_Items.CHICKEN_SOUP, builder -> modifyEntry(builder, BTWRFoodComponents.CHICKEN_SOUP));
-            context.modify(BTWR_Items.HEARTY_STEW, builder -> modifyEntry(builder, BTWRFoodComponents.HEARTY_STEW));
-            context.modify(BTWR_Items.CREEPER_OYSTERS, builder -> modifyEntry(builder, BTWRFoodComponents.CREEPER_OYSTERS));
-            context.modify(BTWR_Items.BEAST_LIVER_RAW, builder -> modifyEntry(builder, BTWRFoodComponents.BEAST_LIVER_RAW));
-            context.modify(BTWR_Items.BEAST_LIVER_COOKED, builder -> modifyEntry(builder, BTWRFoodComponents.BEAST_LIVER_COOKED));
+            context.modify(CHOWDER, builder -> modifyEntry(builder, BTWRFoodComponents.CHOWDER));
+            context.modify(EGG_SCRAMBLED_RAW, builder -> modifyEntry(builder, BTWRFoodComponents.EGG_SCRAMBLED_RAW));
+            context.modify(MUSHROOM_OMELETTE_RAW, builder -> modifyEntry(builder, BTWRFoodComponents.MUSHROOM_OMELETTE_RAW));
+            context.modify(RAW_KEBAB, builder -> modifyEntry(builder, BTWRFoodComponents.RAW_KEBAB));
+            context.modify(EGG_SCRAMBLED_COOKED, builder -> modifyEntry(builder, BTWRFoodComponents.EGG_SCRAMBLED_COOKED));
+            context.modify(MUSHROOM_OMELETTE_COOKED, builder -> modifyEntry(builder, BTWRFoodComponents.MUSHROOM_OMELETTE_COOKED));
+            context.modify(SANDWICH, builder -> modifyEntry(builder, BTWRFoodComponents.SANDWICH));
+            context.modify(HAM_AND_EGGS, builder -> modifyEntry(builder, BTWRFoodComponents.HAM_AND_EGGS));
+            context.modify(STEAK_AND_POTATOES, builder -> modifyEntry(builder, BTWRFoodComponents.STEAK_AND_POTATOES));
+            context.modify(COOKED_KEBAB, builder -> modifyEntry(builder, BTWRFoodComponents.COOKED_KEBAB));
+            context.modify(STEAK_DINNER, builder -> modifyEntry(builder, BTWRFoodComponents.STEAK_DINNER));
+            context.modify(PORK_DINNER, builder -> modifyEntry(builder, BTWRFoodComponents.PORK_DINNER));
+            context.modify(WOLF_DINNER, builder -> modifyEntry(builder, BTWRFoodComponents.WOLF_DINNER));
+            context.modify(CHICKEN_SOUP, builder -> modifyEntry(builder, BTWRFoodComponents.CHICKEN_SOUP));
+            context.modify(HEARTY_STEW, builder -> modifyEntry(builder, BTWRFoodComponents.HEARTY_STEW));
+            context.modify(CREEPER_OYSTERS, builder -> modifyEntry(builder, BTWRFoodComponents.CREEPER_OYSTERS));
+            context.modify(BEAST_LIVER_RAW, builder -> modifyEntry(builder, BTWRFoodComponents.BEAST_LIVER_RAW));
+            context.modify(BEAST_LIVER_COOKED, builder -> modifyEntry(builder, BTWRFoodComponents.BEAST_LIVER_COOKED));
         }
 
         if (FabricLoader.getInstance().isModLoaded("vegehenna")) {

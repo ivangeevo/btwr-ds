@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.data_suite.item.BTWRDS_Items;
@@ -17,6 +16,7 @@ import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.core.item.ModItems.*;
 import static org.btwr.tough_environment.item.ModItems.CHISEL_DIAMOND;
 import static org.btwr.tough_environment.item.ModItems.CHISEL_IRON;
 
@@ -34,12 +34,12 @@ public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implement
                 .criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE.asItem()))
                 .offerTo(exporter, IdUtils.ofDS("white_stone_from_crucible"));
 
-        StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT,2)
-                .ingredient(BTWR_Items.DIAMOND_SHEARS)
-                .criterion("has_diamond_shears", conditionsFromItem(BTWR_Items.DIAMOND_SHEARS))
+        StokedCrucibleRecipe.JsonBuilder.create().result(DIAMOND_INGOT,2)
+                .ingredient(DIAMOND_SHEARS)
+                .criterion("has_diamond_shears", conditionsFromItem(DIAMOND_SHEARS))
                 .offerTo(exporter, IdUtils.ofDS("smelt_diamond_shears_in_crucible"));
 
-        StokedCrucibleRecipe.JsonBuilder.create().result(BTWR_Items.DIAMOND_INGOT)
+        StokedCrucibleRecipe.JsonBuilder.create().result(DIAMOND_INGOT)
                 .ingredient(CHISEL_DIAMOND)
                 .criterion("has_chisel_diamond", conditionsFromItem(CHISEL_DIAMOND))
                 .offerTo(exporter, IdUtils.ofDS("smelt_chisel_diamond_in_crucible"));
@@ -107,15 +107,15 @@ public class StokedCrucibleRecipeProvider extends FabricRecipeProvider implement
         StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.GOLDEN_SWORD).result(Items.GOLD_NUGGET, 12).offerTo(exporter);
 
         // Diamond
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_HELMET).result(BTWR_Items.DIAMOND_INGOT, 5).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_CHESTPLATE).result(BTWR_Items.DIAMOND_INGOT, 8).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_LEGGINGS).result(BTWR_Items.DIAMOND_INGOT, 7).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_BOOTS).result(BTWR_Items.DIAMOND_INGOT, 4).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_PICKAXE).result(BTWR_Items.DIAMOND_INGOT, 3).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_SHOVEL).result(BTWR_Items.DIAMOND_INGOT, 1).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_AXE).result(BTWR_Items.DIAMOND_INGOT, 2).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_HOE).result(BTWR_Items.DIAMOND_INGOT, 1).offerTo(exporter);
-        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_SWORD).result(BTWR_Items.DIAMOND_INGOT, 2).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_HELMET).result(DIAMOND_INGOT, 5).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_CHESTPLATE).result(DIAMOND_INGOT, 8).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_LEGGINGS).result(DIAMOND_INGOT, 7).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_BOOTS).result(DIAMOND_INGOT, 4).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_PICKAXE).result(DIAMOND_INGOT, 3).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_SHOVEL).result(DIAMOND_INGOT, 1).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_AXE).result(DIAMOND_INGOT, 2).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_HOE).result(DIAMOND_INGOT, 1).offerTo(exporter);
+        StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.DIAMOND_SWORD).result(DIAMOND_INGOT, 2).offerTo(exporter);
 
         StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.NETHERITE_HELMET).result(Items.NETHERITE_INGOT, 8).offerTo(exporter);
         StokedCrucibleRecipe.JsonBuilder.create().ingredient(Items.NETHERITE_CHESTPLATE).result(Items.NETHERITE_INGOT, 12).offerTo(exporter);

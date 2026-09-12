@@ -23,7 +23,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.core.tag.BTWRTags;
 import org.btwr.self_sustainable.item.ModItems;
 import org.btwr.shared_library.util.utils.IdUtils;
@@ -32,6 +31,8 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.core.item.ModItems.*;
+import static org.btwr.self_sustainable.item.ModItems.*;
 import static org.btwr.tough_environment.block.ModBlocks.DIRT_LOOSE;
 import static org.btwr.tough_environment.block.ModBlocks.SLAB_BRICKS_LOOSE;
 import static org.btwr.tough_environment.item.ModItems.STONE_BRICK;
@@ -68,8 +69,8 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
         /**
          ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, Items.DISPENSER)
          .input('S', Items.BOW)
-         .input('B', BTWR_Items.STONE_BRICK)
-         .input('L', BTWR_Items.REDSTONE_LATCH)
+         .input('B', STONE_BRICK)
+         .input('L', REDSTONE_LATCH)
          .pattern("BBB")
          .pattern("BSB")
          .pattern("BLB")
@@ -395,81 +396,81 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
 
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_AXE)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern("M ")
                 .pattern("MI")
                 .pattern(" I")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_axe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_PICKAXE)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern("MMM")
                 .pattern(" I ")
                 .pattern(" I ")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_pickaxe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern("MI")
                 .pattern(" I")
                 .pattern(" I")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_hoe"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_SHOVEL)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern(" M ")
                 .pattern(" I ")
                 .pattern(" I ")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_shovel"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_SWORD)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern(" M ")
                 .pattern(" M ")
                 .pattern(" I ")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_sword"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_HELMET)
-                .input('I', BTWR_Items.DIAMOND_INGOT)
-                .input('P', BTWR_Items.DIAMOND_PLATE)
+                .input('I', DIAMOND_INGOT)
+                .input('P', DIAMOND_PLATE)
                 .pattern("III")
                 .pattern("IPI")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_helmet"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_CHESTPLATE)
-                .input('I', BTWR_Items.DIAMOND_INGOT)
-                .input('P', BTWR_Items.DIAMOND_PLATE)
+                .input('I', DIAMOND_INGOT)
+                .input('P', DIAMOND_PLATE)
                 .pattern("P P")
                 .pattern("III")
                 .pattern("III")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_chestplate"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_LEGGINGS)
-                .input('I', BTWR_Items.DIAMOND_INGOT)
-                .input('P', BTWR_Items.DIAMOND_PLATE)
+                .input('I', DIAMOND_INGOT)
+                .input('P', DIAMOND_PLATE)
                 .pattern("III")
                 .pattern("P P")
                 .pattern("P P")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_leggings"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.DIAMOND_BOOTS)
-                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .input('I', DIAMOND_INGOT)
                 .pattern("I I")
                 .pattern("I I")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofMC("diamond_boots"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
@@ -718,8 +719,7 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_glue", conditionsFromItem(BwtItems.glueItem))
                 .offerTo(exporter, IdUtils.ofBWT("composite_bow"));
 
-        // BTWR: Core
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, BTWR_Items.MUSHROOM_OMELETTE_RAW)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, MUSHROOM_OMELETTE_RAW)
                 .input('E', BwtItems.rawEggItem)
                 .input('M', Items.BROWN_MUSHROOM)
                 .pattern("EM")
@@ -727,13 +727,14 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion("has_raw_egg", conditionsFromItem(BwtItems.rawEggItem))
                 .offerTo(exporter, IdUtils.ofBTWR("mushroom_omelette_raw"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.DIAMOND_PLATE)
+        // BTWR: Core
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, DIAMOND_PLATE)
                 .input('S', BwtItems.strapItem)
-                .input('I', BTWR_Items.DIAMOND_INGOT)
+                .input('I', DIAMOND_INGOT)
                 .input('P', BwtItems.paddingItem)
                 .pattern("SIS")
                 .pattern(" P ")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofBTWR("diamond_plate"));
 
         // Vegehenna
@@ -825,28 +826,28 @@ public class ShapedRecipeProvider extends FabricRecipeProvider implements Recipe
                 .offerTo(exporter, IdUtils.ofDS("iron_hoe_right"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_AXE)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern(" M")
                 .pattern("IM")
                 .pattern("I ")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofDS("diamond_axe_right"));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.DIAMOND_HOE)
-                .input('M', BTWR_Items.DIAMOND_INGOT)
+                .input('M', DIAMOND_INGOT)
                 .input('I', Items.STICK)
                 .pattern("IM")
                 .pattern("I ")
                 .pattern("I ")
-                .criterion("has_diamond_ingot", conditionsFromItem(BTWR_Items.DIAMOND_INGOT))
+                .criterion("has_diamond_ingot", conditionsFromItem(DIAMOND_INGOT))
                 .offerTo(exporter, IdUtils.ofDS("diamond_hoe_right"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, BTWR_Items.ENDER_SPECTACLES)
-                .input('O', BTWR_Items.OCULAR_OF_ENDER)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ENDER_SPECTACLES)
+                .input('O', OCULAR_OF_ENDER)
                 .input('S', BwtItems.strapItem)
                 .pattern("OSO")
-                .criterion(hasItem(BTWR_Items.OCULAR_OF_ENDER), conditionsFromItem(BTWR_Items.OCULAR_OF_ENDER))
+                .criterion(hasItem(OCULAR_OF_ENDER), conditionsFromItem(OCULAR_OF_ENDER))
                 .offerTo(exporter);
     }
 

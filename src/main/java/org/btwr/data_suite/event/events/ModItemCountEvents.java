@@ -6,11 +6,14 @@ import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.vegehenna.item.ModItems;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.ArrayList;
+
+import static org.btwr.core.item.ModItems.*;
+import static org.btwr.creeper_shearing.item.ModItems.CREEPER_OYSTERS;
+import static org.btwr.self_sustainable.item.ModItems.*;
 
 /** Handles modification of items max allowed count**/
 public class ModItemCountEvents {
@@ -95,21 +98,23 @@ public class ModItemCountEvents {
         list.add(Items.COOKED_MUTTON);
 
         // btwr: core
-        list.add(BTWR_Items.EGG_SCRAMBLED_COOKED);
-        list.add(BTWR_Items.MUSHROOM_OMELETTE_COOKED);
-        list.add(BTWR_Items.SANDWICH);
-        list.add(BTWR_Items.HAM_AND_EGGS);
-        list.add(BTWR_Items.CHOWDER);
-        list.add(BTWR_Items.STEAK_AND_POTATOES);
-        list.add(BTWR_Items.COOKED_KEBAB);
-        list.add(BTWR_Items.STEAK_DINNER);
-        list.add(BTWR_Items.PORK_DINNER);
-        list.add(BTWR_Items.WOLF_DINNER);
-        list.add(BTWR_Items.CHICKEN_SOUP);
-        list.add(BTWR_Items.HEARTY_STEW);
-        list.add(BTWR_Items.BEAST_LIVER_COOKED);
+        list.add(BEAST_LIVER_COOKED);
 
+        // self sustainable
+        list.add(EGG_SCRAMBLED_COOKED);
+        list.add(MUSHROOM_OMELETTE_COOKED);
+        list.add(SANDWICH);
+        list.add(HAM_AND_EGGS);
+        list.add(CHOWDER);
+        list.add(STEAK_AND_POTATOES);
+        list.add(COOKED_KEBAB);
+        list.add(STEAK_DINNER);
+        list.add(PORK_DINNER);
+        list.add(WOLF_DINNER);
+        list.add(CHICKEN_SOUP);
+        list.add(HEARTY_STEW);
 
+        
         // vegehenna
         list.add(ModItems.BOILED_POTATO);
         list.add(ModItems.COOKED_CARROT);
@@ -138,7 +143,7 @@ public class ModItemCountEvents {
         list.add(Items.BROWN_MUSHROOM);
         list.add(Items.RED_MUSHROOM);
 
-        list.add(BTWR_Items.CREEPER_OYSTERS);
+        list.add(CREEPER_OYSTERS);
 
         list.add(ModItems.CHOCOLATE);
         list.add(ModItems.CHOCOLATE_MILK);

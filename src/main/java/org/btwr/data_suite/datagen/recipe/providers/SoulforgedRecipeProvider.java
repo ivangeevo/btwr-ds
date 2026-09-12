@@ -10,13 +10,14 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
-import org.btwr.core.block.BTWR_Blocks;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.core.block.ModBlocks.*;
+import static org.btwr.creeper_shearing.block.ModBlocks.*;
+import static org.btwr.creeper_shearing.item.ModItems.CREEPER_OYSTERS;
 import static org.btwr.tough_environment.item.ModItems.NETHERITE_NUGGET;
 import static org.btwr.tough_environment.item.ModItems.STONE_BRICK;
 
@@ -30,11 +31,11 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
         // TODO: Add soulforged recipe for the chopping block when it's added to BTWR: Core
         /**
          SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.REDSTONE, BTWR_Blocks.CHOPPING_BLOCK)
-         .input('B', BTWR_Items.STONE_BRICK)
+         .input('B', STONE_BRICK)
          .pattern("B  B")
          .pattern("B  B")
          .pattern("BBBB")
-         .criterion("has_stone_brick", conditionsFromItem(BTWR_Items.STONE_BRICK))
+         .criterion("has_stone_brick", conditionsFromItem(STONE_BRICK))
          .offerTo(exporter, ID.ofBTWR("chopping_block"));
          **/
 
@@ -72,16 +73,16 @@ public class SoulforgedRecipeProvider extends FabricRecipeProvider implements Re
                 .offerTo(exporter, IdUtils.ofBWT("buddy_block"));
 
         //TODO: Make the creeper oyster block and the spider eye block a packing recipe instead when piston packing gets fixed
-        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Blocks.CREEPER_OYSTER_BLOCK)
-                .input('O', BTWR_Items.CREEPER_OYSTERS)
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, CREEPER_OYSTER_BLOCK)
+                .input('O', CREEPER_OYSTERS)
                 .pattern("OOOO")
                 .pattern("OOOO")
                 .pattern("OOOO")
                 .pattern("OOOO")
-                .criterion(hasItem(BTWR_Items.CREEPER_OYSTERS), conditionsFromItem(BTWR_Items.CREEPER_OYSTERS))
+                .criterion(hasItem(CREEPER_OYSTERS), conditionsFromItem(CREEPER_OYSTERS))
                 .offerTo(exporter, IdUtils.ofDS("creeper_oyster_block"));
 
-        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, BTWR_Blocks.SPIDER_EYE_BLOCK)
+        SoulForgeShapedRecipe.JsonBuilder.create(RecipeCategory.MISC, SPIDER_EYE_BLOCK)
                 .input('O', Items.SPIDER_EYE)
                 .pattern("OOOO")
                 .pattern("OOOO")

@@ -1,13 +1,6 @@
 package org.btwr.data_suite.event.events;
 
 import com.bwt.items.BwtItems;
-import net.fabricmc.fabric.api.loot.v3.LootTableSource;
-import net.minecraft.block.Blocks;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.condition.AnyOfLootCondition;
-import net.minecraft.loot.condition.InvertedLootCondition;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.registry.RegistryWrapper;
 import org.btwr.sturdy_trees.item.SturdyTreesItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.item.Item;
@@ -48,26 +41,8 @@ public class ModLootTableEvents {
 
     private static final String[] PLANK_LIKE_BLOCKS = { "planks", "slab", "stairs", "fence", "trapdoor" };
 
-    // Condition for MODERN_AXES or ADVANCED_AXES tag check
-    /**
-    private static final LootCondition.Builder WITH_STRONG_AXE = AnyOfLootCondition.builder(
-            MatchToolLootCondition.builder(
-                    ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_AXES)
-            ),
-            MatchToolLootCondition.builder(
-                    ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_AXES)
-            )
-    );
-     **/
-    private static final LootCondition.Builder WITH_STRONG_AXE = MatchToolLootCondition.builder(
-            ItemPredicate.Builder.create().items(Items.DIAMOND_AXE)
-    );
-
-    private static final LootCondition.Builder WITHOUT_STRONG_AXE = InvertedLootCondition.builder(WITH_STRONG_AXE);
-
     public static void register() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-
             if (ZOMBIE_LOOT_TABLE.equals(key) || ZOMBIE_VILLAGER_LOOT_TABLE.equals(key)) {
                 replaceItemsInPools(tableBuilder, Items.POTATO, Items.AIR);
                 replaceItemsInPools(tableBuilder, Items.CARROT, Items.AIR);
@@ -105,37 +80,6 @@ public class ModLootTableEvents {
                 }
             }
         });
-
-        //LootTableEvents.REPLACE.register(ModLootTableEvents::replaceChestLootTable);
-    }
-
-    // Doesn't seem to work properly
-    private static LootTable replaceChestLootTable(RegistryKey<LootTable> key, LootTable original, LootTableSource source, RegistryWrapper.WrapperLookup registries) {
-        if (source.isBuiltin()) {
-            if (Blocks.CHEST.getLootTableKey().equals(key)) {
-                LootTable.Builder newTable = LootTable.builder();
-
-                newTable.pool(LootPool.builder()
-                        .with(ItemEntry.builder(Items.CHEST))
-                        .conditionally(withStrongAxe())
-                );
-
-                newTable.pool(LootPool.builder()
-                        .with(ItemEntry.builder(BwtItems.sawDustItem)
-                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(6))))
-                        .conditionally(withoutStrongAxe())
-                );
-
-                newTable.pool(LootPool.builder()
-                        .with(ItemEntry.builder(Items.STICK)
-                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2))))
-                        .conditionally(withoutStrongAxe())
-                );
-
-                return newTable.build();
-            }
-        }
-        return null;
     }
 
     private static void replaceItemsInPools(LootTable.Builder tableBuilder, Item target, Item replacement) {
@@ -208,20 +152,5 @@ public class ModLootTableEvents {
 
             ((LootPoolBuilderAccessor) poolBuilder).setEntries(ImmutableList.<LootPoolEntry>builder().addAll(newEntries));
         });
-    }
-
-    private static LootCondition.Builder withStrongAxe() {
-        return AnyOfLootCondition.builder(
-                MatchToolLootCondition.builder(
-                        ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_AXES)
-                ),
-                MatchToolLootCondition.builder(
-                        ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_AXES)
-                )
-        );
-    }
-
-    private static LootCondition.Builder withoutStrongAxe() {
-        return InvertedLootCondition.builder(withStrongAxe());
     }
 }

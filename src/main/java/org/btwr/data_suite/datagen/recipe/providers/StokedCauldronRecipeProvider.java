@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Util;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.data_suite.item.BTWRDS_Items;
@@ -20,6 +19,7 @@ import org.btwr.data_suite.item.BTWRDS_Items;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.core.item.ModItems.*;
 import static org.btwr.vegehenna.item.ModItems.*;
 
 public class StokedCauldronRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
@@ -55,9 +55,9 @@ public class StokedCauldronRecipeProvider extends FabricRecipeProvider implement
         Map<Item, Integer> DOUBLE_COUNT_TO_GLUE_AMOUNTS = Util.make(Maps.newHashMap(), map -> {
 
             // Cut leathers
-            map.put(BTWR_Items.LEATHER_CUT, 1);
-            map.put(BTWR_Items.LEATHER_SCOURED_CUT, 1);
-            map.put(BTWR_Items.LEATHER_TANNED_CUT, 1);
+            map.put(LEATHER_CUT, 1);
+            map.put(LEATHER_SCOURED_CUT, 1);
+            map.put(LEATHER_TANNED_CUT, 1);
         });
         DOUBLE_COUNT_TO_GLUE_AMOUNTS.forEach((key, value) -> StokedCauldronRecipe.JsonBuilder.create().ingredient(key,2).result(BwtItems.glueItem, value).offerTo(exporter, IdUtils.ofBWT(RecipeProvider.getItemPath(BwtItems.glueItem) + "_from_cauldron_rendering_" + RecipeProvider.getItemPath(key))));
 

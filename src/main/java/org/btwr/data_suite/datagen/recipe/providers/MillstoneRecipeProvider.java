@@ -7,12 +7,13 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
-import org.btwr.core.item.BTWR_Items;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.shared_library.util.utils.RecipeUtils;
 import org.btwr.vegehenna.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
+
+import static org.btwr.core.item.ModItems.*;
 
 public class MillstoneRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
     public MillstoneRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
@@ -25,9 +26,9 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
         this.registerNew(exporter);
         // DS recipes
         /**
-         ModernMillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
-         .ingredient(BTWR_Items.LEATHER_CUT)
-         .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
+         ModernMillStoneRecipe.JsonBuilder.create().result(LEATHER_SCOURED_CUT)
+         .ingredient(LEATHER_CUT)
+         .criterion("has_leather_cut", conditionsFromItem(LEATHER_CUT))
          .offerTo(exporter, IdUtils.ofDS("leather_scoured_cut_from_mill_stone"));
 
          ModernMillStoneRecipe.JsonBuilder.create().result(Items.BLAZE_POWDER,2)
@@ -36,7 +37,7 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
          .offerTo(exporter, IdUtils.ofDS("blaze_powder_from_mill_stone"));
 
          ModernMillStoneRecipe.JsonBuilder.create().result(BwtItems.hempFiberItem, 4)
-         .ingredient(BTWR_Items.HEMP_LEAVES)
+         .ingredient(HEMP_LEAVES)
          .criterion("has_hemp_leaves", conditionsFromItem(BwtItems.hempItem))
          .offerTo(exporter, IdUtils.ofDS("hemp_fiber_from_milling_hemp"));
 
@@ -65,9 +66,9 @@ public class MillstoneRecipeProvider extends FabricRecipeProvider implements Rec
     }
 
     private void registerNew(RecipeExporter exporter) {
-        MillStoneRecipe.JsonBuilder.create().result(BTWR_Items.LEATHER_SCOURED_CUT)
-                .ingredient(BTWR_Items.LEATHER_CUT)
-                .criterion("has_leather_cut", conditionsFromItem(BTWR_Items.LEATHER_CUT))
+        MillStoneRecipe.JsonBuilder.create().result(LEATHER_SCOURED_CUT)
+                .ingredient(LEATHER_CUT)
+                .criterion("has_leather_cut", conditionsFromItem(LEATHER_CUT))
                 .offerTo(exporter, IdUtils.ofDS("leather_scoured_cut_from_mill_stone"));
 
         MillStoneRecipe.JsonBuilder.create().result(Items.BLAZE_POWDER,2)
