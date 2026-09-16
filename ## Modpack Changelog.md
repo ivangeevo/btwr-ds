@@ -4,7 +4,10 @@
 + Added a new potion type: Reduced Hunger Potion. It has only a single level of strength, and it's made with a healing potion + dragon's breath (recipe subject to change). It has both the splash and lingering variations, with the normal variant decreasing hunger consumption by 50% and the lingering one by 75% (BTWR-DS Mod change)
 
 ## ---[Alpha]---
-## v0.0.1
+## v1.1.0
+
+
+## v1.0.0
 + Fixed a bug that crashed the client when disconnecting from a server (BTWR-DS Mod change)
 + Fixed a bug with some vanilla food items giving full fat when eaten close to full hunger (BTWR-DS Mod change)
 + Changed the vanilla cauldron name to "Cistern" (BTWR: DS Resource Pack change)
@@ -15,16 +18,16 @@
 
 + #### Updated the following mod versions in the pack:
 
-> #### **BTWR: Shared Library** - 0.8.3
-> #### **BTWR: Core** - 0.4
-> #### **Better With Time: HC Tweaks** - 1.4.5
+> #### **BTWR: Shared Library** - 0.8.4
+> #### **BTWR: Core** - 0.4.1
+> #### **Better With Time: HC Tweaks** - 1.5
 > #### **Bind** - 1.5.2
-> #### **Sturdy Trees** - 2.0
-> #### **Self Sustainable** - 0.5.2
-> #### **Animageddon** - 0.3.3
+> #### **Sturdy Trees** - 2.0.1
+> #### **Self Sustainable** - 0.5.3
+> #### **Animageddon** - 0.4
 > #### **Vegehenna** - 0.6
 > #### **In The Gloom** - 1.4.2
-> #### **Tough Environment** - 0.13.5
+> #### **Tough Environment** - 0.2
 > #### **Im 'movens** - 0.8.3
 > #### **Nomad's Rest** - 1.2
 > #### **Granular Hunger** - 0.7.1+1.21.1
@@ -53,37 +56,21 @@
 + #### Updated the following mod versions in the pack:
 
 > #### **BTWR: Core** - 0.33.2
->
 > #### **Better With Time** - 2.0.2
->
 > #### **BWT: HC Tweaks** - 1.4.4
->
 > #### **Im 'Movens** - 0.8.2
->
 > #### **Sturdy Trees** - 1.6.5
->
 > #### **Self Sustainable** - 0.3
->
 > #### **Animageddon** - 0.3.2
->
 > #### **Vegehenna** - 0.5.1
->
 > #### **In The Gloom** - 1.4.1
->
 > #### **Granular Hunger** - 0.5
->
 > #### **Tough Environment** - 0.13.4
->
 > #### **BTWR: Shared Library** - 0.6.5
->
 > #### **Lithium** - mc1.21.1-0.15.1-fabric
->
 > #### **Fancy Menu** - 3.8.1-1.21.1-fabric
->
 > #### **Entity Cullting** - 1.9.4
->
 > #### **Immediately Fast** - 1.6.8+1.21.1-fabric
->
 > #### **YetAnotherConfigLib** - 3.8.1+1.21.1-fabric
 
 ## v1.0.0(v0.1)
